@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
 
-import Boton from "../atoms/Boton";
-import ModalGuardado from "../atoms/ModalGuardado";
+import { ModalGuardado } from "../atoms/ModalNotificacion";
+
 import iconoCerrar from "../../img/iconoCerrar.png";
 import Fernet from "../../img/fernet.jpg";
 import SignoMas from "../../img/signoMas.png";
@@ -13,6 +13,7 @@ import iconoEtiqueta from "../../img/iconoEtiqueta.png";
 import iconoExclamacion from "../../img/iconoExclamacion3.png";
 
 import StaticContext from "../../contexts/StaticProvider";
+import { BotonPrincipal, BotonSecundario } from "../atoms/Botones";
 
 const Editar = () => {
   const { isOpenEdit, setIsOpenEdit, isOpenModal, setIsOpenModal } =
@@ -166,9 +167,7 @@ const Editar = () => {
           </div>
         </div>
         <div className="mt-10">
-          <Boton handleClick={handleGuardar} titleButton="Guardar">
-            Guardar
-          </Boton>
+          <BotonPrincipal onClick={handleGuardar} value="Guardar" />
         </div>
       </div>
       {isOpenModal ? (

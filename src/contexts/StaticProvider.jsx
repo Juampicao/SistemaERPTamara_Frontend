@@ -7,6 +7,8 @@ const StaticProvider = ({ children }) => {
   const [isOpenEdit, setIsOpenEdit] = useState(false);
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [isOpenDeleteModal, setIsOpenDeleteModal] = useState(false);
+  const [isOpenConfirmModal, setIsOpenConfirmModal] = useState(false);
+
   const [productos, setProductos] = useState([]);
 
   return (

@@ -1,7 +1,5 @@
-import React, { useContext } from "react";
+import React, { Children, useContext } from "react";
 import "./MessageModal.css";
-
-import Boton from "./Boton";
 
 import iconoCerrar from "../../img/iconoCerrar.png";
 import iconoExclamacion from "../../img/iconoExclamacion.png";
@@ -13,6 +11,7 @@ const MessageModal = ({
   subtitleModal,
   buttonLabel,
   buttonLabel2,
+  Children,
 }) => {
   const { isOpenDeleteModal, setIsOpenDeleteModal } = useContext(StaticContext);
 
@@ -57,10 +56,10 @@ const MessageModal = ({
           <div className="mt-2 px-7 py-3">
             <p className="text-sm text-gray-500">{subtitleModal}</p>
           </div>
-          {/* <div className="items-center px-4 py-3"> */}
+          {Children}
           <div className="sm:flex  md:space-x-3 ">
             <button
-              onClick={handleClick}
+              onClick={onClick}
               className="uppercase px-4 py-2 bg-red-500 text-white text-sm font-medium rounded-md w-full shadow-sm hover:bg-red-600 hover:scale-105 hover:duration-200 focus:outline-none focus:ring-2 focus:ring-green-300 active:bg-red-700 active:text-white"
             >
               {buttonLabel}

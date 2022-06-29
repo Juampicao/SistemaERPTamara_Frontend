@@ -1,15 +1,26 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext, Children } from "react";
 import { useNavigate } from "react-router-dom";
 
-import Header from "../molecules/Header";
 import Fernet from "../../img/fernet.jpg";
 
+import Header from "../molecules/Header";
 import Editar from "../molecules/Editar";
-import ModalGuardado from "../atoms/ModalGuardado";
+// import { ModalGuardado } from "../atoms/ModalNotificacion";
+import {
+  ModalEliminado,
+  ModalError,
+  ModalGuardado,
+} from "../atoms/ModalNotificacion";
+import MessageModal from "../atoms/MessageModal";
+
+import {
+  BotonEliminar,
+  BotonPrincipal,
+  BotonSecundario,
+  BotonEditar,
+} from "../atoms/Botones";
 
 import StaticContext from "../../contexts/StaticProvider";
-import ButtonEliminar from "../atoms/ButtonEliminar";
-import MessageModal from "../atoms/MessageModal";
 
 const Inicio = () => {
   const {
@@ -33,10 +44,6 @@ const Inicio = () => {
     setTimeout(() => {
       setIsOpenModal(false);
     }, 3000);
-  };
-
-  const closeModal = () => {
-    setIsOpenModal(!isOpenModal);
   };
 
   const handleModalClick = () => {
@@ -66,9 +73,9 @@ const Inicio = () => {
 
         <tbody>
           <tr className="border-b hover:bg-gray-50">
-            <td className="p-3">
-              <div>
-                <input type="image" src={Fernet} className="h-32" />
+            <td className="p-3  ">
+              <div className="flex">
+                <input type="image" src={Fernet} className="h-32 mx-auto" />
               </div>
             </td>
             <td className="text-center">Fernet</td>
@@ -85,7 +92,7 @@ const Inicio = () => {
             <td className="p-3"> $500 </td>
             <td className="p-3"> $1000 </td>
 
-            <td className="p-3">
+            <td className="p-3 space-y-3">
               <button
                 type="button"
                 className="bg-yellow-500 hover:bg-yellow-600 block w-full text-white p-2 uppercase font-bold text-xs"
@@ -94,15 +101,9 @@ const Inicio = () => {
                 Ver
               </button>
 
-              <button
-                type="button"
-                className="bg-blue-600 hover:bg-blue-700 block w-full text-white p-2 uppercase font-bold text-xs mt-3"
-                onClick={handleEdit}
-              >
-                Editar
-              </button>
+              <BotonEditar onClick={handleEdit} value="Editar" />
 
-              <ButtonEliminar handleClick={handleDelete} />
+              <BotonEliminar onClick={handleDelete} value="Eliminar" />
             </td>
           </tr>
         </tbody>
@@ -113,7 +114,6 @@ const Inicio = () => {
           subtitleModal="Puedes ver los cambios en el Listado."
           buttonLabel="Ir al listado"
           handleClick={handleModalClick}
-          handleClickClose={closeModal}
         />
       ) : (
         ""
@@ -124,10 +124,18 @@ const Inicio = () => {
           buttonLabel="Eliminar"
           buttonLabel2="Cancelar"
           titleModal="¿Seguro deseas eliminarlo?"
-        />
+          // onClick={()=>()}
+        >
+          <p>Aca pongo lo que quiero?</p>
+        </MessageModal>
       ) : (
         ""
       )}
+      {/* <ModalEliminado
+        titleModal="¡Eliminado Correctamente!"
+        buttonLabel="ir al listado"
+      /> */}
+      <ModalError titleModal="¡Ops, Error!" buttonLabel="ir al listado" />
     </div>
   );
 };
