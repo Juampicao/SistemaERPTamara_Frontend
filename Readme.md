@@ -1,3 +1,1 @@
-Install 
-1) npm install @material-ui/core
-2) npm install @material-ui/icons
+Gestion de Inventario y ventas para una PYME Argentina.
