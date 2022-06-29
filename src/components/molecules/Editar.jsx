@@ -16,14 +16,14 @@ import StaticContext from "../../contexts/StaticProvider";
 import { BotonPrincipal, BotonSecundario } from "../atoms/Botones";
 
 const Editar = () => {
-  const { isOpenEdit, setIsOpenEdit, isOpenModal, setIsOpenModal } =
+  const { isOpenEdit, setIsOpenEdit, isOpenSaveModal, setIsOpenSaveModal } =
     useContext(StaticContext);
 
   const [cantidad, setCantidad] = useState(59);
 
   const handleGuardar = () => {
     console.log("guardando..");
-    setIsOpenModal(true);
+    setIsOpenSaveModal(true);
     setIsOpenEdit(!isOpenEdit);
   };
 
@@ -54,19 +54,21 @@ const Editar = () => {
       data-aos="fade-left"
       className="  bg-half-transparent w-screen fixed nav-item top-0 right-0  "
     >
-      <div className="float-right h-screen  duration-1000 ease-in-out dark:text-gray-200 transition-all dark:bg-[#484B52] bg-slate-200 border border-2	 border-x-black md:w-[300px] p-8">
-        <div className="flex items-center  justify-center h-10 w-10 rounded-full bg-slate-200">
-          <button onClick={handleClickClose}>
-            <img
-              src={iconoCerrar}
-              alt="cerrar"
-              className=" hover:scale-110 hover:duration-200 mb-5 "
-            />
-          </button>
-        </div>
+      <div className="overflow-y-scroll	h-screen float-right h-screen  duration-1000 ease-in-out dark:text-gray-200 transition-all dark:bg-[#484B52] bg-white  md:w-[300px] p-8">
+        <div className="flex justify-between">
+          <div className="flex items-center  justify-center h-10 w-10 rounded-full bg-slate-200">
+            <button onClick={handleClickClose}>
+              <img
+                src={iconoCerrar}
+                alt="cerrar"
+                className=" hover:scale-110 hover:duration-200  "
+              />
+            </button>
+          </div>
 
-        <div className="flex justify-between items-center">
-          <p className="font-semibold text-lg">Editar Producto</p>
+          <div className="flex justify-between items-center">
+            <p className="font-semibold text-lg">Editar Producto</p>
+          </div>
         </div>
 
         <div className="my-3 space-y-5">
@@ -145,7 +147,7 @@ const Editar = () => {
               <p className={titulos}>Descripcion</p>
             </div>
             <textarea
-              className="w-full p-2 h-24 mt-3"
+              className="w-full p-2 h-24 mt-3 border border-slate-300"
               placeholder="Aca pones una descripcion que te guste
             "
             ></textarea>
@@ -155,7 +157,7 @@ const Editar = () => {
           <BotonPrincipal onClick={handleGuardar} value="Guardar" />
         </div>
       </div>
-      {isOpenModal ? (
+      {isOpenSaveModal ? (
         <ModalGuardado
           titleModal="Guardado!"
           subtitleModal="Puedes ver los cambios en el Listado."

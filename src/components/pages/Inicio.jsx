@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useContext, Children } from "react";
 import { useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 import Fernet from "../../img/fernet.jpg";
 
 import Header from "../molecules/Header";
 import Editar from "../molecules/Editar";
-// import { ModalGuardado } from "../atoms/ModalNotificacion";
 import {
   ModalEliminado,
   ModalError,
@@ -21,44 +21,25 @@ import {
 } from "../atoms/Botones";
 
 import StaticContext from "../../contexts/StaticProvider";
+import Producto from "../molecules/Producto";
 
 const Inicio = () => {
   const {
     isOpenEdit,
     setIsOpenEdit,
-    isOpenModal,
-    setIsOpenModal,
+    isOpenSaveModal,
+    setIsOpenSaveModal,
     isOpenDeleteModal,
     setIsOpenDeleteModal,
     isOpenConfirmModal,
     setIsOpenConfirmModal,
     isOpenErrorModal,
     setIsOpenErrorModal,
+    productos,
+    setProductos,
   } = useContext(StaticContext);
 
   const navigate = useNavigate();
-
-  const handleEdit = () => {
-    console.log("Editando");
-    setIsOpenEdit(!isOpenEdit);
-  };
-
-  // const openModal = () => {
-  //   setIsOpenModal(true);
-  //   setTimeout(() => {
-  //     setIsOpenModal(false);
-  //   }, 3000);
-  // };
-
-  const handleModalClick = () => {
-    console.log("Yendo al listado..");
-    // navigate("/listado");
-  };
-
-  const handleDelete = () => {
-    console.log("Eliminando..");
-    setIsOpenConfirmModal(!isOpenConfirmModal);
-  };
 
   const handleDeleteModal = () => {
     console.log("Eliminando..");
@@ -66,38 +47,63 @@ const Inicio = () => {
     setIsOpenDeleteModal(!isOpenDeleteModal);
   };
 
+  const handleModalClick = () => {
+    setIsOpenEdit(!isOpenEdit);
+    setIsOpenSaveModal(!isOpenSaveModal);
+  };
+
+  useEffect(() => {
+    const obtenerClienteAPI = async () => {
+      try {
+        const url = `http://localhost:4000/productos`;
+        // const url = `${import.meta.env.API_URL}`;
+        const respuesta = await fetch(url);
+        const resultado = await respuesta.json();
+        setProductos(resultado);
+        console.log(resultado);
+      } catch (error) {
+        console.log(error);
+      }
+      // setCargando(!cargando);
+    };
+    obtenerClienteAPI();
+  }, []);
+
+  // styles
+  const tableStyles =
+    "overflow-x-auto mt-5 table-auto shadow-lg bg-white w-full border-black border  text-center";
+
   return (
     <div>
       <Header title="Listado de Bebidas" />
 
-      <table className="overflow-x-auto mt-5 table-auto shadow bg-white w-full">
-        <thead className="bg-indigo-700 text-white">
+      <table className={tableStyles}>
+        <thead className=" text-black border border-black  ">
           <tr>
             <th className="p-2">Imagen</th>
             <th className="p-2">Producto</th>
             <th className="p-2">Stock</th>
             <th className="p-2">Costo</th>
             <th className="p-2">Precio</th>
-            <th className="p-2">Funciones</th>s
+            <th className="p-2">Funciones</th>
           </tr>
         </thead>
 
-        <tbody>
-          <tr className="border-b hover:bg-gray-50">
+        <tbody className="">
+          {productos.map((producto) => (
+            <Producto key={producto.id} producto={producto} />
+          ))}
+
+          {/* <tr className="border-b hover:bg-gray-50">
             <td className="p-3  ">
               <div className="flex">
                 <input type="image" src={Fernet} className="h-32 mx-auto" />
               </div>
             </td>
-            <td className="text-center">Fernet</td>
+            <td className="text-center">Fernet 750</td>
             <td className="p-3">
               <p>
                 <span className="text-gray-800 uppercase ">100 </span>
-              </p>
-              <p>
-                {/* <span className="text-gray-800 capitalize text-sm text-slate-400">
-                  Unidades
-                </span>{" "} */}
               </p>
             </td>
             <td className="p-3"> $500 </td>
@@ -116,10 +122,10 @@ const Inicio = () => {
 
               <BotonEliminar onClick={handleDelete} value="Eliminar" />
             </td>
-          </tr>
+          </tr> */}
         </tbody>
       </table>
-      {isOpenModal ? (
+      {isOpenSaveModal ? (
         <ModalGuardado
           titleModal="Guardado!"
           subtitleModal="Puedes ver los cambios en el Listado."

@@ -12,11 +12,11 @@ export const ModalGuardado = ({
   handleClick,
   handleClickClose,
 }) => {
-  const { isOpenModal, setIsOpenModal } = useContext(StaticContext);
+  const { isOpenSaveModal, setIsOpenSaveModal } = useContext(StaticContext);
 
-  if (isOpenModal) {
+  if (isOpenSaveModal) {
     setTimeout(() => {
-      setIsOpenModal(!isOpenModal);
+      setIsOpenSaveModal(!isOpenSaveModal);
     }, 3000);
   }
 

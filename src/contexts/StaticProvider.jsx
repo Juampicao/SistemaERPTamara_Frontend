@@ -5,26 +5,32 @@ const StaticContext = createContext();
 
 const StaticProvider = ({ children }) => {
   const [isOpenEdit, setIsOpenEdit] = useState(false);
-  const [isOpenModal, setIsOpenModal] = useState(false);
+  const [isOpenSaveModal, setIsOpenSaveModal] = useState(false);
   const [isOpenDeleteModal, setIsOpenDeleteModal] = useState(false);
   const [isOpenConfirmModal, setIsOpenConfirmModal] = useState(false);
   const [isOpenErrorModal, setIsOpenErrorModal] = useState(true);
 
+  const [producto, setProducto] = useState([]);
+
   const [productos, setProductos] = useState([]);
 
+  isOpenSaveModal;
+  isOpenSaveModal;
   return (
     <StaticContext.Provider
       value={{
         isOpenEdit,
         setIsOpenEdit,
-        isOpenModal,
-        setIsOpenModal,
+        isOpenSaveModal,
+        setIsOpenSaveModal,
         isOpenDeleteModal,
         setIsOpenDeleteModal,
         isOpenConfirmModal,
         setIsOpenConfirmModal,
         isOpenErrorModal,
         setIsOpenErrorModal,
+        producto,
+        setProducto,
         productos,
         setProductos,
       }}

@@ -1,4 +1,5 @@
 import React from "react";
+import Iconos from "../atoms/Iconos";
 import Header from "../molecules/Header";
 
 const Configuraciones = () => {

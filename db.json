@@ -1,0 +1,41 @@
+{
+  "productos": [
+    {
+      "id": 1,
+      "nombre": "Fernet 750 ",
+      "cantidad": 45,
+      "costo": 500,
+      "precio": 1000,
+      "categoria": "bebidas",
+      "descripcion": "soy cor do bes y me gusta la joda"
+    },
+    {
+      "id": 2,
+      "nombre": "Smirnoff",
+      "cantidad": 23,
+      "costo": 430,
+      "precio": 800,
+      "categoria": "bebidas",
+      "descripcion": "la mejor bebida para ir a pacha"
+    },
+    {
+      "id": 3,
+      "nombre": "Whisky",
+      "cantidad": 12,
+      "costo": 2900,
+      "precio": 5500,
+      "categoria": "bebidas",
+      "descripcion": "Bebida fuerte"
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}
