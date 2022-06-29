@@ -11,22 +11,20 @@ const MessageModal = ({
   subtitleModal,
   buttonLabel,
   buttonLabel2,
+  onClick,
+  // onClick2,
   Children,
 }) => {
-  const { isOpenDeleteModal, setIsOpenDeleteModal } = useContext(StaticContext);
+  const { isOpenConfirmModal, setIsOpenConfirmModal } =
+    useContext(StaticContext);
 
-  const handleClick = () => {
-    console.log("Eliminando..");
-    setIsOpenDeleteModal(!isOpenDeleteModal);
-  };
-
-  const handleClick2 = () => {
+  const onClick2 = () => {
     console.log("Volviendo..");
-    setIsOpenDeleteModal(!isOpenDeleteModal);
+    setIsOpenConfirmModal(!isOpenConfirmModal);
   };
 
   const handleClickClose = () => {
-    setIsOpenDeleteModal(!isOpenDeleteModal);
+    setisOpenConfirmModal(!isOpenConfirmModal);
   };
 
   return (
@@ -65,7 +63,7 @@ const MessageModal = ({
               {buttonLabel}
             </button>
             <button
-              onClick={handleClick2}
+              onClick={onClick2}
               className="uppercase px-4 py-2 bg-slate-500 text-white text-sm font-medium rounded-md w-full shadow-sm hover:bg-slate-600 hover:scale-105 hover:duration-200 focus:outline-none focus:ring-2 focus:ring-green-300 active:bg-slate-700 active:text-white"
             >
               {buttonLabel2}

@@ -30,6 +30,10 @@ const Inicio = () => {
     setIsOpenModal,
     isOpenDeleteModal,
     setIsOpenDeleteModal,
+    isOpenConfirmModal,
+    setIsOpenConfirmModal,
+    isOpenErrorModal,
+    setIsOpenErrorModal,
   } = useContext(StaticContext);
 
   const navigate = useNavigate();
@@ -39,12 +43,12 @@ const Inicio = () => {
     setIsOpenEdit(!isOpenEdit);
   };
 
-  const openModal = () => {
-    setIsOpenModal(true);
-    setTimeout(() => {
-      setIsOpenModal(false);
-    }, 3000);
-  };
+  // const openModal = () => {
+  //   setIsOpenModal(true);
+  //   setTimeout(() => {
+  //     setIsOpenModal(false);
+  //   }, 3000);
+  // };
 
   const handleModalClick = () => {
     console.log("Yendo al listado..");
@@ -53,8 +57,15 @@ const Inicio = () => {
 
   const handleDelete = () => {
     console.log("Eliminando..");
+    setIsOpenConfirmModal(!isOpenConfirmModal);
+  };
+
+  const handleDeleteModal = () => {
+    console.log("Eliminando..");
+    setIsOpenConfirmModal(!isOpenConfirmModal);
     setIsOpenDeleteModal(!isOpenDeleteModal);
   };
+
   return (
     <div>
       <Header title="Listado de Bebidas" />
@@ -119,23 +130,31 @@ const Inicio = () => {
         ""
       )}
       {isOpenEdit ? <Editar /> : ""}
-      {isOpenDeleteModal ? (
+      {isOpenConfirmModal ? (
         <MessageModal
           buttonLabel="Eliminar"
           buttonLabel2="Cancelar"
           titleModal="¿Seguro deseas eliminarlo?"
-          // onClick={()=>()}
+          onClick={handleDeleteModal}
         >
           <p>Aca pongo lo que quiero?</p>
         </MessageModal>
       ) : (
         ""
       )}
-      {/* <ModalEliminado
-        titleModal="¡Eliminado Correctamente!"
-        buttonLabel="ir al listado"
-      /> */}
-      <ModalError titleModal="¡Ops, Error!" buttonLabel="ir al listado" />
+      {isOpenDeleteModal ? (
+        <ModalEliminado
+          titleModal="¡Eliminado Correctamente!"
+          buttonLabel="ir al listado"
+        />
+      ) : (
+        ""
+      )}
+      {isOpenErrorModal ? (
+        <ModalError titleModal="¡Ops, Error!" buttonLabel="ir al listado" />
+      ) : (
+        ""
+      )}
     </div>
   );
 };

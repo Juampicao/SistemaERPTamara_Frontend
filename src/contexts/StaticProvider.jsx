@@ -8,6 +8,7 @@ const StaticProvider = ({ children }) => {
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [isOpenDeleteModal, setIsOpenDeleteModal] = useState(false);
   const [isOpenConfirmModal, setIsOpenConfirmModal] = useState(false);
+  const [isOpenErrorModal, setIsOpenErrorModal] = useState(true);
 
   const [productos, setProductos] = useState([]);
 
@@ -20,6 +21,10 @@ const StaticProvider = ({ children }) => {
         setIsOpenModal,
         isOpenDeleteModal,
         setIsOpenDeleteModal,
+        isOpenConfirmModal,
+        setIsOpenConfirmModal,
+        isOpenErrorModal,
+        setIsOpenErrorModal,
         productos,
         setProductos,
       }}

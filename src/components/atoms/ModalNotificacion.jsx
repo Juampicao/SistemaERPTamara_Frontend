@@ -1,4 +1,4 @@
-import React, { createContext } from "react";
+import React, { useContext } from "react";
 
 import StaticContext from "../../contexts/StaticProvider";
 
@@ -12,8 +12,14 @@ export const ModalGuardado = ({
   handleClick,
   handleClickClose,
 }) => {
-  // styles
-  // document.getElementById("ModalGuardado").style.display = "none";
+  const { isOpenModal, setIsOpenModal } = useContext(StaticContext);
+
+  if (isOpenModal) {
+    setTimeout(() => {
+      setIsOpenModal(!isOpenModal);
+    }, 3000);
+  }
+
   handleClickClose = () => {
     document.getElementById("ModalGuardado").style.display = "none";
   };
@@ -77,11 +83,20 @@ export const ModalEliminado = ({
   handleClick,
   handleClickClose,
 }) => {
+  const { isOpenDeleteModal, setIsOpenDeleteModal } = useContext(StaticContext);
+
+  if (isOpenDeleteModal) {
+    setTimeout(() => {
+      setIsOpenDeleteModal(!isOpenDeleteModal);
+    }, 3000);
+  }
+
   // styles
 
   handleClickClose = () => {
     document.getElementById("ModalEliminado").style.display = "none";
   };
+
   return (
     <>
       {/* z-50 relative top-20 mx-auto p-5 border w-96 shadow-lg rounded-md bg-white */}
@@ -141,7 +156,13 @@ export const ModalError = ({
   handleClick,
   handleClickClose,
 }) => {
-  // styles
+  const { isOpenErrorModal, setIsOpenErrorModal } = useContext(StaticContext);
+
+  if (isOpenErrorModal) {
+    setTimeout(() => {
+      setIsOpenErrorModal(!isOpenErrorModal);
+    }, 3000);
+  }
 
   handleClickClose = () => {
     document.getElementById("ModalError").style.display = "none";

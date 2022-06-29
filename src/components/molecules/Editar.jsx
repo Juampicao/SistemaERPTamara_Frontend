@@ -21,24 +21,9 @@ const Editar = () => {
 
   const [cantidad, setCantidad] = useState(59);
 
-  const openModal = () => {
-    setIsOpenModal(true);
-    setTimeout(() => {
-      setIsOpenModal(false);
-    }, 3000);
-  };
-
-  const closeModal = () => {
-    setIsOpenModal(!isOpenModal);
-  };
-
-  const handleModalClick = () => {
-    console.log("Yendo al listado..");
-    // navigate("/listado");
-  };
   const handleGuardar = () => {
     console.log("guardando..");
-    openModal();
+    setIsOpenModal(true);
     setIsOpenEdit(!isOpenEdit);
   };
 
