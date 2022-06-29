@@ -3,8 +3,6 @@ import MessageModal from "./MessageModal";
 
 import StaticContext from "../../contexts/StaticProvider";
 
-import Button from "@mui/material/Button";
-
 const ButtonEliminar = ({ handleClick }) => {
   return (
     <div>
