@@ -10,12 +10,10 @@ const StaticProvider = ({ children }) => {
   const [isOpenConfirmModal, setIsOpenConfirmModal] = useState(false);
   const [isOpenErrorModal, setIsOpenErrorModal] = useState(true);
 
-  const [producto, setProducto] = useState([]);
-
+  const [producto, setProducto] = useState({});
   const [productos, setProductos] = useState([]);
 
-  isOpenSaveModal;
-  isOpenSaveModal;
+  const [isCargando, setIsCargando] = useState(true);
   return (
     <StaticContext.Provider
       value={{
@@ -33,6 +31,8 @@ const StaticProvider = ({ children }) => {
         setProducto,
         productos,
         setProductos,
+        isCargando,
+        setIsCargando,
       }}
     >
       {children}

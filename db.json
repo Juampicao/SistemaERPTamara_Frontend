@@ -7,25 +7,38 @@
       "costo": 500,
       "precio": 1000,
       "categoria": "bebidas",
-      "descripcion": "soy cor do bes y me gusta la joda"
+      "descripcion": "soy cor do bes y me gusta la joda",
+      "imagen": "imagenesJson/fernet.jpg"
     },
     {
       "id": 2,
-      "nombre": "Smirnoff",
+      "nombre": "Smirnoff 700",
       "cantidad": 23,
       "costo": 430,
       "precio": 800,
       "categoria": "bebidas",
-      "descripcion": "la mejor bebida para ir a pacha"
+      "descripcion": "la mejor bebida para ir a pacha",
+      "imagen": "imagenesJson/smirnoff.png"
     },
     {
       "id": 3,
-      "nombre": "Whisky",
+      "nombre": "Whisky 750",
       "cantidad": 12,
       "costo": 2900,
       "precio": 5500,
       "categoria": "bebidas",
-      "descripcion": "Bebida fuerte"
+      "descripcion": "Bebida fuerte",
+      "imagen": "imagenesJson/whiskey.jpg"
+    },
+    {
+      "id": 4,
+      "nombre": "Ron Havana 750",
+      "cantidad": 34,
+      "costo": 800,
+      "precio": 1200,
+      "categoria": "bebidas",
+      "descripcion": "Bebida Cuvana",
+      "imagen": "imagenesJson/ronHavana.png"
     }
   ],
   "comments": [

@@ -18,10 +18,13 @@ import {
   BotonPrincipal,
   BotonSecundario,
   BotonEditar,
+  BotonNuevoProducto,
+  BotonNuevaVenta,
 } from "../atoms/Botones";
 
 import StaticContext from "../../contexts/StaticProvider";
 import Producto from "../molecules/Producto";
+import Spiner from "../atoms/Spiner";
 
 const Inicio = () => {
   const {
@@ -52,6 +55,24 @@ const Inicio = () => {
     setIsOpenSaveModal(!isOpenSaveModal);
   };
 
+  const handleNuevoProducto = () => {
+    navigate(`/productos/editar/1`);
+  };
+
+  function ordenarAlfabeticamente() {
+    productos.reverse(function (a, b) {
+      return b - a;
+    });
+  }
+  ordenarAlfabeticamente();
+
+  // const numeros = ["Juan", "Agus", "Carlos"];
+
+  // numeros.reverse(function (a, b) {
+  //   return b - a;
+  // });
+  // console.log(numeros);
+
   useEffect(() => {
     const obtenerClienteAPI = async () => {
       try {
@@ -72,9 +93,19 @@ const Inicio = () => {
   // styles
   const tableStyles =
     "overflow-x-auto mt-5 table-auto shadow-lg bg-white w-full border-black border  text-center";
+  const linea = <div className="h-[2px] w-full mx-auto bg-slate-500"> </div>;
 
   return (
     <div>
+      <div className="flex p-4 justify-end space-x-3">
+        {/* <h3 className="text-2xl text-left	">Inventario</h3> */}
+        <BotonNuevoProducto
+          value=" Nuevo Producto"
+          onClick={handleNuevoProducto}
+        />
+        <BotonNuevaVenta value="Nueva Venta" onClick={handleNuevoProducto} />
+      </div>
+      {linea}
       <Header title="Listado de Bebidas" />
 
       <table className={tableStyles}>
@@ -93,36 +124,6 @@ const Inicio = () => {
           {productos.map((producto) => (
             <Producto key={producto.id} producto={producto} />
           ))}
-
-          {/* <tr className="border-b hover:bg-gray-50">
-            <td className="p-3  ">
-              <div className="flex">
-                <input type="image" src={Fernet} className="h-32 mx-auto" />
-              </div>
-            </td>
-            <td className="text-center">Fernet 750</td>
-            <td className="p-3">
-              <p>
-                <span className="text-gray-800 uppercase ">100 </span>
-              </p>
-            </td>
-            <td className="p-3"> $500 </td>
-            <td className="p-3"> $1000 </td>
-
-            <td className="p-3 space-y-3">
-              <button
-                type="button"
-                className="bg-yellow-500 hover:bg-yellow-600 block w-full text-white p-2 uppercase font-bold text-xs"
-                onClick={() => navigate(`/clientes/${id}`)}
-              >
-                Ver
-              </button>
-
-              <BotonEditar onClick={handleEdit} value="Editar" />
-
-              <BotonEliminar onClick={handleDelete} value="Eliminar" />
-            </td>
-          </tr> */}
         </tbody>
       </table>
       {isOpenSaveModal ? (

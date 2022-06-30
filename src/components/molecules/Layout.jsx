@@ -30,9 +30,9 @@ const Layout = () => {
         <nav className=" mt-5 sm:mt-10">
           <Link
             className={`${
-              urlActual === "/listado" ? `${activeStyles}` : `${hover}`
+              urlActual === "/productos" ? `${activeStyles}` : `${hover}`
             } ${notActiveStyles} `}
-            to="/listado"
+            to="/productos"
           >
             Inventario
           </Link>
