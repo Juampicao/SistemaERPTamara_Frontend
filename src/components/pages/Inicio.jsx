@@ -25,6 +25,8 @@ import {
 import StaticContext from "../../contexts/StaticProvider";
 import Producto from "../molecules/Producto";
 import Spiner from "../atoms/Spiner";
+import Dropdown from "../atoms/Dropdown";
+import Dropdown2 from "../atoms/Dropdown2";
 
 const Inicio = () => {
   const {
@@ -108,6 +110,10 @@ const Inicio = () => {
       {linea}
       <Header title="Listado de Bebidas" />
 
+      <div className="flex space-x-3">
+        <Dropdown />
+        <Dropdown2 />
+      </div>
       <table className={tableStyles}>
         <thead className=" text-black border border-black  ">
           <tr>

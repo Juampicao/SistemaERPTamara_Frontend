@@ -2,6 +2,9 @@ import { Outlet, Link, useLocation } from "react-router-dom";
 // import ImagenConfiguracion from "../atoms/ImagenConfiguracion";
 
 // import ImagenTravertino from "../../img/icono-travertinoBlanco.png";
+import iconoVentas from "../../img/iconoVentas.png";
+import iconoBebida from "../../img/iconoBebida.png";
+import iconoConfiguracion from "../../img/iconoConfiguracion.png";
 
 const Layout = () => {
   const location = useLocation();
@@ -13,7 +16,7 @@ const Layout = () => {
     "bg-indigo-500 rounded-lg ml-2 text-white pl-3 duration-200 p-2";
   const notActiveStyles = "text-2xl block mt-4 sm:mt-6";
   const hover =
-    "text-white duration-200 hover:bg-indigo-500 hover:rounded-lg hover:pl-2";
+    "text-white duration-200 hover:bg-indigo-500 hover:rounded-lg hover:p-2";
 
   return (
     <div className="sm:flex  ">
@@ -34,7 +37,10 @@ const Layout = () => {
             } ${notActiveStyles} `}
             to="/productos"
           >
-            Inventario
+            <div className="flex items-center space-x-4">
+              <img src={iconoBebida} className="h-10" alt="" />
+              <p>Inventario</p>
+            </div>
           </Link>
 
           <Link
@@ -43,7 +49,10 @@ const Layout = () => {
             } ${notActiveStyles} `}
             to="/ventas"
           >
-            Ventas
+            <div className="flex items-center space-x-4">
+              <img src={iconoVentas} className="h-10" alt="" />
+              <p>Ventas</p>
+            </div>
           </Link>
 
           <Link
@@ -52,7 +61,10 @@ const Layout = () => {
             } ${notActiveStyles} `}
             to="/configuraciones"
           >
-            Configuraciones
+            <div className="flex items-center space-x-4">
+              <img src={iconoConfiguracion} className="h-10" alt="" />
+              <p>Configuraciones</p>
+            </div>
           </Link>
           <div className=" ">
             <Link to="/configuraciones">{/* <ImagenConfiguracion /> */}</Link>
