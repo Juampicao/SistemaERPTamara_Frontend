@@ -61,7 +61,24 @@
       "valor": 1200
     }
   ],
-  "profile": {
-    "name": "typicode"
-  }
+  "gastos": [
+    {
+      "id": 101,
+      "nombre": "Comida",
+      "valor": 600,
+      "categoria": "Comida"
+    },
+    {
+      "id": 102,
+      "nombre": "Gastos Varios",
+      "valor": 100,
+      "categoria": "Gastos"
+    },
+    {
+      "id": 103,
+      "nombre": "Luz y Alquiler",
+      "valor": 400,
+      "categoria": "Proveedor"
+    }
+  ]
 }

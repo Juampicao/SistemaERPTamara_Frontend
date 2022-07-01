@@ -67,12 +67,23 @@ const Layout = () => {
             </div>
           </Link>
           <div className=" ">
-            <Link to="/configuraciones">{/* <ImagenConfiguracion /> */}</Link>
+            <Link to="/configuraciones"></Link>
+            <Link
+              className={`${
+                urlActual === "/gastos" ? `${activeStyles}` : `${hover}`
+              } ${notActiveStyles} `}
+              to="/gastos"
+            >
+              <div className="flex items-center space-x-4">
+                <img src={iconoVentas} className="h-10" alt="" />
+                <p>Gastos</p>
+              </div>
+            </Link>
           </div>
         </nav>
       </div>
 
-      <div className="p-3 xs:p-5 sm:w-3/4 sm:p-10 sm:h-screen sm:overflow-y-scroll">
+      <div className="bg-slate-100 p-3 xs:p-5 sm:w-3/4 sm:p-10 sm:h-screen sm:overflow-y-scroll">
         <Outlet />
       </div>
     </div>

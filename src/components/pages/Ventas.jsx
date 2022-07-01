@@ -20,11 +20,11 @@ const Ventas = () => {
     setCaja(0);
   };
   return (
-    <div>
+    <div className="">
       <Header title="Ventas" />
       {/* <p> Pagina en Construccion</p> */}
       {/* <Dropdown /> */}
-      <CajaEfectivo valorCaja={caja} />
+      <CajaEfectivo valorCaja={caja} title="Caja" />
       <div className="py-5 flex space-x-3">
         <Modal onClick={handleVender} />
         <BotonSecundario onClick={handleReiniciarCaja} value="Reiniciar Caja" />
@@ -32,13 +32,15 @@ const Ventas = () => {
       <h1 className="font-black uppercase text-2xl text-end p-3">
         30 de Junio de 2022
       </h1>
-      <div className="grid grid-rows space-y-10">
+      <ListadoVentas />
+
+      <div className="grid grid-rows space-y-10 my-10">
         <div>
           <h3 className="text-2xl font-bold font-mono uppercase">Ventas hoy</h3>
           <div className="flex space-x-3 text-center">
-            <CuadroVentas title="Cantidad Ventas: " valor="10" className="" />
-            <CuadroVentas title="Ganancia neta: " valor="$5930" />
-            <CuadroVentas title="Ventas Brutas: " valor="$12040" />
+            <CuadroVentas title="Cantidad Ventas " valor="10" className="" />
+            <CuadroVentas title="Ganancia neta " valor="$5930" />
+            <CuadroVentas title="Ventas Brutas " valor="$12040" />
           </div>
         </div>
 
@@ -61,7 +63,6 @@ const Ventas = () => {
           </div>
         </div>
       </div>
-      <ListadoVentas />
     </div>
   );
 };

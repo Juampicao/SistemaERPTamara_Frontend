@@ -4,15 +4,18 @@ import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
 import AOS from "aos";
 import "aos/dist/aos.css";
 
-import Layout from "./components/molecules/Layout";
 import Inicio from "./components/pages/Inicio";
 import Ventas from "./components/pages/Ventas";
+import Gastos from "./components/pages/Gastos";
 import Configuraciones from "./components/pages/Configuraciones";
-import Editar from "./components/molecules/Editar";
+import Layout from "./components/molecules/Layout";
 
-import { StaticProvider } from "./contexts/StaticProvider";
+import Editar from "./components/molecules/Editar";
 import VerProducto from "./components/molecules/VerProducto";
 import VerVenta from "./components/molecules/VerVenta";
+import VerGasto from "./components/molecules/gastos/VerGasto";
+
+import { StaticProvider } from "./contexts/StaticProvider";
 
 function App() {
   useEffect(() => {
@@ -41,6 +44,8 @@ function App() {
               <Route path="productos/:id" index element={<VerProducto />} />
               <Route path="ventas" index element={<Ventas />} />
               <Route path="ventas/:id" index element={<VerVenta />} />
+              <Route path="gastos" index element={<Gastos />} />
+              <Route path="gastos/:id" index element={<VerGasto />} />
 
               <Route
                 path="configuraciones"

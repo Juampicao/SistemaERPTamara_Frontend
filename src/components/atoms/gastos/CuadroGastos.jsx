@@ -1,7 +1,7 @@
 import React from "react";
-import IconoCosto from "../../img/iconoCosto.png";
+import IconoGasto from "../../../img/iconoCosto.png";
 
-const CuadroVentas = ({ title, valor }) => {
+const CuadroGastos = ({ title, valor }) => {
   const rojo = "bg-red-500";
   const azul = "bg-blue-500";
 
@@ -9,7 +9,7 @@ const CuadroVentas = ({ title, valor }) => {
     <>
       <div className="p-10   rounded-lg bg-white hover:bg-slate-200 cursor-pointer ">
         <div className="flex items-center space-x-3">
-          <img src={IconoCosto} className="h-8" alt="" />
+          <img src={IconoGasto} className="h-8" alt="" />
           <p className="uppercase font-medium">{title}</p>
         </div>
 
@@ -19,4 +19,4 @@ const CuadroVentas = ({ title, valor }) => {
   );
 };
 
-export default CuadroVentas;
+export default CuadroGastos;
