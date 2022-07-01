@@ -41,11 +41,24 @@
       "imagen": "imagenesJson/ronHavana.png"
     }
   ],
-  "comments": [
+  "ventas": [
     {
-      "id": 1,
-      "body": "some comment",
-      "postId": 1
+      "id": 10,
+      "nombre": "Champagne",
+      "cantidad": 1,
+      "valor": 1500
+    },
+    {
+      "id": 11,
+      "nombre": "Coca Cola",
+      "cantidad": 3,
+      "valor": 640
+    },
+    {
+      "id": 12,
+      "nombre": "Whiskey",
+      "cantidad": 10,
+      "valor": 1200
     }
   ],
   "profile": {

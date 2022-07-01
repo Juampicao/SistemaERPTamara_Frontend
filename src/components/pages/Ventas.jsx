@@ -1,16 +1,34 @@
-import React from "react";
+import React, { useState } from "react";
+import CajaEfectivo from "../atoms/CajaEfectivo";
 import CuadroVentas from "../atoms/CuadroVentas";
 import Dropdown from "../atoms/Dropdown";
+import Modal from "../atoms/Modal";
+import { BotonSecundario } from "../atoms/Botones";
 
 import Header from "../molecules/Header";
+import ListadoVentas from "../molecules/ListadoVentas";
 // import "tw-elements";
 
 const Ventas = () => {
+  const [caja, setCaja] = useState(6943);
+
+  const handleVender = () => {
+    setCaja(caja + 1240);
+  };
+
+  const handleReiniciarCaja = () => {
+    setCaja(0);
+  };
   return (
     <div>
       <Header title="Ventas" />
-      <p> Pagina en Construccion</p>
-      <Dropdown />
+      {/* <p> Pagina en Construccion</p> */}
+      {/* <Dropdown /> */}
+      <CajaEfectivo valorCaja={caja} />
+      <div className="py-5 flex space-x-3">
+        <Modal onClick={handleVender} />
+        <BotonSecundario onClick={handleReiniciarCaja} value="Reiniciar Caja" />
+      </div>
       <h1 className="font-black uppercase text-2xl text-end p-3">
         30 de Junio de 2022
       </h1>
@@ -43,6 +61,7 @@ const Ventas = () => {
           </div>
         </div>
       </div>
+      <ListadoVentas />
     </div>
   );
 };

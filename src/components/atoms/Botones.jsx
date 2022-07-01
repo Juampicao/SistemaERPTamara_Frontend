@@ -18,10 +18,17 @@ export const BotonPrincipal = ({ value, onClick }) => {
   );
 };
 
-export const BotonSecundario = () => {
+export const BotonSecundario = ({ onClick, value }) => {
   return (
     <>
-      <h2> Boton Secundario </h2>
+      <input
+        type="submit"
+        className="border-slate-500 border px-3 py-2 hover:bg-blue-700 hover:text-white uppercase cursor-pointer font-medium
+      text-xs
+      leading-tight"
+        onClick={onClick}
+        value={value}
+      />
     </>
   );
 };

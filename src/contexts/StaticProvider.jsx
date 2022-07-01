@@ -13,6 +13,9 @@ const StaticProvider = ({ children }) => {
   const [producto, setProducto] = useState({});
   const [productos, setProductos] = useState([]);
 
+  const [venta, setVenta] = useState([]);
+  const [ventas, setVentas] = useState([]);
+
   const [isCargando, setIsCargando] = useState(true);
   return (
     <StaticContext.Provider
@@ -33,6 +36,10 @@ const StaticProvider = ({ children }) => {
         setProductos,
         isCargando,
         setIsCargando,
+        venta,
+        setVenta,
+        ventas,
+        setVentas,
       }}
     >
       {children}

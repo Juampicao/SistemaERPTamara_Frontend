@@ -8,7 +8,7 @@ const VerProducto = () => {
   const { producto, setProducto, isCargando, setIsCargando } =
     useContext(StaticContext);
   const { id } = useParams();
-  console.log(id);
+  // console.log(id);
 
   useEffect(() => {
     const obtenerClienteAPI = async () => {

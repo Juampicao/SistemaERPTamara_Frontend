@@ -12,6 +12,7 @@ import Editar from "./components/molecules/Editar";
 
 import { StaticProvider } from "./contexts/StaticProvider";
 import VerProducto from "./components/molecules/VerProducto";
+import VerVenta from "./components/molecules/VerVenta";
 
 function App() {
   useEffect(() => {
@@ -39,6 +40,8 @@ function App() {
               <Route path="productos/editar/:id" index element={<Editar />} />
               <Route path="productos/:id" index element={<VerProducto />} />
               <Route path="ventas" index element={<Ventas />} />
+              <Route path="ventas/:id" index element={<VerVenta />} />
+
               <Route
                 path="configuraciones"
                 index
