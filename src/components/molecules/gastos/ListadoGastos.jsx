@@ -15,7 +15,7 @@ const ListadoGastos = () => {
         const respuesta = await fetch(url);
         const resultado = await respuesta.json();
         setGastos(resultado);
-        console.log(resultado);
+        // console.log(resultado);
       } catch (error) {
         console.log(error);
       }

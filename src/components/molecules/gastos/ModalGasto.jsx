@@ -109,6 +109,7 @@ const ModalGasto = ({ onClick }) => {
       duration-150
       ease-in-out
       ml-1"
+                data-bs-dismiss="modal"
               >
                 Cancelar
               </button>

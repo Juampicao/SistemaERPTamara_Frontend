@@ -1,6 +1,8 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 export const BotonPrincipal = ({ value, onClick }) => {
+  // Styles
   const BotonStyle =
     "bg-black hover:bg-white hover:text-black hover:border hover:border-black text-white px-2 py-3 w-full mx-auto uppercase text-xs  font-bold uppercase cursor-pointer hover:scale-x-105 hover:duration-150 duration-150 ";
   const SecondaryStyle = "";
@@ -26,6 +28,21 @@ export const BotonSecundario = ({ onClick, value }) => {
         className="border-slate-500 border px-3 py-2 hover:bg-blue-700 hover:text-white uppercase cursor-pointer font-medium
       text-xs
       leading-tight"
+        onClick={onClick}
+        value={value}
+      />
+    </>
+  );
+};
+
+export const BotonVer = ({ value, onClick }) => {
+  const navigate = useNavigate();
+
+  return (
+    <>
+      <input
+        type="button"
+        className="bg-yellow-500 hover:bg-yellow-600 block mx-auto w-[75px]  text-white p-2 uppercase font-bold text-xs  cursor-pointer "
         onClick={onClick}
         value={value}
       />
@@ -91,4 +108,5 @@ export default {
   BotonEliminar,
   BotonNuevoProducto,
   BotonNuevaVenta,
+  BotonVer,
 };

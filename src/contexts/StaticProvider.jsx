@@ -18,6 +18,7 @@ const StaticProvider = ({ children }) => {
 
   const [gasto, setGasto] = useState([]);
   const [gastos, setGastos] = useState([]);
+  const [totalGastos, setTotalGastos] = useState(500);
 
   const [isCargando, setIsCargando] = useState(true);
   return (
@@ -47,6 +48,8 @@ const StaticProvider = ({ children }) => {
         setGasto,
         gastos,
         setGastos,
+        totalGastos,
+        setTotalGastos,
       }}
     >
       {children}

@@ -6,9 +6,17 @@ import StaticContext from "../../../contexts/StaticProvider";
 import IconoProveedor from "../../../img/IconoProveedor.png";
 import IconoGastosVarios from "../../../img/IconoGastosVarios.png";
 import IconoComida from "../../../img/IconoComida.png";
+import { BotonEditar, BotonEliminar, BotonVer } from "../../atoms/Botones";
+import { ModalEliminado } from "../../atoms/ModalNotificacion";
 
 const Gasto = ({ gasto }) => {
-  const { gastos, setGastos } = useContext(StaticContext);
+  const {
+    gastos,
+    setGastos,
+    setGasto,
+    isOpenDeleteModal,
+    setIsOpenDeleteModal,
+  } = useContext(StaticContext);
   const navigate = useNavigate();
 
   const diccionarioIConos = {
@@ -35,6 +43,27 @@ const Gasto = ({ gasto }) => {
   //     };
   //     obtenerClienteAPI();
   //   }, []);
+
+  const handleDelete = async (id) => {
+    console.log("Borrando");
+    try {
+      const url = `http://localhost:4000/gastos/${id}`;
+      const respuesta = await fetch(url, {
+        method: "DELETE",
+      });
+      await respuesta.json();
+
+      const arrayGastos = gastos.filter((gasto) => gasto.id !== id);
+      setGastos(arrayGastos);
+    } catch (error) {
+      console.log(error);
+    }
+    setIsOpenDeleteModal(!isOpenDeleteModal);
+  };
+
+  const handleEdit = () => {
+    console.log("Editando");
+  };
   return (
     <>
       <tr className="hover:bg-gray-100 border border-slate-500">
@@ -49,16 +78,22 @@ const Gasto = ({ gasto }) => {
         {/* <td> {id}</td> */}
         <td> {nombre}</td>
         <td> $ {valor}</td>
-        <td className="p-3 space-y-3 ">
-          <button
-            type="button"
-            className="bg-yellow-500 hover:bg-yellow-600 block mx-auto w-[75px] text-white p-2 uppercase font-bold text-xs"
-            onClick={() => navigate(`/gastos/${id}`)}
-          >
-            Ver
-          </button>
+        <td className="p-2 space-y-3 ">
+          <BotonVer value="Ver" onClick={() => navigate(`/gastos/${id}`)} />
+
+          <BotonEditar value="Editar" onClick={handleEdit} />
+
+          <BotonEliminar value="Eliminar" onClick={() => handleDelete(id)} />
         </td>
       </tr>
+      {isOpenDeleteModal ? (
+        <ModalEliminado
+          titleModal="Se elimino"
+          subtitleModal="El gasto se elimino correctamente"
+        />
+      ) : (
+        ""
+      )}
     </>
   );
 };

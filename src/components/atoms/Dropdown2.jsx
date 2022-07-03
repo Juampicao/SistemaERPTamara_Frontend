@@ -3,11 +3,11 @@ import React from "react";
 const Dropdown2 = () => {
   return (
     <div>
-      <div class="flex justify-center">
+      <div className="flex justify-center">
         <div>
-          <div class="dropdown relative">
+          <div className="dropdown relative">
             <a
-              class="
+              className="
           dropdown-toggle
           px-6
           py-2.5
@@ -43,7 +43,7 @@ const Dropdown2 = () => {
                 focusable="false"
                 data-prefix="fas"
                 data-icon="caret-down"
-                class="w-2 ml-2"
+                className="w-2 ml-2"
                 role="img"
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 320 512"
@@ -55,7 +55,7 @@ const Dropdown2 = () => {
               </svg>
             </a>
             <ul
-              class="
+              className="
           dropdown-menu
           min-w-max
           absolute
@@ -79,7 +79,7 @@ const Dropdown2 = () => {
             >
               <li>
                 <a
-                  class="
+                  className="
               dropdown-item
               text-sm
               py-2
@@ -99,7 +99,7 @@ const Dropdown2 = () => {
               </li>
               <li>
                 <a
-                  class="
+                  className="
               dropdown-item
               text-sm
               py-2
@@ -119,7 +119,7 @@ const Dropdown2 = () => {
               </li>
               <li>
                 <a
-                  class="
+                  className="
               dropdown-item
               text-sm
               py-2

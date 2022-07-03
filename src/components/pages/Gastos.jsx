@@ -10,36 +10,11 @@ import CajaEfectivo from "../atoms/CajaEfectivo";
 import StaticContext from "../../contexts/StaticProvider";
 
 const Gastos = () => {
-  const { gastos, setGastos, gasto, setGasto } = useContext(StaticContext);
-
-  const [totalGastos, setTotalGastos] = useState(500);
-
-  const guardarGasto = (gasto) => {
-    // gasto.id = generarId();
-    // gasto.fecha = Date.now();
-    setGastos([...gastos, gasto]);
-
-    // setAnimarModal(false);
-
-    // setTimeout(() => {
-    //   setModal(false);
-    // }, 500);
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if ([nombre, cantidad, categoria].includes("")) {
-      setMensaje("Todos los campos son obligatorios");
-      //  setTimeout(() => {
-      //    setMensaje("");
-      //  }, 3000);
-    }
-
-    guardarGasto({ nombre, cantidad, categoria });
-  };
+  const { gastos, setGastos, gasto, setGasto, totalGastos, setTotalGastos } =
+    useContext(StaticContext);
 
   const handleTotalGastos = (e) => {
-    setTotalGastos(totalGastos + 1240);
+    setTotalGastos(totalGastos + 100);
     e.preventDefault();
     // if ([nombre, cantidad, categoria].includes("")) {
     //   setMensaje("Todos los campos son obligatorios");
@@ -47,8 +22,6 @@ const Gastos = () => {
     //     setMensaje("");
     //   }, 3000);
     // }
-
-    guardarGasto({ nombre, cantidad, categoria });
   };
 
   const handleReiniciarTotalGastos = () => {
