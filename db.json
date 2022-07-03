@@ -63,40 +63,16 @@
   ],
   "gastos": [
     {
-      "nombre": "Comida",
-      "valor": 200,
-      "categoria": "Comida",
-      "id": 102
+      "id": 100,
+      "nombre": "Whiskey",
+      "valor": 10,
+      "categoria": "Proveedor"
     },
     {
-      "nombre": "Luz y Alquiler",
-      "valor": 400,
-      "categoria": "Proveedor",
-      "id": 103
-    },
-    {
-      "nombre": "jamon",
-      "valor": "200",
+      "nombre": "Whiskey",
+      "valor": "100",
       "categoria": "Gastos",
-      "id": 104
-    },
-    {
-      "nombre": "",
-      "valor": "",
-      "categoria": "",
-      "id": 105
-    },
-    {
-      "nombre": "",
-      "valor": "200",
-      "categoria": "",
-      "id": 106
-    },
-    {
-      "nombre": "",
-      "valor": "200",
-      "categoria": "",
-      "id": 107
+      "id": 101
     }
   ]
 }

@@ -7,7 +7,8 @@ import IconoProveedor from "../../../img/IconoProveedor.png";
 import IconoGastosVarios from "../../../img/IconoGastosVarios.png";
 import IconoComida from "../../../img/IconoComida.png";
 import { BotonEditar, BotonEliminar, BotonVer } from "../../atoms/Botones";
-import { ModalEliminado } from "../../atoms/ModalNotificacion";
+import { ModalEliminado, ModalError } from "../../atoms/ModalNotificacion";
+import MessageModal from "../../atoms/MessageModal";
 
 const Gasto = ({ gasto }) => {
   const {
@@ -16,6 +17,12 @@ const Gasto = ({ gasto }) => {
     setGasto,
     isOpenDeleteModal,
     setIsOpenDeleteModal,
+    setIsOpenConfirmModal,
+    isOpenConfirmModal,
+    handleModalClick,
+    isOpenErrorModal,
+    setIsOpenErrorModal,
+    // handleDeleteModal,
   } = useContext(StaticContext);
   const navigate = useNavigate();
 
@@ -44,6 +51,12 @@ const Gasto = ({ gasto }) => {
   //     obtenerClienteAPI();
   //   }, []);
 
+  const handleDeleteModal = () => {
+    console.log("Eliminando..");
+    setIsOpenConfirmModal(!isOpenConfirmModal);
+    handleDelete(id);
+  };
+
   const handleDelete = async (id) => {
     console.log("Borrando");
     try {
@@ -55,10 +68,11 @@ const Gasto = ({ gasto }) => {
 
       const arrayGastos = gastos.filter((gasto) => gasto.id !== id);
       setGastos(arrayGastos);
+      setIsOpenDeleteModal(!isOpenDeleteModal);
     } catch (error) {
       console.log(error);
+      setIsOpenErrorModal(!isOpenErrorModal);
     }
-    setIsOpenDeleteModal(!isOpenDeleteModal);
   };
 
   const handleEdit = () => {
@@ -83,17 +97,33 @@ const Gasto = ({ gasto }) => {
 
           <BotonEditar value="Editar" onClick={handleEdit} />
 
-          <BotonEliminar value="Eliminar" onClick={() => handleDelete(id)} />
+          <BotonEliminar value="Eliminar" onClick={handleModalClick} />
         </td>
       </tr>
+
+      {isOpenConfirmModal ? (
+        <MessageModal
+          buttonLabel="Eliminar"
+          buttonLabel2="Cancelar"
+          titleModal="¿Seguro deseas eliminarlo?"
+          onClick={handleDeleteModal}
+        >
+          <p>Aca pongo lo que quiero?</p>
+        </MessageModal>
+      ) : (
+        ""
+      )}
+
       {isOpenDeleteModal ? (
         <ModalEliminado
-          titleModal="Se elimino"
-          subtitleModal="El gasto se elimino correctamente"
+          titleModal="¡Eliminado Correctamente!"
+          buttonLabel="ir al listado"
+          onClick={() => navigate(`/ventas`)}
         />
       ) : (
         ""
       )}
+      {isOpenErrorModal ? <ModalError titleModal="Error" /> : " "}
     </>
   );
 };

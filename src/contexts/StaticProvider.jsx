@@ -5,10 +5,11 @@ const StaticContext = createContext();
 
 const StaticProvider = ({ children }) => {
   const [isOpenEdit, setIsOpenEdit] = useState(false);
+
   const [isOpenSaveModal, setIsOpenSaveModal] = useState(false);
   const [isOpenDeleteModal, setIsOpenDeleteModal] = useState(false);
   const [isOpenConfirmModal, setIsOpenConfirmModal] = useState(false);
-  const [isOpenErrorModal, setIsOpenErrorModal] = useState(true);
+  const [isOpenErrorModal, setIsOpenErrorModal] = useState(false);
 
   const [producto, setProducto] = useState({});
   const [productos, setProductos] = useState([]);
@@ -21,6 +22,15 @@ const StaticProvider = ({ children }) => {
   const [totalGastos, setTotalGastos] = useState(500);
 
   const [isCargando, setIsCargando] = useState(true);
+
+  const handleModalClick = () => {
+    setIsOpenConfirmModal(!isOpenConfirmModal);
+  };
+  // const handleDeleteModal = () => {
+  //   console.log("Eliminando..");
+  //   setIsOpenConfirmModal(!isOpenConfirmModal);
+  //   handleDelete();
+  // };
   return (
     <StaticContext.Provider
       value={{
@@ -50,6 +60,8 @@ const StaticProvider = ({ children }) => {
         setGastos,
         totalGastos,
         setTotalGastos,
+        handleModalClick,
+        // handleDeleteModal,
       }}
     >
       {children}

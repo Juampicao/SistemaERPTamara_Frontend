@@ -4,10 +4,12 @@ import ListadoGastos from "../molecules/gastos/ListadoGastos";
 import ModalGasto from "../molecules/gastos/ModalGasto";
 import Header from "../molecules/Header";
 
-import { BotonSecundario } from "../atoms/Botones";
+import { BotonPrimario } from "../atoms/Botones";
 import CajaEfectivo from "../atoms/CajaEfectivo";
 
 import StaticContext from "../../contexts/StaticProvider";
+import FormularioGasto from "../molecules/gastos/FormularioGasto";
+import { BotonBlancoClasicoSinZoom } from "../../helpers/colores";
 
 const Gastos = () => {
   const { gastos, setGastos, gasto, setGasto, totalGastos, setTotalGastos } =
@@ -35,9 +37,12 @@ const Gastos = () => {
 
       <div className="py-5 flex space-x-3">
         <ModalGasto onClick={handleTotalGastos} />
-        <BotonSecundario
-          onClick={handleReiniciarTotalGastos}
+        {/* <ModalGasto onClick={handleTotalGastos} /> */}
+
+        <BotonPrimario
           value="Reiniciar Gastos"
+          Color={BotonBlancoClasicoSinZoom}
+          onClick={handleReiniciarTotalGastos}
         />
       </div>
       <ListadoGastos />

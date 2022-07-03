@@ -1,5 +1,13 @@
 import React from "react";
+import {
+  BotonClasico,
+  ColorAzul,
+  BotonRedondeado,
+  BotonVerdeRedondeado,
+  ColorVerde,
+} from "../../helpers/colores";
 import Fernet from "../../img/fernet.jpg";
+import {} from "./Botones";
 
 const Modal = ({ onClick }) => {
   return (
@@ -7,22 +15,7 @@ const Modal = ({ onClick }) => {
       {/* <!-- Button trigger modal --> */}
       <button
         type="button"
-        className="px-6
-      py-2.5
-      bg-blue-600
-      text-white
-      font-medium
-      text-xs
-      leading-tight
-      uppercase
-     
-      shadow-md
-      hover:bg-blue-700 hover:shadow-lg
-      focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0
-      active:bg-blue-800 active:shadow-lg
-      transition
-      duration-150
-      ease-in-out"
+        className={`${BotonClasico}, ${ColorAzul}`}
         data-bs-toggle="modal"
         data-bs-target="#exampleModal"
       >
@@ -65,22 +58,7 @@ const Modal = ({ onClick }) => {
             <div className="modal-footer flex flex-shrink-0 flex-wrap items-center justify-end p-4 border-t border-gray-200 rounded-b-md">
               <button
                 type="button"
-                className="px-6
-          py-2.5
-          bg-green-600
-          text-white
-          font-medium
-          text-xs
-          leading-tight
-          uppercase
-          rounded
-          shadow-md
-          hover:bg-green-700 hover:shadow-lg
-          focus:bg-green-800 focus:shadow-lg focus:outline-none focus:ring-0
-          active:bg-green-500 active:shadow-lg
-          transition
-          duration-150
-          ease-in-out"
+                className={BotonVerdeRedondeado}
                 data-bs-dismiss="modal"
                 onClick={onClick}
               >

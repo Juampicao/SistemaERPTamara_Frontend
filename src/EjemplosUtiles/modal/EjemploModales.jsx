@@ -1,37 +1,44 @@
 import React, { useState } from "react";
-import EjemploModal from "./EjemploModal";
-import HookUseModal from "./HookUseModal";
 import Modal from "./Modal";
+import FormularioGasto from "../../molecules/gastos/FormularioGasto";
+import { useModal } from "../../../hooks/useModal";
+import VerVenta from "../../molecules/VerVenta";
+import { useNavigate } from "react-router-dom";
 
 const Modales = () => {
-  const [abierto, setAbierto] = useState(true);
-  const [isOpenModal1, openModal1, closeModal1] = useState(false);
-  const [isOpenModal2, openModal2, closeModal2] = useState(false);
+  // const [abierto, setAbierto] = useState(true);
+  const [isOpenModal1, openModal1, closeModal1] = useModal(false);
+  const [isOpenModal2, openModal2, closeModal2] = useModal(false);
+  const [isOpenVerProducto, openVerProducto, closeVerProducto] =
+    useModal(false);
+  const navigate = useNavigate();
 
-  const hidden = "hidden";
-  const flex = "flex";
-  const ambosTextoRojo = "text-red-500";
-  // Explicacion
-
-  // Si el estado ABIERTO = TRUE, clase FLEX. si ABIERTO = FALSE, clase HIDDEN. Ambos tiene clase AMBOSTEXTOROJO.
-
-  // Creo constante hidden / flex de esa forma para usar tailwind e invocarlas como constante,
   return (
     <div>
-      {/* <div
-        className={`${
-          abierto === true ? `${flex}` : `${hidden}`
-        } ${ambosTextoRojo} `}
-      >
-        MODAL ABIERTO
-      </div> */}
       <h2>Modales</h2>
       <button onClick={openModal1}>Modal 1</button>
-      <EjemploModal isOpen={isOpenModal1} closeModal={closeModal1}>
+      <Modal isOpen={isOpenModal1} closeModal={closeModal1}>
         <h3>Modal 1</h3>
         <p>Hola ese es el contenido de mi modal 1</p>
         <img src="https://placeimg.com/400/400/animals" alt="Animals" />
-      </EjemploModal>
+      </Modal>
+      <button onClick={openModal2}> Modal 2 </button>
+      <Modal
+        isOpen={isOpenModal2}
+        closeModal={closeModal2}
+        value="desde Modales"
+        onClick={() => navigate(`/ventas`)}
+      >
+        <FormularioGasto />
+      </Modal>
+      <button onClick={openVerProducto}> Ver Producto</button>
+      <Modal
+        isOpen={isOpenVerProducto}
+        closeModal={closeVerProducto}
+        onClick={() => navigate(`/gastos`)}
+      >
+        <VerVenta />
+      </Modal>
     </div>
   );
 };

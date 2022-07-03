@@ -15,7 +15,8 @@ import iconoEtiqueta from "../../img/iconoEtiqueta.png";
 import iconoExclamacion from "../../img/iconoExclamacion3.png";
 
 import StaticContext from "../../contexts/StaticProvider";
-import { BotonPrincipal, BotonSecundario } from "../atoms/Botones";
+import { BotonPrimario } from "../atoms/Botones";
+import { BotonNegroClasicoSinZoom } from "../../helpers/colores";
 
 const Editar = () => {
   const {
@@ -268,7 +269,11 @@ const Editar = () => {
             </div>
           </div>
           <div className="mt-10">
-            <BotonPrincipal onClick={handleGuardar} value="Guardar" />
+            <BotonPrimario
+              onClick={handleGuardar}
+              value="Guardar"
+              Color={BotonNegroClasicoSinZoom}
+            />
           </div>
         </div>
         {isOpenSaveModal ? (

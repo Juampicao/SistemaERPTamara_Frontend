@@ -2,7 +2,8 @@ import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import StaticContext from "../../../contexts/StaticProvider";
-import { BotonSecundario } from "../../atoms/Botones";
+import { BotonBlancoClasicoSinZoom } from "../../../helpers/colores";
+import { BotonPrimario } from "../../atoms/Botones";
 import { ModalGuardado } from "../../atoms/ModalNotificacion";
 
 const FormularioGasto = () => {
@@ -107,6 +108,27 @@ const FormularioGasto = () => {
           />
         </div>
         <div className={InputStyle}>
+          <label htmlFor="producto"> Seleccionar Producto </label>
+          <input
+            type="text"
+            name=""
+            id="producto"
+            placeholder=" producto"
+            list="pruebaLista"
+            // value={valor}
+            // onChange={(e) => setValor(e.target.value)}
+          />
+        </div>
+        <datalist id="pruebaLista">
+          <option value="Jamon"></option>
+          <option value="Queso"></option>
+          <option value="Queso"></option>
+          <option value="Queso"></option>
+          <option value="Queso"></option>
+          <option value="Queso"></option>
+          <option value="Queso"></option>
+        </datalist>
+        <div className={InputStyle}>
           <label htmlFor="categoria"> Categoria </label>
           <select
             name=""
@@ -119,7 +141,12 @@ const FormularioGasto = () => {
             <option value="Comida"> Comida </option>
             <option value="Proveedor"> Proveedores </option>
           </select>
-          <BotonSecundario value="Enviar" onClick={handleNuevoGasto} />
+
+          <BotonPrimario
+            value="Envio"
+            Color={BotonBlancoClasicoSinZoom}
+            onClick={handleNuevoGasto}
+          />
         </div>
       </form>
     </div>

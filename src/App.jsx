@@ -23,15 +23,6 @@ function App() {
     AOS.refresh();
   }, []);
 
-  const Productos = () => {
-    return (
-      <>
-        <h1> Prodductos </h1>
-        <Outlet />
-      </>
-    );
-  };
-
   return (
     <div className="App">
       <StaticProvider>

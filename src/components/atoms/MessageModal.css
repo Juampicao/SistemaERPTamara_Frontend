@@ -1,16 +1,22 @@
 .MessageModal{
-position: fixed;
+    position: fixed;
 z-index: 9999;
 top: 0;
 left: 0;
 right: 0;
 bottom: 0;
 margin: auto;
-padding: 2rem;
-width: 50%;
-max-width: 400px;
-height: 30%;
+/* padding: 3rem; */
+/* width: 50%; */
+/* max-width: 400px; */
+/* height: 30%; */
+/* max-height: 300px; */
 /* min-height: 50px; */
 }
-
-
+/* 
+@media (min-width: 200px) {
+    .MessageModal {
+        padding: 5rem 0;
+        width: 60rem;
+    }
+} */

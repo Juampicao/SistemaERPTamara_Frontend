@@ -3,11 +3,11 @@ import CajaEfectivo from "../atoms/CajaEfectivo";
 import CuadroVentas from "../atoms/CuadroVentas";
 import Dropdown from "../atoms/Dropdown";
 import Modal from "../atoms/Modal";
-import { BotonSecundario } from "../atoms/Botones";
+import { BotonPrimario } from "../atoms/Botones";
+import { BotonBlancoClasicoSinZoom } from "../../helpers/colores";
 
 import Header from "../molecules/Header";
 import ListadoVentas from "../molecules/ListadoVentas";
-// import "tw-elements";
 
 const Ventas = () => {
   const [caja, setCaja] = useState(6943);
@@ -27,7 +27,11 @@ const Ventas = () => {
       <CajaEfectivo valorCaja={caja} title="Caja" />
       <div className="py-5 flex space-x-3">
         <Modal onClick={handleVender} />
-        <BotonSecundario onClick={handleReiniciarCaja} value="Reiniciar Caja" />
+        <BotonPrimario
+          value="Reiniciar Gastos"
+          Color={BotonBlancoClasicoSinZoom}
+          onClick={handleReiniciarCaja}
+        />
       </div>
       <h1 className="font-black uppercase text-2xl text-end p-3">
         30 de Junio de 2022

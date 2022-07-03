@@ -15,12 +15,12 @@ import MessageModal from "../atoms/MessageModal";
 
 import {
   BotonEliminar,
-  BotonPrincipal,
-  BotonSecundario,
   BotonEditar,
   BotonNuevoProducto,
-  BotonNuevaVenta,
+  BotonPrimario,
 } from "../atoms/Botones";
+
+import { BotonBlancoClasicoSinZoom } from "../../helpers/colores";
 
 import StaticContext from "../../contexts/StaticProvider";
 import Producto from "../molecules/Producto";
@@ -105,7 +105,10 @@ const Inicio = () => {
           value=" Nuevo Producto"
           onClick={handleNuevoProducto}
         />
-        <BotonNuevaVenta value="Nueva Venta" onClick={handleNuevoProducto} />
+        <BotonNuevoProducto
+          value=" Nueva Venta"
+          onClick={handleNuevoProducto}
+        />
       </div>
       {linea}
       <Header title="Listado de Bebidas" />
