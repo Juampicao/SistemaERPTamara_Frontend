@@ -2,9 +2,9 @@ import React, { useContext } from "react";
 
 import { useNavigate } from "react-router-dom";
 
-import { BotonEliminar, BotonEditar } from "../atoms/Botones";
+import { BotonEliminar, BotonEditar } from "../../atoms/Botones";
 
-import StaticContext from "../../contexts/StaticProvider";
+import StaticContext from "../../../contexts/StaticProvider";
 
 const Producto = ({ producto }) => {
   const {

@@ -1,7 +1,8 @@
 import React, { useContext, useState, useEffect } from "react";
+
 import Venta from "./Venta";
 
-import StaticContext from "../../contexts/StaticProvider";
+import StaticContext from "../../../contexts/StaticProvider";
 
 const ListadoVentas = () => {
   const { productos, setProductos, ventas, setVentas } =

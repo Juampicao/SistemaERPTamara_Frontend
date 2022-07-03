@@ -1,11 +1,10 @@
 import React, { useContext } from "react";
 import Iconos from "../atoms/Iconos";
 import Header from "../molecules/Header";
-// import Modales from "../atoms/modal/Modales";
-// import Modal from "../atoms/modal/Modal";
+
 import StaticContext from "../../contexts/StaticProvider";
 import { ModalGuardado } from "../atoms/ModalNotificacion";
-import VerVenta from "../molecules/VerVenta";
+import VerVenta from "../molecules/ventas/VerVenta";
 import FormularioGasto from "../molecules/gastos/FormularioGasto";
 import { useModal } from "../../hooks/useModal";
 
@@ -16,7 +15,6 @@ const Configuraciones = () => {
     <div>
       <Header title="Configuracion" />
       <p>Pagina en Construccion</p>
-      {/* <button onClick={() => setIsOpenEdit(true)}> Abrir Formulario </button> */}
       {isOpenEdit ? (
         <ModalGuardado
           titleModal="Guardado!"

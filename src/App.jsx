@@ -11,8 +11,8 @@ import Configuraciones from "./components/pages/Configuraciones";
 import Layout from "./components/molecules/Layout";
 
 import Editar from "./components/molecules/Editar";
-import VerProducto from "./components/molecules/VerProducto";
-import VerVenta from "./components/molecules/VerVenta";
+import VerProducto from "./components/molecules/productos/VerProducto";
+import VerVenta from "./components/molecules/ventas/VerVenta";
 import VerGasto from "./components/molecules/gastos/VerGasto";
 
 import { StaticProvider } from "./contexts/StaticProvider";

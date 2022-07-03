@@ -23,7 +23,7 @@ import {
 import { BotonBlancoClasicoSinZoom } from "../../helpers/colores";
 
 import StaticContext from "../../contexts/StaticProvider";
-import Producto from "../molecules/Producto";
+import Producto from "../molecules/productos/Producto";
 import Spiner from "../atoms/Spiner";
 import Dropdown from "../atoms/Dropdown";
 import Dropdown2 from "../atoms/Dropdown2";

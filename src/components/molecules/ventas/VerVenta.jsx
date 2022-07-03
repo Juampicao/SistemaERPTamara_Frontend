@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
-import StaticContext from "../../contexts/StaticProvider";
+import StaticContext from "../../../contexts/StaticProvider";
 
 const VerVenta = () => {
   const { venta, setVenta } = useContext(StaticContext);

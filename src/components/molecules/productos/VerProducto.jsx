@@ -1,8 +1,8 @@
 import React, { useContext, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Producto from "./Producto";
-import StaticContext from "../../contexts/StaticProvider";
-import Spiner from "../atoms/Spiner";
+import StaticContext from "../../../contexts/StaticProvider";
+import Spiner from "../../atoms/Spiner";
 
 const VerProducto = () => {
   const { producto, setProducto, isCargando, setIsCargando } =

@@ -28,6 +28,7 @@ const Editar = () => {
     setProducto,
     isCargando,
     setIsCargando,
+    handleModalClick,
   } = useContext(StaticContext);
   // Estados locales
   const [nombre, setNombre] = useState("");
@@ -282,7 +283,7 @@ const Editar = () => {
             subtitleModal="Puedes ver los cambios en el Listado."
             buttonLabel="Ir al listado"
             handleClick={handleModalClick}
-            handleClickClose={closeModal}
+            // handleClickClose={closeModal}
           />
         ) : (
           ""

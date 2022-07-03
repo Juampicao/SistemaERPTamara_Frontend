@@ -7,8 +7,7 @@ import { BotonPrimario } from "../atoms/Botones";
 import { BotonBlancoClasicoSinZoom } from "../../helpers/colores";
 
 import Header from "../molecules/Header";
-import ListadoVentas from "../molecules/ListadoVentas";
-
+import ListadoVentas from "../molecules/ventas/ListadoVentas";
 const Ventas = () => {
   const [caja, setCaja] = useState(6943);
 

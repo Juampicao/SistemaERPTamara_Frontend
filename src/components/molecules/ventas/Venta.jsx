@@ -1,11 +1,10 @@
 import React, { useContext, useEffect, useState } from "react";
-import Fernet from "../../img/fernet.jpg";
-
+import Fernet from "../../../img/fernet.jpg";
 import VerVenta from "./VerVenta";
 
 import { useNavigate } from "react-router-dom";
-import StaticContext from "../../contexts/StaticProvider";
 
+import StaticContext from "../../../contexts/StaticProvider";
 const Venta = ({ venta }) => {
   const { ventas, setVentas } = useContext(StaticContext);
   const navigate = useNavigate();
