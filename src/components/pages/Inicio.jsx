@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom";
 import Fernet from "../../img/fernet.jpg";
 
 import Header from "../molecules/Header";
-import Editar from "../molecules/Editar";
+import Editar from "../molecules/ventas/Editar";
 import {
   ModalEliminado,
   ModalError,

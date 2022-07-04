@@ -29,6 +29,7 @@ const VerGasto = () => {
         <div> Costo: {gasto.nombre} </div>
         <div> Valor: {gasto.valor} </div>
         <div> Categoria: {gasto.categoria} </div>
+        <div> Fecha: {gasto.fecha} </div>
       </div>
     </div>
   );

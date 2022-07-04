@@ -1,18 +1,21 @@
 export const generarId = () => {
-    const random = Math.random().toString(36)
-    const fecha = Date.now().toString(2)
-    return random + fecha 
+  const random = Math.random().toString(36);
+  const fecha = Date.now().toString(2);
+  return random + fecha;
+};
+
+export const formatearFecha = (fecha) => {
+  const fechaNueva = new Date(fecha);
+  const opciones = {
+    year: "numeric",
+    month: "long",
+    day: "2-digit",
+  };
+
+  return fechaNueva.toLocaleDateString("es-ES", opciones);
+};
+
+// Buscar reset a todos los estados de un form. Para hacerlo global para ventas, gastos y productos formulario.
+function resetForm() {
+  setValor("");
 }
-
-export const formatearFecha = fecha => {
-    const fechaNueva = new Date(fecha);
-    const opciones = {
-        year:"numeric",
-        month:"long",
-        day: "2-digit",
-    }
-
-    return fechaNueva.toLocaleDateString('es-ES', opciones)
-}
-
-

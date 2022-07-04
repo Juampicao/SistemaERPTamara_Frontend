@@ -63,16 +63,18 @@
   ],
   "gastos": [
     {
-      "id": 100,
-      "nombre": "Whiskey",
-      "valor": 10,
-      "categoria": "Proveedor"
+      "nombre": "4 de julio",
+      "valor": 12000,
+      "categoria": "Comida",
+      "fecha": "2022-07-04",
+      "id": 106
     },
     {
-      "nombre": "Whiskey",
-      "valor": "100",
-      "categoria": "Gastos",
-      "id": 101
+      "nombre": "Ultimo",
+      "valor": 24241,
+      "categoria": "",
+      "fecha": "",
+      "id": 107
     }
   ]
 }

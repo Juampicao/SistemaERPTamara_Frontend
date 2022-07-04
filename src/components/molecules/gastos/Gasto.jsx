@@ -19,10 +19,11 @@ const Gasto = ({ gasto }) => {
     setIsOpenDeleteModal,
     setIsOpenConfirmModal,
     isOpenConfirmModal,
-    handleModalClick,
+    // handleModalClick,
     isOpenErrorModal,
     setIsOpenErrorModal,
     // handleDeleteModal,
+    handleDelete,
   } = useContext(StaticContext);
   const navigate = useNavigate();
 
@@ -34,50 +35,51 @@ const Gasto = ({ gasto }) => {
 
   const { id, nombre, valor, cantidad } = gasto;
 
-  // Creando Estado Venta
-  //   useEffect(() => {
-  //     const obtenerClienteAPI = async () => {
-  //       try {
-  //         const url = `http://localhost:4000/ventas/${id}`;
-  //         const respuesta = await fetch(url);
-  //         const resultado = await respuesta.json();
-  //         setVenta(resultado);
-  //         console.log(resultado);
-  //       } catch (error) {
-  //         console.log(error);
-  //       }
-  //       // setCargando(!cargando);
-  //     };
-  //     obtenerClienteAPI();
-  //   }, []);
+  // 1°
+  // El problema esta aca, desde handleDeleteModal funcion bien
+  // function handleModalClick(id) {
+  //   setIsOpenConfirmModal(!isOpenConfirmModal);
+  // }
 
-  const handleDeleteModal = () => {
-    console.log("Eliminando..");
-    setIsOpenConfirmModal(!isOpenConfirmModal);
-    handleDelete(id);
-  };
+  // 2°
+  // const handleDeleteModal = () => {
+  //   console.log("Eliminando..");
+  //   // setIsOpenConfirmModal(!isOpenConfirmModal);
+  //   handleDelete(id);
+  // };
 
-  const handleDelete = async (id) => {
-    console.log("Borrando");
-    try {
-      const url = `http://localhost:4000/gastos/${id}`;
-      const respuesta = await fetch(url, {
-        method: "DELETE",
-      });
-      await respuesta.json();
+  // 3° (Momentaneamente va primero.)
+  // const handleDelete = async (id) => {
+  //   console.log("Borrando");
+  //   try {
+  //     const url = `http://localhost:4000/gastos/${id}`;
+  //     const respuesta = await fetch(url, {
+  //       method: "DELETE",
+  //     });
+  //     await respuesta.json();
 
-      const arrayGastos = gastos.filter((gasto) => gasto.id !== id);
-      setGastos(arrayGastos);
-      setIsOpenDeleteModal(!isOpenDeleteModal);
-    } catch (error) {
-      console.log(error);
-      setIsOpenErrorModal(!isOpenErrorModal);
-    }
-  };
+  //     const arrayGastos = gastos.filter((gasto) => gasto.id !== id);
+  //     setGastos(arrayGastos);
+  //     setIsOpenDeleteModal(!isOpenDeleteModal);
+  //   } catch (error) {
+  //     console.log(error);
+  //     setIsOpenErrorModal(!isOpenErrorModal);
+  //   }
+  // };
 
-  const handleEdit = () => {
-    console.log("Editando");
-  };
+  // useEffect(() => {
+  //   const totalGastado = gastos.reduce(
+  //     (total, gasto) => gasto.valor + total,
+  //     0
+  //   );
+
+  //   setTotalGastos(totalGastado);
+  // }, [gastos]);
+
+  // const result = valor.filter((valor) => valor === 2023);
+
+  // console.log(result);
+
   return (
     <>
       <tr className="hover:bg-gray-100 border border-slate-500">
@@ -95,9 +97,12 @@ const Gasto = ({ gasto }) => {
         <td className="p-2 space-y-3 ">
           <BotonVer value="Ver" onClick={() => navigate(`/gastos/${id}`)} />
 
-          <BotonEditar value="Editar" onClick={handleEdit} />
+          <BotonEditar
+            value="Editar"
+            onClick={() => navigate(`/gastos/editar/${id}`)}
+          />
 
-          <BotonEliminar value="Eliminar" onClick={handleModalClick} />
+          <BotonEliminar value="Eliminar" onClick={() => handleDelete(id)} />
         </td>
       </tr>
 

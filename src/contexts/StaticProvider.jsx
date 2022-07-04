@@ -23,14 +23,24 @@ const StaticProvider = ({ children }) => {
 
   const [isCargando, setIsCargando] = useState(true);
 
-  const handleModalClick = () => {
-    setIsOpenConfirmModal(!isOpenConfirmModal);
+  const handleDelete = async (id) => {
+    console.log("Borrando");
+    try {
+      const url = `http://localhost:4000/gastos/${id}`;
+      const respuesta = await fetch(url, {
+        method: "DELETE",
+      });
+      await respuesta.json();
+
+      const arrayGastos = gastos.filter((gasto) => gasto.id !== id);
+      setGastos(arrayGastos);
+      setIsOpenDeleteModal(!isOpenDeleteModal);
+    } catch (error) {
+      console.log(error);
+      setIsOpenErrorModal(!isOpenErrorModal);
+    }
   };
-  // const handleDeleteModal = () => {
-  //   console.log("Eliminando..");
-  //   setIsOpenConfirmModal(!isOpenConfirmModal);
-  //   handleDelete();
-  // };
+
   return (
     <StaticContext.Provider
       value={{
@@ -60,8 +70,9 @@ const StaticProvider = ({ children }) => {
         setGastos,
         totalGastos,
         setTotalGastos,
-        handleModalClick,
+        // handleModalClick,
         // handleDeleteModal,
+        handleDelete,
       }}
     >
       {children}

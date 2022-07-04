@@ -2,21 +2,22 @@ import React, { useState, useContext, useEffect } from "react";
 
 import { Outlet, useNavigate, useParams } from "react-router-dom";
 
-import { ModalGuardado } from "../atoms/ModalNotificacion";
+import { ModalGuardado } from "../../atoms/ModalNotificacion";
 
-import iconoCerrar from "../../img/iconoCerrar.png";
-import Fernet from "../../img/fernet.jpg";
-import SignoMas from "../../img/signoMas.png";
-import SignoMenos from "../../img/signoResta.png";
-import IconoCosto from "../../img/iconoCosto.png";
-import iconoPrecio from "../../img/iconoPrecio.png";
-import iconoCantidad from "../../img/iconoCantidad.png";
-import iconoEtiqueta from "../../img/iconoEtiqueta.png";
-import iconoExclamacion from "../../img/iconoExclamacion3.png";
+// import iconoCerrar from "../../img/iconoCerrar.png";
+import iconoCerrar from "../../../img/iconoCerrar.png";
+import Fernet from "../../../img/fernet.jpg";
+import SignoMas from "../../../img/signoMas.png";
+import SignoMenos from "../../../img/signoResta.png";
+import IconoCosto from "../../../img/iconoCosto.png";
+import iconoPrecio from "../../../img/iconoPrecio.png";
+import iconoCantidad from "../../../img/iconoCantidad.png";
+import iconoEtiqueta from "../../../img/iconoEtiqueta.png";
+import iconoExclamacion from "../../../img/iconoExclamacion3.png";
 
-import StaticContext from "../../contexts/StaticProvider";
-import { BotonPrimario } from "../atoms/Botones";
-import { BotonNegroClasicoSinZoom } from "../../helpers/colores";
+import StaticContext from "../../../contexts/StaticProvider";
+import { BotonPrimario } from "../../atoms/Botones";
+import { BotonNegroClasicoSinZoom } from "../../../helpers/colores";
 
 const Editar = () => {
   const {

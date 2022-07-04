@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
+import StaticContext from "../../../contexts/StaticProvider";
 import IconoGasto from "../../../img/iconoCosto.png";
 
 const CuadroGastos = ({ title, valor }) => {
-  const rojo = "bg-red-500";
-  const azul = "bg-blue-500";
+  // const { gastos, setGastos, gasto, setGasto, totalGastos, setTotalGastos } =
+  //   useContext(StaticContext);
+
+  const [totalGastosHoy, setTotalGastosHoy] = useState("");
 
   return (
     <>
@@ -12,8 +15,7 @@ const CuadroGastos = ({ title, valor }) => {
           <img src={IconoGasto} className="h-8" alt="" />
           <p className="uppercase font-medium">{title}</p>
         </div>
-
-        <p>{valor} </p>
+        <p className="mt-1">${valor} </p>
       </div>
     </>
   );

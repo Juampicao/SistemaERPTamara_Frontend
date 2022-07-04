@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import CuadroGastos from "../atoms/gastos/CuadroGastos";
 import ListadoGastos from "../molecules/gastos/ListadoGastos";
 import ModalGasto from "../molecules/gastos/ModalGasto";
@@ -15,20 +15,26 @@ const Gastos = () => {
   const { gastos, setGastos, gasto, setGasto, totalGastos, setTotalGastos } =
     useContext(StaticContext);
 
-  const handleTotalGastos = (e) => {
-    setTotalGastos(totalGastos + 100);
+  function handleTotalGastos(e) {
+    setTotalGastos(totalGastos);
     e.preventDefault();
-    // if ([nombre, cantidad, categoria].includes("")) {
-    //   setMensaje("Todos los campos son obligatorios");
-    //   setTimeout(() => {
-    //     setMensaje("");
-    //   }, 3000);
-    // }
-  };
+  }
+
+  const { id, nombre, valor, cantidad } = gasto;
 
   const handleReiniciarTotalGastos = () => {
     setTotalGastos(0);
   };
+
+  // SetTotalGastos (suma todos los valor de cada gasto)
+  useEffect(() => {
+    const totalGastado = gastos.reduce(
+      (total, gasto) => gasto.valor + total,
+      0
+    );
+
+    setTotalGastos(totalGastado);
+  }, [gastos]);
 
   return (
     <div>
@@ -36,8 +42,11 @@ const Gastos = () => {
       <CajaEfectivo valorCaja={totalGastos} title="Gastos" />
 
       <div className="py-5 flex space-x-3">
-        <ModalGasto onClick={handleTotalGastos} />
-        {/* <ModalGasto onClick={handleTotalGastos} /> */}
+        <ModalGasto
+          onClick={() => {
+            handleTotalGastos();
+          }}
+        />
 
         <BotonPrimario
           value="Reiniciar Gastos"
@@ -50,9 +59,9 @@ const Gastos = () => {
         <div>
           <h3 className="text-2xl font-bold font-mono uppercase">Gastos Hoy</h3>
           <div className="flex space-x-3 text-center my-2">
-            <CuadroGastos title="Gastos" valor="$9890" />
-            <CuadroGastos title="Gastos" valor="$9890" />
-            <CuadroGastos title="Gastos" valor="$9890" />
+            <CuadroGastos title="Gastos" valor={totalGastos} />
+            <CuadroGastos title="Gastos" valor={totalGastos} />
+            <CuadroGastos title="Gastos" valor={totalGastos} />
           </div>
         </div>
         <div>

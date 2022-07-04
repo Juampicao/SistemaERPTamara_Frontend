@@ -19,6 +19,7 @@ const FormularioGasto = () => {
   const [nombre, setNombre] = useState("");
   const [valor, setValor] = useState("");
   const [categoria, setCategoria] = useState("");
+  const [fecha, setFecha] = useState("");
 
   //Use navigate
   const navigate = useNavigate();
@@ -32,6 +33,7 @@ const FormularioGasto = () => {
       setNombre(gasto.nombre);
       setValor(gasto.valor);
       setCategoria(gasto.categoria);
+      setFecha(gasto.fecha);
     }
   }, [gasto]);
 
@@ -40,7 +42,26 @@ const FormularioGasto = () => {
     nombre,
     valor,
     categoria,
+    fecha,
   };
+
+  // Validar Formulario
+  function validarForm() {
+    if ([nombre, valor, categoria].includes("")) {
+      setMensaje("Todos los campos son obligatorios");
+      setTimeout(() => {
+        setMensaje("");
+      }, 3000);
+    }
+  }
+
+  // Resetear Formulario
+  function resetearForm() {
+    setNombre("");
+    setValor("");
+    setCategoria("");
+    setFecha("");
+  }
 
   // Boton Enviar Formulario
   const handleNuevoGasto = async (e) => {
@@ -68,6 +89,7 @@ const FormularioGasto = () => {
           },
         });
         // setTotalGastos(...totalGastos, valor);
+        resetearForm();
       }
 
       await respuesta.json();
@@ -75,17 +97,20 @@ const FormularioGasto = () => {
     } catch (error) {
       console.log(error);
     }
+    // resetearForm();
   };
 
   // styles
 
   const InputStyle = "p-3 bg-slate-50 space-x-3";
+  const PlaceHolderStyle = "border-2 p-2  placeholder-gray-400 rounded-md";
   return (
     <div>
       <form action="submit" onSubmit={handleNuevoGasto}>
         <div className={InputStyle}>
           <label htmlFor="nombre"> Nombre Gasto </label>
           <input
+            className={PlaceHolderStyle}
             type="text"
             name=""
             id="nombre"
@@ -97,23 +122,37 @@ const FormularioGasto = () => {
         <div className={InputStyle}>
           <label htmlFor="valor"> Monto Total: </label>
           <input
+            className={PlaceHolderStyle}
             type="number"
-            min="1"
-            pattern="[0-9]{0,5}"
             name=""
             id="valor"
             placeholder=" Valor"
             value={valor}
-            onChange={(e) => setValor(e.target.value)}
+            onChange={(e) => setValor(Number(e.target.value))}
           />
         </div>
         <div className={InputStyle}>
+          <label htmlFor="fecha" className="">
+            Fecha Gasto
+          </label>
+
+          <input
+            className={PlaceHolderStyle}
+            id="fecha"
+            type="date"
+            value={fecha}
+            onChange={(e) => setFecha(e.target.value)}
+          />
+        </div>
+
+        <div className={InputStyle}>
           <label htmlFor="producto"> Seleccionar Producto </label>
           <input
+            className={PlaceHolderStyle}
             type="text"
             name=""
             id="producto"
-            placeholder=" producto"
+            placeholder=" Producto"
             list="pruebaLista"
             // value={valor}
             // onChange={(e) => setValor(e.target.value)}
@@ -122,15 +161,12 @@ const FormularioGasto = () => {
         <datalist id="pruebaLista">
           <option value="Jamon"></option>
           <option value="Queso"></option>
-          <option value="Queso"></option>
-          <option value="Queso"></option>
-          <option value="Queso"></option>
-          <option value="Queso"></option>
-          <option value="Queso"></option>
+          <option value="Marimba"></option>
         </datalist>
         <div className={InputStyle}>
           <label htmlFor="categoria"> Categoria </label>
           <select
+            className={PlaceHolderStyle}
             name=""
             id="categoria"
             value={categoria}

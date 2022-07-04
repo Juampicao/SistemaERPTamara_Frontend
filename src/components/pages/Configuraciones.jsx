@@ -7,10 +7,15 @@ import { ModalGuardado } from "../atoms/ModalNotificacion";
 import VerVenta from "../molecules/ventas/VerVenta";
 import FormularioGasto from "../molecules/gastos/FormularioGasto";
 import { useModal } from "../../hooks/useModal";
+import { BotonPrimario } from "../atoms/Botones";
+import { BotonBlancoClasico, BotonClasico } from "../../helpers/colores";
 
 const Configuraciones = () => {
   const { isOpenEdit, setIsOpenEdit } = useContext(StaticContext);
 
+  const handle = () => {
+    console.log("first");
+  };
   return (
     <div>
       <Header title="Configuracion" />
@@ -25,6 +30,20 @@ const Configuraciones = () => {
       ) : (
         ""
       )}
+      <BotonPrimario Color={BotonBlancoClasico} />
+      <div className="text-center">
+        <p>
+          Hover the link to see the
+          <a
+            href="#"
+            className="text-blue-600 hover:text-blue-700 transition duration-150 ease-in-out"
+            data-bs-toggle="tooltip"
+            title="Hi! I'm tooltip"
+          >
+            tooltip
+          </a>
+        </p>
+      </div>
     </div>
   );
 };

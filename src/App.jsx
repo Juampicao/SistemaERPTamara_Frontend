@@ -10,10 +10,11 @@ import Gastos from "./components/pages/Gastos";
 import Configuraciones from "./components/pages/Configuraciones";
 import Layout from "./components/molecules/Layout";
 
-import Editar from "./components/molecules/Editar";
+import Editar from "./components/molecules/ventas/Editar";
 import VerProducto from "./components/molecules/productos/VerProducto";
 import VerVenta from "./components/molecules/ventas/VerVenta";
 import VerGasto from "./components/molecules/gastos/VerGasto";
+import EditarGasto from "./components/molecules/gastos/EditarGasto";
 
 import { StaticProvider } from "./contexts/StaticProvider";
 
@@ -37,6 +38,7 @@ function App() {
               <Route path="ventas/:id" index element={<VerVenta />} />
               <Route path="gastos" index element={<Gastos />} />
               <Route path="gastos/:id" index element={<VerGasto />} />
+              <Route path="gastos/editar/:id" index element={<EditarGasto />} />
 
               <Route
                 path="configuraciones"
