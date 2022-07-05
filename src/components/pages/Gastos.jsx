@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import CuadroGastos from "../atoms/gastos/CuadroGastos";
 import ListadoGastos from "../molecules/gastos/ListadoGastos";
-import ModalGasto from "../molecules/gastos/ModalGasto";
 import Header from "../molecules/Header";
 
 import { BotonPrimario } from "../atoms/Botones";
@@ -9,16 +8,28 @@ import CajaEfectivo from "../atoms/CajaEfectivo";
 
 import StaticContext from "../../contexts/StaticProvider";
 import FormularioGasto from "../molecules/gastos/FormularioGasto";
-import { BotonBlancoClasicoSinZoom } from "../../helpers/colores";
+import {
+  BotonAzulClasico,
+  BotonAzulClasicoSinZoom,
+  BotonBlancoClasicoSinZoom,
+} from "../../helpers/colores";
+import InicioCaja from "../molecules/gastos/InicioCaja";
+import ModalReutilizable from "../atoms/modal/ModalReutilizable";
 
 const Gastos = () => {
-  const { gastos, setGastos, gasto, setGasto, totalGastos, setTotalGastos } =
-    useContext(StaticContext);
+  const {
+    gastos,
+    setGastos,
+    gasto,
+    setGasto,
+    totalGastos,
+    setTotalGastos,
+    inicioCaja,
+    setInicioCaja,
+  } = useContext(StaticContext);
 
-  function handleTotalGastos(e) {
-    setTotalGastos(totalGastos);
-    e.preventDefault();
-  }
+  const [modalCaja, setModalCaja] = useState(false);
+  const [abrirModal, setAbrirModal] = useState(false);
 
   const { id, nombre, valor, cantidad } = gasto;
 
@@ -32,36 +43,71 @@ const Gastos = () => {
       (total, gasto) => gasto.valor + total,
       0
     );
-
     setTotalGastos(totalGastado);
   }, [gastos]);
 
+  // console.log(typeof inicioCaja);
+
+  const cerrar = () => {
+    setAbrirModal(!abrirModal);
+  };
   return (
     <div>
       <Header title="Gastos" />
-      <CajaEfectivo valorCaja={totalGastos} title="Gastos" />
+      <CajaEfectivo
+        valorCaja={totalGastos}
+        title="Gastos"
+        title2="Caja Total"
+        valorCaja2="$1500"
+        title3="Inicio Caja"
+        valorCaja3="$4500"
+      />
 
       <div className="py-5 flex space-x-3">
-        <ModalGasto
-          onClick={() => {
-            handleTotalGastos();
-          }}
+        {/* Abrir Nuevo Gasto */}
+        <BotonPrimario
+          value="Nuevo Gasto"
+          Color={BotonAzulClasicoSinZoom}
+          onClick={() => setAbrirModal(!abrirModal)}
         />
+        {abrirModal ? (
+          <ModalReutilizable closeModal={cerrar}>
+            <FormularioGasto onClick={() => {}} />
+          </ModalReutilizable>
+        ) : (
+          ""
+        )}
+        {/* Nuevo Gasto */}
 
+        {/* Abrir Inicio Caja */}
+        <BotonPrimario
+          value="Inicio Caja"
+          Color={BotonBlancoClasicoSinZoom}
+          onClick={() => setModalCaja(!modalCaja)}
+        />
+        {modalCaja ? (
+          <ModalReutilizable closeModal={() => setModalCaja(!modalCaja)}>
+            <InicioCaja />
+          </ModalReutilizable>
+        ) : (
+          ""
+        )}
+        {/* Inicio Caja */}
         <BotonPrimario
           value="Reiniciar Gastos"
           Color={BotonBlancoClasicoSinZoom}
           onClick={handleReiniciarTotalGastos}
         />
       </div>
+
       <ListadoGastos />
       <div className="grid grid-rows space-y-10 my-10">
         <div>
           <h3 className="text-2xl font-bold font-mono uppercase">Gastos Hoy</h3>
           <div className="flex space-x-3 text-center my-2">
-            <CuadroGastos title="Gastos" valor={totalGastos} />
-            <CuadroGastos title="Gastos" valor={totalGastos} />
-            <CuadroGastos title="Gastos" valor={totalGastos} />
+            <CuadroGastos title="Gastos Totales" valor={totalGastos} />
+            <CuadroGastos title="Gastos Proveedores" valor={totalGastos} />
+            <CuadroGastos title="Gastos Comidas" valor={totalGastos} />
           </div>
         </div>
         <div>
@@ -69,7 +115,9 @@ const Gastos = () => {
             Gastos Semana
           </h3>
           <div className="flex space-x-3 text-center my-2">
-            <CuadroGastos title="Gastos" valor="$9890" />
+            <CuadroGastos title="Gastos Totales" valor="$9890" />
+            <CuadroGastos title="Gastos Proveedores" valor={totalGastos} />
+            <CuadroGastos title="Gastos Comidas" valor={totalGastos} />
           </div>
         </div>
       </div>

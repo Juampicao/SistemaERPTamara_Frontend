@@ -63,18 +63,40 @@
   ],
   "gastos": [
     {
-      "nombre": "4 de julio",
-      "valor": 12000,
+      "nombre": "Comida Empleados",
+      "valor": 3000,
       "categoria": "Comida",
-      "fecha": "2022-07-04",
-      "id": 106
+      "fecha": "",
+      "id": 1
     },
     {
-      "nombre": "Ultimo",
-      "valor": 24241,
-      "categoria": "",
+      "nombre": "JAMON",
+      "valor": 350,
+      "categoria": "Comida",
       "fecha": "",
-      "id": 107
+      "id": 2
+    }
+  ],
+  "caja": [
+    {
+      "inicioCaja": 250,
+      "id": 1
+    },
+    {
+      "inicioCaja": 500,
+      "id": 2
+    },
+    {
+      "inicioCaja": 543,
+      "id": 3
+    },
+    {
+      "inicioCaja": 74634,
+      "id": 4
+    },
+    {
+      "inicioCaja": 1500,
+      "id": 5
     }
   ]
 }

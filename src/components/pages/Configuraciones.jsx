@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import Iconos from "../atoms/Iconos";
 import Header from "../molecules/Header";
 
@@ -13,9 +13,13 @@ import { BotonBlancoClasico, BotonClasico } from "../../helpers/colores";
 const Configuraciones = () => {
   const { isOpenEdit, setIsOpenEdit } = useContext(StaticContext);
 
-  const handle = () => {
-    console.log("first");
-  };
+  // const [modalCaja, setModalCaja] = useState(true);
+
+  function openModalCaja() {
+    console.log("hola");
+    setModalCaja(!modalCaja);
+  }
+
   return (
     <div>
       <Header title="Configuracion" />
@@ -30,7 +34,10 @@ const Configuraciones = () => {
       ) : (
         ""
       )}
-      <BotonPrimario Color={BotonBlancoClasico} />
+      <BotonPrimario
+        Color={BotonBlancoClasico}
+        onClick={() => openModalCaja()}
+      />
       <div className="text-center">
         <p>
           Hover the link to see the

@@ -1,9 +1,9 @@
 import React, { useContext } from "react";
 import Fernet from "../../../img/fernet.jpg";
-import FormularioGasto from "./FormularioGasto";
-import StaticContext from "../../../contexts/StaticProvider";
+import FormularioGasto from "../../components/molecules/gastos/FormularioGasto";
+import StaticContext from "../../contexts/StaticProvider";
 
-const ModalGasto = ({ onClick }) => {
+const EjemploModalGasto = ({ onClick }) => {
   return (
     <div>
       {/* <!-- Button trigger modal --> */}
@@ -17,7 +17,6 @@ const ModalGasto = ({ onClick }) => {
       text-xs
       leading-tight
       uppercase
-
       shadow-md
       hover:bg-blue-700 hover:shadow-lg
       focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0
@@ -121,7 +120,7 @@ const ModalGasto = ({ onClick }) => {
   );
 };
 
-export default ModalGasto;
+export default EjemploModalGasto;
 
 // import React from "react";
 

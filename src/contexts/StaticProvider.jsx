@@ -23,6 +23,8 @@ const StaticProvider = ({ children }) => {
 
   const [isCargando, setIsCargando] = useState(true);
 
+  const [inicioCaja, setInicioCaja] = useState("");
+
   const handleDelete = async (id) => {
     console.log("Borrando");
     try {
@@ -73,6 +75,8 @@ const StaticProvider = ({ children }) => {
         // handleModalClick,
         // handleDeleteModal,
         handleDelete,
+        inicioCaja,
+        setInicioCaja,
       }}
     >
       {children}

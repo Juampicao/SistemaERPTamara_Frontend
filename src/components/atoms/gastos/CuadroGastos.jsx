@@ -13,9 +13,9 @@ const CuadroGastos = ({ title, valor }) => {
       <div className="p-10   rounded-lg bg-white hover:bg-slate-200 cursor-pointer ">
         <div className="flex items-center space-x-3">
           <img src={IconoGasto} className="h-8" alt="" />
-          <p className="uppercase font-medium">{title}</p>
+          <p className="text-start pl-2 uppercase font-medium">{title}</p>
         </div>
-        <p className="mt-1">${valor} </p>
+        <p className="mt-3 pl-2">${valor} </p>
       </div>
     </>
   );

@@ -12,6 +12,8 @@ const FormularioGasto = () => {
     isOpenSaveModal,
     gasto,
     setGasto,
+    gastos,
+    setGastos,
     totalGastos,
     setTotalGastos,
   } = useContext(StaticContext);
@@ -64,7 +66,7 @@ const FormularioGasto = () => {
   }
 
   // Boton Enviar Formulario
-  const handleNuevoGasto = async (e) => {
+  const handleNuevoGasto = async (e, id) => {
     e.preventDefault();
     try {
       let respuesta;
@@ -93,6 +95,8 @@ const FormularioGasto = () => {
       }
 
       await respuesta.json();
+      // const arrayGastos = gastos.filter((gasto) => gasto.id !== id);
+      // setGastos(arrayGastos);
       //   navigate("/ventas");
     } catch (error) {
       console.log(error);

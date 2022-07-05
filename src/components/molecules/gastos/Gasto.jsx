@@ -102,7 +102,10 @@ const Gasto = ({ gasto }) => {
             onClick={() => navigate(`/gastos/editar/${id}`)}
           />
 
+          {/* SE ELIMINA DESDE EL CONTEXT por eso se recarga de una.  */}
+
           <BotonEliminar value="Eliminar" onClick={() => handleDelete(id)} />
+          {/* SE ELIMINA DESDE EL CONTEXT  */}
         </td>
       </tr>
 

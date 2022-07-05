@@ -48,3 +48,4 @@ export const BotonRojoClasico = `${BotonClasico}, ${ColorRojo}`;
 
 export const BotonAzulRedondeado = `${BotonRedondeado}, ${ColorAzul}`;
 export const BotonAzulClasico = `${BotonClasico}, ${ColorAzul}`;
+export const BotonAzulClasicoSinZoom = `${BotonClasicoSinZoom}, ${ColorAzul}`;

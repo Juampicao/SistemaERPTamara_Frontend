@@ -17,7 +17,11 @@ import iconoExclamacion from "../../../img/iconoExclamacion3.png";
 
 import StaticContext from "../../../contexts/StaticProvider";
 import { BotonPrimario } from "../../atoms/Botones";
-import { BotonNegroClasicoSinZoom } from "../../../helpers/colores";
+import {
+  BotonBlancoClasicoSinZoom,
+  BotonClasicoSinZoom,
+  BotonNegroClasicoSinZoom,
+} from "../../../helpers/colores";
 
 const Editar = () => {
   const {
@@ -274,7 +278,7 @@ const Editar = () => {
             <BotonPrimario
               onClick={handleGuardar}
               value="Guardar"
-              Color={BotonNegroClasicoSinZoom}
+              Color={BotonBlancoClasicoSinZoom}
             />
           </div>
         </div>
