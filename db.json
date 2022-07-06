@@ -64,7 +64,7 @@
   "gastos": [
     {
       "nombre": "Nose",
-      "valor": 3000,
+      "valor": 50055,
       "categoria": "Comida",
       "fecha": "2022-07-23",
       "id": 1
@@ -77,10 +77,10 @@
       "id": 2
     },
     {
-      "nombre": "Cacona",
-      "valor": 121,
-      "categoria": "Gastos",
-      "fecha": "1999-08-10",
+      "nombre": "Salamines",
+      "valor": 200,
+      "categoria": "Comida",
+      "fecha": "2022-07-05",
       "id": 3
     }
   ],

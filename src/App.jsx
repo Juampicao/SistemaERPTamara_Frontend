@@ -20,7 +20,7 @@ import { StaticProvider } from "./contexts/StaticProvider";
 import NuevoGasto from "./components/molecules/gastos/NuevoGasto";
 
 function App() {
-  console.log(import.meta.env);
+  console.log();
   useEffect(() => {
     AOS.init();
     AOS.refresh();

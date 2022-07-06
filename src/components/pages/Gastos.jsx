@@ -56,16 +56,18 @@ const Gastos = () => {
   return (
     <div>
       <Header title="Gastos" />
-      <CajaEfectivo
-        valorCaja={totalGastos}
-        title="Gastos"
-        title2="Caja Total"
-        valorCaja2="$500"
-        title3="Inicio Caja"
-        valorCaja3="$4500"
-      />
+      <div className="flex flex-wrap">
+        <CajaEfectivo
+          valorCaja={totalGastos}
+          title="Gastos"
+          title2="Caja Total"
+          valorCaja2="$500"
+          title3="Inicio Caja"
+          valorCaja3="$4500"
+        />
+      </div>
 
-      <div className="py-5 flex space-x-3">
+      <div className="py-5 flex flex-wrap space-x-3">
         {/* Abrir Nuevo Gasto */}
         {/* <BotonPrimario
           value="Nuevo Gasto"
@@ -118,7 +120,7 @@ const Gastos = () => {
 
       <ListadoGastos />
       <div className="grid grid-rows space-y-10 my-10">
-        <div>
+        <div className="">
           <h3 className="text-2xl font-bold font-mono uppercase">Gastos Hoy</h3>
           <div className="flex space-x-3 text-center my-2">
             <CuadroGastos title="Gastos Totales" valor={totalGastos} />

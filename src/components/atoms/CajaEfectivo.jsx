@@ -16,7 +16,7 @@ const CajaEfectivo = ({
         <p> ${valorCaja}</p>
       </div>
      */}
-      <div className="flex border border-slate-500 justify-between ">
+      <div className="flex flex-wrap border border-slate-500 justify-between ">
         <div className="flex   p-5 space-x-5 font-bold uppercase text-2xl">
           <h3> {title}</h3>
           <div className="h-10  border-slate-500"></div>

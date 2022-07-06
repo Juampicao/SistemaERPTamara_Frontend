@@ -4,6 +4,9 @@ import { createContext, useState } from "react";
 const StaticContext = createContext();
 
 const StaticProvider = ({ children }) => {
+  const [isActiveMenu, setActiveMenu] = useState(true);
+  const [screenSize, setScreenSize] = useState(undefined);
+
   const [isOpenEdit, setIsOpenEdit] = useState(false);
 
   const [isOpenSaveModal, setIsOpenSaveModal] = useState(false);
@@ -46,6 +49,10 @@ const StaticProvider = ({ children }) => {
   return (
     <StaticContext.Provider
       value={{
+        isActiveMenu,
+        setActiveMenu,
+        screenSize,
+        setScreenSize,
         isOpenEdit,
         setIsOpenEdit,
         isOpenSaveModal,
