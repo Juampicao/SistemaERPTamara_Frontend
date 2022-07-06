@@ -16,6 +16,8 @@ import {
 import InicioCaja from "../molecules/gastos/InicioCaja";
 import ModalReutilizable from "../atoms/modal/ModalReutilizable";
 import { useNavigate } from "react-router-dom";
+import BarraSearch from "../atoms/BarraSearch";
+// import { IconSearch } from "../../img/iconSearch.png";
 
 const Gastos = () => {
   const {
@@ -117,6 +119,7 @@ const Gastos = () => {
           onClick={handleReiniciarTotalGastos}
         />
       </div>
+      <BarraSearch />
 
       <ListadoGastos />
       <div className="grid grid-rows space-y-10 my-10">

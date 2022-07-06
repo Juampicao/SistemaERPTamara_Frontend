@@ -58,11 +58,10 @@ const Layout = () => {
   // }
   // styles
 
-  const activeStyles =
-    "bg-indigo-700 rounded-lg ml-2 text-white pl-3 duration-200 p-2";
+  const activeStyles = "bg-indigo-700 rounded-lg  text-white  duration-200 p-2";
   const notActiveStyles = "text-2xl block mt-4 sm:mt-6 text-slate-300";
   const hover =
-    "text-white duration-200 hover:bg-indigo-700 hover:rounded-lg hover:p-2";
+    "text-white duration-200 hover:bg-indigo-700 hover:rounded-lg hover:p-1";
 
   const activeMenuStyles = "w-72 fixed sidebar ";
   const notActiveMenuStyles = "w-0";
@@ -74,7 +73,7 @@ const Layout = () => {
   return (
     <>
       {/* <div className="sm:flex  "> */}
-      <div className="flex  ">
+      <div className="flex ">
         {/* <div className="sm:w-1/4 min-w-[280px] bg-indigo-900 px-5 py-5 "> */}
         <div
           className={`${
@@ -171,7 +170,8 @@ const Layout = () => {
           </nav>
         </div>
 
-        <div className="bg-slate-100 p-3 xs:p-5 sm:w-3/4 sm:p-10 sm:h-screen sm:overflow-y-scroll">
+        {/* <div className="bg-slate-100 p-3 xs:p-5 sm:w-3/4 sm:p-10 sm:h-screen sm:overflow-y-scroll"> */}
+        <div className="w-full origin-left duration-300 bg-slate-100 p-3 xs:p-5  sm:p-10 sm:h-screen overflow-y-scroll">
           <Outlet />
         </div>
       </div>

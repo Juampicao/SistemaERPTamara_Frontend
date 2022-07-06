@@ -82,6 +82,13 @@
       "categoria": "Comida",
       "fecha": "2022-07-05",
       "id": 3
+    },
+    {
+      "nombre": "Nuevo",
+      "valor": 1500,
+      "categoria": "Proveedor",
+      "fecha": "2022-07-05",
+      "id": 4
     }
   ],
   "caja": [
