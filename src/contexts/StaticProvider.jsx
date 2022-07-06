@@ -17,7 +17,7 @@ const StaticProvider = ({ children }) => {
   const [venta, setVenta] = useState([]);
   const [ventas, setVentas] = useState([]);
 
-  const [gasto, setGasto] = useState([]);
+  const [gasto, setGasto] = useState({});
   const [gastos, setGastos] = useState([]);
   const [totalGastos, setTotalGastos] = useState(500);
 

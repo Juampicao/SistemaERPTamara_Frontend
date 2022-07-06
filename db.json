@@ -63,18 +63,25 @@
   ],
   "gastos": [
     {
-      "nombre": "Comida Empleados",
+      "nombre": "Nose",
       "valor": 3000,
       "categoria": "Comida",
-      "fecha": "",
+      "fecha": "2022-07-23",
       "id": 1
     },
     {
-      "nombre": "JAMON",
-      "valor": 350,
-      "categoria": "Comida",
-      "fecha": "",
+      "nombre": "Cambio",
+      "valor": 10,
+      "categoria": "Proveedor",
+      "fecha": "2022-07-09",
       "id": 2
+    },
+    {
+      "nombre": "Cacona",
+      "valor": 121,
+      "categoria": "Gastos",
+      "fecha": "1999-08-10",
+      "id": 3
     }
   ],
   "caja": [
@@ -85,18 +92,6 @@
     {
       "inicioCaja": 500,
       "id": 2
-    },
-    {
-      "inicioCaja": 543,
-      "id": 3
-    },
-    {
-      "inicioCaja": 74634,
-      "id": 4
-    },
-    {
-      "inicioCaja": 1500,
-      "id": 5
     }
   ]
 }

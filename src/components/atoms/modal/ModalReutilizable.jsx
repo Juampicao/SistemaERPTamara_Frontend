@@ -35,10 +35,10 @@ const ModalReutilizable = ({ children, isOpen, closeModal }) => {
             X
           </button>
           <div className="p-3">{children}</div>
-          <div className="flex flex-shrink-0 flex-wrap items-center justify-end p-4 border-t border-gray-300 rounded-b-md space-x-2">
+          {/* <div className="flex flex-shrink-0 flex-wrap items-center justify-end p-4 border-t border-gray-300 rounded-b-md space-x-2">
             <BotonPrimario Color={BotonVerdeRedondeado} value="Registrar" />
             <BotonPrimario Color={BotonRojoRedondeado} value="Cancelar" />
-          </div>
+          </div> */}
         </div>
       </article>
     </div>

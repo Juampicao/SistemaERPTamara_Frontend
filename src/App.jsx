@@ -17,8 +17,10 @@ import VerGasto from "./components/molecules/gastos/VerGasto";
 import EditarGasto from "./components/molecules/gastos/EditarGasto";
 
 import { StaticProvider } from "./contexts/StaticProvider";
+import NuevoGasto from "./components/molecules/gastos/NuevoGasto";
 
 function App() {
+  console.log(import.meta.env);
   useEffect(() => {
     AOS.init();
     AOS.refresh();
@@ -37,6 +39,7 @@ function App() {
               <Route path="ventas" index element={<Ventas />} />
               <Route path="ventas/:id" index element={<VerVenta />} />
               <Route path="gastos" index element={<Gastos />} />
+              <Route path="gastos/nuevogasto" index element={<NuevoGasto />} />
               <Route path="gastos/:id" index element={<VerGasto />} />
               <Route path="gastos/editar/:id" index element={<EditarGasto />} />
 

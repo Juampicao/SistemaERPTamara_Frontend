@@ -25,8 +25,8 @@ const VerGasto = () => {
   return (
     <div>
       <div>
-        <div> El producto es: {gasto.id} </div>
-        <div> Costo: {gasto.nombre} </div>
+        <div> El producto es: {gasto.nombre} </div>
+        <div> El ID es: {gasto.id} </div>
         <div> Valor: {gasto.valor} </div>
         <div> Categoria: {gasto.categoria} </div>
         <div> Fecha: {gasto.fecha} </div>

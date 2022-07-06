@@ -15,6 +15,7 @@ import {
 } from "../../helpers/colores";
 import InicioCaja from "../molecules/gastos/InicioCaja";
 import ModalReutilizable from "../atoms/modal/ModalReutilizable";
+import { useNavigate } from "react-router-dom";
 
 const Gastos = () => {
   const {
@@ -27,6 +28,7 @@ const Gastos = () => {
     inicioCaja,
     setInicioCaja,
   } = useContext(StaticContext);
+  const navigate = useNavigate();
 
   const [modalCaja, setModalCaja] = useState(false);
   const [abrirModal, setAbrirModal] = useState(false);
@@ -58,17 +60,31 @@ const Gastos = () => {
         valorCaja={totalGastos}
         title="Gastos"
         title2="Caja Total"
-        valorCaja2="$1500"
+        valorCaja2="$500"
         title3="Inicio Caja"
         valorCaja3="$4500"
       />
 
       <div className="py-5 flex space-x-3">
         {/* Abrir Nuevo Gasto */}
-        <BotonPrimario
+        {/* <BotonPrimario
           value="Nuevo Gasto"
           Color={BotonAzulClasicoSinZoom}
           onClick={() => setAbrirModal(!abrirModal)}
+        />
+        {abrirModal ? (
+          <ModalReutilizable closeModal={cerrar}>
+            <FormularioGasto onClick={() => {}} />
+          </ModalReutilizable>
+        ) : (
+          ""
+        )} */}
+        {/* Nuevo Gasto */}
+        {/* Abrir Nuevo Gasto */}
+        <BotonPrimario
+          value="Nuevo Gasto"
+          Color={BotonAzulClasicoSinZoom}
+          onClick={() => navigate(`/gastos/nuevogasto`)}
         />
         {abrirModal ? (
           <ModalReutilizable closeModal={cerrar}>
