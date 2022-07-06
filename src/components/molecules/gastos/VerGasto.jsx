@@ -2,6 +2,7 @@ import React, { useContext, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
 import StaticContext from "../../../contexts/StaticProvider";
+import { DiaActual, formatearFecha } from "../../../helpers";
 
 const VerGasto = () => {
   const { gasto, setGasto } = useContext(StaticContext);
@@ -22,6 +23,7 @@ const VerGasto = () => {
     };
     obtenerClienteAPI();
   }, []);
+
   return (
     <div>
       <div>
@@ -30,6 +32,7 @@ const VerGasto = () => {
         <div> Valor: {gasto.valor} </div>
         <div> Categoria: {gasto.categoria} </div>
         <div> Fecha: {gasto.fecha} </div>
+        {/* Formatear Fecha */}
       </div>
     </div>
   );

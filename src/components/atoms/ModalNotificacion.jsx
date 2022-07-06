@@ -109,7 +109,7 @@ export const ModalEliminado = ({
           <img
             src={iconoCerrar}
             alt="cerrar"
-            className=" hover:scale-110 hover:duration-200"
+            className=" hover:scale-110 hover:duration-200 "
           />
         </button>
         <div className="mb-1 text-center">

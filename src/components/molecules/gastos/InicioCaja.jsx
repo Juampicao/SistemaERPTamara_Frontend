@@ -21,21 +21,11 @@ const InicioCaja = () => {
     let respuesta;
 
     try {
-      if (inicioCaja.id) {
-        // Editando un registro
-        const url = `http://localhost:4000/caja`;
+      {
+        // Editando el ID 1. Solo puede haber 1 registro por dia. Si toca devuelta, se edita el mismo.
+        const url = `http://localhost:4000/caja/1`;
         respuesta = await fetch(url, {
           method: "PUT",
-          body: JSON.stringify(objetoCaja),
-          headers: {
-            "Content-Type": "application/json",
-          },
-        });
-      } else {
-        // Nuevo Registro
-        const url = `http://localhost:4000/caja/`;
-        respuesta = await fetch(url, {
-          method: "POST",
           body: JSON.stringify(objetoCaja),
           headers: {
             "Content-Type": "application/json",
@@ -65,7 +55,7 @@ const InicioCaja = () => {
           <input
             className={PlaceHolderStyle}
             id="caja"
-            type="text"
+            type="number"
             value={inicioCaja}
             onChange={(e) => setInicioCaja(Number(e.target.value))}
           />

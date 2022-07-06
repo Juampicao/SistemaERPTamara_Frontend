@@ -201,19 +201,22 @@ import Header from "../Header";
 import { BotonPrimario } from "../../atoms/Botones";
 import {
   BotonAzulClasico,
+  BotonAzulRedondeado,
   BotonBlancoClasico,
   BotonBlancoClasicoSinZoom,
-  BotonNegroClasico,
-  BotonRojoClasico,
+  BotonBlancoRedondeado,
 } from "../../../helpers/colores";
 import * as Yup from "Yup";
 import Alerta from "../../atoms/Alerta";
 import { useNavigate } from "react-router-dom";
 import StaticContext from "../../../contexts/StaticProvider";
+import { DiaActual, formatearFecha } from "../../../helpers";
 
 const FormularioGasto = () => {
   const { gasto, setGasto } = useContext(StaticContext);
   const navigate = useNavigate();
+
+  console.log(formatearFecha(DiaActual));
 
   // Nuevo Schema
   const nuevoGastoSchema = Yup.object().shape({
@@ -274,7 +277,7 @@ const FormularioGasto = () => {
   const divStyles = "p-5  space-x-1";
   return (
     <div>
-      <div className="bg-white ">
+      <div className="bg-white rounded-lg  max-w-xl mx-auto">
         <Formik
           initialValues={{
             nombre: gasto?.nombre ?? "",
@@ -356,12 +359,12 @@ const FormularioGasto = () => {
                 </div>
                 <div className="py-5 flex justify-center space-x-3">
                   <BotonPrimario
-                    Color={BotonAzulClasico}
+                    Color={BotonAzulRedondeado}
                     value={gasto?.nombre ? "Editar Gasto" : "Agregar Gasto"}
                     type="submit"
                   />
                   <BotonPrimario
-                    Color={BotonBlancoClasico}
+                    Color={BotonBlancoRedondeado}
                     value="Volver Atras"
                     type="button"
                     onClick={() => {

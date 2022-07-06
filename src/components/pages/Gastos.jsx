@@ -17,6 +17,8 @@ import InicioCaja from "../molecules/gastos/InicioCaja";
 import ModalReutilizable from "../atoms/modal/ModalReutilizable";
 import { useNavigate } from "react-router-dom";
 import BarraSearch from "../atoms/BarraSearch";
+import PruebaDeleteModal from "../../EjemplosUtiles/modal/PruebaDeleteModal";
+import { formatearFecha } from "../../helpers";
 // import { IconSearch } from "../../img/iconSearch.png";
 
 const Gastos = () => {
@@ -50,11 +52,58 @@ const Gastos = () => {
     setTotalGastos(totalGastado);
   }, [gastos]);
 
-  // console.log(typeof inicioCaja);
-
   const cerrar = () => {
     setAbrirModal(!abrirModal);
+
+    // Llamado a la base de caja id 1.
+    useEffect(() => {
+      const obtenerClienteAPI = async () => {
+        try {
+          const url = `http://localhost:4000/caja/1`;
+          // const url = `${import.meta.env.API_URL}`;
+          const respuesta = await fetch(url);
+          const resultado = await respuesta.json();
+          setInicioCaja(resultado);
+          console.log(inicioCaja);
+          setAbrirModal(!abrirModal);
+
+          // console.log(gasto);
+        } catch (error) {
+          console.log(error);
+        }
+        // setIsCargando(!isCargando);
+      };
+      obtenerClienteAPI();
+    }, [inicioCaja]);
   };
+
+  let totalValores = [];
+  for (let i = 0; i < gastos.length; i++) {
+    let result = gastos[i].valor;
+    totalValores.push(result);
+    for (let i = 0; i < result.length; i++) {
+      let resultado = result;
+      // console.log(resultado);
+    }
+    // console.log(result);
+  }
+  console.log(totalValores);
+
+  // // Ordenar por VALOR.
+  // gastos.sort(function (a, b) {
+  //   if (a.valor > b.valor) {
+  //     return 1;
+  //   }
+  //   if (a.valor < b.valor) {
+  //     return -1;
+  //   }
+  //   // a must be equal to b
+  //   return 0;
+  // });
+
+  // ordenarCualquierCosa(valores);
+  // console.log(totalValores);
+
   return (
     <div>
       <Header title="Gastos" />
@@ -63,28 +112,14 @@ const Gastos = () => {
           valorCaja={totalGastos}
           title="Gastos"
           title2="Caja Total"
-          valorCaja2="$500"
+          valorCaja2={Number(inicioCaja - totalGastos)}
           title3="Inicio Caja"
-          valorCaja3="$4500"
+          valorCaja3={inicioCaja}
         />
       </div>
 
       <div className="py-5 flex flex-wrap space-x-3">
-        {/* Abrir Nuevo Gasto */}
-        {/* <BotonPrimario
-          value="Nuevo Gasto"
-          Color={BotonAzulClasicoSinZoom}
-          onClick={() => setAbrirModal(!abrirModal)}
-        />
-        {abrirModal ? (
-          <ModalReutilizable closeModal={cerrar}>
-            <FormularioGasto onClick={() => {}} />
-          </ModalReutilizable>
-        ) : (
-          ""
-        )} */}
         {/* Nuevo Gasto */}
-        {/* Abrir Nuevo Gasto */}
         <BotonPrimario
           value="Nuevo Gasto"
           Color={BotonAzulClasicoSinZoom}
@@ -147,3 +182,27 @@ const Gastos = () => {
 };
 
 export default Gastos;
+
+{
+  /* Abrir Nuevo Gasto */
+}
+{
+  /* <BotonPrimario
+          value="Nuevo Gasto"
+          Color={BotonAzulClasicoSinZoom}
+          onClick={() => setAbrirModal(!abrirModal)}
+        />
+        {abrirModal ? (
+          <ModalReutilizable closeModal={cerrar}>
+            <FormularioGasto onClick={() => {}} />
+          </ModalReutilizable>
+        ) : (
+          ""
+        )} */
+}
+{
+  /* Nuevo Gasto */
+}
+{
+  /* Abrir Nuevo Gasto */
+}

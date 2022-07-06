@@ -63,42 +63,38 @@
   ],
   "gastos": [
     {
-      "nombre": "Nose",
-      "valor": 50055,
-      "categoria": "Comida",
-      "fecha": "2022-07-23",
+      "nombre": "Primero Ingresado",
+      "valor": 10,
+      "categoria": "Gastos",
+      "fecha": "2022-07-05",
       "id": 1
     },
     {
-      "nombre": "Cambio",
-      "valor": 10,
-      "categoria": "Proveedor",
-      "fecha": "2022-07-09",
+      "nombre": "Segundo Ingresado",
+      "valor": 20,
+      "categoria": "Comida",
+      "fecha": "2022-07-15",
       "id": 2
     },
     {
-      "nombre": "Salamines",
-      "valor": 200,
-      "categoria": "Comida",
-      "fecha": "2022-07-05",
+      "nombre": "Tercero Ingresado",
+      "valor": 5,
+      "categoria": "Proveedor",
+      "fecha": "2022-06-27",
       "id": 3
     },
     {
-      "nombre": "Nuevo",
-      "valor": 1500,
-      "categoria": "Proveedor",
+      "nombre": "A cuarto Ingresado",
+      "valor": 7,
+      "categoria": "Gastos",
       "fecha": "2022-07-05",
       "id": 4
     }
   ],
   "caja": [
     {
-      "inicioCaja": 250,
-      "id": 1
-    },
-    {
       "inicioCaja": 500,
-      "id": 2
+      "id": 1
     }
   ]
 }

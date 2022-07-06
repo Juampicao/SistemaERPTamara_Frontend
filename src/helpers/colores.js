@@ -6,7 +6,7 @@ export const BotonClasicoSinZoom =
   "px-6 py-2.5 font-medium text-xs leading-tight uppercase shadow-md transition duration-150 ease-in-out hover:shadow-lg active:shadow-lg  focus:outline-none hover:duration-200 cursor-pointer";
 
 export const BotonRedondeado =
-  "px-6 py-2.5  hover:scale-105 font-medium text-xs leading-tight uppercase shadow-md transition duration-150 ease-in-out hover:shadow-lg active:shadow-lg rounded-sm focus:outline-none hover:duration-200  cursor-pointer";
+  "px-6 py-2.5  hover:scale-105 font-medium text-xs leading-tight uppercase shadow-md transition duration-150 ease-in-out hover:shadow-lg active:shadow-lg rounded focus:outline-none hover:duration-200  cursor-pointer";
 
 // Colores Generales
 export const ColorRojo =

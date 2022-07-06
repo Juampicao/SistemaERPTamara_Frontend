@@ -26,7 +26,7 @@ const StaticProvider = ({ children }) => {
 
   const [isCargando, setIsCargando] = useState(true);
 
-  const [inicioCaja, setInicioCaja] = useState("");
+  const [inicioCaja, setInicioCaja] = useState(Number(""));
 
   const handleDelete = async (id) => {
     console.log("Borrando");

@@ -33,7 +33,7 @@ const Gasto = ({ gasto }) => {
     Comida: IconoComida,
   };
 
-  const { id, nombre, valor, cantidad } = gasto;
+  const { id, nombre, valor, cantidad, fecha } = gasto;
 
   // 1°
   // El problema esta aca, desde handleDeleteModal funcion bien
@@ -94,6 +94,8 @@ const Gasto = ({ gasto }) => {
         {/* <td> {id}</td> */}
         <td> {nombre}</td>
         <td> $ {valor}</td>
+        <td> {fecha}</td>
+
         <td className="p-2 space-y-3 ">
           <BotonVer value="Ver" onClick={() => navigate(`/gastos/${id}`)} />
 

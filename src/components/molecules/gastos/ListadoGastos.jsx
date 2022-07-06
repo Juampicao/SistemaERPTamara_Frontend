@@ -39,6 +39,8 @@ const ListadoGastos = () => {
             {/* <th className="p-2">ID</th> */}
             <th className="p-2">Nombre</th>
             <th className="p-2">Valor</th>
+            <th className="p-2">Fecha</th>
+
             <th className="p-2">Funciones</th>
           </tr>
         </thead>
