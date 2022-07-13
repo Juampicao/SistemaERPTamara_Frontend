@@ -3,10 +3,10 @@ export const BotonClasico =
   "px-6 py-2.5 font-medium text-xs leading-tight uppercase shadow-md transition hover:scale-105 duration-150 ease-in-out hover:shadow-lg active:shadow-lg  focus:outline-none hover:duration-200 cursor-pointer";
 
 export const BotonClasicoSinZoom =
-  "px-6 py-2.5 font-medium text-xs leading-tight uppercase shadow-md transition duration-150 ease-in-out hover:shadow-lg active:shadow-lg  focus:outline-none hover:duration-200 cursor-pointer";
+  "px-6 py-2.5  font-medium text-xs leading-tight uppercase shadow-md transition duration-150 ease-in-out hover:shadow-lg active:shadow-lg  focus:outline-none hover:duration-200 cursor-pointer";
 
 export const BotonRedondeado =
-  "px-6 py-2.5  hover:scale-105 font-medium text-xs leading-tight uppercase shadow-md transition duration-150 ease-in-out hover:shadow-lg active:shadow-lg rounded focus:outline-none hover:duration-200  cursor-pointer";
+  "px-6 flex py-2.5  hover:scale-105 font-medium text-xs leading-tight uppercase  transition duration-200 ease-in-out hover:shadow-lg active:shadow-lg rounded-xl focus:outline-none hover:duration-200  cursor-pointer";
 
 // Colores Generales
 export const ColorRojo =
@@ -16,7 +16,7 @@ export const ColorPrimary =
   "bg-slate-500  focus:bg-slate-400 hover:bg-slate-600 active:bg-slate-700 text-white cursor-pointer";
 
 export const ColorBlanco =
-  "bg-white focus:bg-slate-400 hover:bg-slate-600 active:bg-slate-700 text-black cursor-pointer border border-slate-500 hover:text-white";
+  "bg-white focus:bg-slate-400 hover:bg-black active:bg-slate-700 text-black cursor-pointer  hover:text-white";
 
 export const ColorAzul =
   "bg-blue-600  hover:bg-blue-700 focus:ring-o active:bg-blue-800  text-white cursor-pointer ";
@@ -25,7 +25,7 @@ export const ColorVerde =
   "bg-green-600 hover:bg-green-700 focus:bg-green-800 active:bg-green-500 text-white cursor-pointer";
 
 export const ColorNegro =
-  "bg-black hover:bg-white hover:border hover:border-black focus:bg-slate-800 active:bg-slate-900 text-white hover:text-black cursor-pointer";
+  "bg-black hover:bg-white  focus:bg-slate-800 active:bg-slate-900 text-white hover:text-black cursor-pointer";
 
 // Botones Completos
 export const BotonVerdeRedondeado = `${BotonRedondeado}, ${ColorVerde}`;

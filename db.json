@@ -63,9 +63,9 @@
   ],
   "gastos": [
     {
-      "nombre": "Primero Ingresado",
-      "valor": 10,
-      "categoria": "Gastos",
+      "nombre": "Primero Ingresado2",
+      "valor": 500,
+      "categoria": "Proveedor",
       "fecha": "2022-07-05",
       "id": 1
     },
@@ -84,16 +84,16 @@
       "id": 3
     },
     {
-      "nombre": "A cuarto Ingresado",
-      "valor": 7,
-      "categoria": "Gastos",
+      "nombre": "Comida empleados",
+      "valor": 2500,
+      "categoria": "Comida",
       "fecha": "2022-07-05",
       "id": 4
     }
   ],
   "caja": [
     {
-      "inicioCaja": 500,
+      "inicioCaja": 1000,
       "id": 1
     }
   ]

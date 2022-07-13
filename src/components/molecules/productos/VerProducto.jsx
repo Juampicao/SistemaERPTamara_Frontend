@@ -13,7 +13,8 @@ const VerProducto = () => {
   useEffect(() => {
     const obtenerClienteAPI = async () => {
       try {
-        const url = `http://localhost:4000/productos/${id}`;
+        const url = `${import.meta.env.VITE_API_URL}/productos/${id}`;
+
         // const url = `${import.meta.env.API_URL}`;
         const respuesta = await fetch(url);
         const resultado = await respuesta.json();

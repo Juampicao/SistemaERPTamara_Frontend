@@ -1,18 +1,29 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import {} from "../../helpers/colores";
+import IconoDelete from "../../img/iconDelete.png";
+import IconoEdit from "../../img/iconEdit.png";
+import IconoVer from "../../img/iconVer.png";
 
+import IconoDelete2 from "../../img/newIcons/deletColor.png";
+import IconoEdit2 from "../../img/newIcons/editColor.png";
+import IconoView2 from "../../img/newIcons/viewColor.png";
+
+import "./Botones.css";
 export const BotonVer = ({ value, onClick }) => {
   const navigate = useNavigate();
 
   return (
     <>
-      <input
+      <button
         type="button"
-        className="bg-yellow-500 hover:bg-yellow-600 block mx-auto w-[75px]  text-white p-2 uppercase font-bold text-xs  cursor-pointer "
-        onClick={onClick}
         value={value}
-      />
+        onClick={onClick}
+        className="hover:shadow-lg shadow-slate-500 item-center mx-auto p-2 hover:bg-white hover:scale-105 duration-200 hover:duration-200  hover:rounded-full"
+      >
+        {/* <img src={IconoVer} alt="Borrar" className="h-5" /> */}
+        <img src={IconoView2} alt="Borrar" className="h-5" />
+      </button>
     </>
   );
 };
@@ -20,12 +31,15 @@ export const BotonVer = ({ value, onClick }) => {
 export const BotonEliminar = ({ value, onClick }) => {
   return (
     <>
-      <input
-        type="submit"
-        className="bg-red-600 hover:bg-red-700 block mx-auto w-[75px] text-white p-2 uppercase font-bold text-xs  cursor-pointer"
-        onClick={onClick}
+      <button
+        type="button"
         value={value}
-      />
+        onClick={onClick}
+        className="hover:shadow-lg shadow-slate-500 item-center mx-auto p-2 hover:bg-white hover:scale-105 duration-200 hover:duration-200  hover:rounded-full"
+      >
+        {/* <img src={IconoDelete} alt="Borrar" className="h-5" /> */}
+        <img src={IconoDelete2} alt="Borrar" className="h-5" />
+      </button>
     </>
   );
 };
@@ -33,12 +47,15 @@ export const BotonEliminar = ({ value, onClick }) => {
 export const BotonEditar = ({ value, onClick }) => {
   return (
     <>
-      <input
-        type="submit"
-        className="bg-blue-600 hover:bg-blue-700 block mx-auto w-[75px]  text-white p-2 uppercase font-bold text-xs  cursor-pointer"
-        onClick={onClick}
+      <button
+        type="button"
         value={value}
-      />
+        onClick={onClick}
+        className="hover:shadow-lg shadow-slate-500 item-center mx-auto p-2 hover:bg-white hover:scale-105 duration-200 hover:duration-200 hover:rounded-full"
+      >
+        {/* <img src={IconoEdit} alt="Borrar" className="h-5" /> */}
+        <img src={IconoEdit2} alt="Borrar" className="h-6" />
+      </button>
     </>
   );
 };

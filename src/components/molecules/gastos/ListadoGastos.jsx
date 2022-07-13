@@ -1,17 +1,16 @@
 import React, { useContext, useEffect, useState } from "react";
 import VerGasto from "./VerGasto";
 import StaticContext from "../../../contexts/StaticProvider";
-
 import Gasto from "./Gasto";
 
 const ListadoGastos = () => {
   const { gastos, setGastos, gasto, setGasto } = useContext(StaticContext);
+
   // Get Base de datos
   useEffect(() => {
     const obtenerClienteAPI = async () => {
       try {
-        const url = `http://localhost:4000/gastos`;
-        // const url = `${import.meta.env.API_URL}`;
+        const url = `${import.meta.env.VITE_API_URL}/gastos`;
         const respuesta = await fetch(url);
         const resultado = await respuesta.json();
         setGastos(resultado);
@@ -26,22 +25,19 @@ const ListadoGastos = () => {
 
   // Styles
   const tableStyles =
-    "overflow-x-auto mt-5 table-auto shadow-lg bg-white w-full border-black border  text-center";
-  const linea = <div className="h-[2px] w-full mx-auto bg-slate-500"> </div>;
+    "overflow-x-auto  mt-5 table-auto shadow-lg bg-white w-full text-center border rounded-3xl  ";
+  const linea = <div className="h-[2px] w-full mx-auto bg-red-500"> </div>;
 
   return (
     <div>
       <table className={tableStyles}>
-        <thead className=" text-black border border-black  ">
-          <tr>
-            <th className="p-2">Categoria</th>
-
-            {/* <th className="p-2">ID</th> */}
+        <thead className="rounded-3xl overflow-x-auto">
+          <tr className=" rounded-3xl">
+            <th className="p-2 rounded-3xl">Categoria</th>
             <th className="p-2">Nombre</th>
             <th className="p-2">Valor</th>
             <th className="p-2">Fecha</th>
-
-            <th className="p-2">Funciones</th>
+            <th className="p-2 rounded-3xl">Funciones</th>
           </tr>
         </thead>
         <tbody className="">
@@ -49,6 +45,11 @@ const ListadoGastos = () => {
             <Gasto key={gasto.id} gasto={gasto} />
           ))}
         </tbody>
+        {/* <tbody>
+          {gastos.length > 0
+            ? gastos.map((gasto) => <Gasto key={gasto.id} gasto={gasto} />)
+            : "No hay ningun gasto para mostrar"}
+        </tbody> */}
       </table>
     </div>
   );

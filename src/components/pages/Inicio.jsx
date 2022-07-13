@@ -78,7 +78,8 @@ const Inicio = () => {
   useEffect(() => {
     const obtenerClienteAPI = async () => {
       try {
-        const url = `http://localhost:4000/productos`;
+        const url = `${import.meta.env.VITE_API_URL}/productos`;
+
         // const url = `${import.meta.env.API_URL}`;
         const respuesta = await fetch(url);
         const resultado = await respuesta.json();
@@ -94,7 +95,7 @@ const Inicio = () => {
 
   // styles
   const tableStyles =
-    "overflow-x-auto mt-5 table-auto shadow-lg bg-white w-full border-black border  text-center";
+    "overflow-x-auto mt-5 table-auto shadow-lg bg-white w-full   text-center";
   const linea = <div className="h-[2px] w-full mx-auto bg-slate-500"> </div>;
 
   return (
@@ -118,7 +119,7 @@ const Inicio = () => {
         <Dropdown2 />
       </div>
       <table className={tableStyles}>
-        <thead className=" text-black border border-black  ">
+        <thead className=" rounded-3xl  ">
           <tr>
             <th className="p-2">Imagen</th>
             <th className="p-2">Producto</th>

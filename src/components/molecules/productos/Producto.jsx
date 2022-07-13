@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 
 import { useNavigate } from "react-router-dom";
 
-import { BotonEliminar, BotonEditar } from "../../atoms/Botones";
+import { BotonEliminar, BotonEditar, BotonVer } from "../../atoms/Botones";
 
 import StaticContext from "../../../contexts/StaticProvider";
 
@@ -50,7 +50,8 @@ const Producto = ({ producto }) => {
   //   setIsOpenConfirmModal(!isOpenConfirmModal);
 
   //   try {
-  //     const url = `http://localhost:4000/productos/${id}`;
+  // const url = `${import.meta.env.VITE_API_URL}/productos/${id}`;
+
   //     const respuesta = await fetch(url, {
   //       method: "DELETE",
   //     });
@@ -64,32 +65,22 @@ const Producto = ({ producto }) => {
   // };
 
   return (
-    <tr className="hover:bg-gray-100 border border-slate-500">
+    <tr className="hover:bg-gray-200 border ">
       <td className=" p-3">
-        <img src={imagen} alt="" className="h-32 mx-auto" />
+        <img src={imagen} alt="" className="max-h-16 mx-auto" />
       </td>
       <td> {nombre}</td>
       <td> {cantidad}</td>
       <td> ${costo}</td>
       <td> ${precio}</td>
       <td className="p-3 space-y-3 ">
-        <button
-          type="button"
-          className="bg-yellow-500 hover:bg-yellow-600 block mx-auto w-[75px] text-white p-2 uppercase font-bold text-xs"
-          onClick={() => navigate(`/productos/${id}`)}
-        >
-          Ver
-        </button>
+        <div className="flex">
+          <BotonVer value="Ver" onClick={() => navigate(`/productos/${id}`)} />
 
-        <BotonEditar onClick={handleEdit} value="Editar" />
+          <BotonEditar onClick={handleEdit} value="Editar" />
 
-        {/* <BotonEliminar onClick={handleDelete} value="Eliminar" /> */}
-        <input
-          type="submit"
-          className="bg-red-600 hover:bg-red-700 block mx-auto w-[75px] text-white p-2 uppercase font-bold text-xs  cursor-pointer"
-          onClick={handleDelete}
-          value="Eliminar"
-        />
+          <BotonEliminar onClick={handleDelete} value="Eliminar" />
+        </div>
       </td>
     </tr>
   );

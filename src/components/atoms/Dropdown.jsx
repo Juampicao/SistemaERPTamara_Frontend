@@ -1,34 +1,17 @@
 import React from "react";
+import { BotonBlancoRedondeado } from "../../helpers/colores";
 
-const Prueba = ({ link1, link2, link3 }) => {
+const Prueba = ({ link1, link2, link3, onClick1 }) => {
+  // styles
+  const optionStyles =
+    "dropdown-item text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-gray-700 hover:bg-gray-100";
   return (
     <div>
       <div className="flex justify-center">
         <div>
           <div className="dropdown relative">
             <button
-              className="
-          dropdown-toggle
-          px-6
-          py-2.5
-          border border-indigo-700
-          font-medium
-          text-xs
-          leading-tight
-          uppercase
-          
-          shadow-md
-          hover:bg-blue-700 hover:shadow-lg
-          hover:text-white
-          focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0
-          active:bg-blue-800 active:shadow-lg active:text-white
-          transition
-          duration-150
-          ease-in-out
-          flex
-          items-center
-          whitespace-nowrap
-        "
+              className={BotonBlancoRedondeado}
               type="button"
               id="dropdownMenuButton1"
               data-bs-toggle="dropdown"
@@ -52,105 +35,27 @@ const Prueba = ({ link1, link2, link3 }) => {
               </svg>
             </button>
             <ul
-              className="
-          dropdown-menu
-          min-w-max
-          absolute
-          hidden
-          bg-white
-          text-base
-          z-50
-          float-left
-          py-2
-          list-none
-          text-left
-          rounded-lg
-          shadow-lg
-          mt-1
-          hidden
-          m-0
-          bg-clip-padding
-          border-none
+              className=" dropdown-menu min-w-max absolute hidden bg-white text-base z-50 float-left py-2 list-none text-left rounded-lg shadow-lg mt-1 hidden m-0 bg-clip-padding border-none
         "
               aria-labelledby="dropdownMenuButton1"
             >
               <li>
-                <a
-                  className="
-              dropdown-item
-              text-sm
-              py-2
-              px-4
-              font-normal
-              block
-              w-full
-              whitespace-nowrap
-              bg-transparent
-              text-gray-700
-              hover:bg-gray-100
-            "
-                  href="#"
-                >
+                <button className={optionStyles} onClick={onClick1}>
                   Ordenar A-Z
-                </a>
+                </button>
               </li>
               <li>
-                <a
-                  className="
-              dropdown-item
-              text-sm
-              py-2
-              px-4
-              font-normal
-              block
-              w-full
-              whitespace-nowrap
-              bg-transparent
-              text-gray-700
-              hover:bg-gray-100
-            "
-                  href="#"
-                >
+                <a className={optionStyles} href="#">
                   Ordenar Z-A
                 </a>
               </li>
               <li>
-                <a
-                  className="
-              dropdown-item
-              text-sm
-              py-2
-              px-4
-              font-normal
-              block
-              w-full
-              whitespace-nowrap
-              bg-transparent
-              text-gray-700
-              hover:bg-gray-100
-            "
-                  href="#"
-                >
+                <a className={optionStyles} href="#">
                   Stock
                 </a>
               </li>
               <li>
-                <a
-                  className="
-              dropdown-item
-              text-sm
-              py-2
-              px-4
-              font-normal
-              block
-              w-full
-              whitespace-nowrap
-              bg-transparent
-              text-gray-700
-              hover:bg-gray-100
-            "
-                  href="#"
-                >
+                <a className={optionStyles} href="#">
                   Mayor Precio
                 </a>
               </li>

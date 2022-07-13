@@ -13,6 +13,7 @@ const StaticProvider = ({ children }) => {
   const [isOpenDeleteModal, setIsOpenDeleteModal] = useState(false);
   const [isOpenConfirmModal, setIsOpenConfirmModal] = useState(false);
   const [isOpenErrorModal, setIsOpenErrorModal] = useState(false);
+  const [modalCaja, setModalCaja] = useState(false);
 
   const [producto, setProducto] = useState({});
   const [productos, setProductos] = useState([]);
@@ -24,27 +25,29 @@ const StaticProvider = ({ children }) => {
   const [gastos, setGastos] = useState([]);
   const [totalGastos, setTotalGastos] = useState(500);
 
-  const [isCargando, setIsCargando] = useState(true);
+  const [isCargando, setIsCargando] = useState(false);
 
   const [inicioCaja, setInicioCaja] = useState(Number(""));
 
-  const handleDelete = async (id) => {
-    console.log("Borrando");
-    try {
-      const url = `http://localhost:4000/gastos/${id}`;
-      const respuesta = await fetch(url, {
-        method: "DELETE",
-      });
-      await respuesta.json();
+  // Borrar Gastos
+  // const handleDelete = async (id) => {
+  //   console.log("Borrando");
+  //   try {
+  //     const url = `${import.meta.env.VITE_API_URL}/gastos/${_id}`;
 
-      const arrayGastos = gastos.filter((gasto) => gasto.id !== id);
-      setGastos(arrayGastos);
-      setIsOpenDeleteModal(!isOpenDeleteModal);
-    } catch (error) {
-      console.log(error);
-      setIsOpenErrorModal(!isOpenErrorModal);
-    }
-  };
+  //     const respuesta = await fetch(url, {
+  //       method: "DELETE",
+  //     });
+  //     await respuesta.json();
+
+  //     const arrayGastos = gastos.filter((gasto) => gasto.id !== id);
+  //     setGastos(arrayGastos);
+  //     setIsOpenDeleteModal(!isOpenDeleteModal);
+  //   } catch (error) {
+  //     console.log(error);
+  //     setIsOpenErrorModal(!isOpenErrorModal);
+  //   }
+  // };
 
   return (
     <StaticContext.Provider
@@ -63,6 +66,8 @@ const StaticProvider = ({ children }) => {
         setIsOpenConfirmModal,
         isOpenErrorModal,
         setIsOpenErrorModal,
+        modalCaja,
+        setModalCaja,
         producto,
         setProducto,
         productos,
@@ -81,7 +86,7 @@ const StaticProvider = ({ children }) => {
         setTotalGastos,
         // handleModalClick,
         // handleDeleteModal,
-        handleDelete,
+        // handleDelete,
         inicioCaja,
         setInicioCaja,
       }}

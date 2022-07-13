@@ -15,7 +15,8 @@ const Venta = ({ venta }) => {
   //   useEffect(() => {
   //     const obtenerClienteAPI = async () => {
   //       try {
-  //         const url = `http://localhost:4000/ventas/${id}`;
+  // const url = `${import.meta.env.VITE_API_URL}/ventas/${id}`;
+
   //         const respuesta = await fetch(url);
   //         const resultado = await respuesta.json();
   //         setVenta(resultado);

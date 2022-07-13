@@ -1,37 +1,19 @@
 import React from "react";
+import IconoGasto from "../../img/IconoGastos.png";
+import Flecha from "../../img/newIcons/flecha.png";
 
-const CajaEfectivo = ({
-  valorCaja,
-  title,
-  title2,
-  valorCaja2,
-  valorCaja3,
-  title3,
-}) => {
+const CajaEfectivo = ({ valorCaja, title, Imagen }) => {
   return (
     <div>
-      {/* <div className="flex border border-slate-500 p-5 space-x-5 font-bold uppercase text-2xl">
-        <h3> {title}</h3>
-        <div className="h-10 border border-slate-500"></div>
-        <p> ${valorCaja}</p>
-      </div>
-     */}
-      <div className="flex flex-wrap border border-slate-500 justify-between ">
-        <div className="flex   p-5 space-x-5 font-bold uppercase text-2xl">
-          <h3> {title}</h3>
-          <div className="h-10  border-slate-500"></div>
-          <p> ${valorCaja}</p>
+      <div className="flex   bg-white  rounded-xl  p-5 space-x-5   capitalize text-lg items-center">
+        <div className="flex items-center space-x-3">
+          <div className="rounded-full border-orange-500 border-4 p-2">
+            <img src={Imagen} alt="icono gasto" className="h-6" />
+          </div>
+          <h3 className=""> {title}</h3>
         </div>
-        <div className="flex    p-5 space-x-5 font-bold uppercase text-2xl">
-          <h3> {title2}</h3>
-          <div className="h-10  border-slate-500"></div>
-          <p> {valorCaja2}</p>
-        </div>
-        <div className="flex    p-5 space-x-5 font-bold uppercase text-2xl">
-          <h3> {title3}</h3>
-          <div className="h-10  border-slate-500"></div>
-          <p> {valorCaja3}</p>
-        </div>
+        <div className="h-10 border border-slate-300"></div>
+        <p className="font-bold">${valorCaja}.00</p>
       </div>
     </div>
   );

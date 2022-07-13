@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
-
+import axios from "axios";
 import { useNavigate } from "react-router-dom";
+
 import StaticContext from "../../../contexts/StaticProvider";
 
 import IconoProveedor from "../../../img/IconoProveedor.png";
@@ -9,6 +10,7 @@ import IconoComida from "../../../img/IconoComida.png";
 import { BotonEditar, BotonEliminar, BotonVer } from "../../atoms/Botones";
 import { ModalEliminado, ModalError } from "../../atoms/ModalNotificacion";
 import MessageModal from "../../atoms/MessageModal";
+import { formatearFecha } from "../../../helpers";
 
 const Gasto = ({ gasto }) => {
   const {
@@ -17,13 +19,13 @@ const Gasto = ({ gasto }) => {
     setGasto,
     isOpenDeleteModal,
     setIsOpenDeleteModal,
+    isOpenErrorModal,
+    setIsOpenErrorModal,
+    isOpenSaveModal,
+    setIsOpenSaveModal,
     setIsOpenConfirmModal,
     isOpenConfirmModal,
     // handleModalClick,
-    isOpenErrorModal,
-    setIsOpenErrorModal,
-    // handleDeleteModal,
-    handleDelete,
   } = useContext(StaticContext);
   const navigate = useNavigate();
 
@@ -33,56 +35,27 @@ const Gasto = ({ gasto }) => {
     Comida: IconoComida,
   };
 
-  const { id, nombre, valor, cantidad, fecha } = gasto;
+  const { _id, nombre, valor, cantidad, fecha } = gasto;
 
-  // 1°
-  // El problema esta aca, desde handleDeleteModal funcion bien
-  // function handleModalClick(id) {
-  //   setIsOpenConfirmModal(!isOpenConfirmModal);
-  // }
-
-  // 2°
-  // const handleDeleteModal = () => {
-  //   console.log("Eliminando..");
-  //   // setIsOpenConfirmModal(!isOpenConfirmModal);
-  //   handleDelete(id);
-  // };
-
-  // 3° (Momentaneamente va primero.)
-  // const handleDelete = async (id) => {
-  //   console.log("Borrando");
-  //   try {
-  //     const url = `http://localhost:4000/gastos/${id}`;
-  //     const respuesta = await fetch(url, {
-  //       method: "DELETE",
-  //     });
-  //     await respuesta.json();
-
-  //     const arrayGastos = gastos.filter((gasto) => gasto.id !== id);
-  //     setGastos(arrayGastos);
-  //     setIsOpenDeleteModal(!isOpenDeleteModal);
-  //   } catch (error) {
-  //     console.log(error);
-  //     setIsOpenErrorModal(!isOpenErrorModal);
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   const totalGastado = gastos.reduce(
-  //     (total, gasto) => gasto.valor + total,
-  //     0
-  //   );
-
-  //   setTotalGastos(totalGastado);
-  // }, [gastos]);
-
-  // const result = valor.filter((valor) => valor === 2023);
-
-  // console.log(result);
+  const handleDelete = async (_id) => {
+    console.log("Borrando");
+    try {
+      const respuesta = await axios.delete(
+        `${import.meta.env.VITE_API_URL}/gastos//${_id}`
+      );
+      console.log(respuesta);
+      // const arrayGastos = gastos.filter((gasto) => gasto._id !== _id);
+      // // setGastos(arrayGastos);
+      setIsOpenDeleteModal(!isOpenDeleteModal);
+    } catch (error) {
+      console.log(error);
+      setIsOpenErrorModal(!isOpenErrorModal);
+    }
+  };
 
   return (
     <>
-      <tr className="hover:bg-gray-100 border border-slate-500">
+      <tr className="hover:bg-gray-300 ">
         <td className=" p-3">
           <img
             src={diccionarioIConos[gasto.categoria]}
@@ -90,24 +63,20 @@ const Gasto = ({ gasto }) => {
             className="h-12 mx-auto"
           />
         </td>
-
-        {/* <td> {id}</td> */}
         <td> {nombre}</td>
-        <td> $ {valor}</td>
-        <td> {fecha}</td>
+        <td> ${valor}</td>
+        <td>{fecha.substr(0, 10)}</td>
 
-        <td className="p-2 space-y-3 ">
-          <BotonVer value="Ver" onClick={() => navigate(`/gastos/${id}`)} />
+        <td className=" ">
+          <div className=" ">
+            <BotonVer value="Ver" onClick={() => navigate(`/gastos/${_id}`)} />
 
-          <BotonEditar
-            value="Editar"
-            onClick={() => navigate(`/gastos/editar/${id}`)}
-          />
-
-          {/* SE ELIMINA DESDE EL CONTEXT por eso se recarga de una.  */}
-
-          <BotonEliminar value="Eliminar" onClick={() => handleDelete(id)} />
-          {/* SE ELIMINA DESDE EL CONTEXT  */}
+            <BotonEditar
+              value="Editar"
+              onClick={() => navigate(`/gastos/editar/${_id}`)}
+            />
+            <BotonEliminar value="Eliminar" onClick={() => handleDelete(_id)} />
+          </div>
         </td>
       </tr>
 

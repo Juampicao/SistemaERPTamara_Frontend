@@ -7,6 +7,7 @@ import iconoBebida from "../../img/iconoBebida.png";
 import iconoConfiguracion from "../../img/iconoConfiguracion.png";
 import IconoCerrarBlanco from "../../img/iconoCerrarBlanco.png";
 import IconoLogout from "../../img/iconoLogout.png";
+import Imagenpersona from "../../img/imagenPersona.jpg";
 
 import { useContext, useEffect, useState } from "react";
 import StaticContext from "../../contexts/StaticProvider";
@@ -58,13 +59,13 @@ const Layout = () => {
   // }
   // styles
 
-  const activeStyles = "bg-indigo-700 rounded-lg  text-white  duration-200 p-2";
+  const activeStyles = "bg-indigo-700 rounded-lg  text-white  duration-200 p-3";
   const notActiveStyles = "text-2xl block mt-4 sm:mt-6 text-slate-300";
   const hover =
-    "text-white duration-200 hover:bg-indigo-700 hover:rounded-lg hover:p-1";
+    "text-white duration-200 hover:bg-indigo-700 hover:rounded-lg hover:p-2";
 
   const activeMenuStyles = "w-72 fixed sidebar ";
-  const notActiveMenuStyles = "w-0";
+  const notActiveMenuStyles = "0";
 
   const hiddenTitles = `${
     isActiveMenu ? "" : "hidden"
@@ -79,7 +80,7 @@ const Layout = () => {
           className={`${
             isActiveMenu
               ? "w-72 bg-indigo-900 p-5 py-3 duration-300"
-              : "w-20 bg-indigo-900 p-5 py-3 duration-300"
+              : "w-20 bg-indigo-900 p-5 py-3 duration-300 "
           }`}
         >
           <div className="flex justify-end mb-4">
@@ -158,15 +159,21 @@ const Layout = () => {
               </Link>
             </div>
 
-            <div className="flex items-center rounded-full float-left  ">
-              <button
-                onClick={handleClickClose}
-                className="hover:scale-105  hover:duration-200 duration-200 pt-56"
-              >
-                <img src={IconoLogout} alt="cerrar" className="h-6 sm:h-8  " />
-                <p className="text-white capitalize"> Tamara </p>
-              </button>
+            <div className="flex items-center rounded-full float-left max-h-20 my-10 text-white">
+              <img
+                src={Imagenpersona}
+                className="rounded-full h-6 sm:h-8 pr-2 hover:scale-105 cursor-pointer duration-150"
+                alt="imagen persona"
+              />
+              <p className={hiddenTitles}> Tamara </p>
             </div>
+
+            <button
+              onClick={handleClickClose}
+              className="hover:scale-105  hover:duration-200 duration-200"
+            >
+              <img src={IconoLogout} alt="cerrar" className="h-6 sm:h-8  " />
+            </button>
           </nav>
         </div>
 

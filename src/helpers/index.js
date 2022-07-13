@@ -4,6 +4,18 @@ export const generarId = () => {
   return random + fecha;
 };
 
+export const fechaHoy = () => {
+  let date = new Date();
+  let output =
+    String(date.getDate()).padStart(2, "0") +
+    "/" +
+    String(date.getMonth() + 1).padStart(2, "0") +
+    "/" +
+    date.getFullYear();
+  console.log(output);
+  return output;
+};
+
 export const formatearFecha = (fecha) => {
   const fechaNueva = new Date(fecha);
   const opciones = {
@@ -18,7 +30,7 @@ export const formatearFecha = (fecha) => {
 export let DiaActual = new Date();
 console.log(DiaActual.toLocaleDateString());
 
-export default formatearFecha(DiaActual);
+// export default formatearFecha(DiaActual);
 
 // Buscar reset a todos los estados de un form. Para hacerlo global para ventas, gastos y productos formulario.
 function resetForm() {
@@ -60,14 +72,7 @@ console.log(
 
 // export function ordenarCualquierCosa(arr) {
 //   arr.sort(function (a, b) {
-//     if (a > b) {
-//       return 1;
-//     }
-//     if (a < b) {
-//       return -1;
-//     }
-//     // a must be equal to b
-//     return 0;
+//  return a - b
 //   });
 // }
 
@@ -80,4 +85,21 @@ console.log(
 //   }
 //   // a must be equal to b
 //   return 0;
+// });
+
+// forma corta de ordenar
+
+// // Ordenar por VALOR
+// gastos.sort(function (a, b) {
+//   return a.valor - b.valor;
+// });
+
+// // Ordenar por Nombre
+// gastos.sort(function (a, b) {
+//   return a.nombre - b.nombre;
+// });
+
+// // Ordenar por Categoria
+// gastos.sort(function (a, b) {
+//   return a.categoria - b.categoria;
 // });

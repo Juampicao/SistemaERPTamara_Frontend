@@ -1,25 +1,33 @@
 import React, { useContext, useEffect, useState } from "react";
+import StaticContext from "../../contexts/StaticProvider";
+import { useNavigate } from "react-router-dom";
+
 import CuadroGastos from "../atoms/gastos/CuadroGastos";
 import ListadoGastos from "../molecules/gastos/ListadoGastos";
 import Header from "../molecules/Header";
+import CajaEfectivo from "../atoms/CajaEfectivo";
+import InicioCaja from "../molecules/gastos/InicioCaja";
+import FormularioGasto from "../molecules/gastos/FormularioGasto";
+import ModalReutilizable from "../atoms/modal/ModalReutilizable";
+import Dropdown from "../atoms/Dropdown";
+import BarraSearch from "../atoms/BarraSearch";
 
 import { BotonPrimario } from "../atoms/Botones";
-import CajaEfectivo from "../atoms/CajaEfectivo";
-
-import StaticContext from "../../contexts/StaticProvider";
-import FormularioGasto from "../molecules/gastos/FormularioGasto";
 import {
   BotonAzulClasico,
   BotonAzulClasicoSinZoom,
+  BotonAzulRedondeado,
   BotonBlancoClasicoSinZoom,
+  BotonBlancoRedondeado,
+  BotonRojoRedondeado,
 } from "../../helpers/colores";
-import InicioCaja from "../molecules/gastos/InicioCaja";
-import ModalReutilizable from "../atoms/modal/ModalReutilizable";
-import { useNavigate } from "react-router-dom";
-import BarraSearch from "../atoms/BarraSearch";
-import PruebaDeleteModal from "../../EjemplosUtiles/modal/PruebaDeleteModal";
+
 import { formatearFecha } from "../../helpers";
+
 // import { IconSearch } from "../../img/iconSearch.png";
+import IconoIncioCaja from "../../img/iconCaja.png";
+import IconoGastos from "../../img/iconoGastos.png";
+import Flecha from "../../img/newIcons/flechaIzquierda.png";
 
 const Gastos = () => {
   const {
@@ -31,10 +39,14 @@ const Gastos = () => {
     setTotalGastos,
     inicioCaja,
     setInicioCaja,
+    ventas,
+    modalCaja,
+    setModalCaja,
+    // isOpenErrorModal,
   } = useContext(StaticContext);
   const navigate = useNavigate();
 
-  const [modalCaja, setModalCaja] = useState(false);
+  // const [modalCaja, setModalCaja] = useState(false);
   const [abrirModal, setAbrirModal] = useState(false);
 
   const { id, nombre, valor, cantidad } = gasto;
@@ -52,77 +64,52 @@ const Gastos = () => {
     setTotalGastos(totalGastado);
   }, [gastos]);
 
-  const cerrar = () => {
-    setAbrirModal(!abrirModal);
+  // Prueba Sumar Ventas como si fuera EGRESO para sumar al TOTAL GASTOS.
+  // useEffect(() => {
+  //   const totalVentas = ventas.reduce((total, venta) => venta.valor + total, 0);
+  //   console.log(totalVentas);
+  //   console.log(totalGastos + totalVentas);
+  // }, [ventas]);
 
-    // Llamado a la base de caja id 1.
-    useEffect(() => {
-      const obtenerClienteAPI = async () => {
-        try {
-          const url = `http://localhost:4000/caja/1`;
-          // const url = `${import.meta.env.API_URL}`;
-          const respuesta = await fetch(url);
-          const resultado = await respuesta.json();
-          setInicioCaja(resultado);
-          console.log(inicioCaja);
-          setAbrirModal(!abrirModal);
+  // de
 
-          // console.log(gasto);
-        } catch (error) {
-          console.log(error);
-        }
-        // setIsCargando(!isCargando);
-      };
-      obtenerClienteAPI();
-    }, [inicioCaja]);
-  };
-
-  let totalValores = [];
-  for (let i = 0; i < gastos.length; i++) {
-    let result = gastos[i].valor;
-    totalValores.push(result);
-    for (let i = 0; i < result.length; i++) {
-      let resultado = result;
-      // console.log(resultado);
-    }
-    // console.log(result);
-  }
-  console.log(totalValores);
-
-  // // Ordenar por VALOR.
-  // gastos.sort(function (a, b) {
-  //   if (a.valor > b.valor) {
-  //     return 1;
+  // let totalValores = [];
+  // for (let i = 0; i < gastos.length; i++) {
+  //   let result = gastos[i].valor;
+  //   totalValores.push(result);
+  //   for (let i = 0; i < result.length; i++) {
+  //     let resultado = result;
+  //     // console.log(resultado);
   //   }
-  //   if (a.valor < b.valor) {
-  //     return -1;
-  //   }
-  //   // a must be equal to b
-  //   return 0;
-  // });
-
-  // ordenarCualquierCosa(valores);
-  // console.log(totalValores);
+  //   // console.log(result);
+  // }
+  // // console.log(totalValores);
 
   return (
     <div>
       <Header title="Gastos" />
-      <div className="flex flex-wrap">
+      <div className="flex flex-wrap lg:space-x-3 space-x-0">
         <CajaEfectivo
           valorCaja={totalGastos}
           title="Gastos"
-          title2="Caja Total"
-          valorCaja2={Number(inicioCaja - totalGastos)}
-          title3="Inicio Caja"
-          valorCaja3={inicioCaja}
+          Imagen={IconoIncioCaja}
+        />
+        <CajaEfectivo
+          valorCaja={Number(inicioCaja - totalGastos)}
+          title="Total Caja"
+          Imagen={Flecha}
+        />
+        <CajaEfectivo
+          valorCaja={inicioCaja}
+          title="Inicio Caja"
+          Imagen={IconoIncioCaja}
         />
       </div>
-
       <div className="py-5 flex flex-wrap space-x-3">
         {/* Nuevo Gasto */}
         <BotonPrimario
           value="Nuevo Gasto"
-          Color={BotonAzulClasicoSinZoom}
+          Color={BotonRojoRedondeado}
           onClick={() => navigate(`/gastos/nuevogasto`)}
         />
         {abrirModal ? (
@@ -137,7 +124,7 @@ const Gastos = () => {
         {/* Abrir Inicio Caja */}
         <BotonPrimario
           value="Inicio Caja"
-          Color={BotonBlancoClasicoSinZoom}
+          Color={BotonBlancoRedondeado}
           onClick={() => setModalCaja(!modalCaja)}
         />
         {modalCaja ? (
@@ -150,12 +137,14 @@ const Gastos = () => {
         {/* Inicio Caja */}
         <BotonPrimario
           value="Reiniciar Gastos"
-          Color={BotonBlancoClasicoSinZoom}
+          Color={BotonBlancoRedondeado}
           onClick={handleReiniciarTotalGastos}
         />
       </div>
-      <BarraSearch />
-
+      <div className="flex items-center gap-x-3">
+        <BarraSearch />
+        <Dropdown onClick1={() => {}} />
+      </div>
       <ListadoGastos />
       <div className="grid grid-rows space-y-10 my-10">
         <div className="">
