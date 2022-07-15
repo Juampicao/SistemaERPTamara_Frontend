@@ -10,12 +10,14 @@ const CuadroGastos = ({ title, valor }) => {
 
   return (
     <>
-      <div className="p-10 rounded-lg bg-white hover:bg-slate-200 cursor-pointer border rounded-2xl shadow-lg ">
+      <div className="p-10  bg-white hover:bg-slate-200 cursor-pointer border rounded-2xl  ">
         <div className="flex items-center space-x-3">
-          <img src={IconoGasto} className="h-8" alt="" />
-          <p className="text-start pl-2 uppercase font-medium">{title}</p>
+          {/* <img src={IconoGasto} className="h-8" alt="" /> */}
+          <p className="text-start pl-2 uppercase font-medium text-slate-500">
+            {title}
+          </p>
+          <p className="pl-2 text-slate-900">${valor}.00 </p>
         </div>
-        <p className="mt-3 pl-2">${valor} </p>
       </div>
     </>
   );

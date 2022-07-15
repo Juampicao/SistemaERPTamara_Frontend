@@ -7,7 +7,7 @@ import iconoBebida from "../../img/iconoBebida.png";
 import iconoConfiguracion from "../../img/iconoConfiguracion.png";
 import IconoCerrarBlanco from "../../img/iconoCerrarBlanco.png";
 import IconoLogout from "../../img/iconoLogout.png";
-import Imagenpersona from "../../img/imagenPersona.jpg";
+import Imagenpersona from "../../img/newIcons/fotoMujer2.png";
 
 import { useContext, useEffect, useState } from "react";
 import StaticContext from "../../contexts/StaticProvider";
@@ -59,10 +59,14 @@ const Layout = () => {
   // }
   // styles
 
-  const activeStyles = "bg-indigo-700 rounded-lg  text-white  duration-200 p-3";
+  // const activeStyles = "bg-indigo-700 rounded-lg  text-white  duration-200 p-3";
+  const activeStyles = `text-white  duration-200 border-l-4  hover:border-r-lime-50 p-1  ${
+    isActiveMenu ? "pl-5" : "pl-3"
+  }`;
+
   const notActiveStyles = "text-2xl block mt-4 sm:mt-6 text-slate-300";
   const hover =
-    "text-white duration-200 hover:bg-indigo-700 hover:rounded-lg hover:p-2";
+    "text-white duration-200 hover:pl-2 hover:border-l-2  hover:border-r-lime-50 ";
 
   const activeMenuStyles = "w-72 fixed sidebar ";
   const notActiveMenuStyles = "0";
@@ -71,16 +75,20 @@ const Layout = () => {
     isActiveMenu ? "" : "hidden"
   } origin-left duration-300 `;
 
+  const imagenPersonaStyle = `flex items-center rounded-full float-left max-h-20 my-10 text-white cursor-pointer hover:scale-105 hover:duration-150 duration-200${
+    isActiveMenu ? "h-16 w-16" : "h-10 w-10"
+  }`;
+
   return (
     <>
       {/* <div className="sm:flex  "> */}
-      <div className="flex ">
+      <div className="flex bor">
         {/* <div className="sm:w-1/4 min-w-[280px] bg-indigo-900 px-5 py-5 "> */}
         <div
           className={`${
             isActiveMenu
-              ? "w-72 bg-indigo-900 p-5 py-3 duration-300"
-              : "w-20 bg-indigo-900 p-5 py-3 duration-300 "
+              ? "w-72 bg-gradient-to-r from-cyan-900 to-blue-700  p-5 py-3 duration-300"
+              : "w-24 bg-gradient-to-r from-cyan-900 to-blue-700 p-5 py-3 duration-300 "
           }`}
         >
           <div className="flex justify-end mb-4">
@@ -101,7 +109,7 @@ const Layout = () => {
                   !isActiveMenu && `scale-0`
                 }`}
               >
-                Admistrador Tamara
+                Admistrador Bebidas
               </h2>
             </div>
           </Link>
@@ -118,7 +126,6 @@ const Layout = () => {
                 <p className={hiddenTitles}>Inventario</p>
               </div>
             </Link>
-
             <Link
               className={`${
                 urlActual === "/ventas" ? `${activeStyles}` : `${hover}`
@@ -130,7 +137,6 @@ const Layout = () => {
                 <p className={hiddenTitles}>Ventas</p>
               </div>
             </Link>
-
             <Link
               className={`${
                 urlActual === "/configuraciones"
@@ -158,21 +164,25 @@ const Layout = () => {
                 </div>
               </Link>
             </div>
-
-            <div className="flex items-center rounded-full float-left max-h-20 my-10 text-white">
+            <div className="flex items-center rounded-full float-left max-h-20 my-10 text-white   ">
               <img
                 src={Imagenpersona}
-                className="rounded-full h-6 sm:h-8 pr-2 hover:scale-105 cursor-pointer duration-150"
+                className={imagenPersonaStyle}
                 alt="imagen persona"
               />
-              <p className={hiddenTitles}> Tamara </p>
+
+              <p className={hiddenTitles}>
+                <span className="text-white pl-2"> Tamara </span>
+                <span className="text-slate-400 "> Owner </span>
+              </p>
             </div>
 
+            {/* \ */}
             <button
               onClick={handleClickClose}
               className="hover:scale-105  hover:duration-200 duration-200"
             >
-              <img src={IconoLogout} alt="cerrar" className="h-6 sm:h-8  " />
+              {/* <img src={IconoLogout} alt="cerrar" className="h-6 sm:h-8  " /> */}
             </button>
           </nav>
         </div>

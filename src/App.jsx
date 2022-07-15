@@ -4,6 +4,8 @@ import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
 import AOS from "aos";
 import "aos/dist/aos.css";
 
+import { useSearchBox } from "react-instantsearch-hooks";
+
 import Inicio from "./components/pages/Inicio";
 import Ventas from "./components/pages/Ventas";
 import Gastos from "./components/pages/Gastos";
@@ -18,6 +20,7 @@ import EditarGasto from "./components/molecules/gastos/EditarGasto";
 
 import { StaticProvider } from "./contexts/StaticProvider";
 import NuevoGasto from "./components/molecules/gastos/NuevoGasto";
+import { useRef } from "react";
 
 function App() {
   console.log();
@@ -25,6 +28,8 @@ function App() {
     AOS.init();
     AOS.refresh();
   }, []);
+
+  const { refine } = useSearchBox();
 
   return (
     <div className="App">

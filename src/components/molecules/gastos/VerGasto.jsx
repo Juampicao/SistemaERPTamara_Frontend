@@ -35,11 +35,12 @@ const VerGasto = () => {
   return (
     <div>
       <div>
-        <div> El producto es: {gasto.nombre} </div>
-        <div> El ID es: {gasto._id} </div>
-        <div> Valor: {gasto.valor} </div>
-        <div> Categoria: {gasto.categoria} </div>
-        <div> Fecha: {gasto.fecha} </div>
+        <p> El producto es: {gasto.nombre} </p>
+        <p> El ID es: {gasto._id} </p>
+        <p> Valor: {gasto.valor} </p>
+        <p> Categoria: {gasto.categoria} </p>
+        <p> Fecha: {gasto.fecha.substr(0, 10)} </p>
+        {/* <p> Fecha: {formatearFecha(gasto.fecha)} </p> */}
 
         <div className="py-5 flex justify-center space-x-3">
           <BotonPrimario

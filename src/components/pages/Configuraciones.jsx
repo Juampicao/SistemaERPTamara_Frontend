@@ -10,6 +10,8 @@ import { useModal } from "../../hooks/useModal";
 import { BotonPrimario } from "../atoms/Botones";
 import { BotonBlancoClasico, BotonClasico } from "../../helpers/colores";
 
+import "./../atoms/BarraSearch.css";
+
 const Configuraciones = () => {
   const { isOpenEdit, setIsOpenEdit } = useContext(StaticContext);
 

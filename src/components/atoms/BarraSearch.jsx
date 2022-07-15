@@ -1,18 +1,102 @@
+import axios from "axios";
 import React from "react";
-// import { lista1 } from "../../helpers/listas";
+import { useRef } from "react";
+import { useState } from "react";
+import { useEffect } from "react";
 import IconoSearch from "../../img/iconSearch.png";
 import "./BarraSearch.css";
+
+import getActiveToken from "./../../helpers/getActiveToken.js";
+import Autocomplete from "./Autocomplete";
+
 const BarraSearch = () => {
   const data = ["River", "Velez", "Boca"];
 
+  // const [users, setUsers] = useState([]);
+  // const [text, setText] = useState("");
+  // const [suggestions, setSuggestions] = useState([]);
+
+  // useEffect(() => {
+  //   const loadGastos = async () => {
+  //     const respuesta = await axios.get(
+  //       `${import.meta.env.VITE_API_URL}/gastos`
+  //     );
+  //     console.log(respuesta.data);
+  //     setUsers(respuesta.data);
+  //   };
+  //   loadGastos();
+  // }, []);
+
+  // const onChangeHandler = (text) => {
+  //   let matches = [];
+  //   if (text.length > 0) {
+  //     matches = users.filter((user) => {
+  //       const regex = new RegExp(`${text}`, "gi");
+  //       // return users.nombre.match(regex);
+  //       return (users.nombre = regex);
+  //       console.log((users.nombre = regex));
+  //       console.log(`matches`, matches);
+  //     });
+  //   }
+  //   setSuggestions(matches);
+  //   setText(text);
+  // };
+
+  // const [showAutocomplete, setShowAutocomplete] = useState(false);
+  // const inputRef = useRef();
+  // const handleInput = () => {
+  //   const { value, selectionEnd = 0 } = inputRef.current;
+  //   const { word } = getActiveToken(value, selectionEnd);
+  //   const shouldOpenAutocomplete = /^@\w{1,15}$/.test(word);
+  //   setShowAutocomplete(shouldOpenAutocomplete);
+  // };
   return (
     <div>
+      {/* MiduAutcomplete */}
+      {/* <main className="container">
+        <section className="box">
+          <div className="box-body">
+            <aside className="box-avatar">
+              <img src="https://unavatar.io/twitter/midudev" alt="midudev" />
+            </aside>
+
+            <div className="box-compose">
+              <form>
+                <textarea
+                  placeholder="¿Qué está pasando?"
+                  className="box-textbox"
+                  onKeyUp={() => {}}
+                  onClick={() => {}}
+                  // ref={inputRef}
+                />
+              </form>
+              {showAutocomplete && <Autocomplete />}
+            </div>
+          </div>
+
+          <footer className="box-footer">
+            <button type="submit" className="tweet-button">
+              Twittear
+            </button>
+          </footer>
+        </section>
+      </main> */}
+      {/* MiduAutcomplete */}
+
+      {/* <input
+        className="my-3 w-full"
+        type="text"
+        onChange={(e) => onChangeHandler(e.target.value)}
+        value={text}
+      /> */}
+      {/* Otro */}
       {/* <select name="" id="">
         <option value=""> --- </option>
         {data.map((el) => (
           <option value={el}> {el} </option>
         ))}
       </select> */}
+
       <datalist id="pruebaLista">
         <option value="Quilmes"></option>
         <option value="Comida hoy"></option>
@@ -46,18 +130,3 @@ const BarraSearch = () => {
 };
 
 export default BarraSearch;
-{
-  /* <input
-        type="search"
-        className="border border-slate-500 rounded px-2"
-        list="browsers"
-      /> */
-}
-
-{
-  /* <datalist className="">
-  {producto.map((gasto) => (
-    <Gasto key={gasto.id} gasto={gasto} />
-  ))}
-</datalist>; */
-}

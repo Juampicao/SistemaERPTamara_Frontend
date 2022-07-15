@@ -44,8 +44,8 @@ const Gasto = ({ gasto }) => {
         `${import.meta.env.VITE_API_URL}/gastos//${_id}`
       );
       console.log(respuesta);
-      // const arrayGastos = gastos.filter((gasto) => gasto._id !== _id);
-      // // setGastos(arrayGastos);
+      const arrayGastos = gastos.filter((gasto) => gasto._id !== _id);
+      setGastos(arrayGastos);
       setIsOpenDeleteModal(!isOpenDeleteModal);
     } catch (error) {
       console.log(error);
@@ -64,7 +64,7 @@ const Gasto = ({ gasto }) => {
           />
         </td>
         <td> {nombre}</td>
-        <td> ${valor}</td>
+        <td> ${valor}.00</td>
         <td>{fecha.substr(0, 10)}</td>
 
         <td className=" ">

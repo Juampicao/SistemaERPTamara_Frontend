@@ -8,6 +8,7 @@ import IconoVer from "../../img/iconVer.png";
 import IconoDelete2 from "../../img/newIcons/deletColor.png";
 import IconoEdit2 from "../../img/newIcons/editColor.png";
 import IconoView2 from "../../img/newIcons/viewColor.png";
+import IconAdd from "../../img/newIcons/iconAdd.png";
 
 import "./Botones.css";
 export const BotonVer = ({ value, onClick }) => {
@@ -89,10 +90,27 @@ export const BotonPrimario = ({ value, onClick, Color }) => {
   );
 };
 
+export const BotonPrimarioIcono = ({ value, onClick, Color }) => {
+  return (
+    <>
+      <button
+        className="bg-red-500  active:bg-red-700 hover:bg-red-600 focus:ring-red-900 text-white px-4 flex py-2.5  hover:scale-105 font-medium text-xs leading-tight uppercase  transition duration-200 ease-in-out hover:shadow-lg active:shadow-lg rounded-xl focus:outline-none hover:duration-200  cursor-pointer items-center"
+        onClick={onClick}
+        type="submit"
+        value={value}
+      >
+        <img src={IconAdd} alt="" className="h-6 pr-1" />
+        <p>Nuevo Gasto</p>
+      </button>
+    </>
+  );
+};
+
 export default {
   BotonEliminar,
   BotonNuevoProducto,
   BotonVer,
   BotonModal,
   BotonPrimario,
+  BotonPrimarioIcono,
 };

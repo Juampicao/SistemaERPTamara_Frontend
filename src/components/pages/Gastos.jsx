@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import StaticContext from "../../contexts/StaticProvider";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 import CuadroGastos from "../atoms/gastos/CuadroGastos";
 import ListadoGastos from "../molecules/gastos/ListadoGastos";
@@ -12,7 +13,7 @@ import ModalReutilizable from "../atoms/modal/ModalReutilizable";
 import Dropdown from "../atoms/Dropdown";
 import BarraSearch from "../atoms/BarraSearch";
 
-import { BotonPrimario } from "../atoms/Botones";
+import { BotonPrimario, BotonPrimarioIcono } from "../atoms/Botones";
 import {
   BotonAzulClasico,
   BotonAzulClasicoSinZoom,
@@ -45,6 +46,24 @@ const Gastos = () => {
     // isOpenErrorModal,
   } = useContext(StaticContext);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const obtenerCaja = async () => {
+      try {
+        const respuesta = await axios.get(
+          `${import.meta.env.VITE_API_URL}/caja/62cf04d320fdec269473e073`,
+          {
+            inicioCaja,
+          }
+        );
+        // console.log(respuesta.data.inicioCaja);
+        setInicioCaja(respuesta.data.inicioCaja);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    obtenerCaja();
+  }, []);
 
   // const [modalCaja, setModalCaja] = useState(false);
   const [abrirModal, setAbrirModal] = useState(false);
@@ -85,10 +104,44 @@ const Gastos = () => {
   // }
   // // console.log(totalValores);
 
+  const mostrarGastosProveedores = () => {};
+
+  // const prueba = [
+  //   { categoria: "comida", value: 200 },
+  //   { categoria: "comida", value: 200 },
+  //   { categoria: "gastos", value: 100 },
+  // ];
+
+  // let totalComida = [];
+  // function verComida() {
+  //   for (let i = 0; i < gastos.length; i++) {
+  //     let result = gastos[i].valor;
+  //     totalComida.push(result);
+  //     console.log(totalComida);
+  //   }
+  // }
+
+  // verComida();
+
+  // let totalComida = [];
+  // function verComida() {
+  //   for (let i = 0; i < gastos.length; i++) {
+  //     if ((gastos[i].categoria = "Comida")) {
+  //       console.log("true");
+  //     }
+
+  //     let result = (gastos[i].categoria = "comida");
+  //     totalComida.push(result);
+  //     console.log(totalComida);
+  //   }
+  // }
+
+  // verComida();
+
   return (
     <div>
       <Header title="Gastos" />
-      <div className="flex flex-wrap lg:space-x-3 space-x-0">
+      <div className="flex flex-wrap space-x-0 lg:space-x-3 space-y-2 md:space-y-0 ">
         <CajaEfectivo
           valorCaja={totalGastos}
           title="Gastos"
@@ -107,7 +160,7 @@ const Gastos = () => {
       </div>
       <div className="py-5 flex flex-wrap space-x-3">
         {/* Nuevo Gasto */}
-        <BotonPrimario
+        <BotonPrimarioIcono
           value="Nuevo Gasto"
           Color={BotonRojoRedondeado}
           onClick={() => navigate(`/gastos/nuevogasto`)}
@@ -151,7 +204,10 @@ const Gastos = () => {
           <h3 className="text-2xl font-bold font-mono uppercase">Gastos Hoy</h3>
           <div className="flex space-x-3 text-center my-2">
             <CuadroGastos title="Gastos Totales" valor={totalGastos} />
-            <CuadroGastos title="Gastos Proveedores" valor={totalGastos} />
+            <CuadroGastos
+              title="Gastos Proveedores"
+              valor={mostrarGastosProveedores}
+            />
             <CuadroGastos title="Gastos Comidas" valor={totalGastos} />
           </div>
         </div>
@@ -159,7 +215,7 @@ const Gastos = () => {
           <h3 className="text-2xl font-bold font-mono uppercase">
             Gastos Semana
           </h3>
-          <div className="flex space-x-3 text-center my-2">
+          <div className="flex space-x-3 text-center my-2 scroll-x-auto">
             <CuadroGastos title="Gastos Totales" valor="$9890" />
             <CuadroGastos title="Gastos Proveedores" valor={totalGastos} />
             <CuadroGastos title="Gastos Comidas" valor={totalGastos} />

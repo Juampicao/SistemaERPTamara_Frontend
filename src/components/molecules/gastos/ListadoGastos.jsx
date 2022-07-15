@@ -31,18 +31,18 @@ const ListadoGastos = () => {
   return (
     <div>
       <table className={tableStyles}>
-        <thead className="rounded-3xl overflow-x-auto">
-          <tr className=" rounded-3xl">
-            <th className="p-2 rounded-3xl">Categoria</th>
+        <thead className=" overflow-x-auto border-b-2 border-slate-100">
+          <tr className="  ">
+            <th className="p-2 ">Categoria</th>
             <th className="p-2">Nombre</th>
             <th className="p-2">Valor</th>
             <th className="p-2">Fecha</th>
-            <th className="p-2 rounded-3xl">Funciones</th>
+            <th className="p-2 ">Funciones</th>
           </tr>
         </thead>
         <tbody className="">
           {gastos.map((gasto) => (
-            <Gasto key={gasto.id} gasto={gasto} />
+            <Gasto key={gasto._id} gasto={gasto} />
           ))}
         </tbody>
         {/* <tbody>

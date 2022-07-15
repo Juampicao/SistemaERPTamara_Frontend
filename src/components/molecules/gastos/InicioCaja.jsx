@@ -7,14 +7,12 @@ import {
   BotonBlancoClasicoSinZoom,
 } from "../../../helpers/colores";
 import { BotonPrimario } from "../../atoms/Botones";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import Spiner from "../../atoms/Spiner";
 import { ModalError } from "../../atoms/ModalNotificacion";
 
 const InicioCaja = () => {
   const {
-    inicioCaja,
-    setInicioCaja,
     setIsCargando,
     isCargando,
     setIsOpenErrorModal,
@@ -22,48 +20,33 @@ const InicioCaja = () => {
     modalCaja,
     setModalCaja,
   } = useContext(StaticContext);
+
+  const location = useLocation();
   const navigate = useNavigate();
+
+  const [inicioCaja, setInicioCaja] = useState(Number(""));
 
   // ObjetoGasto
   const objetoCaja = {
     inicioCaja,
   };
-  // Boton Enviar Formulario
-  // const AgregarInicioCaja = async (e) => {
-  //   e.preventDefault();
-  //   console.log(inicioCaja);
-  //   let respuesta;
-  //   try {
-  //     {
-  //       // Editando el ID 1. Solo puede haber 1 registro por dia. Si toca devuelta, se edita el mismo.
-  //       const url = `${import.meta.env.VITE_API_URL}/caja/1`;
-  //       respuesta = await fetch(url, {
-  //         method: "PUT",
-  //         body: JSON.stringify(objetoCaja),
-  //         headers: {
-  //           "Content-Type": "application/json",
-  //         },
-  //       });
-  //     }
-  //     await respuesta.json();
-  //     //   navigate("/ventas");
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  //   // resetearForm();
-  // };
 
   const AgregarInicioCaja = async (e) => {
     e.preventDefault();
     let respuesta;
     setIsCargando(true);
     try {
-      respuesta = await axios.put(`${import.meta.env.VITE_API_URL}/caja`, {
-        inicioCaja,
-      });
+      respuesta = await axios.put(
+        `${import.meta.env.VITE_API_URL}/caja/62cf04d320fdec269473e073`,
+        {
+          // primerValorCaja,
+          inicioCaja,
+        }
+      );
       console.log(respuesta);
       setIsCargando(false);
-      navigate("/gastos");
+      setModalCaja(false);
+      window.location.reload();
     } catch (error) {
       setIsCargando(true);
       console.log(error);
@@ -89,8 +72,10 @@ const InicioCaja = () => {
             className={PlaceHolderStyle}
             id="caja"
             type="number"
-            value={inicioCaja}
+            name="caja"
+            placeholder={inicioCaja}
             onChange={(e) => setInicioCaja(Number(e.target.value))}
+            // onChange={(e) => setPrimerValorCaja(Number(e.target.value))}
           />
         </div>
         {/* <div className="flex flex-shrink-0 flex-wrap items-center justify-end p-4 border-t border-gray-200 rounded-b-md"> */}
