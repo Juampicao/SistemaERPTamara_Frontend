@@ -60,11 +60,11 @@ const Layout = () => {
   // styles
 
   // const activeStyles = "bg-indigo-700 rounded-lg  text-white  duration-200 p-3";
-  const activeStyles = `text-white  duration-200 border-l-4  hover:border-r-lime-50 p-1  ${
+  const activeStyles = `text-white  duration-200 border-l-4  hover:border-r-lime-50 p-1   ${
     isActiveMenu ? "pl-5" : "pl-3"
   }`;
 
-  const notActiveStyles = "text-2xl block mt-4 sm:mt-6 text-slate-300";
+  const notActiveStyles = "text-2xl block mt-4 sm:mt-10 text-slate-300";
   const hover =
     "text-white duration-200 hover:pl-2 hover:border-l-2  hover:border-r-lime-50 ";
 
@@ -114,7 +114,7 @@ const Layout = () => {
             </div>
           </Link>
 
-          <nav className=" mt-5 sm:mt-10 ">
+          <nav className=" mt-5 sm:mt-24">
             <Link
               className={`${
                 urlActual === "/productos" ? `${activeStyles}` : `${hover}`
@@ -164,18 +164,20 @@ const Layout = () => {
                 </div>
               </Link>
             </div>
-            <div className="flex items-center rounded-full float-left max-h-20 my-10 text-white   ">
-              <img
-                src={Imagenpersona}
-                className={imagenPersonaStyle}
-                alt="imagen persona"
-              />
+            <Link to="/">
+              <div className="flex items-center rounded-full float-left max-h-20 mt-16 text-white   ">
+                <img
+                  src={Imagenpersona}
+                  className={imagenPersonaStyle}
+                  alt="imagen persona"
+                />
 
-              <p className={hiddenTitles}>
-                <span className="text-white pl-2"> Tamara </span>
-                <span className="text-slate-400 "> Owner </span>
-              </p>
-            </div>
+                <p className={hiddenTitles}>
+                  <span className="text-white pl-2"> Tamara </span>
+                  <span className="text-slate-400 "> Owner </span>
+                </p>
+              </div>
+            </Link>
 
             {/* \ */}
             <button

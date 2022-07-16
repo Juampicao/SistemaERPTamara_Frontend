@@ -19,7 +19,7 @@ const Ventas = () => {
     setCaja(0);
   };
   return (
-    <div className="">
+    <div data-aos="fade-left" className="">
       <Header title="Ventas" />
       {/* <p> Pagina en Construccion</p> */}
       {/* <Dropdown /> */}

@@ -99,7 +99,7 @@ const Inicio = () => {
   const linea = <div className="h-[2px] w-full mx-auto bg-slate-500"> </div>;
 
   return (
-    <div>
+    <div data-aos="fade-left">
       <div className="flex p-4 justify-end space-x-3">
         {/* <h3 className="text-2xl text-left	">Inventario</h3> */}
         <BotonNuevoProducto

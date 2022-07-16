@@ -29,6 +29,7 @@ import { formatearFecha } from "../../helpers";
 import IconoIncioCaja from "../../img/iconCaja.png";
 import IconoGastos from "../../img/iconoGastos.png";
 import Flecha from "../../img/newIcons/flechaIzquierda.png";
+import diccionarioIConos from "../../helpers/iconos";
 
 const Gastos = () => {
   const {
@@ -132,9 +133,9 @@ const Gastos = () => {
   }
 
   return (
-    <div>
+    <div data-aos="fade-left">
       <Header title="Gastos" />
-      <div className="flex flex-wrap space-x-0 lg:space-x-3 space-y-2 md:space-y-0 ">
+      <div className="flex flex-wrap gap-x-3 gap-y-3 ">
         <CajaEfectivo
           valorCaja={totalGastos}
           title="Gastos"
@@ -151,7 +152,7 @@ const Gastos = () => {
           Imagen={IconoIncioCaja}
         />
       </div>
-      <div className="py-5 flex flex-wrap space-x-3">
+      <div className="py-5 flex flex-wrap gap-x-3 gap-y-3">
         {/* Nuevo Gasto */}
         <BotonPrimarioIcono
           value="Nuevo Gasto"
@@ -200,16 +201,19 @@ const Gastos = () => {
           <h3 className="text-2xl font-bold font-mono uppercase">Gastos Hoy</h3>
 
           {arrayGastosComidaValores?.[0] ? (
-            <div className="flex space-x-3 text-center my-2 scroll-x-auto">
+            <div className="flex flex-wrap gap-x-3 gap-y-3 text-center my-2 scroll-x-auto">
               <CuadroGastos
+                img={diccionarioIConos.Comida}
                 title="Gastos Comidas"
                 valor={sumarNumerosArray(arrayGastosComidaValores)}
               />{" "}
               <CuadroGastos
+                img={diccionarioIConos.Proveedor}
                 title="Gastos Proveedores"
                 valor={sumarNumerosArray(arrayGastosProveedorValores)}
               />
               <CuadroGastos
+                img={diccionarioIConos.Gastos}
                 title="Gastos Varios"
                 valor={sumarNumerosArray(arrayGastosVariosValores)}
               />
@@ -225,14 +229,17 @@ const Gastos = () => {
           {arrayGastosComidaValores?.[0] ? (
             <div className="flex space-x-3 text-center my-2 scroll-x-auto">
               <CuadroGastos
+                img={diccionarioIConos.Comida}
                 title="Gastos Comidas"
                 valor={sumarNumerosArray(arrayGastosComidaValores)}
-              />
+              />{" "}
               <CuadroGastos
+                img={diccionarioIConos.Proveedor}
                 title="Gastos Proveedores"
                 valor={sumarNumerosArray(arrayGastosProveedorValores)}
               />
               <CuadroGastos
+                img={diccionarioIConos.Gastos}
                 title="Gastos Varios"
                 valor={sumarNumerosArray(arrayGastosVariosValores)}
               />

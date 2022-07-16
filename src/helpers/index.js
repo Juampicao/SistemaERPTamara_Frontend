@@ -4,6 +4,7 @@ export const generarId = () => {
   return random + fecha;
 };
 
+// Formatear Fecha Hoy
 export const fechaHoy = () => {
   let date = new Date();
   let output =
@@ -16,6 +17,7 @@ export const fechaHoy = () => {
   return output;
 };
 
+// Formatear Fecha
 export const formatearFecha = (fecha) => {
   const fechaNueva = new Date(fecha);
   const opciones = {
@@ -27,15 +29,16 @@ export const formatearFecha = (fecha) => {
   return fechaNueva.toLocaleDateString("es-ES", opciones);
 };
 
-export let DiaActual = new Date();
-console.log(DiaActual.toLocaleDateString());
+// Formatear numero a moneda.
+export const FormatearNumero = function (number) {
+  // return "$" + +new Intl.NumberFormat().format(number) + ",00";
+  return "$" + number + ",00";
+};
+// console.log(FormatearNumero(1000));
 
 // export default formatearFecha(DiaActual);
-
-// Buscar reset a todos los estados de un form. Para hacerlo global para ventas, gastos y productos formulario.
-function resetForm() {
-  setValor("");
-}
+export let DiaActual = new Date();
+console.log(DiaActual.toLocaleDateString());
 
 // Ordenar arrays
 var numbers = [4, 2, 5, 1, 7];

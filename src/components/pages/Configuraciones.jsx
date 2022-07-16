@@ -23,7 +23,7 @@ const Configuraciones = () => {
   }
 
   return (
-    <div>
+    <div data-aos="fade-left">
       <Header title="Configuracion" />
       <p>Pagina en Construccion</p>
       {isOpenEdit ? (

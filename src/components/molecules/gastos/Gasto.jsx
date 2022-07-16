@@ -4,13 +4,12 @@ import { useNavigate } from "react-router-dom";
 
 import StaticContext from "../../../contexts/StaticProvider";
 
-import IconoProveedor from "../../../img/IconoProveedor.png";
-import IconoGastosVarios from "../../../img/IconoGastosVarios.png";
-import IconoComida from "../../../img/IconoComida.png";
 import { BotonEditar, BotonEliminar, BotonVer } from "../../atoms/Botones";
 import { ModalEliminado, ModalError } from "../../atoms/ModalNotificacion";
 import MessageModal from "../../atoms/MessageModal";
-import { formatearFecha } from "../../../helpers";
+import { formatearFecha, FormatearNumero } from "../../../helpers";
+
+import diccionarioIConos from "../../../helpers/iconos";
 
 const Gasto = ({ gasto }) => {
   const {
@@ -28,12 +27,6 @@ const Gasto = ({ gasto }) => {
     // handleModalClick,
   } = useContext(StaticContext);
   const navigate = useNavigate();
-
-  const diccionarioIConos = {
-    Gastos: IconoGastosVarios,
-    Proveedor: IconoProveedor,
-    Comida: IconoComida,
-  };
 
   const { _id, nombre, valor, cantidad, fecha } = gasto;
 
@@ -63,8 +56,8 @@ const Gasto = ({ gasto }) => {
             className="h-12 mx-auto"
           />
         </td>
-        <td className="capitalize"> {nombre}</td>
-        <td> ${valor}.00</td>
+        <td className="capitalize "> {nombre}</td>
+        <td className=""> {FormatearNumero(valor)}</td>
         <td>{fecha.substr(0, 10)}</td>
 
         <td className=" ">

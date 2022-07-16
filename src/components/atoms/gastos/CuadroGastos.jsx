@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import StaticContext from "../../../contexts/StaticProvider";
 import IconoGasto from "../../../img/iconoCosto.png";
 
-const CuadroGastos = ({ title, valor }) => {
+const CuadroGastos = ({ title, valor, img }) => {
   // const { gastos, setGastos, gasto, setGasto, totalGastos, setTotalGastos } =
   //   useContext(StaticContext);
 
@@ -10,13 +10,17 @@ const CuadroGastos = ({ title, valor }) => {
 
   return (
     <>
-      <div className="p-10  bg-white hover:bg-slate-200 cursor-pointer border rounded-2xl  ">
-        <div className="flex items-center space-x-3">
-          {/* <img src={IconoGasto} className="h-8" alt="" /> */}
-          <p className="text-start pl-2 uppercase font-medium text-slate-500">
-            {title}
-          </p>
-          <p className="pl-2 text-slate-900">${valor}.00 </p>
+      <div className="px-4 py-6 bg-white hover:bg-slate-200 cursor-pointer border rounded-2xl space-y-2  w-[150px]">
+        <div className="">
+          <p className=" pl-2 capitalize font-medium text-slate-500">{title}</p>
+        </div>
+        <div className="flex-col md:flex items-center justify-center">
+          <img
+            src={img}
+            alt="gasto"
+            className="h-10 opacity-80 flex mx-auto "
+          />
+          <p className="pl-2 text-slate-900 ">${valor}.00 </p>
         </div>
       </div>
     </>

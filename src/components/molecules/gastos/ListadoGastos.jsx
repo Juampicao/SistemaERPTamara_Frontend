@@ -31,10 +31,10 @@ const ListadoGastos = () => {
   return (
     <div>
       <table className={tableStyles}>
-        <thead className=" overflow-x-auto border-b-2 border-slate-100">
+        <thead className=" overflow-x-auto border-b-2 border-slate-100 ">
           <tr className="  ">
             <th className="p-2 ">Categoria</th>
-            <th className="p-2">Nombre</th>
+            <th className="p-2 ">Nombre</th>
             <th className="p-2">Valor</th>
             <th className="p-2">Fecha</th>
             <th className="p-2 ">Funciones</th>
