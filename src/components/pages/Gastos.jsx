@@ -45,6 +45,9 @@ const Gastos = () => {
     setModalCaja,
     // isOpenErrorModal,
   } = useContext(StaticContext);
+
+  const [gastosComida, setGastosComida] = useState();
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -83,60 +86,50 @@ const Gastos = () => {
     setTotalGastos(totalGastado);
   }, [gastos]);
 
-  // Prueba Sumar Ventas como si fuera EGRESO para sumar al TOTAL GASTOS.
-  // useEffect(() => {
-  //   const totalVentas = ventas.reduce((total, venta) => venta.valor + total, 0);
-  //   console.log(totalVentas);
-  //   console.log(totalGastos + totalVentas);
-  // }, [ventas]);
+  // --- Funcion arrays nuevos y sumas dinamicas -----//
+  let arrayGastosComida = [];
+  let arrayGastosVarios = [];
+  let arrayGastosProveedor = [];
 
-  // de
+  function crearArraysGastosSegmentados() {
+    for (let i = 0; i < gastos.length; i++) {
+      if (gastos[i].categoria === "Comida") {
+        arrayGastosComida.push(gastos[i]);
+      }
+      if (gastos[i].categoria === "Gastos") {
+        arrayGastosVarios.push(gastos[i]);
+      }
+      if (gastos[i].categoria === "Proveedor") {
+        arrayGastosProveedor.push(gastos[i]);
+      }
+    }
+  }
+  crearArraysGastosSegmentados();
+  // console.log(arrayGastosComida, arrayGastosVarios, arrayGastosProveedor);
 
-  // let totalValores = [];
-  // for (let i = 0; i < gastos.length; i++) {
-  //   let result = gastos[i].valor;
-  //   totalValores.push(result);
-  //   for (let i = 0; i < result.length; i++) {
-  //     let resultado = result;
-  //     // console.log(resultado);
-  //   }
-  //   // console.log(result);
-  // }
-  // // console.log(totalValores);
+  // 2) Crear Array con los valores de gastosComida.
+  let arrayGastosComidaValores = [];
+  let arrayGastosVariosValores = [];
+  let arrayGastosProveedorValores = [];
+  function crearArrayValores(oldArr, newArr) {
+    for (let i = 0; i < oldArr.length; i++) {
+      let result = oldArr[i].valor;
+      newArr.push(result);
+      // console.log(newArr);
+    }
+  }
+  crearArrayValores(arrayGastosComida, arrayGastosComidaValores);
+  crearArrayValores(arrayGastosVarios, arrayGastosVariosValores);
+  crearArrayValores(arrayGastosProveedor, arrayGastosProveedorValores);
 
-  const mostrarGastosProveedores = () => {};
-
-  // const prueba = [
-  //   { categoria: "comida", value: 200 },
-  //   { categoria: "comida", value: 200 },
-  //   { categoria: "gastos", value: 100 },
-  // ];
-
-  // let totalComida = [];
-  // function verComida() {
-  //   for (let i = 0; i < gastos.length; i++) {
-  //     let result = gastos[i].valor;
-  //     totalComida.push(result);
-  //     console.log(totalComida);
-  //   }
-  // }
-
-  // verComida();
-
-  // let totalComida = [];
-  // function verComida() {
-  //   for (let i = 0; i < gastos.length; i++) {
-  //     if ((gastos[i].categoria = "Comida")) {
-  //       console.log("true");
-  //     }
-
-  //     let result = (gastos[i].categoria = "comida");
-  //     totalComida.push(result);
-  //     console.log(totalComida);
-  //   }
-  // }
-
-  // verComida();
+  // 3) Funcion suma de arrays, dinamico.
+  function sumarNumerosArray(arr) {
+    // arr && arr.length ? arr : [0, 0];
+    const reducer = (accumulator, curr) => accumulator + curr;
+    let resultado = arr.reduce(reducer);
+    // console.log(resultado);
+    return resultado;
+  }
 
   return (
     <div>
@@ -203,12 +196,18 @@ const Gastos = () => {
         <div className="">
           <h3 className="text-2xl font-bold font-mono uppercase">Gastos Hoy</h3>
           <div className="flex space-x-3 text-center my-2">
-            <CuadroGastos title="Gastos Totales" valor={totalGastos} />
+            <CuadroGastos
+              title="Gastos Comidas"
+              valor={sumarNumerosArray(arrayGastosComidaValores)}
+            />
             <CuadroGastos
               title="Gastos Proveedores"
-              valor={mostrarGastosProveedores}
+              // valor={sumarNumerosArray(arrayGastosProveedorValores)}
             />
-            <CuadroGastos title="Gastos Comidas" valor={totalGastos} />
+            <CuadroGastos
+              title="Gastos Varios"
+              // valor={sumarNumerosArray(arrayGastosVariosValores)}
+            />
           </div>
         </div>
         <div>
@@ -216,9 +215,18 @@ const Gastos = () => {
             Gastos Semana
           </h3>
           <div className="flex space-x-3 text-center my-2 scroll-x-auto">
-            <CuadroGastos title="Gastos Totales" valor="$9890" />
-            <CuadroGastos title="Gastos Proveedores" valor={totalGastos} />
-            <CuadroGastos title="Gastos Comidas" valor={totalGastos} />
+            <CuadroGastos
+              title="Gastos Comidas"
+              // valor={sumarNumerosArray(arrayGastosComidaValores)}
+            />
+            <CuadroGastos
+              title="Gastos Proveedores"
+              // valor={sumarNumerosArray(arrayGastosProveedorValores)}
+            />
+            <CuadroGastos
+              title="Gastos Varios"
+              // valor={sumarNumerosArray(arrayGastosVariosValores)}
+            />
           </div>
         </div>
       </div>

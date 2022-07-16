@@ -17,11 +17,13 @@ import StaticContext from "../../../contexts/StaticProvider";
 // import { DiaActual, formatearFecha } from "../../../helpers";
 // import { fechaHoy } from "../../../helpers/index";
 import { BotonVer } from "../../atoms/Botones";
+import Error from "../../atoms/Error";
 
 const FormularioGasto = () => {
   const {
     gasto,
     setGasto,
+    gastos,
     isOpenSaveModal,
     setIsOpenSaveModal,
     isOpenErrorModal,
@@ -32,56 +34,22 @@ const FormularioGasto = () => {
   const location = useLocation();
   const urlActual = location.pathname;
 
-  if (urlActual.includes("editar")) {
-    console.log("Si");
-  } else {
-    console.log("no");
-  }
   const [nombre, setNombre] = useState("");
   const [valor, setValor] = useState();
   const [categoria, setCategoria] = useState("");
   const [fecha, setFecha] = useState("");
+  const [notas, setNotas] = useState("");
+
+  const [error, setError] = useState(false);
 
   const toDay = new Date().toISOString().substring(0, 10);
-  console.log(toDay);
-
-  // const fechaEdit = gasto.fecha.subs(0, 10);
-  // console.log(fechaEdit);
-
-  // Nuevo Schema
-  // const nuevoGastoSchema = Yup.object().shape({
-  //   nombre: Yup.string().required(`El nombre es Obligatorio`),
-  //   valor: Yup.number()
-  //     .required(`El monto es Obligatorio`)
-  //     .positive("Número no válido")
-  //     .integer("Número no válido")
-  //     .typeError("El Número no es válido"),
-  //   categoria: ``,
-  //   fecha: ``,
-  // });
 
   const { _id } = gasto;
-  console.log(gasto);
 
-  // // Llamado a la base de datos
-  // useEffect(() => {
-  //   const obtenerClienteAPI = async () => {
-  //     try {
-  //       const url = `${import.meta.env.VITE_API_URL}/gastos/${id}`;
-  //       const respuesta = await fetch(url);
-  //       const resultado = await respuesta.json();
-  //       setGasto(resultado);
-  //       console.log(gasto);
-  //     } catch (error) {
-  //       console.log(error);
-  //     }
-  //     // setIsCargando(!isCargando);
-  //   };
-  //   obtenerClienteAPI();
-  // }, []);
   // Prueba con AXIOS
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     try {
       if (_id) {
         const respuesta = await axios.put(
@@ -91,12 +59,19 @@ const FormularioGasto = () => {
             valor,
             categoria,
             fecha,
+            notas,
           }
         );
         console.log(respuesta);
         setIsOpenSaveModal(!isOpenSaveModal);
+        setGasto("");
         navigate("/gastos");
       } else {
+        // Validacion del formulario
+        if ([nombre, valor, fecha, categoria].includes("")) {
+          console.log("Completa todos los casilleros por favor.");
+          setError(true);
+        }
         const respuesta = await axios.post(
           `${import.meta.env.VITE_API_URL}/gastos`,
           {
@@ -104,6 +79,7 @@ const FormularioGasto = () => {
             valor,
             categoria,
             fecha,
+            notas,
           }
         );
         console.log(respuesta);
@@ -121,21 +97,28 @@ const FormularioGasto = () => {
   const inputStyles =
     "block w-full p-2 px-4 bg-gray-100 rounded-md mt-1 capitalize";
   const divStyles = "px-5 py-3 space-x-1";
+
   return (
     <div>
       {/* <p> Fecha: {gasto.fecha.substr(0, 10)} </p> */}
 
+      <p className="text-md text-slate-400 my-2">
+        {gasto._id
+          ? `- La fecha y la categoria por un problema aparecen con datos erroneos, pero si vas a "ver gasto" existen. Lo que modifiques aca se va a cambiar, lo que no toques,queda igual a como esta en VER GASTO.`
+          : ""}
+      </p>
+      <p className="text-md text-slate-400 my-2">
+        {gasto._id
+          ? `- Si aparece esto cuando queres crear NUEVO GASTO, refresca la pagina.`
+          : ""}
+      </p>
       <p className="text-lg">
         {gasto._id ? `Editar el gasto: ${gasto.nombre}` : ""}
-      </p>
-      <p className="text-md text-slate-400 mt-1">
-        {gasto._id
-          ? `La fecha y la categoria por un problema aparecen vacias, pero si vas a "ver gasto" existen. Lo que modifiques aca se va a cambiar, lo que no toques,queda igual.`
-          : ""}
       </p>
       <div className="bg-white rounded-lg  max-w-xl mx-auto">
         <form action="submit" className="mt-5 py-5" onSubmit={handleSubmit}>
           <div className={divStyles}>
+            {error && <Error mensaje="Completa todos los campos" />}
             <label htmlFor="nombre" className={labelStyles}>
               Nombre
             </label>
@@ -150,6 +133,8 @@ const FormularioGasto = () => {
               defaultValue={gasto.nombre}
             />
           </div>
+          {/* {nombre === "" ? <p> Campo Obligatorio </p> : ""} */}
+
           <div className={divStyles}>
             <label htmlFor="valor" className={labelStyles}>
               Monto
@@ -176,14 +161,8 @@ const FormularioGasto = () => {
               placeholder=""
               className={inputStyles}
               onChange={(e) => setFecha(e.target.value)}
-              // defaultValue={gasto._id ? gasto.fecha.substr(0, 10) : toDay}
               // defaultValue={toDay}
-
-              // defaultValue={
-              //   urlActual.includes("editar")
-              //     ? gasto.fecha.substr(0, 10)
-              //     : { toDay }
-              // }
+              // defaultValue={urlActual.includes("editar") ? { toDay } : ""}
             />
           </div>
           <div className={divStyles}>
@@ -196,59 +175,29 @@ const FormularioGasto = () => {
               name="categoria"
               // type="tel"
               placeholder=""
+              // className={inputStyles}
               className={inputStyles}
               // value={categoria}
               onChange={(e) => setCategoria(e.target.value)}
               defaultValue={gasto.categoria}
             >
               <option value=""> -- Select -- </option>
-              <option value="Gastos" selected>
-                {" "}
-                Gastos Varios{" "}
-              </option>
+              <option value="Gastos"> Gastos Varios </option>
               <option value="Comida"> Comida </option>
               <option value="Proveedor"> Proveedores </option>
             </select>
           </div>
 
-          {/* <div className={divStyles}>
-            <label htmlFor="categoria" className={labelStyles}>
-              {" "}
-              Notas{" "}
-            </label>
-            <textarea
-              name=""
-              id=""
-              cols=""
-              rows=""
-              className="w-full border  h-28 p-2 "
-            ></textarea>
-          </div> */}
-
-          {/* Prueba acordion */}
+          {/* Prueba acordion TextArea */}
           <div class="accordion" id="accordionExample">
             <div class="accordion-item ">
               <h2 class="accordion-header mb-0" id="headingOne">
                 <button
-                  class="
-        accordion-button
-        relative
-        flex
-        items-center
-        w-full
-        py-4
-        px-5
-        text-base text-black text-left
-        bg-white
-        rounded-none
-        transition
-        focus:outline-none
-        
-      "
+                  class=" accordion-button relative flex items-center w-full py-4 px-5 text-base text-black text-left  bg-white rounded-none transition focus:outline-none"
                   type="button"
                   data-bs-toggle="collapse"
                   data-bs-target="#collapseOne"
-                  aria-expanded="true"
+                  aria-expanded="false"
                   aria-controls="collapseOne"
                 >
                   Agregar Notas
@@ -261,17 +210,15 @@ const FormularioGasto = () => {
                 data-bs-parent="#accordionExample"
               >
                 <div className={divStyles}>
-                  {/* <label htmlFor="categoria" className={labelStyles}>
-                    {" "}
-                    Notas{" "}
-                  </label> */}
                   <textarea
-                    name=""
-                    id=""
+                    name="notas"
+                    id="notas"
                     cols=""
                     rows=""
                     className="w-full border  h-28 p-2 "
                     placeholder="Escribe alguna nota..."
+                    defaultValue={gasto.notas}
+                    onChange={(e) => setNotas(e.target.value)}
                   ></textarea>
                 </div>
               </div>
@@ -316,6 +263,17 @@ FormularioGasto.defaultProps = {
 };
 
 export default FormularioGasto;
+
+// Nuevo Schema
+// const nuevoGastoSchema = Yup.object().shape({
+//   nombre: Yup.string().required(`El nombre es Obligatorio`),
+//   valor: Yup.number()
+//     .required(`El monto es Obligatorio`)
+//     .positive("Número no válido")
+//     .integer("Número no válido")
+//     .typeError("El Número no es válido"),
+//   categoria: ``,
+//   fecha: ``,
 
 {
   /* <Formik

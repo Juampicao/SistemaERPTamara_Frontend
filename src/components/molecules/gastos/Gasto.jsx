@@ -63,7 +63,7 @@ const Gasto = ({ gasto }) => {
             className="h-12 mx-auto"
           />
         </td>
-        <td> {nombre}</td>
+        <td className="capitalize"> {nombre}</td>
         <td> ${valor}.00</td>
         <td>{fecha.substr(0, 10)}</td>
 

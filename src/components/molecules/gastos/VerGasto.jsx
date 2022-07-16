@@ -8,6 +8,7 @@ import {
   BotonBlancoRedondeado,
 } from "../../../helpers/colores";
 import { BotonPrimario } from "../../atoms/Botones";
+import Gastos from "../../pages/Gastos";
 
 const VerGasto = () => {
   const { gasto, setGasto } = useContext(StaticContext);
@@ -34,13 +35,14 @@ const VerGasto = () => {
 
   return (
     <div>
-      <div>
+      <div className="space-y-3">
         <p> El producto es: {gasto.nombre} </p>
         <p> El ID es: {gasto._id} </p>
-        <p> Valor: {gasto.valor} </p>
+        <p> Valor: ${gasto.valor} </p>
         <p> Categoria: {gasto.categoria} </p>
-        <p> Fecha: {gasto.fecha.substr(0, 10)} </p>
-        {/* <p> Fecha: {formatearFecha(gasto.fecha)} </p> */}
+        {/* <p> Fecha: {gasto.fecha.substr(0, 10)} </p> */}
+        <p> Fecha: {formatearFecha(gasto.fecha)} </p>
+        <p> Notas: {gasto.notas ? gasto.notas : "No hay notas."} </p>
 
         <div className="py-5 flex justify-center space-x-3">
           <BotonPrimario
