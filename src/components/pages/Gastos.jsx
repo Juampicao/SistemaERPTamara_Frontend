@@ -174,7 +174,10 @@ const Gastos = () => {
           onClick={() => setModalCaja(!modalCaja)}
         />
         {modalCaja ? (
-          <ModalReutilizable closeModal={() => setModalCaja(!modalCaja)}>
+          <ModalReutilizable
+            title="Caja"
+            closeModal={() => setModalCaja(!modalCaja)}
+          >
             <InicioCaja />
           </ModalReutilizable>
         ) : (
@@ -195,39 +198,49 @@ const Gastos = () => {
       <div className="grid grid-rows space-y-10 my-10">
         <div className="">
           <h3 className="text-2xl font-bold font-mono uppercase">Gastos Hoy</h3>
-          <div className="flex space-x-3 text-center my-2">
-            <CuadroGastos
-              title="Gastos Comidas"
-              valor={sumarNumerosArray(arrayGastosComidaValores)}
-            />
-            <CuadroGastos
-              title="Gastos Proveedores"
-              // valor={sumarNumerosArray(arrayGastosProveedorValores)}
-            />
-            <CuadroGastos
-              title="Gastos Varios"
-              // valor={sumarNumerosArray(arrayGastosVariosValores)}
-            />
-          </div>
+
+          {arrayGastosComidaValores?.[0] ? (
+            <div className="flex space-x-3 text-center my-2 scroll-x-auto">
+              <CuadroGastos
+                title="Gastos Comidas"
+                valor={sumarNumerosArray(arrayGastosComidaValores)}
+              />{" "}
+              <CuadroGastos
+                title="Gastos Proveedores"
+                valor={sumarNumerosArray(arrayGastosProveedorValores)}
+              />
+              <CuadroGastos
+                title="Gastos Varios"
+                valor={sumarNumerosArray(arrayGastosVariosValores)}
+              />
+            </div>
+          ) : (
+            ""
+          )}
         </div>
         <div>
           <h3 className="text-2xl font-bold font-mono uppercase">
             Gastos Semana
           </h3>
-          <div className="flex space-x-3 text-center my-2 scroll-x-auto">
-            <CuadroGastos
-              title="Gastos Comidas"
-              // valor={sumarNumerosArray(arrayGastosComidaValores)}
-            />
-            <CuadroGastos
-              title="Gastos Proveedores"
-              // valor={sumarNumerosArray(arrayGastosProveedorValores)}
-            />
-            <CuadroGastos
-              title="Gastos Varios"
-              // valor={sumarNumerosArray(arrayGastosVariosValores)}
-            />
-          </div>
+          {arrayGastosComidaValores?.[0] ? (
+            <div className="flex space-x-3 text-center my-2 scroll-x-auto">
+              <CuadroGastos
+                title="Gastos Comidas"
+                valor={sumarNumerosArray(arrayGastosComidaValores)}
+              />
+              <CuadroGastos
+                title="Gastos Proveedores"
+                valor={sumarNumerosArray(arrayGastosProveedorValores)}
+              />
+              <CuadroGastos
+                title="Gastos Varios"
+                valor={sumarNumerosArray(arrayGastosVariosValores)}
+              />
+            </div>
+          ) : (
+            ""
+          )}
+          <div className="flex space-x-3 text-center my-2 scroll-x-auto"></div>
         </div>
       </div>
     </div>
@@ -235,27 +248,3 @@ const Gastos = () => {
 };
 
 export default Gastos;
-
-{
-  /* Abrir Nuevo Gasto */
-}
-{
-  /* <BotonPrimario
-          value="Nuevo Gasto"
-          Color={BotonAzulClasicoSinZoom}
-          onClick={() => setAbrirModal(!abrirModal)}
-        />
-        {abrirModal ? (
-          <ModalReutilizable closeModal={cerrar}>
-            <FormularioGasto onClick={() => {}} />
-          </ModalReutilizable>
-        ) : (
-          ""
-        )} */
-}
-{
-  /* Nuevo Gasto */
-}
-{
-  /* Abrir Nuevo Gasto */
-}

@@ -7,7 +7,7 @@ import {
 import { BotonPrimario } from "../Botones";
 import "./PruebaModalin.css";
 
-const ModalReutilizable = ({ children, isOpen, closeModal }) => {
+const ModalReutilizable = ({ title, children, isOpen, closeModal }) => {
   const handleModalContainerClick = (e) => e.stopPropagation();
 
   // function closeModal() {
@@ -28,7 +28,7 @@ const ModalReutilizable = ({ children, isOpen, closeModal }) => {
               className="text-xl font-medium leading-normal text-gray-800"
               id="exampleModalLabel"
             >
-              Gastos
+              {title}
             </h5>
           </div>
           <button className="modal-close" onClick={closeModal}>
