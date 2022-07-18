@@ -5,14 +5,14 @@ import { Link, useNavigate } from "react-router-dom";
 import Error from "../atoms/Error";
 import Alerta from "../atoms/Alerta";
 import { stringify } from "postcss";
-// import useAuth from "../../hooks/useAuth";
+import useAuth from "../../hooks/useAuth";
 
-const Login = ({ auth, setAuth }) => {
+const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [alerta, setAlerta] = useState({});
 
-  // const { setAuth } = useAuth();
+  const { setAuth } = useAuth();
 
   const navigate = useNavigate();
 
@@ -49,8 +49,6 @@ const Login = ({ auth, setAuth }) => {
   };
 
   const { msg } = alerta;
-
-  // console.log(import.meta.env.VITE_API_URL);
 
   return (
     <>
@@ -123,3 +121,46 @@ const Login = ({ auth, setAuth }) => {
 };
 
 export default Login;
+
+// const Login = ({auth,setAuth}) => {
+//   const [email, setEmail] = useState("");
+//   const [password, setPassword] = useState("");
+//   const [alerta, setAlerta] = useState({});
+
+//   const { setAuth } = useAuth();
+
+//   const navigate = useNavigate();
+
+//   const handleSubmit = async (e) => {
+//     e.preventDefault();
+
+//     if ([email, password].includes("")) {
+//       setAlerta({
+//         msg: "Todos los campos son obligatorios",
+//         error: true,
+//       });
+//       return;
+//     }
+//     // navigate("/gastos");
+//     try {
+//       const { data } = await axios.post(
+//         `${import.meta.env.VITE_API_URL}/usuarios/login`,
+//         {
+//           email,
+//           password,
+//         }
+//       );
+//       window.localStorage.setItem(`token`, JSON.stringify(data.token));
+
+//       setAuth(true);
+//       setAlerta({});
+//       navigate("/gastos");
+//     } catch (error) {
+//       setAlerta({
+//         msg: error.response.data.msg,
+//         error: true,
+//       });
+//     }
+//   };
+
+//   const { msg } = alerta;

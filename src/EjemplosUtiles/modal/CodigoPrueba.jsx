@@ -125,6 +125,11 @@ const CodigoPrueba = () => {
         type="text"
         defaultValue={urlActual.includes("editar") ? { toDay } : ""}
       />
+      {/* Prueba Tooltip */}
+      <p data-bs-toggle="tooltip" title="Hi! I'm tooltip">
+        tooltip?
+      </p>
+      {/* Prueba Tooltip */}
     </div>
   );
 };

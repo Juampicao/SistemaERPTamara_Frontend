@@ -13,6 +13,7 @@ import IconAdd from "../../img/newIcons/iconAdd.png";
 import "./Botones.css";
 export const BotonVer = ({ value, onClick }) => {
   const navigate = useNavigate();
+  const handleBack = () => navigate(-1);
 
   return (
     <>
@@ -99,6 +100,33 @@ export const BotonPrimarioIcono = ({ value, onClick, Color }) => {
         type="submit"
         value={value}
       >
+        <img src={IconAdd} alt="" className="h-6 pr-1" />
+        <p>Nuevo Gasto</p>
+      </button>
+    </>
+  );
+};
+
+export const BotonNuevaVenta = ({ value, onClick, Color }) => {
+  return (
+    <>
+      <button
+        className="bg-green-500 hover:bg-green-700 text-white px-4 flex py-2.5  hover:scale-105 font-medium text-xs leading-tight uppercase  transition duration-200 ease-in-out hover:shadow-lg active:shadow-lg rounded-xl focus:outline-none hover:duration-200  cursor-pointer items-center"
+        onClick={onClick}
+        type="submit"
+        value={value}
+      >
+        <img src={IconAdd} alt="" className="h-6 pr-1" />
+        <p>Nueva Venta</p>
+      </button>
+    </>
+  );
+};
+
+export const BotonVolverAtras = ({ value, onClick, Color }) => {
+  return (
+    <>
+      <button className="" onClick={onClick} type="submit" value={value}>
         <img src={IconAdd} alt="" className="h-6 pr-1" />
         <p>Nuevo Gasto</p>
       </button>

@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { Formik, Form, Field } from "formik";
 import axios from "axios";
 
 import { BotonPrimario } from "../../atoms/Botones";
@@ -11,19 +10,15 @@ import {
   BotonBlancoClasicoSinZoom,
   BotonBlancoRedondeado,
 } from "../../../helpers/colores";
-import * as Yup from "Yup";
-import Alerta from "../../atoms/Alerta";
-import StaticContext from "../../../contexts/StaticProvider";
 
+import StaticContext from "../../../contexts/StaticProvider";
 import { BotonVer } from "../../atoms/Botones";
 import Error from "../../atoms/Error";
-// import { ModalGuardado } from "../../atoms/ModalNotificacion";
 
-const FormularioGasto = () => {
+const FormularioVenta = () => {
   const {
-    gasto,
-    setGasto,
-    gastos,
+    venta,
+    setVenta,
     isOpenSaveModal,
     setIsOpenSaveModal,
     isOpenErrorModal,
@@ -35,8 +30,11 @@ const FormularioGasto = () => {
   const urlActual = location.pathname;
 
   const [nombre, setNombre] = useState("");
-  const [valor, setValor] = useState();
-  const [categoria, setCategoria] = useState("Comida");
+  const [cantidad, setCantidad] = useState(1);
+  const [valorIndividual, setValorIndividual] = useState("");
+  const [valorTotal, setValorTotal] = useState("");
+  const [metodoPago, setMetodoPago] = useState("Efectivo");
+  const [categoria, setCategoria] = useState("");
   const [fecha, setFecha] = useState("");
   const [notas, setNotas] = useState("");
 
@@ -45,7 +43,7 @@ const FormularioGasto = () => {
   const toDay = new Date().toISOString().substring(0, 10);
   console.log(toDay);
 
-  const { _id } = gasto;
+  const { _id } = venta;
 
   // Prueba con AXIOS
   const handleSubmit = async (e) => {
@@ -54,37 +52,47 @@ const FormularioGasto = () => {
     try {
       if (_id) {
         const respuesta = await axios.put(
-          `${import.meta.env.VITE_API_URL}/gastos/${_id}`,
+          `${import.meta.env.VITE_API_URL}/ventas/${_id}`,
           {
             nombre,
-            valor,
+            cantidad,
+            valorIndividual,
+            valorTotal,
+            metodoPago,
             categoria,
             fecha,
             notas,
           }
         );
         console.log(respuesta);
-        setGasto("");
-        navigate("/gastos");
+        setVenta("");
+        navigate("/ventas");
         setIsOpenSaveModal(true);
       } else {
         // Validacion del formulario
-        if ([nombre, valor, fecha, categoria].includes("")) {
+        if (
+          [nombre, valorIndividual, valorTotal, metodoPago, categoria].includes(
+            ""
+          )
+        ) {
           console.log("Completa todos los casilleros por favor.");
           setError(true);
         }
         const respuesta = await axios.post(
-          `${import.meta.env.VITE_API_URL}/gastos`,
+          `${import.meta.env.VITE_API_URL}/ventas`,
           {
             nombre,
-            valor,
+            cantidad,
+            valorIndividual,
+            valorTotal,
+            metodoPago,
             categoria,
             fecha,
             notas,
           }
         );
         console.log(respuesta);
-        navigate("/gastos");
+        navigate("/ventas");
         setIsOpenSaveModal(true);
       }
     } catch (error) {
@@ -101,54 +109,82 @@ const FormularioGasto = () => {
 
   return (
     <div>
-      {/* <p> Fecha: {gasto.fecha.substr(0, 10)} </p> */}
-
       <p className="text-md text-slate-400 my-2">
-        {gasto._id
-          ? `- La fecha y la categoria por un problema aparecen con datos erroneos, pero si vas a "ver gasto" existen. Lo que modifiques aca se va a cambiar, lo que no toques,queda igual a como esta en VER GASTO.`
+        {venta._id
+          ? `- La fecha y la categoria por un problema aparecen con datos erroneos, pero si vas a "ver venta" existen. Lo que modifiques aca se va a cambiar, lo que no toques,queda igual a como esta en VER venta.`
           : ""}
       </p>
       <p className="text-md text-slate-400 my-2">
-        {gasto._id
-          ? `- Si aparece esto cuando queres crear NUEVO GASTO, refresca la pagina.`
+        {venta._id
+          ? `- Si aparece esto cuando queres crear NUEVO venta, refresca la pagina.`
           : ""}
       </p>
       <p className="text-lg">
-        {gasto._id ? `Editar el gasto: ${gasto.nombre}` : ""}
+        {venta._id ? `Editar la venta: ${venta.nombre}` : ""}
       </p>
       <div className="bg-white rounded-lg  max-w-xl mx-auto">
         <form action="submit" className="mt-5 py-5" onSubmit={handleSubmit}>
           <div className={divStyles}>
             {error && <Error mensaje="Completa todos los campos" />}
             <label htmlFor="nombre" className={labelStyles}>
-              Nombre
+              Producto
             </label>
             <input
               id="nombre"
               name="nombre"
               type="text"
-              placeholder="Nombre del gasto"
+              placeholder="Nombre de venta"
               className={inputStyles}
               // value={nombre}
               onChange={(e) => setNombre(e.target.value)}
-              defaultValue={gasto.nombre}
+              defaultValue={venta.nombre}
             />
           </div>
           {/* {nombre === "" ? <p> Campo Obligatorio </p> : ""} */}
+          <div className={divStyles}>
+            <label htmlFor="cantidad" className={labelStyles}>
+              Cantidad de unidades
+            </label>
+            <input
+              id="cantidad"
+              name="cantidad"
+              type="number"
+              placeholder={venta._id ? venta.valorIndividual : "Valor de venta"}
+              className={inputStyles}
+              // value={valor}
+              onChange={(e) => setCantidad(e.target.value)}
+              defaultValue={venta.cantidad}
+            />
+          </div>
 
           <div className={divStyles}>
             <label htmlFor="valor" className={labelStyles}>
-              Monto
+              Valor Unitario
             </label>
             <input
               id="valor"
               name="valor"
               type="number"
-              placeholder={gasto._id ? gasto.valor : "Valor del gasto"}
+              placeholder={venta._id ? venta.valorIndividual : "Valor de venta"}
               className={inputStyles}
               // value={valor}
-              onChange={(e) => setValor(e.target.value)}
-              defaultValue={gasto.valor}
+              onChange={(e) => setValorIndividual(e.target.value)}
+              defaultValue={venta.valorIndividual}
+            />
+          </div>
+          <div className={divStyles}>
+            <label htmlFor="valorTotal" className={labelStyles}>
+              Valor Total
+            </label>
+            <input
+              id="valorTotal"
+              name="valor"
+              type="number"
+              // placeholder={venta._id ? venta.valorIndividual : "Valor de venta"}
+              className={inputStyles}
+              // value={valor}
+              onChange={(e) => setValorTotal(e.target.value)}
+              defaultValue={venta.valorTotal}
             />
           </div>
           <div className={divStyles}>
@@ -164,8 +200,25 @@ const FormularioGasto = () => {
               onChange={(e) => setFecha(e.target.value)}
               // defaultValue={toDay}
               // defaultValue={urlActual.includes("editar") ? { toDay } : ""}
-              defaultValue={gasto._id ? gasto.fecha : toDay}
+              defaultValue={venta._id ? venta.fecha : toDay}
             />
+          </div>
+          <div className={divStyles}>
+            <label htmlFor="metodoPago" className={labelStyles}>
+              Metodo de pago
+            </label>
+            <select
+              as="select"
+              id="metodoPago"
+              name="metodoPago"
+              placeholder=""
+              className={inputStyles}
+              onChange={(e) => setMetodoPago(e.target.value)}
+              // defaultValue={venta._ ? venta.categoria : ""}
+            >
+              <option value=""> Efectivo </option>
+              <option value="ventas"> Tarjeta </option>
+            </select>
           </div>
           <div className={divStyles}>
             <label htmlFor="categoria" className={labelStyles}>
@@ -178,12 +231,11 @@ const FormularioGasto = () => {
               placeholder=""
               className={inputStyles}
               onChange={(e) => setCategoria(e.target.value)}
-              defaultValue={gasto._ ? gasto.categoria : "Comida"}
+              defaultValue={venta._ ? venta.categoria : ""}
             >
-              <option value=""> -- Select -- </option>
-              <option value="Gastos"> Gastos Varios </option>
+              <option value="ventas"> Bebida </option>
               <option value="Comida"> Comida </option>
-              <option value="Proveedor"> Proveedores </option>
+              <option value="Proveedor"> Otros </option>
             </select>
           </div>
 
@@ -216,7 +268,7 @@ const FormularioGasto = () => {
                     rows=""
                     className="w-full border  h-28 p-2 "
                     placeholder="Escribe alguna nota..."
-                    defaultValue={gasto.notas}
+                    defaultValue={venta.notas}
                     onChange={(e) => setNotas(e.target.value)}
                   ></textarea>
                 </div>
@@ -226,19 +278,19 @@ const FormularioGasto = () => {
           {/* fin prueba acordeon */}
 
           <div className="py-5 flex justify-center space-x-3">
-            {gasto._id ? (
+            {venta._id ? (
               <BotonPrimario
                 Color={BotonBlancoRedondeado}
                 value="Ver"
                 type="button"
-                onClick={() => navigate(`/gastos/${_id}`)}
+                onClick={() => navigate(`/ventas/${_id}`)}
               />
             ) : (
               ""
             )}
             <BotonPrimario
               Color={BotonAzulRedondeado}
-              value={gasto?.nombre ? "Editar Gasto" : "Agregar Gasto"}
+              value={venta?.nombre ? "Editar venta" : "Agregar venta"}
               type="submit"
             />
             <BotonPrimario
@@ -246,9 +298,9 @@ const FormularioGasto = () => {
               value="Volver Atras"
               type="button"
               onClick={() => {
-                navigate("/gastos"), setGasto("");
+                navigate("/ventas"), setventa("");
               }}
-              // onClick={({ handleBack }, setGasto(""))}
+              // onClick={({ handleBack }, setventa(""))}
             />
           </div>
         </form>
@@ -257,121 +309,4 @@ const FormularioGasto = () => {
   );
 };
 
-FormularioGasto.defaultProps = {
-  gasto: {},
-  // cargando: false,
-};
-
-export default FormularioGasto;
-
-// Nuevo Schema
-// const nuevoGastoSchema = Yup.object().shape({
-//   nombre: Yup.string().required(`El nombre es Obligatorio`),
-//   valor: Yup.number()
-//     .required(`El monto es Obligatorio`)
-//     .positive("Número no válido")
-//     .integer("Número no válido")
-//     .typeError("El Número no es válido"),
-//   categoria: ``,
-//   fecha: ``,
-
-{
-  /* <Formik
-        initialValues={{
-          nombre: gasto?.nombre ?? "",
-          valor: gasto?.valor ?? "",
-          categoria: gasto?.categoria ?? "Gastos",
-          fecha: gasto?.fecha ?? "2022-07-05",
-        }}
-        enableReinitialize={true}
-        onSubmit={async (values, { resetForm }) => {
-          await handleSubmit(values);
-          resetForm();
-        }}
-        validationSchema={nuevoGastoSchema}
-        // El modelo que va a respetar (cambiar por otro si hace falta.)
-      >
-        {({ errors, touched }) => {
-          return (
-            <Form className="mt-10 ">
-              <div className={divStyles}>
-                <label htmlFor="nombre" className={labelStyles}>
-                  Nombre
-                </label>
-                <Field
-                  id="nombre"
-                  name="nombre"
-                  type="text"
-                  placeholder="Tipo de gasto"
-                  className={inputStyles}
-                />
-
-                {errors.nombre && touched.nombre ? (
-                  <Alerta>{errors.nombre}</Alerta>
-                ) : null}
-              </div>
-              <div className={divStyles}>
-                <label htmlFor="valor" className={labelStyles}>
-                  Monto
-                </label>
-                <Field
-                  id="valor"
-                  name="valor"
-                  type="number"
-                  placeholder="Monto"
-                  className={inputStyles}
-                />
-                {errors.valor && touched.valor ? (
-                  <Alerta>{errors.valor}</Alerta>
-                ) : null}
-              </div>
-              <div className={divStyles}>
-                <label htmlFor="categoria" className={labelStyles}>
-                  Categoria
-                </label>
-                <Field
-                  as="select"
-                  id="categoria"
-                  name="categoria"
-                  type="tel"
-                  placeholder=""
-                  className={inputStyles}
-                >
-                  <option value=""> -- Select -- </option>
-                  <option value="Gastos"> Gastos Varios </option>
-                  <option value="Comida"> Comida </option>
-                  <option value="Proveedor"> Proveedores </option>
-                </Field>
-              </div>
-              <div className={divStyles}>
-                <label htmlFor="fecha" className={labelStyles}>
-                  Fecha
-                </label>
-                <Field
-                  id="fecha"
-                  name="fecha"
-                  type="date"
-                  placeholder=""
-                  className={inputStyles}
-                />
-              </div>
-              <div className="py-5 flex justify-center space-x-3">
-                <BotonPrimario
-                  Color={BotonAzulRedondeado}
-                  value={gasto?.nombre ? "Editar Gasto" : "Agregar Gasto"}
-                  type="submit"
-                />
-                <BotonPrimario
-                  Color={BotonBlancoRedondeado}
-                  value="Volver Atras"
-                  type="button"
-                  onClick={() => {
-                    navigate("/gastos"), setGasto("");
-                  }}
-                />
-              </div>
-            </Form>
-          );
-        }}
-      </Formik> */
-}
+export default FormularioVenta;

@@ -11,10 +11,15 @@ import Imagenpersona from "../../img/newIcons/fotoMujer2.png";
 
 import { useContext, useEffect, useState } from "react";
 import StaticContext from "../../contexts/StaticProvider";
+import useAuth from "../../hooks/useAuth";
+import BotonFlotante from "../atoms/BotonFlotante";
 
 const Layout = () => {
   const { isActiveMenu, setActiveMenu, screenSize, setScreenSize } =
     useContext(StaticContext);
+
+  const { auth, setAuth } = useAuth();
+
   const location = useLocation();
   const urlActual = location.pathname;
 
@@ -45,19 +50,6 @@ const Layout = () => {
   }, [screenSize]);
 
   const handleActiveMenu = () => setActiveMenu(!isActiveMenu);
-
-  // {
-  //   isActiveMenu ? (
-  //     <div className="w-72 fixed sidebar dark:bg-secondary-dark-bg bg-white ">
-  //       <Sidebar />
-  //     </div>
-  //   ) : (
-  //     <div className="w-0 dark:bg-secondary-dark-bg">
-  //       <Sidebar />
-  //     </div>
-  //   );
-  // }
-  // styles
 
   // const activeStyles = "bg-indigo-700 rounded-lg  text-white  duration-200 p-3";
   const activeStyles = `text-white  duration-200 border-l-4  hover:border-r-lime-50 p-1   ${
@@ -167,9 +159,11 @@ const Layout = () => {
             <Link to="/">
               <div className="flex items-center rounded-full float-left max-h-20 mt-16 text-white   ">
                 <img
-                  src={Imagenpersona}
-                  className={imagenPersonaStyle}
-                  alt="imagen persona"
+                  src="https://mdbcdn.b-cdn.net/img/new/avatars/5.webp"
+                  class={`origin-left duration-300 rounded-xl ${
+                    !isActiveMenu ? `` : "h-12"
+                  }`}
+                  alt="Avatar"
                 />
 
                 <p className={hiddenTitles}>
@@ -179,7 +173,12 @@ const Layout = () => {
               </div>
             </Link>
 
-            {/* \ */}
+            <button
+              className="text-white"
+              onClick={(e) => console.log("Cerrar sesion...")}
+            >
+              Cerrar Sesion
+            </button>
             <button
               onClick={handleClickClose}
               className="hover:scale-105  hover:duration-200 duration-200"
@@ -190,7 +189,9 @@ const Layout = () => {
         </div>
 
         {/* <div className="bg-slate-100 p-3 xs:p-5 sm:w-3/4 sm:p-10 sm:h-screen sm:overflow-y-scroll"> */}
-        <div className="w-full origin-left duration-300 bg-slate-100 p-3 xs:p-5  sm:p-10 sm:h-screen overflow-y-scroll">
+        {/* <div className="w-full origin-left duration-300 bg-slate-100 p-3 xs:p-5  sm:p-10 sm:h-screen overflow-y-scroll"> */}
+        <div className="w-full origin-left duration-300 bg-slate-100 h-screen p-5  overflow-y-scroll">
+          <BotonFlotante />
           <Outlet />
         </div>
       </div>

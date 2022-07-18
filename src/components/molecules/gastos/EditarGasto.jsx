@@ -21,7 +21,7 @@ const EditarGasto = () => {
         const respuesta = await fetch(url);
         const resultado = await respuesta.json();
         setGasto(resultado);
-        // console.log(gasto);
+        console.log(gasto);
       } catch (error) {
         console.log(error);
       }

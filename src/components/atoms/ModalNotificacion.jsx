@@ -29,7 +29,7 @@ export const ModalGuardado = ({
       <div
         id="ModalGuardado"
         data-aos="fade-right"
-        className="top-10 right-20 fixed border shadow-lg rounded-md bg-white p-5 mx-auto"
+        className="top-10 right-20 fixed border shadow-lg rounded-md bg-white p-5 mx-auto z-50"
       >
         <button onClick={handleClickClose}>
           <img
@@ -103,7 +103,7 @@ export const ModalEliminado = ({
       <div
         id="ModalEliminado"
         data-aos="fade-right"
-        className="top-10 right-20 fixed border shadow-lg rounded-md bg-white p-5 mx-auto"
+        className="top-10 right-20 fixed border shadow-lg rounded-md bg-white p-5 mx-auto z-50"
       >
         <button onClick={handleClickClose}>
           <img

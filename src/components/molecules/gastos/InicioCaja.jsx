@@ -62,7 +62,7 @@ const InicioCaja = () => {
 
   return (
     <>
-      <form action="submit">
+      <form action="submit" className="">
         <div className={InputStyle}>
           <label htmlFor="caja" className="">
             ¿Cual es el inicio de la caja?
@@ -86,15 +86,6 @@ const InicioCaja = () => {
             onClick={AgregarInicioCaja}
           />
         </div>
-        {isCargando ? <Spiner /> : " "}
-        {isOpenErrorModal ? (
-          <ModalError
-            titleModal="Error"
-            subtitleModal="Problema al cargar la caja"
-          />
-        ) : (
-          " "
-        )}
       </form>
     </>
   );

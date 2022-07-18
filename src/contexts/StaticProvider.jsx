@@ -1,5 +1,12 @@
 import React from "react";
 import { createContext, useState } from "react";
+import {
+  ModalEliminado,
+  ModalError,
+  ModalGuardado,
+} from "../components/atoms/ModalNotificacion";
+import Spiner from "../components/atoms/Spiner";
+import { useModal } from "../hooks/useModal";
 
 const StaticContext = createContext();
 
@@ -28,6 +35,8 @@ const StaticProvider = ({ children }) => {
   const [isCargando, setIsCargando] = useState(false);
 
   const [inicioCaja, setInicioCaja] = useState(Number(""));
+
+  const [isOpenModal, openModal, closeModal] = useModal(false);
 
   // Borrar Gastos
   // const handleDelete = async (id) => {
@@ -89,8 +98,33 @@ const StaticProvider = ({ children }) => {
         // handleDelete,
         inicioCaja,
         setInicioCaja,
+        isOpenModal,
+        openModal,
+        closeModal,
       }}
     >
+      {isOpenDeleteModal ? (
+        <ModalEliminado
+          titleModal="¡Eliminado Correctamente!"
+          buttonLabel="ir al listado"
+          onClick={() => navigate(`/ventas`)}
+        />
+      ) : (
+        ""
+      )}
+      {isOpenSaveModal ? (
+        <ModalGuardado
+          titleModal="Guardado!"
+          subtitleModal="Puedes ver los cambios en el Listado."
+          buttonLabel="Ir al listado"
+          // handleClick={handleModalClick}
+          // handleClickClose={closeModal}
+        />
+      ) : (
+        ""
+      )}
+      {isOpenErrorModal ? <ModalError titleModal="Error" /> : " "}
+      {isCargando ? <Spiner /> : " "}
       {children}
     </StaticContext.Provider>
   );

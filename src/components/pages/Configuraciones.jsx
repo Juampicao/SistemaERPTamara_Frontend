@@ -2,57 +2,60 @@ import React, { useContext, useState } from "react";
 import Iconos from "../atoms/Iconos";
 import Header from "../molecules/Header";
 
-import StaticContext from "../../contexts/StaticProvider";
 import { ModalGuardado } from "../atoms/ModalNotificacion";
 import VerVenta from "../molecules/ventas/VerVenta";
 import FormularioGasto from "../molecules/gastos/FormularioGasto";
-import { useModal } from "../../hooks/useModal";
 import { BotonPrimario } from "../atoms/Botones";
-import { BotonBlancoClasico, BotonClasico } from "../../helpers/colores";
+import {
+  BotonBlancoClasico,
+  BotonClasico,
+  BotonBlancoRedondeado,
+} from "../../helpers/colores";
 
 import "./../atoms/BarraSearch.css";
 
+import UltimoModal from "../atoms/modal/ultimoModal/UltimoModal";
+import StaticContext from "../../contexts/StaticProvider";
+
 const Configuraciones = () => {
-  const { isOpenEdit, setIsOpenEdit } = useContext(StaticContext);
-
-  // const [modalCaja, setModalCaja] = useState(true);
-
-  function openModalCaja() {
-    console.log("hola");
-    setModalCaja(!modalCaja);
-  }
+  const { isOpenModal, openModal, closeModal } = useContext(StaticContext);
 
   return (
     <div data-aos="fade-left">
       <Header title="Configuracion" />
+
+      <button onClick={openModal} className="bg-blue-500 p-3 rounded-xl">
+        <p>abrir modal</p>
+        <UltimoModal isOpen={isOpenModal} closeModal={closeModal}></UltimoModal>
+      </button>
+
       <p>Pagina en Construccion</p>
-      {isOpenEdit ? (
-        <ModalGuardado
-          titleModal="Guardado!"
-          subtitleModal="Puedes ver los cambios en el Listado."
-          buttonLabel="Ir al listado"
-          // handleClick={handleModalClick}
-        />
-      ) : (
-        ""
-      )}
       <BotonPrimario
         Color={BotonBlancoClasico}
         onClick={() => openModalCaja()}
       />
-      <div className="text-center">
-        <p>
-          Hover the link to see the
-          <a
-            href="#"
-            className="text-blue-600 hover:text-blue-700 transition duration-150 ease-in-out"
-            data-bs-toggle="tooltip"
-            title="Hi! I'm tooltip"
-          >
-            tooltip
-          </a>
-        </p>
-      </div>
+      {/* Prueba Tooltip */}
+      <p data-bs-toggle="tooltip" title="Hi! I'm tooltip">
+        tooltip?
+      </p>
+      {/* Prueba Tooltip */}
+      {/* Modal Reutilizable inicio caja funciona bien y es lindo.  */}
+      <BotonPrimario
+        value="Inicio Caja"
+        Color={BotonBlancoRedondeado}
+        onClick={() => setModalCaja(!modalCaja)}
+      />
+      {/* {modalCaja ? (
+        <ModalReutilizable
+          title="Caja"
+          closeModal={() => setModalCaja(!modalCaja)}
+        >
+          <InicioCaja />
+        </ModalReutilizable>
+      ) : (
+        ""
+      )} */}
+      {/* Modal Reutilizable inicio caja funciona bien y es lindo.  */}
     </div>
   );
 };

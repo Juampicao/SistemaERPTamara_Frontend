@@ -31,6 +31,8 @@ import IconoGastos from "../../img/iconoGastos.png";
 import Flecha from "../../img/newIcons/flechaIzquierda.png";
 import diccionarioIConos from "../../helpers/iconos";
 
+import UltimoModal from "../atoms/modal/ultimoModal/UltimoModal";
+
 const Gastos = () => {
   const {
     gastos,
@@ -44,7 +46,10 @@ const Gastos = () => {
     ventas,
     modalCaja,
     setModalCaja,
-    // isOpenErrorModal,
+    isOpenErrorModal,
+    isOpenModal,
+    openModal,
+    closeModal,
   } = useContext(StaticContext);
 
   const [gastosComida, setGastosComida] = useState();
@@ -172,18 +177,12 @@ const Gastos = () => {
         <BotonPrimario
           value="Inicio Caja"
           Color={BotonBlancoRedondeado}
-          onClick={() => setModalCaja(!modalCaja)}
+          onClick={openModal}
         />
-        {modalCaja ? (
-          <ModalReutilizable
-            title="Caja"
-            closeModal={() => setModalCaja(!modalCaja)}
-          >
-            <InicioCaja />
-          </ModalReutilizable>
-        ) : (
-          ""
-        )}
+        <UltimoModal isOpen={isOpenModal} closeModal={closeModal}>
+          <InicioCaja />
+        </UltimoModal>
+
         {/* Inicio Caja */}
         <BotonPrimario
           value="Reiniciar Gastos"
@@ -214,7 +213,8 @@ const Gastos = () => {
               />
               <CuadroGastos
                 img={diccionarioIConos.Gastos}
-                title="Gastos Varios"
+                title="Gastos"
+                title2="Varios"
                 valor={sumarNumerosArray(arrayGastosVariosValores)}
               />
             </div>
@@ -240,7 +240,8 @@ const Gastos = () => {
               />
               <CuadroGastos
                 img={diccionarioIConos.Gastos}
-                title="Gastos Varios"
+                title="Gastos"
+                title2="Varios"
                 valor={sumarNumerosArray(arrayGastosVariosValores)}
               />
             </div>

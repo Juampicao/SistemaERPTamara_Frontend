@@ -16,8 +16,12 @@ const ModalReutilizable = ({ title, children, isOpen, closeModal }) => {
   //   cerrarModal;
   // }
   return (
-    <div>
-      <article id="article" className="modal is-open" onClick={closeModal}>
+    <div className="">
+      <article
+        id="article"
+        className="modal is-open bg-half-transparent w-screen fixed nav-item"
+        onClick={closeModal}
+      >
         <div
           id="modal"
           className="modal-container border rounded-lg "

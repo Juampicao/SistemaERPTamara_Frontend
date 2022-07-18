@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom";
 import Fernet from "../../img/fernet.jpg";
 
 import Header from "../molecules/Header";
-import Editar from "../molecules/ventas/Editar";
+// import Editar from "../molecules/ventas/Editar";
 import {
   ModalEliminado,
   ModalError,
@@ -136,16 +136,7 @@ const Inicio = () => {
           ))}
         </tbody>
       </table>
-      {isOpenSaveModal ? (
-        <ModalGuardado
-          titleModal="Guardado!"
-          subtitleModal="Puedes ver los cambios en el Listado."
-          buttonLabel="Ir al listado"
-          handleClick={handleModalClick}
-        />
-      ) : (
-        ""
-      )}
+
       {isOpenEdit ? <Editar /> : ""}
       {isOpenConfirmModal ? (
         <MessageModal

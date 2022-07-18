@@ -1,51 +1,80 @@
 import React, { useContext, useEffect, useState } from "react";
-import Fernet from "../../../img/fernet.jpg";
-import VerVenta from "./VerVenta";
-
+import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 import StaticContext from "../../../contexts/StaticProvider";
+
+import { BotonEditar, BotonEliminar, BotonVer } from "../../atoms/Botones";
+import { ModalEliminado, ModalError } from "../../atoms/ModalNotificacion";
+import MessageModal from "../../atoms/MessageModal";
+import {
+  formatearFecha,
+  formatearFechaCorta,
+  FormatearNumero,
+} from "../../../helpers";
+
+import diccionarioIConos from "../../../helpers/iconos";
+
 const Venta = ({ venta }) => {
-  const { ventas, setVentas } = useContext(StaticContext);
+  const {
+    ventas,
+    setVentas,
+    screenSize,
+    setScreenSize,
+    setIsOpenErrorModal,
+    isOpenErrorModal,
+    isOpenSaveModal,
+    setIsOpenSaveModal,
+  } = useContext(StaticContext);
   const navigate = useNavigate();
+  const {
+    _id,
+    nombre,
+    cantidad,
+    valorIndividual,
+    valorTotal,
+    metodoPago,
+    categoria,
+    fecha,
+    notas,
+  } = venta;
 
-  const { id, nombre, cantidad, valor } = venta;
-
-  // Creando Estado Venta
-  //   useEffect(() => {
-  //     const obtenerClienteAPI = async () => {
-  //       try {
-  // const url = `${import.meta.env.VITE_API_URL}/ventas/${id}`;
-
-  //         const respuesta = await fetch(url);
-  //         const resultado = await respuesta.json();
-  //         setVenta(resultado);
-  //         console.log(resultado);
-  //       } catch (error) {
-  //         console.log(error);
-  //       }
-  //       // setCargando(!cargando);
-  //     };
-  //     obtenerClienteAPI();
-  //   }, []);
+  const handleDelete = async (_id) => {
+    console.log("Borrando");
+    const confirmar = confirm("Deseas eliminar esta venta?");
+    if (confirmar) {
+      try {
+        const respuesta = await axios.delete(
+          `${import.meta.env.VITE_API_URL}/ventas/${_id}`
+        );
+        console.log(respuesta);
+        const arrayventas = ventas.filter((venta) => venta._id !== _id);
+        setVentas(arrayVentas);
+        setIsOpenDeleteModal(!isOpenDeleteModal);
+      } catch (error) {
+        console.log(error);
+        setIsOpenErrorModal(!isOpenErrorModal);
+      }
+    }
+  };
   return (
     <>
-      <tr className="hover:bg-gray-100 border border-slate-500">
-        {/* <td className=" p-3">
-          <img src={imagen} alt="" className="h-32 mx-auto" />
-        </td> */}
-        <td> {id}</td>
-        <td> {nombre}</td>
-        <td> ${cantidad}</td>
-        <td> ${valor}</td>
-        <td className="p-3 space-y-3 ">
-          <button
-            type="button"
-            className="bg-yellow-500 hover:bg-yellow-600 block mx-auto w-[75px] text-white p-2 uppercase font-bold text-xs"
-            onClick={() => navigate(`/ventas/${id}`)}
-          >
-            Ver
-          </button>
+      <tr className="hover:bg-gray-300">
+        <td className="capitalize "> {nombre}</td>
+        <td className=""> {FormatearNumero(valorIndividual)}</td>
+        <td className=""> {FormatearNumero(valorTotal)}</td>
+
+        {/* <td> {gasto._id ? fecha : fecha.substr(0, 10)}</td> */}
+        <td> {formatearFechaCorta(fecha)}</td>
+        <td className=" ">
+          <div className=" ">
+            <BotonVer value="Ver" onClick={() => navigate(`/ventas/${_id}`)} />
+            <BotonEditar
+              value="Editar"
+              onClick={() => navigate(`/ventas/editar/${_id}`)}
+            />
+            <BotonEliminar value="Eliminar" onClick={() => handleDelete(_id)} />
+          </div>
         </td>
       </tr>
     </>

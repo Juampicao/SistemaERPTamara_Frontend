@@ -1,23 +1,21 @@
+// Generar ID
 export const generarId = () => {
   const random = Math.random().toString(36);
   const fecha = Date.now().toString(2);
   return random + fecha;
 };
 
-// Formatear Fecha Hoy
-export const fechaHoy = () => {
-  let date = new Date();
-  let output =
-    String(date.getDate()).padStart(2, "0") +
-    "/" +
-    String(date.getMonth() + 1).padStart(2, "0") +
-    "/" +
-    date.getFullYear();
-  console.log(output);
-  return output;
+export const formatearFechaCorta = (fecha) => {
+  const fechaNueva = new Date(fecha);
+  const opciones = {
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  };
+
+  return fechaNueva.toLocaleDateString("es-ES", opciones);
 };
 
-// Formatear Fecha
 export const formatearFecha = (fecha) => {
   const fechaNueva = new Date(fecha);
   const opciones = {
@@ -39,6 +37,30 @@ export const FormatearNumero = function (number) {
 // export default formatearFecha(DiaActual);
 export let DiaActual = new Date();
 console.log(DiaActual.toLocaleDateString());
+
+// export const formatter = new Intl.NumberFormat("en-US", {
+//   style: "currency",
+//   currency: "USD",
+//   minimumFractionDigits: 0,
+// });
+
+// var value = 10000000;
+
+// console.log(formatter.format(value)); // "$10,000
+
+// export const formatter = (numero) => {
+//   let numero2 = numero;
+//   numero2 = new Intl.NumberFormat("en-US", {
+//     style: "currency",
+//     currency: "USD",
+//     minimumFractionDigits: 0,
+//   });
+//   console.log(numero2);
+//   return numero2;
+// };
+
+// let a = 10;
+// formatter(a);
 
 // Ordenar arrays
 var numbers = [4, 2, 5, 1, 7];
