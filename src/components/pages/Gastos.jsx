@@ -199,7 +199,7 @@ const Gastos = () => {
         <div className="">
           <h3 className="text-2xl font-bold font-mono uppercase">Gastos Hoy</h3>
 
-          {arrayGastosComidaValores?.[0] ? (
+          {/* {arrayGastosComidaValores.length?.[0] ? (
             <div className="flex flex-wrap gap-x-3 gap-y-3 text-center my-2 scroll-x-auto">
               <CuadroGastos
                 img={diccionarioIConos.Comida}
@@ -220,13 +220,13 @@ const Gastos = () => {
             </div>
           ) : (
             ""
-          )}
+          )} */}
         </div>
         <div>
           <h3 className="text-2xl font-bold font-mono uppercase">
             Gastos Semana
           </h3>
-          {arrayGastosComidaValores?.[0] ? (
+          {/* {arrayGastosComidaValores?.[0] ? (
             <div className="flex space-x-3 text-center my-2 scroll-x-auto">
               <CuadroGastos
                 img={diccionarioIConos.Comida}
@@ -247,7 +247,7 @@ const Gastos = () => {
             </div>
           ) : (
             ""
-          )}
+          )} */}
           <div className="flex space-x-3 text-center my-2 scroll-x-auto"></div>
         </div>
       </div>

@@ -62,19 +62,6 @@ export const BotonEditar = ({ value, onClick }) => {
   );
 };
 
-export const BotonNuevoProducto = ({ value, onClick }) => {
-  return (
-    <>
-      <input
-        type="submit"
-        onClick={onClick}
-        className="cursor-pointer border  border-slate-500 border-2 px-5 py-2 font-bold duration-200 ease-in-out  transition-all hover:bg-green-900 hover:text-white active:bg-green-700"
-        value={value}
-      />
-    </>
-  );
-};
-
 export const BotonModal = ({ value, onClick, Color }) => {
   return (
     <>
@@ -118,6 +105,22 @@ export const BotonNuevaVenta = ({ value, onClick, Color }) => {
       >
         <img src={IconAdd} alt="" className="h-6 pr-1" />
         <p>Nueva Venta</p>
+      </button>
+    </>
+  );
+};
+
+export const BotonNuevoProducto = ({ value, onClick, Color }) => {
+  return (
+    <>
+      <button
+        className="bg-blue-500 hover:bg-blue-700 text-white px-4 flex py-2.5  hover:scale-105 font-medium text-xs leading-tight uppercase  transition duration-200 ease-in-out hover:shadow-lg active:shadow-lg rounded-xl focus:outline-none hover:duration-200  cursor-pointer items-center"
+        onClick={onClick}
+        type="submit"
+        value="Nuevo Producto"
+      >
+        <img src={IconAdd} alt="" className="h-6 pr-1" />
+        <p>Nuevo Producto</p>
       </button>
     </>
   );

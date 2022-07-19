@@ -17,6 +17,7 @@ import StaticContext from "../../../contexts/StaticProvider";
 
 import { BotonVer } from "../../atoms/Botones";
 import Error from "../../atoms/Error";
+import { toDay } from "../../../helpers";
 // import { ModalGuardado } from "../../atoms/ModalNotificacion";
 
 const FormularioGasto = () => {
@@ -34,16 +35,18 @@ const FormularioGasto = () => {
   const location = useLocation();
   const urlActual = location.pathname;
 
+  // Resetear el state Gasto.
+  if (urlActual.includes("nuevogasto")) {
+    setGasto("");
+  }
+
   const [nombre, setNombre] = useState("");
-  const [valor, setValor] = useState();
+  const [valor, setValor] = useState("");
   const [categoria, setCategoria] = useState("Comida");
-  const [fecha, setFecha] = useState("");
+  const [fecha, setFecha] = useState(toDay);
   const [notas, setNotas] = useState("");
 
   const [error, setError] = useState(false);
-
-  const toDay = new Date().toISOString().substring(0, 10);
-  console.log(toDay);
 
   const { _id } = gasto;
 
@@ -131,7 +134,9 @@ const FormularioGasto = () => {
               className={inputStyles}
               // value={nombre}
               onChange={(e) => setNombre(e.target.value)}
-              defaultValue={gasto.nombre}
+              defaultValue={
+                urlActual.includes("nuevogasto") ? "" : gasto.nombre
+              }
             />
           </div>
           {/* {nombre === "" ? <p> Campo Obligatorio </p> : ""} */}
@@ -148,7 +153,7 @@ const FormularioGasto = () => {
               className={inputStyles}
               // value={valor}
               onChange={(e) => setValor(e.target.value)}
-              defaultValue={gasto.valor}
+              defaultValue={urlActual.includes("nuevogasto") ? "" : gasto.valor}
             />
           </div>
           <div className={divStyles}>

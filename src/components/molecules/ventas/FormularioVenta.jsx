@@ -14,6 +14,7 @@ import {
 import StaticContext from "../../../contexts/StaticProvider";
 import { BotonVer } from "../../atoms/Botones";
 import Error from "../../atoms/Error";
+import { toDay } from "../../../helpers";
 
 const FormularioVenta = () => {
   const {
@@ -29,21 +30,27 @@ const FormularioVenta = () => {
   const location = useLocation();
   const urlActual = location.pathname;
 
-  const [nombre, setNombre] = useState("");
+  // Resetear el state Gasto.
+  if (urlActual.includes("nuevaventa")) {
+    setVenta("");
+  }
+
+  const [producto, setProducto] = useState("");
   const [cantidad, setCantidad] = useState(1);
   const [valorIndividual, setValorIndividual] = useState("");
   const [valorTotal, setValorTotal] = useState("");
   const [metodoPago, setMetodoPago] = useState("Efectivo");
-  const [categoria, setCategoria] = useState("");
-  const [fecha, setFecha] = useState("");
+  const [categoria, setCategoria] = useState("Bebida");
+  const [fecha, setFecha] = useState(toDay);
   const [notas, setNotas] = useState("");
 
   const [error, setError] = useState(false);
 
-  const toDay = new Date().toISOString().substring(0, 10);
-  console.log(toDay);
-
   const { _id } = venta;
+
+  // Resetear el state Gasto.
+  if (urlActual.includes("nuevaventa")) {
+  }
 
   // Prueba con AXIOS
   const handleSubmit = async (e) => {
@@ -54,7 +61,7 @@ const FormularioVenta = () => {
         const respuesta = await axios.put(
           `${import.meta.env.VITE_API_URL}/ventas/${_id}`,
           {
-            nombre,
+            producto,
             cantidad,
             valorIndividual,
             valorTotal,
@@ -71,9 +78,13 @@ const FormularioVenta = () => {
       } else {
         // Validacion del formulario
         if (
-          [nombre, valorIndividual, valorTotal, metodoPago, categoria].includes(
-            ""
-          )
+          [
+            producto,
+            valorIndividual,
+            valorTotal,
+            metodoPago,
+            categoria,
+          ].includes("")
         ) {
           console.log("Completa todos los casilleros por favor.");
           setError(true);
@@ -81,7 +92,7 @@ const FormularioVenta = () => {
         const respuesta = await axios.post(
           `${import.meta.env.VITE_API_URL}/ventas`,
           {
-            nombre,
+            producto,
             cantidad,
             valorIndividual,
             valorTotal,
@@ -91,15 +102,25 @@ const FormularioVenta = () => {
             notas,
           }
         );
-        console.log(respuesta);
+        const editarCantidad = await axios.put(
+          `${import.meta.env.VITE_API_URL}/productos/62d60d6578caf584c8f91141`,
+          {
+            cantidad,
+          }
+        );
+        console.log(editarCantidad);
         navigate("/ventas");
         setIsOpenSaveModal(true);
+        setVenta("");
       }
     } catch (error) {
       console.log(error);
       setIsOpenErrorModal(!isOpenErrorModal);
     }
   };
+
+  // cantidadVendida = 10;
+  // cantidadStock = 50;
 
   // styles
   const labelStyles = "text-slate-900 font-bold capitalize pl-1 mb-1 ";
@@ -120,40 +141,44 @@ const FormularioVenta = () => {
           : ""}
       </p>
       <p className="text-lg">
-        {venta._id ? `Editar la venta: ${venta.nombre}` : ""}
+        {venta._id ? `Editar la venta: ${venta.producto}` : ""}
       </p>
       <div className="bg-white rounded-lg  max-w-xl mx-auto">
         <form action="submit" className="mt-5 py-5" onSubmit={handleSubmit}>
           <div className={divStyles}>
             {error && <Error mensaje="Completa todos los campos" />}
-            <label htmlFor="nombre" className={labelStyles}>
+            <label htmlFor="producto" className={labelStyles}>
               Producto
             </label>
             <input
-              id="nombre"
-              name="nombre"
+              id="producto"
+              name="producto"
               type="text"
-              placeholder="Nombre de venta"
+              placeholder="Producto vendido"
               className={inputStyles}
               // value={nombre}
-              onChange={(e) => setNombre(e.target.value)}
-              defaultValue={venta.nombre}
+              onChange={(e) => setProducto(e.target.value)}
+              defaultValue={
+                urlActual.includes("nuevaventa") ? "" : venta.producto
+              }
             />
           </div>
           {/* {nombre === "" ? <p> Campo Obligatorio </p> : ""} */}
           <div className={divStyles}>
             <label htmlFor="cantidad" className={labelStyles}>
-              Cantidad de unidades
+              Cantidad
             </label>
             <input
               id="cantidad"
               name="cantidad"
               type="number"
-              placeholder={venta._id ? venta.valorIndividual : "Valor de venta"}
+              placeholder={venta._id ? venta.cantidad : "Cantidad de unidades"}
               className={inputStyles}
               // value={valor}
               onChange={(e) => setCantidad(e.target.value)}
-              defaultValue={venta.cantidad}
+              defaultValue={
+                urlActual.includes("nuevaventa") ? 1 : venta.cantidad
+              }
             />
           </div>
 
@@ -165,11 +190,15 @@ const FormularioVenta = () => {
               id="valor"
               name="valor"
               type="number"
-              placeholder={venta._id ? venta.valorIndividual : "Valor de venta"}
+              placeholder={
+                venta._id ? venta.valorIndividual : "$ Valor Unitario"
+              }
               className={inputStyles}
               // value={valor}
               onChange={(e) => setValorIndividual(e.target.value)}
-              defaultValue={venta.valorIndividual}
+              defaultValue={
+                urlActual.includes("nuevaventa") ? "" : venta.valorIndividual
+              }
             />
           </div>
           <div className={divStyles}>
@@ -180,11 +209,17 @@ const FormularioVenta = () => {
               id="valorTotal"
               name="valor"
               type="number"
-              // placeholder={venta._id ? venta.valorIndividual : "Valor de venta"}
+              placeholder={
+                urlActual.includes("nuevaventa")
+                  ? "$ Valor total"
+                  : "$ Valor de venta"
+              }
               className={inputStyles}
               // value={valor}
               onChange={(e) => setValorTotal(e.target.value)}
-              defaultValue={venta.valorTotal}
+              defaultValue={
+                urlActual.includes("nuevaventa") ? "" : venta.valorTotal
+              }
             />
           </div>
           <div className={divStyles}>
@@ -216,8 +251,8 @@ const FormularioVenta = () => {
               onChange={(e) => setMetodoPago(e.target.value)}
               // defaultValue={venta._ ? venta.categoria : ""}
             >
-              <option value=""> Efectivo </option>
-              <option value="ventas"> Tarjeta </option>
+              <option value="Efectivo"> Efectivo </option>
+              <option value="Tarjeta"> Tarjeta </option>
             </select>
           </div>
           <div className={divStyles}>
@@ -233,9 +268,9 @@ const FormularioVenta = () => {
               onChange={(e) => setCategoria(e.target.value)}
               defaultValue={venta._ ? venta.categoria : ""}
             >
-              <option value="ventas"> Bebida </option>
+              <option value="Bebida"> Bebida </option>
               <option value="Comida"> Comida </option>
-              <option value="Proveedor"> Otros </option>
+              <option value="Otros"> Otros </option>
             </select>
           </div>
 
@@ -268,7 +303,9 @@ const FormularioVenta = () => {
                     rows=""
                     className="w-full border  h-28 p-2 "
                     placeholder="Escribe alguna nota..."
-                    defaultValue={venta.notas}
+                    defaultValue={
+                      urlActual.includes("nuevaventa") ? "" : venta.notas
+                    }
                     onChange={(e) => setNotas(e.target.value)}
                   ></textarea>
                 </div>
@@ -290,7 +327,7 @@ const FormularioVenta = () => {
             )}
             <BotonPrimario
               Color={BotonAzulRedondeado}
-              value={venta?.nombre ? "Editar venta" : "Agregar venta"}
+              value={venta?.producto ? "Editar venta" : "Agregar venta"}
               type="submit"
             />
             <BotonPrimario

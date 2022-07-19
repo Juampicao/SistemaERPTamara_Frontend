@@ -2,14 +2,14 @@ import React from "react";
 import { useEffect, useContext, useState } from "react";
 import StaticContext from "../../../contexts/StaticProvider";
 
-import Venta from "../ventas/Venta";
+import Producto from "./Producto";
 
-const ListadoVentas = () => {
+const ListadoProductos = () => {
   const {
-    ventas,
-    setVentas,
-    venta,
-    setVenta,
+    producto,
+    setProducto,
+    productos,
+    setProductos,
     screenSize,
     setScreenSize,
     isOpenErrorModal,
@@ -20,10 +20,10 @@ const ListadoVentas = () => {
   useEffect(() => {
     const obtenerClienteAPI = async () => {
       try {
-        const url = `${import.meta.env.VITE_API_URL}/ventas`;
+        const url = `${import.meta.env.VITE_API_URL}/productos`;
         const respuesta = await fetch(url);
         const resultado = await respuesta.json();
-        setVentas(resultado);
+        setProductos(resultado);
         console.log(resultado);
       } catch (error) {
         console.log(error);
@@ -35,16 +35,16 @@ const ListadoVentas = () => {
   }, []);
 
   const {
-    id_,
-    producto,
+    _id,
+    nombreProducto,
     cantidad,
-    valorIndividual,
+    precio,
     valorTotal,
-    metodoPago,
+    costo,
     categoria,
     fecha,
     notas,
-  } = venta;
+  } = producto;
 
   // Styles
   const tableStyles = "w-full ";
@@ -53,7 +53,6 @@ const ListadoVentas = () => {
 
   return (
     <div>
-      {/* hidden md:block */}
       <div className="overflow-auto rounded-xl  shadow-xl  my-5 text-center ">
         <table className={tableStyles}>
           <thead className=" bg-white border-b-2 border-gray-200">
@@ -61,16 +60,18 @@ const ListadoVentas = () => {
               <th className="p-2 ">Producto</th>
               <th className="p-2 ">Cantidad</th>
 
-              <th className="p-2">Valor Unitario</th>
-              <th className="p-2">Valor Total</th>
+              <th className="p-2">Precio</th>
+              <th className="p-2">Costo</th>
 
               <th className="p-2">Fecha</th>
               <th className="p-2 ">Funciones</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-200 bg-white">
-            {ventas.length > 0 ? (
-              ventas.map((venta) => <Venta key={venta._id} venta={venta} />)
+            {productos.length > 0 ? (
+              productos.map((producto) => (
+                <Producto key={producto._id} producto={producto} />
+              ))
             ) : (
               <p className="my-5 text-center">
                 No hay ningun gasto para mostrar
@@ -79,16 +80,8 @@ const ListadoVentas = () => {
           </tbody>
         </table>
       </div>
-      {/*      
-           <>
-             {ventas.length > 0 ? (
-               ventas.map((venta) => <Venta key={venta._id} venta={venta} />)
-             ) : (
-               <p className="my-5 text-center">No hay ningun gasto para mostrar</p>
-             )}
-           </> */}
     </div>
   );
 };
 
-export default ListadoVentas;
+export default ListadoProductos;

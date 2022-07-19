@@ -64,9 +64,9 @@ const BotonFlotante = () => {
                 <p className="px-2">Gasto</p>
               </button>
               <Link
-                to="gastos/nuevogasto"
+                to="productos/nuevoproducto"
                 className={`${ButtonStyle}, ${ColorAzul}`}
-                onClick={() => navigate("/gastos/nuevogasto")}
+                onClick={() => navigate("productos/nuevoproducto")}
                 id="dropdownMenuButton1u"
                 data-bs-toggle="dropdown"
                 aria-expanded="false"

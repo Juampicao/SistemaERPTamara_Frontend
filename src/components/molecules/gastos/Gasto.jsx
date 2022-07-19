@@ -91,7 +91,7 @@ const Gasto = ({ gasto }) => {
         </div>
       ) : (
         <tr className="hover:bg-gray-300">
-          <td className=" p-3">
+          <td className="p-1">
             <img
               src={diccionarioIConos[gasto.categoria]}
               alt=""

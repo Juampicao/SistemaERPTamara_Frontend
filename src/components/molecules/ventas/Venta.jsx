@@ -21,15 +21,17 @@ const Venta = ({ venta }) => {
     setVentas,
     screenSize,
     setScreenSize,
-    setIsOpenErrorModal,
-    isOpenErrorModal,
     isOpenSaveModal,
     setIsOpenSaveModal,
+    isOpenDeleteModal,
+    setIsOpenDeleteModal,
+    isOpenErrorModal,
+    setIsOpenErrorModal,
   } = useContext(StaticContext);
   const navigate = useNavigate();
   const {
     _id,
-    nombre,
+    producto,
     cantidad,
     valorIndividual,
     valorTotal,
@@ -49,7 +51,7 @@ const Venta = ({ venta }) => {
         );
         console.log(respuesta);
         const arrayventas = ventas.filter((venta) => venta._id !== _id);
-        setVentas(arrayVentas);
+        setVentas(arrayventas);
         setIsOpenDeleteModal(!isOpenDeleteModal);
       } catch (error) {
         console.log(error);
@@ -60,8 +62,10 @@ const Venta = ({ venta }) => {
   return (
     <>
       <tr className="hover:bg-gray-300">
-        <td className="capitalize "> {nombre}</td>
-        <td className=""> {FormatearNumero(valorIndividual)}</td>
+        <td className="capitalize"> {producto}</td>
+        <td className="capitalize "> {cantidad}</td>
+
+        <td className="p-3"> {FormatearNumero(valorIndividual)}</td>
         <td className=""> {FormatearNumero(valorTotal)}</td>
 
         {/* <td> {gasto._id ? fecha : fecha.substr(0, 10)}</td> */}

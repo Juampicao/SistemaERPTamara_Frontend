@@ -10,7 +10,6 @@ import { StaticProvider } from "./contexts/StaticProvider";
 import RutaProhibida from "./components/pages/RutaProhibida";
 import { AuthProvider } from "./contexts/AuthProvider";
 
-import Inicio from "./components/pages/Inicio";
 import Configuraciones from "./components/pages/Configuraciones";
 import Login from "./components/pages/Login";
 import Layout from "./components/molecules/Layout";
@@ -26,6 +25,9 @@ import Ventas from "../src/components/pages/Ventas";
 import EditarVenta from "../src/components/molecules/ventas/EditarVenta";
 import NuevaVenta from "../src/components/molecules/ventas/NuevaVenta";
 import VerVenta from "../src/components/molecules/ventas/VerVenta";
+import Productos from "./components/pages/Productos";
+import NuevoProducto from "./components/molecules/productos/NuevoProducto";
+import EditarProducto from "./components/molecules/productos/EditarProducto";
 
 function App() {
   useEffect(() => {
@@ -44,11 +46,17 @@ function App() {
               </Route>
 
               <Route path="/" element={<Layout />}>
-                <Route path="productos" index element={<Inicio />} />
-                {/* <Route path="productos/editar/:id" element={<Editar />} /> */}
+                <Route path="productos" index element={<Productos />} />
+                <Route
+                  path="productos/nuevoproducto"
+                  element={<NuevoProducto />}
+                />
                 <Route path="productos/:id" element={<VerProducto />} />
-                {/* <Route path="ventas" element={<Ventas />} />
-                <Route path="ventas/:id" element={<VerVenta />} /> */}
+                <Route
+                  path="productos/editar/:id"
+                  element={<EditarProducto />}
+                />
+
                 <Route path="ventas" element={<Ventas />} />
                 <Route path="ventas/nuevaventa" element={<NuevaVenta />} />
                 <Route path="ventas/:id" element={<VerVenta />} />

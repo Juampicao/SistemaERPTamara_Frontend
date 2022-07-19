@@ -5,6 +5,9 @@ export const generarId = () => {
   return random + fecha;
 };
 
+// const toDay
+export const toDay = new Date().toISOString().substring(0, 10);
+
 export const formatearFechaCorta = (fecha) => {
   const fechaNueva = new Date(fecha);
   const opciones = {

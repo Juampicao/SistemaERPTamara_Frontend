@@ -22,7 +22,7 @@ const Ventas = () => {
 
   const {
     id_,
-    nombre,
+    producto,
     cantidad,
     valorIndividual,
     valorTotal,
@@ -44,7 +44,7 @@ const Ventas = () => {
   return (
     <div className="fade-left">
       <Header title="Ventas" />
-      <BotonNuevaVenta />
+      <BotonNuevaVenta onClick={() => navigate("/ventas/nuevaventa")} />
       <ListadoVentas />
     </div>
   );
