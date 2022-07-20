@@ -1,5 +1,4 @@
 import FormularioGasto from "./FormularioGasto";
-import iconoCerrar from "../../../img/IconoCerrar.png";
 import { Outlet, useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState, useContext } from "react";
