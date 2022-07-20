@@ -4,10 +4,7 @@ import axios from "axios";
 
 import { BotonPrimario } from "../../atoms/Botones";
 import {
-  BotonAzulClasico,
   BotonAzulRedondeado,
-  BotonBlancoClasico,
-  BotonBlancoClasicoSinZoom,
   BotonBlancoRedondeado,
 } from "../../../helpers/colores";
 

@@ -1,6 +1,5 @@
 import React from "react";
 import FormularioProducto from "./FormularioProducto";
-import axios from "axios";
 
 import { useEffect, useState, useContext } from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";

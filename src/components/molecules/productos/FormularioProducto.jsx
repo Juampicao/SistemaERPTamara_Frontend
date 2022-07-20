@@ -6,20 +6,14 @@ import { toDay } from "../../../helpers";
 import StaticContext from "../../../contexts/StaticProvider";
 
 import iconoCerrar from "../../../img/iconoCerrar.png";
-import Fernet from "../../../img/fernet.jpg";
-import SignoMas from "../../../img/signoMas.png";
-import SignoMenos from "../../../img/signoResta.png";
+
 import IconoCosto from "../../../img/iconoCosto.png";
 import iconoPrecio from "../../../img/iconoPrecio.png";
 import iconoCantidad from "../../../img/iconoCantidad.png";
 import iconoEtiqueta from "../../../img/iconoEtiqueta.png";
 import iconoExclamacion from "../../../img/iconoExclamacion3.png";
 import { BotonPrimario } from "../../atoms/Botones";
-import {
-  BotonBlancoClasicoSinZoom,
-  BotonBlancoRedondeado,
-  BotonNegroRedondeado,
-} from "../../../helpers/colores";
+import { BotonNegroRedondeado } from "../../../helpers/colores";
 
 import Error from "../../atoms/Error";
 
