@@ -8,10 +8,6 @@ import { BotonEditar, BotonEliminar, BotonVer } from "../../atoms/Botones";
 import MessageModal from "../../atoms/MessageModal";
 import { formatearFechaCorta, FormatearNumero } from "../../../helpers";
 
-import IconoProveedor from "../../../img/IconoProveedor.png";
-import IconoGastosVarios from "../../../img/IconoGastosVarios.png";
-import IconoComida from "../../../img/IconoComida.png";
-
 const Gasto = ({ gasto }) => {
   const {
     gastos,
@@ -31,11 +27,11 @@ const Gasto = ({ gasto }) => {
   } = useContext(StaticContext);
   const navigate = useNavigate();
 
-  const diccionarioIConos = {
-    Gastos: IconoGastosVarios,
-    Proveedor: IconoProveedor,
-    Comida: IconoComida,
-  };
+  // const diccionarioIConos = {
+  //   Gastos: IconoGastosVarios,
+  //   Proveedor: IconoProveedor,
+  //   Comida: IconoComida,
+  // };
 
   const { _id, nombre, valor, cantidad, fecha, notas } = gasto;
 
@@ -80,7 +76,7 @@ const Gasto = ({ gasto }) => {
                   Delivered
                 </span> */}
                 <img
-                  src={diccionarioIConos[gasto.categoria]}
+                  // src={diccionarioIConos[gasto.categoria]}
                   alt=""
                   className="h-12 mx-auto"
                 />
@@ -96,7 +92,7 @@ const Gasto = ({ gasto }) => {
         <tr className="hover:bg-gray-300">
           <td className="p-1">
             <img
-              src={diccionarioIConos[gasto.categoria]}
+              // src={diccionarioIConos[gasto.categoria]}
               alt=""
               className="h-12 mx-auto"
             />
