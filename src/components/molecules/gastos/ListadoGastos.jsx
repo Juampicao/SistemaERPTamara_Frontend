@@ -7,10 +7,6 @@ import ListadoCaja from "./ListadoCaja";
 
 import IconoInicioCaja from "../../../img/iconCaja.png";
 
-import IconoProveedor from "../../../img/IconoProveedor.png";
-import IconoGastosVarios from "../../../img/IconoGastosVarios.png";
-import IconoComida from "../../../img/IconoComida.png";
-
 const ListadoGastos = () => {
   const {
     gastos,
@@ -24,11 +20,11 @@ const ListadoGastos = () => {
     inicioCaja,
   } = useContext(StaticContext);
 
-  const diccionarioIConos = {
-    Gastos: IconoGastosVarios,
-    Proveedor: IconoProveedor,
-    Comida: IconoComida,
-  };
+  // const diccionarioIConos = {
+  //   Gastos: IconoGastosVarios,
+  //   Proveedor: IconoProveedor,
+  //   Comida: IconoComida,
+  // };
 
   const [montoTotalGastosComida, setMontoTotalGastosComida] = useState();
   const [montoTotalGastosVarios, setMontoTotalGastosVarios] = useState();
@@ -156,17 +152,17 @@ const ListadoGastos = () => {
         <h3 className="text-2xl font-bold font-mono uppercase">Gastos Hoy</h3>
         <div className="flex space-x-3 text-center my-2 scroll-x-auto">
           <CuadroGastos
-            img={diccionarioIConos.Comida}
+            // img={diccionarioIConos.Comida}
             title="Gastos Comidas"
             valor={montoTotalGastosComida}
           />{" "}
           <CuadroGastos
-            img={diccionarioIConos.Proveedor}
+            // img={diccionarioIConos.Proveedor}
             title="Gastos Proveedores"
             valor={montoTotalGastosProveedores}
           />
           <CuadroGastos
-            img={diccionarioIConos.Gastos}
+            // img={diccionarioIConos.Gastos}
             title="Gastos"
             title2="Varios"
             valor={montoTotalGastosVarios}
@@ -180,17 +176,17 @@ const ListadoGastos = () => {
 
         <div className="flex space-x-3 text-center my-2 scroll-x-auto">
           <CuadroGastos
-            img={diccionarioIConos.Comida}
+            // img={diccionarioIConos.Comida}
             title="Gastos Comidas"
             valor={montoTotalGastosComida}
           />{" "}
           <CuadroGastos
-            img={diccionarioIConos.Proveedor}
+            // img={diccionarioIConos.Proveedor}
             title="Gastos Proveedores"
             valor={montoTotalGastosProveedores}
           />
           <CuadroGastos
-            img={diccionarioIConos.Gastos}
+            // img={diccionarioIConos.Gastos}
             title="Gastos"
             title2="Varios"
             valor={montoTotalGastosVarios}
