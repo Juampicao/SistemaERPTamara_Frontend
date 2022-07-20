@@ -1,3 +1,6 @@
+export const aumentar = "aumentar";
+export const disminuir = "disminuir";
+
 // Generar ID
 export const generarId = () => {
   const random = Math.random().toString(36);

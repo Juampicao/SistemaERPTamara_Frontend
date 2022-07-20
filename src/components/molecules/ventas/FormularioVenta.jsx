@@ -14,7 +14,9 @@ import {
 import StaticContext from "../../../contexts/StaticProvider";
 import { BotonVer } from "../../atoms/Botones";
 import Error from "../../atoms/Error";
-import { toDay } from "../../../helpers";
+import { aumentar, disminuir, toDay } from "../../../helpers";
+
+// import {aumentar, disminuir } from "../../../"
 
 const FormularioVenta = () => {
   const {
@@ -43,8 +45,9 @@ const FormularioVenta = () => {
   const [categoria, setCategoria] = useState("Bebida");
   const [fecha, setFecha] = useState(toDay);
   const [notas, setNotas] = useState("");
-
   const [error, setError] = useState(false);
+
+  const accionstock = "disminuir"; // Mal. Se concatena.
 
   const { _id } = venta;
 
@@ -52,6 +55,7 @@ const FormularioVenta = () => {
   if (urlActual.includes("nuevaventa")) {
   }
 
+  const precio = 49;
   // Prueba con AXIOS
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -106,6 +110,7 @@ const FormularioVenta = () => {
           `${import.meta.env.VITE_API_URL}/productos/62d60d6578caf584c8f91141`,
           {
             cantidad,
+            accionstock,
           }
         );
         console.log(editarCantidad);
@@ -175,7 +180,7 @@ const FormularioVenta = () => {
               placeholder={venta._id ? venta.cantidad : "Cantidad de unidades"}
               className={inputStyles}
               // value={valor}
-              onChange={(e) => setCantidad(e.target.value)}
+              onChange={(e) => setCantidad(Number(e.target.value))}
               defaultValue={
                 urlActual.includes("nuevaventa") ? 1 : venta.cantidad
               }

@@ -18,7 +18,7 @@ const EditarProducto = () => {
 
   // Llamado a la base de datos
   useEffect(() => {
-    const obtenerProductos = async () => {
+    const obtenerProducto = async () => {
       try {
         const url = `${import.meta.env.VITE_API_URL}/productos/${id}`;
         const respuesta = await fetch(url);
@@ -30,7 +30,7 @@ const EditarProducto = () => {
       }
       // setIsCargando(!isCargando);
     };
-    obtenerProductos();
+    obtenerProducto();
   }, []);
   return (
     <div data-aos="fade-left">

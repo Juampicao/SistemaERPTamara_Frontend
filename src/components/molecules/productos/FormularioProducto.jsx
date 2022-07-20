@@ -21,6 +21,8 @@ import {
   BotonNegroRedondeado,
 } from "../../../helpers/colores";
 
+import Error from "../../atoms/Error";
+
 const FormularioProducto = () => {
   const {
     producto,
@@ -42,7 +44,7 @@ const FormularioProducto = () => {
 
   const [nombreProducto, setNombreProducto] = useState("");
   const [imagen, setImagen] = useState("");
-  const [cantidad, setCantidad] = useState(1);
+  const [cantidad, setCantidad] = useState("");
   const [precio, setPrecio] = useState("");
   const [costo, setCosto] = useState("");
   const [categoria, setCategoria] = useState("Bebida");
@@ -168,6 +170,8 @@ const FormularioProducto = () => {
                 />
               </div>
             </div>
+            {error && <Error mensaje="Completa todos los campos" />}
+
             <div className={contenedores}>
               <p className={titulos}>Producto</p>
               {/* <p className={resultados}>Fernet 750ML</p> */}
@@ -196,12 +200,13 @@ const FormularioProducto = () => {
 
               <input
                 className={inputText}
-                type="text"
+                type="number"
                 placeholder="1"
                 defaultValue={
                   urlActual.includes("nuevoproducto") ? "" : producto.cantidad
                 }
-                onChange={(e) => setCantidad(e.target.value)}
+                // defaultValue={producto.cantidad ? producto.cantidad : }
+                onChange={(e) => setCantidad(Number(e.target.value))}
               />
               {/* <img
                   src={SignoMas}

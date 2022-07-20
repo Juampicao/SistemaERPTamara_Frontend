@@ -92,51 +92,6 @@ const Gastos = () => {
     setTotalGastos(totalGastado);
   }, [gastos]);
 
-  // --- Funcion arrays nuevos y sumas dinamicas -----//
-  let arrayGastosComida = [];
-  let arrayGastosVarios = [];
-  let arrayGastosProveedor = [];
-
-  function crearArraysGastosSegmentados() {
-    for (let i = 0; i < gastos.length; i++) {
-      if (gastos[i].categoria === "Comida") {
-        arrayGastosComida.push(gastos[i]);
-      }
-      if (gastos[i].categoria === "Gastos") {
-        arrayGastosVarios.push(gastos[i]);
-      }
-      if (gastos[i].categoria === "Proveedor") {
-        arrayGastosProveedor.push(gastos[i]);
-      }
-    }
-  }
-  crearArraysGastosSegmentados();
-  // console.log(arrayGastosComida, arrayGastosVarios, arrayGastosProveedor);
-
-  // 2) Crear Array con los valores de gastosComida.
-  let arrayGastosComidaValores = [];
-  let arrayGastosVariosValores = [];
-  let arrayGastosProveedorValores = [];
-  function crearArrayValores(oldArr, newArr) {
-    for (let i = 0; i < oldArr.length; i++) {
-      let result = oldArr[i].valor;
-      newArr.push(result);
-      // console.log(newArr);
-    }
-  }
-  crearArrayValores(arrayGastosComida, arrayGastosComidaValores);
-  crearArrayValores(arrayGastosVarios, arrayGastosVariosValores);
-  crearArrayValores(arrayGastosProveedor, arrayGastosProveedorValores);
-
-  // 3) Funcion suma de arrays, dinamico.
-  function sumarNumerosArray(arr) {
-    // arr && arr.length ? arr : [0, 0];
-    const reducer = (accumulator, curr) => accumulator + curr;
-    let resultado = arr.reduce(reducer);
-    // console.log(resultado);
-    return resultado;
-  }
-
   return (
     <div data-aos="fade-left">
       <Header title="Gastos" />
@@ -146,11 +101,11 @@ const Gastos = () => {
           title="Gastos"
           Imagen={IconoIncioCaja}
         />
-        <CajaEfectivo
+        {/* <CajaEfectivo
           valorCaja={Number(inicioCaja - totalGastos)}
           title="Total Caja"
           Imagen={Flecha}
-        />
+        /> */}
         <CajaEfectivo
           valorCaja={inicioCaja}
           title="Inicio Caja"
@@ -195,64 +150,78 @@ const Gastos = () => {
         <Dropdown onClick1={() => {}} />
       </div>
       <ListadoGastos />
-      <div className="grid grid-rows space-y-10 my-10">
-        <div className="">
-          <h3 className="text-2xl font-bold font-mono uppercase">Gastos Hoy</h3>
-
-          {/* {arrayGastosComidaValores.length?.[0] ? (
-            <div className="flex flex-wrap gap-x-3 gap-y-3 text-center my-2 scroll-x-auto">
-              <CuadroGastos
-                img={diccionarioIConos.Comida}
-                title="Gastos Comidas"
-                valor={sumarNumerosArray(arrayGastosComidaValores)}
-              />{" "}
-              <CuadroGastos
-                img={diccionarioIConos.Proveedor}
-                title="Gastos Proveedores"
-                valor={sumarNumerosArray(arrayGastosProveedorValores)}
-              />
-              <CuadroGastos
-                img={diccionarioIConos.Gastos}
-                title="Gastos"
-                title2="Varios"
-                valor={sumarNumerosArray(arrayGastosVariosValores)}
-              />
-            </div>
-          ) : (
-            ""
-          )} */}
-        </div>
-        <div>
-          <h3 className="text-2xl font-bold font-mono uppercase">
-            Gastos Semana
-          </h3>
-          {/* {arrayGastosComidaValores?.[0] ? (
-            <div className="flex space-x-3 text-center my-2 scroll-x-auto">
-              <CuadroGastos
-                img={diccionarioIConos.Comida}
-                title="Gastos Comidas"
-                valor={sumarNumerosArray(arrayGastosComidaValores)}
-              />{" "}
-              <CuadroGastos
-                img={diccionarioIConos.Proveedor}
-                title="Gastos Proveedores"
-                valor={sumarNumerosArray(arrayGastosProveedorValores)}
-              />
-              <CuadroGastos
-                img={diccionarioIConos.Gastos}
-                title="Gastos"
-                title2="Varios"
-                valor={sumarNumerosArray(arrayGastosVariosValores)}
-              />
-            </div>
-          ) : (
-            ""
-          )} */}
-          <div className="flex space-x-3 text-center my-2 scroll-x-auto"></div>
-        </div>
-      </div>
     </div>
   );
 };
 
 export default Gastos;
+
+// // --- Funcion arrays nuevos y sumas dinamicas -----//
+// let arrayGastosComida = [];
+// let arrayGastosVarios = [];
+// let arrayGastosProveedor = [];
+
+// function crearArraysGastosSegmentados() {
+//   for (let i = 0; i < gastos.length; i++) {
+//     if (gastos[i].categoria === "Comida") {
+//       arrayGastosComida.push(gastos[i]);
+//     }
+//     if (gastos[i].categoria === "Gastos") {
+//       arrayGastosVarios.push(gastos[i]);
+//     }
+//     if (gastos[i].categoria === "Proveedor") {
+//       arrayGastosProveedor.push(gastos[i]);
+//     }
+//   }
+// }
+// crearArraysGastosSegmentados();
+// // console.log(arrayGastosComida, arrayGastosVarios, arrayGastosProveedor);
+
+// // 2) Crear Array con los valores de gastosComida.
+// let arrayGastosComidaValores = [];
+// let arrayGastosVariosValores = [];
+// let arrayGastosProveedorValores = [];
+// function crearArrayValores(oldArr, newArr) {
+//   for (let i = 0; i < oldArr.length; i++) {
+//     let result = oldArr[i].valor;
+//     newArr.push(result);
+//     // console.log(newArr);
+//   }
+// }
+// crearArrayValores(arrayGastosComida, arrayGastosComidaValores);
+// crearArrayValores(arrayGastosVarios, arrayGastosVariosValores);
+// crearArrayValores(arrayGastosProveedor, arrayGastosProveedorValores);
+
+// // 3) Funcion suma de arrays, dinamico.
+// function sumarNumerosArray(arr) {
+//   // arr && arr.length ? arr : [0, 0];
+//   const reducer = (accumulator, curr) => accumulator + curr;
+//   let resultado = arr.reduce(reducer);
+//   // console.log(resultado);
+//   return resultado;
+// }
+
+// {
+//   arrayGastosComidaValores?.[0] ? (
+//     <div className="flex space-x-3 text-center my-2 scroll-x-auto">
+//       <CuadroGastos
+//         img={diccionarioIConos.Comida}
+//         title="Gastos Comidas"
+//         valor={sumarNumerosArray(arrayGastosComidaValores)}
+//       />{" "}
+//       <CuadroGastos
+//         img={diccionarioIConos.Proveedor}
+//         title="Gastos Proveedores"
+//         valor={sumarNumerosArray(arrayGastosProveedorValores)}
+//       />
+//       <CuadroGastos
+//         img={diccionarioIConos.Gastos}
+//         title="Gastos"
+//         title2="Varios"
+//         valor={sumarNumerosArray(arrayGastosVariosValores)}
+//       />
+//     </div>
+//   ) : (
+//     ""
+//   );
+// }

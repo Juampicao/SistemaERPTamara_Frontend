@@ -19,7 +19,7 @@ const CuadroGastos = ({ title, title2, valor, img }) => {
         </div>
         <div className="">
           <img src={img} alt="gasto" className="h-10 opacity-80 flex mx-auto" />
-          <p className="pl-2 text-slate-900 ">${valor}.00 </p>
+          <p className="pl-2 text-slate-900 botom-0 ">${valor}.00 </p>
         </div>
       </div>
     </>

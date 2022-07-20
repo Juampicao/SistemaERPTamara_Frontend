@@ -3,9 +3,32 @@ import VerGasto from "./VerGasto";
 import StaticContext from "../../../contexts/StaticProvider";
 import Gasto from "./Gasto";
 
+import CuadroGastos from "../../atoms/gastos/CuadroGastos";
+import diccionarioIConos from "../../../helpers/iconos";
+import ListadoCaja from "./ListadoCaja";
+
+// import IconoIncioCaja from "../../img/iconCaja.png";
+import IconoInicioCaja from "../../../img/iconCaja.png";
+
 const ListadoGastos = () => {
-  const { gastos, setGastos, gasto, setGasto, screenSize, setScreenSize } =
-    useContext(StaticContext);
+  const {
+    gastos,
+    setGastos,
+    gasto,
+    setGasto,
+    screenSize,
+    setScreenSize,
+    setTotalValorGastos,
+    montoTotalVentasEfectivo,
+    inicioCaja,
+  } = useContext(StaticContext);
+
+  const [montoTotalGastosComida, setMontoTotalGastosComida] = useState();
+  const [montoTotalGastosVarios, setMontoTotalGastosVarios] = useState();
+  const [montoTotalGastosProveedores, setMontoTotalGastosProveedores] =
+    useState();
+
+  const [montoTotalGastos, setMontoTotalGastos] = useState();
 
   const { _id, nombre, valor, cantidad, fecha } = gasto;
 
@@ -16,13 +39,29 @@ const ListadoGastos = () => {
         const url = `${import.meta.env.VITE_API_URL}/gastos`;
         const respuesta = await fetch(url);
         const resultado = await respuesta.json();
-        setGastos(resultado);
+
         // console.log(resultado);
+        // console.log(resultado.arrayGastosComida);
+        // console.log(resultado.arrayGastosVarios);
+        // console.log(resultado.arrayGastosProveedor);
+        setMontoTotalGastosComida(resultado.montoTotalGastosComida);
+        setMontoTotalGastosVarios(resultado.montoTotalGastosVarios);
+        setMontoTotalGastosProveedores(resultado.montoTotalGastosProveedores);
+        // setMontoTotalGastos(resultado.montoTotalGastos);
+        // console.log(montoTotalGastos);
+        setGastos(resultado.gastos);
       } catch (error) {
         console.log(error);
       }
       // setCargando(!cargando);
     };
+    setTotalValorGastos(0);
+    console.log(montoTotalGastosProveedores + montoTotalGastosComida);
+    let todosLosGastos =
+      montoTotalGastosComida +
+      montoTotalGastosProveedores +
+      montoTotalGastosVarios;
+    console.log(todosLosGastos);
     obtenerClienteAPI();
   }, []);
 
@@ -67,6 +106,90 @@ const ListadoGastos = () => {
           )}
         </>
       )}
+
+      <div>
+        <h3
+          className="text-2xl font-bold font-mono uppercase"
+          data-bs-toggle="tooltip"
+          title="Caja Actual = Inicio Caja + Venta Efectivo - Gastos Efectivo"
+        >
+          Caja y Ventas Efectivo
+        </h3>
+
+        <div
+          className="flex space-x-3 text-center my-2 scroll-x-auto"
+          data-bs-toggle="tooltip"
+          title="Caja Actual = Inicio Caja + Venta Efectivo - Gastos Efectivo"
+        >
+          <CuadroGastos
+            img={IconoInicioCaja}
+            title="Caja Actual"
+            valor={
+              inicioCaja +
+              montoTotalVentasEfectivo -
+              montoTotalGastosVarios -
+              montoTotalGastosProveedores -
+              montoTotalGastosComida
+            }
+          />
+
+          <ListadoCaja />
+          <CuadroGastos
+            img={IconoInicioCaja}
+            title="Total de Gastos"
+            title2=""
+            valor={
+              montoTotalGastosVarios +
+              montoTotalGastosProveedores +
+              montoTotalGastosComida
+            }
+          />
+        </div>
+
+        <h3 className="text-2xl font-bold font-mono uppercase">Gastos Hoy</h3>
+        <div className="flex space-x-3 text-center my-2 scroll-x-auto">
+          <CuadroGastos
+            img={diccionarioIConos.Comida}
+            title="Gastos Comidas"
+            valor={montoTotalGastosComida}
+          />{" "}
+          <CuadroGastos
+            img={diccionarioIConos.Proveedor}
+            title="Gastos Proveedores"
+            valor={montoTotalGastosProveedores}
+          />
+          <CuadroGastos
+            img={diccionarioIConos.Gastos}
+            title="Gastos"
+            title2="Varios"
+            valor={montoTotalGastosVarios}
+          />
+        </div>
+      </div>
+      <div>
+        <h3 className="text-2xl font-bold font-mono uppercase">
+          Gastos Semana
+        </h3>
+
+        <div className="flex space-x-3 text-center my-2 scroll-x-auto">
+          <CuadroGastos
+            img={diccionarioIConos.Comida}
+            title="Gastos Comidas"
+            valor={montoTotalGastosComida}
+          />{" "}
+          <CuadroGastos
+            img={diccionarioIConos.Proveedor}
+            title="Gastos Proveedores"
+            valor={montoTotalGastosProveedores}
+          />
+          <CuadroGastos
+            img={diccionarioIConos.Gastos}
+            title="Gastos"
+            title2="Varios"
+            valor={montoTotalGastosVarios}
+          />
+        </div>
+      </div>
     </div>
   );
 };

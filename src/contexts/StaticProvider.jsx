@@ -28,6 +28,8 @@ const StaticProvider = ({ children }) => {
   const [venta, setVenta] = useState([]);
   const [ventas, setVentas] = useState([]);
 
+  const [totalValorGastos, setTotalValorGastos] = useState(Number());
+
   const [gasto, setGasto] = useState({});
   const [gastos, setGastos] = useState([]);
   const [totalGastos, setTotalGastos] = useState(500);
@@ -35,8 +37,11 @@ const StaticProvider = ({ children }) => {
   const [isCargando, setIsCargando] = useState(false);
 
   const [inicioCaja, setInicioCaja] = useState(Number(""));
+  const [cajaActual, setCajaActual] = useState(Number());
 
   const [isOpenModal, openModal, closeModal] = useModal(false);
+
+  const [montoTotalVentasEfectivo, setMontoTotalVentasEfectivo] = useState();
 
   // Borrar Gastos
   // const handleDelete = async (id) => {
@@ -101,6 +106,12 @@ const StaticProvider = ({ children }) => {
         isOpenModal,
         openModal,
         closeModal,
+        totalValorGastos,
+        setTotalValorGastos,
+        setCajaActual,
+        cajaActual,
+        montoTotalVentasEfectivo,
+        setMontoTotalVentasEfectivo,
       }}
     >
       {isOpenDeleteModal ? (
