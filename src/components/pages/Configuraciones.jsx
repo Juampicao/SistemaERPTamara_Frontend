@@ -24,27 +24,26 @@ const Configuraciones = () => {
     <div data-aos="fade-left">
       <Header title="Configuracion" />
 
-      <button onClick={openModal} className="bg-blue-500 p-3 rounded-xl">
+      <p>Pagina en Construccion</p>
+      {/* <button onClick={openModal} className="bg-blue-500 p-3 rounded-xl">
         <p>abrir modal</p>
         <UltimoModal isOpen={isOpenModal} closeModal={closeModal}></UltimoModal>
       </button>
-
-      <p>Pagina en Construccion</p>
       <BotonPrimario
         Color={BotonBlancoClasico}
         onClick={() => openModalCaja()}
-      />
+      /> */}
       {/* Prueba Tooltip */}
-      <p data-bs-toggle="tooltip" title="Hi! I'm tooltip">
+      {/* <p data-bs-toggle="tooltip" title="Hi! I'm tooltip">
         tooltip?
-      </p>
+      </p> */}
       {/* Prueba Tooltip */}
       {/* Modal Reutilizable inicio caja funciona bien y es lindo.  */}
-      <BotonPrimario
+      {/* <BotonPrimario
         value="Inicio Caja"
         Color={BotonBlancoRedondeado}
         onClick={() => setModalCaja(!modalCaja)}
-      />
+      /> */}
       {/* {modalCaja ? (
         <ModalReutilizable
           title="Caja"
