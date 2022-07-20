@@ -4,3 +4,4 @@ Gestion de Inventario y ventas para una PYME Argentina.
 2) npm install react-instantsearch-hooks
 
 <!-- .. -->
+<!-- Solo en pruebas -->
