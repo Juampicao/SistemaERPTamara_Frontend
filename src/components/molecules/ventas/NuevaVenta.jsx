@@ -9,6 +9,12 @@ const NuevaVenta = () => {
       <p className="mt-3">
         Llena los siguientes campos para registrar un nueva venta.
       </p>
+      <p className="mt-3">
+        Aun no funciona el autocompletado del producto a vender. Toda las
+        "cantidades" que vendas aca, van a disminuir sobre el primer producto
+        que tenemos en inventario stock.{" "}
+        <span className="font-bold"> "El mejor Producto"</span>
+      </p>
       <FormularioVenta />
     </div>
   );
