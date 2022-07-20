@@ -23,13 +23,7 @@ import {
   BotonRojoRedondeado,
 } from "../../helpers/colores";
 
-import { formatearFecha } from "../../helpers";
-
-// import { IconSearch } from "../../img/iconSearch.png";
 import IconoIncioCaja from "../../img/iconCaja.png";
-import IconoGastos from "../../img/iconoGastos.png";
-import Flecha from "../../img/newIcons/flechaIzquierda.png";
-import diccionarioIConos from "../../helpers/iconos";
 
 import UltimoModal from "../atoms/modal/ultimoModal/UltimoModal";
 

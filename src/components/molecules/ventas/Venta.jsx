@@ -7,8 +7,6 @@ import StaticContext from "../../../contexts/StaticProvider";
 import { BotonEditar, BotonEliminar, BotonVer } from "../../atoms/Botones";
 import { formatearFechaCorta, FormatearNumero } from "../../../helpers";
 
-import diccionarioIConos from "../../../helpers/iconos";
-
 const Venta = ({ venta }) => {
   const {
     ventas,

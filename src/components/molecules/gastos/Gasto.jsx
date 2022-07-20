@@ -8,7 +8,9 @@ import { BotonEditar, BotonEliminar, BotonVer } from "../../atoms/Botones";
 import MessageModal from "../../atoms/MessageModal";
 import { formatearFechaCorta, FormatearNumero } from "../../../helpers";
 
-import diccionarioIConos from "../../../helpers/iconos";
+import IconoProveedor from "../../../img/IconoProveedor.png";
+import IconoGastosVarios from "../../../img/IconoGastosVarios.png";
+import IconoComida from "../../../img/IconoComida.png";
 
 const Gasto = ({ gasto }) => {
   const {
@@ -28,6 +30,12 @@ const Gasto = ({ gasto }) => {
     setScreenSize,
   } = useContext(StaticContext);
   const navigate = useNavigate();
+
+  const diccionarioIConos = {
+    Gastos: IconoGastosVarios,
+    Proveedor: IconoProveedor,
+    Comida: IconoComida,
+  };
 
   const { _id, nombre, valor, cantidad, fecha, notas } = gasto;
 

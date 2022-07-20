@@ -3,10 +3,13 @@ import StaticContext from "../../../contexts/StaticProvider";
 import Gasto from "./Gasto";
 
 import CuadroGastos from "../../atoms/gastos/CuadroGastos";
-import diccionarioIConos from "../../../helpers/iconos";
 import ListadoCaja from "./ListadoCaja";
 
 import IconoInicioCaja from "../../../img/iconCaja.png";
+
+import IconoProveedor from "../../../img/IconoProveedor.png";
+import IconoGastosVarios from "../../../img/IconoGastosVarios.png";
+import IconoComida from "../../../img/IconoComida.png";
 
 const ListadoGastos = () => {
   const {
@@ -20,6 +23,12 @@ const ListadoGastos = () => {
     montoTotalVentasEfectivo,
     inicioCaja,
   } = useContext(StaticContext);
+
+  const diccionarioIConos = {
+    Gastos: IconoGastosVarios,
+    Proveedor: IconoProveedor,
+    Comida: IconoComida,
+  };
 
   const [montoTotalGastosComida, setMontoTotalGastosComida] = useState();
   const [montoTotalGastosVarios, setMontoTotalGastosVarios] = useState();
