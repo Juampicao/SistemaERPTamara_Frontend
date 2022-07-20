@@ -2,14 +2,9 @@ import { useContext, useState } from "react";
 import StaticContext from "../../../contexts/StaticProvider";
 import axios from "axios";
 
-import {
-  BotonAzulClasico,
-  BotonBlancoClasicoSinZoom,
-} from "../../../helpers/colores";
+import { BotonAzulClasico } from "../../../helpers/colores";
 import { BotonPrimario } from "../../atoms/Botones";
 import { useNavigate, useLocation } from "react-router-dom";
-import Spiner from "../../atoms/Spiner";
-import { ModalError } from "../../atoms/ModalNotificacion";
 
 const InicioCaja = () => {
   const {

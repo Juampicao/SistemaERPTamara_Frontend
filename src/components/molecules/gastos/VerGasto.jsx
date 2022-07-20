@@ -2,13 +2,12 @@ import React, { useContext, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 
 import StaticContext from "../../../contexts/StaticProvider";
-import { DiaActual, formatearFecha } from "../../../helpers";
+import { formatearFecha } from "../../../helpers";
 import {
   BotonAzulRedondeado,
   BotonBlancoRedondeado,
 } from "../../../helpers/colores";
 import { BotonPrimario } from "../../atoms/Botones";
-import Gastos from "../../pages/Gastos";
 
 const VerGasto = () => {
   const { gasto, setGasto } = useContext(StaticContext);

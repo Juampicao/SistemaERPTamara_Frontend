@@ -5,13 +5,8 @@ import { useNavigate } from "react-router-dom";
 import StaticContext from "../../../contexts/StaticProvider";
 
 import { BotonEditar, BotonEliminar, BotonVer } from "../../atoms/Botones";
-import { ModalEliminado, ModalError } from "../../atoms/ModalNotificacion";
 import MessageModal from "../../atoms/MessageModal";
-import {
-  formatearFecha,
-  formatearFechaCorta,
-  FormatearNumero,
-} from "../../../helpers";
+import { formatearFechaCorta, FormatearNumero } from "../../../helpers";
 
 import diccionarioIConos from "../../../helpers/iconos";
 

@@ -1,4 +1,3 @@
-// import IconoProveedor from "../../../img/IconoProveedor.png";
 import IconoProveedor from "../img/IconoProveedor.png";
 import IconoGastosVarios from "../img/IconoGastosVarios.png";
 import IconoComida from "../img/IconoComida.png";

@@ -1,5 +1,4 @@
 import React, { useContext, useEffect, useState } from "react";
-import VerGasto from "./VerGasto";
 import StaticContext from "../../../contexts/StaticProvider";
 import Gasto from "./Gasto";
 
@@ -7,7 +6,6 @@ import CuadroGastos from "../../atoms/gastos/CuadroGastos";
 import diccionarioIConos from "../../../helpers/iconos";
 import ListadoCaja from "./ListadoCaja";
 
-// import IconoIncioCaja from "../../img/iconCaja.png";
 import IconoInicioCaja from "../../../img/iconCaja.png";
 
 const ListadoGastos = () => {
