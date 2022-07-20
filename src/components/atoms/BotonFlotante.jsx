@@ -1,11 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import {
-  ColorAzul,
-  ColorNegro,
-  ColorRojo,
-  ColorVerde,
-} from "../../helpers/colores";
+import { ColorAzul, ColorRojo, ColorVerde } from "../../helpers/colores";
 import IconAdd from "../../img/newIcons/iconAdd.png";
 
 const BotonFlotante = () => {

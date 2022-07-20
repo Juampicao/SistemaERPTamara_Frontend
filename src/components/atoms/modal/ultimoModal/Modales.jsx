@@ -1,5 +1,4 @@
 import { useModal } from "../hooks/useModal";
-import UltimoModal from "./UltimoModal";
 
 const Modales = () => {
   const [isOpenModal1, openModal1, closeModal1] = useModal(true);

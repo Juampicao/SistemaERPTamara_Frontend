@@ -3,7 +3,6 @@ import React from "react";
 import { useRef } from "react";
 import { useState } from "react";
 import { useEffect } from "react";
-import IconoSearch from "../../img/iconSearch.png";
 import "./BarraSearch.css";
 
 import getActiveToken from "./../../helpers/getActiveToken.js";

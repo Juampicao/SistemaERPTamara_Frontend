@@ -1,7 +1,5 @@
 import { Outlet, Link, useLocation } from "react-router-dom";
-// import ImagenConfiguracion from "../atoms/ImagenConfiguracion";
 
-// import ImagenTravertino from "../../img/icono-travertinoBlanco.png";
 import iconoVentas from "../../img/iconoVentas.png";
 import iconoBebida from "../../img/iconoBebida.png";
 import iconoConfiguracion from "../../img/iconoConfiguracion.png";

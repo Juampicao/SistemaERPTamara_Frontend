@@ -1,10 +1,5 @@
 import React from "react";
-import {
-  BotonAzulClasico,
-  BotonRojoRedondeado,
-  BotonVerdeRedondeado,
-} from "../../../helpers/colores";
-import { BotonPrimario } from "../Botones";
+
 import "./PruebaModalin.css";
 
 const ModalReutilizable = ({ title, children, isOpen, closeModal }) => {

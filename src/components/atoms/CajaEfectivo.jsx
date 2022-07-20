@@ -1,7 +1,5 @@
 import React from "react";
 import { FormatearNumero } from "../../helpers";
-import IconoGasto from "../../img/IconoGastos.png";
-import Flecha from "../../img/newIcons/flecha.png";
 
 const CajaEfectivo = ({ valorCaja, title, Imagen }) => {
   return (

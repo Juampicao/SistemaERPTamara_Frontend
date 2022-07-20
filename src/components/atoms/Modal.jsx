@@ -2,9 +2,7 @@ import React from "react";
 import {
   BotonClasico,
   ColorAzul,
-  BotonRedondeado,
   BotonVerdeRedondeado,
-  ColorVerde,
 } from "../../helpers/colores";
 import Fernet from "../../img/fernet.jpg";
 import {} from "./Botones";

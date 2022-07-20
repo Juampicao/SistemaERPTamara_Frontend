@@ -1,9 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import {} from "../../helpers/colores";
-import IconoDelete from "../../img/iconDelete.png";
-import IconoEdit from "../../img/iconEdit.png";
-import IconoVer from "../../img/iconVer.png";
 
 import IconoDelete2 from "../../img/newIcons/deletColor.png";
 import IconoEdit2 from "../../img/newIcons/editColor.png";

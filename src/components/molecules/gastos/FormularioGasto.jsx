@@ -11,14 +11,13 @@ import {
   BotonBlancoClasicoSinZoom,
   BotonBlancoRedondeado,
 } from "../../../helpers/colores";
-import * as Yup from "Yup";
-import Alerta from "../../atoms/Alerta";
+// import * as Yup from "Yup";
+// import Alerta from "../../atoms/Alerta";
 import StaticContext from "../../../contexts/StaticProvider";
 
 import { BotonVer } from "../../atoms/Botones";
 import Error from "../../atoms/Error";
 import { toDay } from "../../../helpers";
-// import { ModalGuardado } from "../../atoms/ModalNotificacion";
 
 const FormularioGasto = () => {
   const {
