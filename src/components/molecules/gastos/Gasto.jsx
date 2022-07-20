@@ -75,11 +75,12 @@ const Gasto = ({ gasto }) => {
                 {/* <span class="p-1.5 text-xs font-medium uppercase tracking-wider text-green-800 bg-green-200 rounded-lg bg-opacity-50">
                   Delivered
                 </span> */}
-                <img
+                {/* <img
                   // src={diccionarioIConos[gasto.categoria]}
                   alt=""
                   className="h-12 mx-auto"
-                />
+                /> */}
+                <p>{gasto.categoria}</p>
               </div>
             </div>
             <div class="text-sm text-gray-700">{notas ? notas : ""}</div>
@@ -91,11 +92,12 @@ const Gasto = ({ gasto }) => {
       ) : (
         <tr className="hover:bg-gray-300">
           <td className="p-1">
-            <img
+            {/* <img
               // src={diccionarioIConos[gasto.categoria]}
               alt=""
               className="h-12 mx-auto"
-            />
+            /> */}
+            <p>{gasto.categoria}</p>
           </td>
           <td className="capitalize "> {nombre}</td>
           <td className=""> {FormatearNumero(valor)}</td>
