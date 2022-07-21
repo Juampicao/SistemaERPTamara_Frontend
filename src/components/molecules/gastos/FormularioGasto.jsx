@@ -41,13 +41,29 @@ const FormularioGasto = () => {
 
   const [nombre, setNombre] = useState("");
   const [valor, setValor] = useState("");
-  const [categoria, setCategoria] = useState("Comida");
-  const [fecha, setFecha] = useState(toDay);
+  const [categoria, setCategoria] = useState("");
+  const [fecha, setFecha] = useState("");
   const [notas, setNotas] = useState("");
 
   const [error, setError] = useState(false);
 
   const { _id } = gasto;
+
+  useEffect(() => {
+    if (gasto?._id) {
+      setNombre(gasto.nombre);
+      setValor(gasto.valor);
+      setCategoria(gasto.categoria);
+      setFecha(gasto.fecha?.split("T")[0]);
+      setNotas(gasto.notas);
+      return;
+    }
+    setNombre("");
+    setValor("");
+    setCategoria("Gastos");
+    setFecha(toDay);
+    setNotas("");
+  }, [gasto]);
 
   // Prueba con AXIOS
   const handleSubmit = async (e) => {
@@ -88,6 +104,7 @@ const FormularioGasto = () => {
         console.log(respuesta);
         navigate("/gastos");
         setIsOpenSaveModal(true);
+        setGasto("");
       }
     } catch (error) {
       console.log(error);
@@ -103,18 +120,6 @@ const FormularioGasto = () => {
 
   return (
     <div>
-      {/* <p> Fecha: {gasto.fecha.substr(0, 10)} </p> */}
-
-      <p className="text-md text-slate-400 my-2">
-        {gasto._id
-          ? `- La fecha y la categoria por un problema aparecen con datos erroneos, pero si vas a "ver gasto" existen. Lo que modifiques aca se va a cambiar, lo que no toques,queda igual a como esta en VER GASTO.`
-          : ""}
-      </p>
-      <p className="text-md text-slate-400 my-2">
-        {gasto._id
-          ? `- Si aparece esto cuando queres crear NUEVO GASTO, refresca la pagina.`
-          : ""}
-      </p>
       <p className="text-lg">
         {gasto._id ? `Editar el gasto: ${gasto.nombre}` : ""}
       </p>
@@ -131,14 +136,10 @@ const FormularioGasto = () => {
               type="text"
               placeholder="Nombre del gasto"
               className={inputStyles}
-              // value={nombre}
+              value={nombre}
               onChange={(e) => setNombre(e.target.value)}
-              defaultValue={
-                urlActual.includes("nuevogasto") ? "" : gasto.nombre
-              }
             />
           </div>
-          {/* {nombre === "" ? <p> Campo Obligatorio </p> : ""} */}
 
           <div className={divStyles}>
             <label htmlFor="valor" className={labelStyles}>
@@ -150,15 +151,22 @@ const FormularioGasto = () => {
               type="number"
               placeholder={gasto._id ? gasto.valor : "Valor del gasto"}
               className={inputStyles}
-              // value={valor}
+              value={valor}
               onChange={(e) => setValor(e.target.value)}
-              defaultValue={urlActual.includes("nuevogasto") ? "" : gasto.valor}
             />
           </div>
           <div className={divStyles}>
             <label htmlFor="fecha" className={labelStyles}>
               Fecha
             </label>
+            {gasto?._id ? (
+              <p className="text-slate-400 ">
+                {" "}
+                La fecha no aparece pero existe.En "Ver gasto" aparece bien.
+              </p>
+            ) : (
+              ""
+            )}
             <input
               id="fecha"
               name="fecha"
@@ -166,9 +174,6 @@ const FormularioGasto = () => {
               placeholder=""
               className={inputStyles}
               onChange={(e) => setFecha(e.target.value)}
-              // defaultValue={toDay}
-              // defaultValue={urlActual.includes("editar") ? { toDay } : ""}
-              defaultValue={gasto._id ? gasto.fecha : toDay}
             />
           </div>
           <div className={divStyles}>
@@ -181,8 +186,8 @@ const FormularioGasto = () => {
               name="categoria"
               placeholder=""
               className={inputStyles}
+              value={categoria}
               onChange={(e) => setCategoria(e.target.value)}
-              defaultValue={gasto._ ? gasto.categoria : "Comida"}
             >
               <option value=""> -- Select -- </option>
               <option value="Gastos"> Gastos Varios </option>
@@ -220,7 +225,7 @@ const FormularioGasto = () => {
                     rows=""
                     className="w-full border  h-28 p-2 "
                     placeholder="Escribe alguna nota..."
-                    defaultValue={gasto.notas}
+                    value={gasto.notas}
                     onChange={(e) => setNotas(e.target.value)}
                   ></textarea>
                 </div>
@@ -252,7 +257,6 @@ const FormularioGasto = () => {
               onClick={() => {
                 navigate("/gastos"), setGasto("");
               }}
-              // onClick={({ handleBack }, setGasto(""))}
             />
           </div>
         </form>
@@ -261,10 +265,10 @@ const FormularioGasto = () => {
   );
 };
 
-FormularioGasto.defaultProps = {
-  gasto: {},
-  // cargando: false,
-};
+// FormularioGasto.defaultProps = {
+//   gasto: {},
+//   // cargando: false,
+// };
 
 export default FormularioGasto;
 

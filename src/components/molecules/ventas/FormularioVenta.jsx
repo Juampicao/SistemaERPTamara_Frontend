@@ -13,8 +13,6 @@ import { BotonVer } from "../../atoms/Botones";
 import Error from "../../atoms/Error";
 import { aumentar, disminuir, toDay } from "../../../helpers";
 
-// import {aumentar, disminuir } from "../../../"
-
 const FormularioVenta = () => {
   const {
     venta,
@@ -29,30 +27,48 @@ const FormularioVenta = () => {
   const location = useLocation();
   const urlActual = location.pathname;
 
-  // Resetear el state Gasto.
+  // Resetear el state Venta.
   if (urlActual.includes("nuevaventa")) {
     setVenta("");
   }
 
   const [producto, setProducto] = useState("");
-  const [cantidad, setCantidad] = useState(1);
+  const [cantidad, setCantidad] = useState();
   const [valorIndividual, setValorIndividual] = useState("");
   const [valorTotal, setValorTotal] = useState("");
-  const [metodoPago, setMetodoPago] = useState("Efectivo");
-  const [categoria, setCategoria] = useState("Bebida");
-  const [fecha, setFecha] = useState(toDay);
+  const [metodoPago, setMetodoPago] = useState("");
+  const [categoria, setCategoria] = useState("");
+  const [fecha, setFecha] = useState();
   const [notas, setNotas] = useState("");
   const [error, setError] = useState(false);
 
-  const accionstock = "disminuir"; // Mal. Se concatena.
+  const accionstock = "disminuir"; // disminuir o aumentar. (stock).
 
   const { _id } = venta;
 
-  // Resetear el state Gasto.
-  if (urlActual.includes("nuevaventa")) {
-  }
+  useEffect(() => {
+    if (venta?._id) {
+      setProducto(venta.producto);
+      setCantidad(venta.cantidad);
+      setValorIndividual(venta.valorIndividual);
+      setValorTotal(venta.valorTotal);
+      setMetodoPago(venta.metodoPago);
+      setCategoria(venta.categoria);
+      setFecha(venta.categoria);
+      setNotas(venta.notas);
 
-  const precio = 49;
+      return;
+    }
+    setProducto("");
+    setCantidad(1);
+    setValorIndividual("");
+    setValorTotal("");
+    setMetodoPago("Efectivo");
+    setCategoria("Bebida");
+    setFecha("");
+    setNotas("");
+  }, [venta]);
+
   // Prueba con AXIOS
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -158,11 +174,8 @@ const FormularioVenta = () => {
               type="text"
               placeholder="Producto vendido"
               className={inputStyles}
-              // value={nombre}
+              value={producto}
               onChange={(e) => setProducto(e.target.value)}
-              defaultValue={
-                urlActual.includes("nuevaventa") ? "" : venta.producto
-              }
             />
           </div>
           {/* {nombre === "" ? <p> Campo Obligatorio </p> : ""} */}
@@ -176,11 +189,8 @@ const FormularioVenta = () => {
               type="number"
               placeholder={venta._id ? venta.cantidad : "Cantidad de unidades"}
               className={inputStyles}
-              // value={valor}
+              value={cantidad}
               onChange={(e) => setCantidad(Number(e.target.value))}
-              defaultValue={
-                urlActual.includes("nuevaventa") ? 1 : venta.cantidad
-              }
             />
           </div>
 
@@ -192,15 +202,10 @@ const FormularioVenta = () => {
               id="valor"
               name="valor"
               type="number"
-              placeholder={
-                venta._id ? venta.valorIndividual : "$ Valor Unitario"
-              }
+              placeholder="$ Valor Unitario de venta"
               className={inputStyles}
-              // value={valor}
+              value={venta.valorIndividual}
               onChange={(e) => setValorIndividual(e.target.value)}
-              defaultValue={
-                urlActual.includes("nuevaventa") ? "" : venta.valorIndividual
-              }
             />
           </div>
           <div className={divStyles}>
@@ -211,17 +216,10 @@ const FormularioVenta = () => {
               id="valorTotal"
               name="valor"
               type="number"
-              placeholder={
-                urlActual.includes("nuevaventa")
-                  ? "$ Valor total"
-                  : "$ Valor de venta"
-              }
+              placeholder="Valor total de la venta"
               className={inputStyles}
-              // value={valor}
+              value={valorTotal}
               onChange={(e) => setValorTotal(e.target.value)}
-              defaultValue={
-                urlActual.includes("nuevaventa") ? "" : venta.valorTotal
-              }
             />
           </div>
           <div className={divStyles}>
@@ -235,9 +233,7 @@ const FormularioVenta = () => {
               placeholder=""
               className={inputStyles}
               onChange={(e) => setFecha(e.target.value)}
-              // defaultValue={toDay}
-              // defaultValue={urlActual.includes("editar") ? { toDay } : ""}
-              defaultValue={venta._id ? venta.fecha : toDay}
+              value={fecha}
             />
           </div>
           <div className={divStyles}>
@@ -251,7 +247,7 @@ const FormularioVenta = () => {
               placeholder=""
               className={inputStyles}
               onChange={(e) => setMetodoPago(e.target.value)}
-              // defaultValue={venta._ ? venta.categoria : ""}
+              value={metodoPago}
             >
               <option value="Efectivo"> Efectivo </option>
               <option value="Tarjeta"> Tarjeta </option>
@@ -268,7 +264,7 @@ const FormularioVenta = () => {
               placeholder=""
               className={inputStyles}
               onChange={(e) => setCategoria(e.target.value)}
-              defaultValue={venta._ ? venta.categoria : ""}
+              value={categoria}
             >
               <option value="Bebida"> Bebida </option>
               <option value="Comida"> Comida </option>
@@ -305,9 +301,7 @@ const FormularioVenta = () => {
                     rows=""
                     className="w-full border  h-28 p-2 "
                     placeholder="Escribe alguna nota..."
-                    defaultValue={
-                      urlActual.includes("nuevaventa") ? "" : venta.notas
-                    }
+                    value={venta.nota}
                     onChange={(e) => setNotas(e.target.value)}
                   ></textarea>
                 </div>
@@ -337,9 +331,8 @@ const FormularioVenta = () => {
               value="Volver Atras"
               type="button"
               onClick={() => {
-                navigate("/ventas"), setventa("");
+                navigate("/ventas"), setVenta("");
               }}
-              // onClick={({ handleBack }, setventa(""))}
             />
           </div>
         </form>

@@ -10,7 +10,7 @@ export const generarId = () => {
 
 // const toDay
 export const toDay = new Date().toISOString().substring(0, 10);
-
+console.log(toDay);
 export const formatearFechaCorta = (fecha) => {
   const fechaNueva = new Date(fecha);
   const opciones = {
@@ -43,6 +43,22 @@ export const FormatearNumero = function (number) {
 // export default formatearFecha(DiaActual);
 export let DiaActual = new Date();
 console.log(DiaActual.toLocaleDateString());
+const pruebaDia = DiaActual.toLocaleDateString();
+
+console.log(pruebaDia);
+
+export const formatearFecha2 = (fecha) => {
+  const nuevaFecha = new Date(fecha.split("T")[0].split("-"));
+  const opciones = {
+    weekday: "long",
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  };
+  return nuevaFecha.toLocaleDateString("es-ES", opciones);
+};
+
+console.log(formatearFecha2("10/20/2022"));
 
 // export const formatter = new Intl.NumberFormat("en-US", {
 //   style: "currency",

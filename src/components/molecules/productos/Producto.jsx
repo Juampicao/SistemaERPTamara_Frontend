@@ -34,22 +34,25 @@ const Producto = ({ producto }) => {
 
   const handleDelete = async (id) => {
     // const confirmar = confirm("¿Deseas eliminar este cliente?");
-    setIsOpenConfirmModal(!isOpenConfirmModal);
+    const confirmar = confirm("Deseas eliminar este gasto?");
+    if (confirmar) {
+      try {
+        const url = `${import.meta.env.VITE_API_URL}/productos/${id}`;
 
-    try {
-      const url = `${import.meta.env.VITE_API_URL}/productos/${id}`;
-
-      const respuesta = await fetch(url, {
-        method: "DELETE",
-      });
-      await respuesta.json();
-      console.log("Eliminando");
-      const arrayProductos = clientes.filter(
-        (producto) => producto._id !== _id
-      );
-      setProductos(arrayProductos);
-    } catch (error) {
-      console.log(error);
+        const respuesta = await fetch(url, {
+          method: "DELETE",
+        });
+        await respuesta.json();
+        console.log("Eliminando");
+        const arrayProductos = productos.filter(
+          (producto) => producto._id !== _id
+        );
+        setProductos(arrayProductos);
+        setIsOpenDeleteModal(!isOpenDeleteModal);
+      } catch (error) {
+        console.log(error);
+        setIsOpenErrorModal(!isOpenErrorModal);
+      }
     }
   };
 

@@ -41,17 +41,41 @@ const FormularioProducto = () => {
   const [cantidad, setCantidad] = useState("");
   const [precio, setPrecio] = useState("");
   const [costo, setCosto] = useState("");
-  const [categoria, setCategoria] = useState("Bebida");
-  const [fecha, setFecha] = useState(toDay);
+  const [categoria, setCategoria] = useState("");
+  const [fecha, setFecha] = useState("");
   const [descripcion, setDescripcion] = useState("");
 
   const [error, setError] = useState(false);
 
   const { _id } = producto;
 
+  useEffect(() => {
+    if (producto?._id) {
+      setNombreProducto(producto.nombreProducto);
+      setImagen(producto.imagen);
+      setCantidad(producto.cantidad);
+      setPrecio(producto.precio);
+      setCosto(producto.costo);
+      setCategoria(producto.categoria);
+      setFecha(producto.fecha);
+      setDescripcion(producto.descripcion);
+
+      return;
+    }
+    setNombreProducto("");
+    setImagen("");
+    setCantidad("");
+    setPrecio("");
+    setCosto("");
+    setCategoria("Bebidas");
+    setFecha("");
+    setDescripcion("");
+  }, [producto]);
+
   // Funcion Cerrar Edit
   const handleClickClose = () => {
     console.log("cerrando..");
+    setProducto("");
     navigate(`/productos`);
   };
 
@@ -149,7 +173,9 @@ const FormularioProducto = () => {
             </div>
 
             <div className="flex justify-between items-center">
-              <p className="font-semibold text-lg">Editar Producto</p>
+              <p className="font-semibold text-lg">
+                {producto?._id ? "Editar Producto" : "Nuevo Producto"}
+              </p>
             </div>
           </div>
 
@@ -175,11 +201,7 @@ const FormularioProducto = () => {
                 placeholder="Nombre"
                 className={inputText}
                 name="nombre"
-                defaultValue={
-                  urlActual.includes("nuevoproducto")
-                    ? ""
-                    : producto.nombreProducto
-                }
+                value={producto.nombreProducto}
                 onChange={(e) => setNombreProducto(e.target.value)}
               />
             </div>
@@ -196,10 +218,7 @@ const FormularioProducto = () => {
                 className={inputText}
                 type="number"
                 placeholder="1"
-                defaultValue={
-                  urlActual.includes("nuevoproducto") ? "" : producto.cantidad
-                }
-                // defaultValue={producto.cantidad ? producto.cantidad : }
+                value={producto.cantidad}
                 onChange={(e) => setCantidad(Number(e.target.value))}
               />
               {/* <img
@@ -226,9 +245,7 @@ const FormularioProducto = () => {
                 type="text"
                 placeholder="$"
                 className={inputText}
-                defaultValue={
-                  urlActual.includes("nuevoproducto") ? "" : producto.costo
-                }
+                value={producto.costo}
                 onChange={(e) => setCosto(e.target.value)}
               />
             </div>
@@ -244,7 +261,7 @@ const FormularioProducto = () => {
                 type="text"
                 placeholder="$"
                 className={inputText}
-                defaultValue={producto.precio}
+                value={producto.precio}
                 onChange={(e) => setPrecio(e.target.value)}
               />
             </div>
@@ -256,7 +273,13 @@ const FormularioProducto = () => {
                 <p className={titulos}>Categoria</p>
               </div>
 
-              <select name="" id="" className="px-2 py-1 ">
+              <select
+                name=""
+                id=""
+                className="px-2 py-1 "
+                value={producto.categoria}
+                onChange={(e) => setCategoria(e.target.value)}
+              >
                 <option value="Bebidas">Bebidas</option>
                 <option value="Comidas">Comidas</option>
               </select>
@@ -272,6 +295,7 @@ const FormularioProducto = () => {
                 className="w-full p-2 h-24 mt-3 border border-slate-300"
                 placeholder="Aca pones una descripcion que te guste
             "
+                value={producto.descripcion}
                 onChange={(e) => setDescripcion(e.target.value)}
               ></textarea>
             </div>

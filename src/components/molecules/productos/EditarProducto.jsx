@@ -31,15 +31,10 @@ const EditarProducto = () => {
     };
     obtenerProducto();
   }, []);
+
   return (
     <div data-aos="fade-left">
-      <Header
-        title={
-          urlActual.includes("nuevoproducto")
-            ? "Editar Producto "
-            : "Agregar Producto"
-        }
-      />
+      <Header title={producto?._id ? "Editar Producto " : "Agregar Producto"} />
       <FormularioProducto />
     </div>
   );
