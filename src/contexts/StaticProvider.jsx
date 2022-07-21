@@ -34,7 +34,7 @@ const StaticProvider = ({ children }) => {
   const [gastos, setGastos] = useState([]);
   const [totalGastos, setTotalGastos] = useState(500);
 
-  const [isCargando, setIsCargando] = useState(false);
+  const [isCargando, setIsCargando] = useState(true);
 
   const [inicioCaja, setInicioCaja] = useState(Number(""));
   const [cajaActual, setCajaActual] = useState(Number());

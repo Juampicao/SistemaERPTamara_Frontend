@@ -16,7 +16,7 @@ const Layout = () => {
   const { isActiveMenu, setActiveMenu, screenSize, setScreenSize } =
     useContext(StaticContext);
 
-  const { auth, setAuth } = useAuth();
+  const { auth, setAuth, cerrarSesionAuth } = useAuth();
 
   const location = useLocation();
   const urlActual = location.pathname;
@@ -171,12 +171,9 @@ const Layout = () => {
               </div>
             </Link>
 
-            <button
-              className="text-white"
-              onClick={(e) => console.log("Cerrar sesion...")}
-            >
+            <Link to="/" className="text-white">
               Cerrar Sesion
-            </button>
+            </Link>
             <button
               onClick={handleClickClose}
               className="hover:scale-105  hover:duration-200 duration-200"

@@ -24,7 +24,7 @@ const Configuraciones = () => {
     <div data-aos="fade-left">
       <Header title="Configuracion" />
 
-      <p>Pagina en Construccion...</p>
+      <p>..Pagina en Construccion...</p>
 
       {/* <button onClick={openModal} className="bg-blue-500 p-3 rounded-xl">
         <p>abrir modal</p>
