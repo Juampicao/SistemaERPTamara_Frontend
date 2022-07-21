@@ -6,6 +6,8 @@ import axios from "axios";
 import Header from "../molecules/Header";
 import { BotonNuevaVenta, BotonNuevoProducto } from "../atoms/Botones";
 import ListadoProductos from "../molecules/productos/ListadoProductos";
+import Busqueda from "../atoms/Busqueda";
+import BarraSearch from "../atoms/BarraSearch";
 
 const Productos = () => {
   const {
@@ -19,6 +21,8 @@ const Productos = () => {
     setIsOpenDeleteModal,
     isOpenErrorModal,
     setIsOpenErrorModal,
+    handleBuscador,
+    buscador,
   } = useContext(StaticContext);
   const navigate = useNavigate();
 
@@ -37,9 +41,15 @@ const Productos = () => {
   return (
     <div className="fade-left">
       <Header title="Inventario" />
-      <BotonNuevoProducto
-        onClick={() => navigate("/productos/nuevoproducto")}
-      />
+      <div className="flex gap-x-3">
+        <BotonNuevoProducto
+          onClick={() => navigate("/productos/nuevoproducto")}
+        />
+        <BarraSearch
+          onClick={handleBuscador}
+          placeholder="Buscar un producto.."
+        />
+      </div>
       <ListadoProductos />
     </div>
   );

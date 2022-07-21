@@ -18,6 +18,8 @@ const FormularioVenta = () => {
   const {
     venta,
     setVenta,
+    productos,
+    setProductos,
     isOpenSaveModal,
     setIsOpenSaveModal,
     isOpenErrorModal,
@@ -45,9 +47,41 @@ const FormularioVenta = () => {
   const [notas, setNotas] = useState("");
   const [error, setError] = useState(false);
 
+  const [productoAVender, setProductoAVender] = useState("");
+
   const accionstock = "disminuir"; // disminuir o aumentar. (stock).
 
   const { _id } = venta;
+
+  // const obtenerProductodelStock = async () => {
+  //   try {
+  //     const url = `${import.meta.env.VITE_API_URL}/productos/${id}`;
+  //     const respuesta = await fetch(url);
+  //     const resultado = await respuesta.json();
+  //     setProductoAVender(resultado);
+  //     console.log(productoAVender);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  //   // setIsCargando(!isCargando);
+  // };
+
+  // Cargar Productos de Stock Para vender
+  useEffect(() => {
+    const obtenerProducto = async () => {
+      try {
+        const url = `${import.meta.env.VITE_API_URL}/productos`;
+        const respuesta = await fetch(url);
+        const resultado = await respuesta.json();
+        setProductos(resultado);
+        console.log(producto);
+      } catch (error) {
+        console.log(error);
+      }
+      // setIsCargando(!isCargando);
+    };
+    obtenerProducto();
+  }, []);
 
   useEffect(() => {
     if (venta?._id) {
@@ -171,7 +205,7 @@ const FormularioVenta = () => {
             <label htmlFor="producto" className={labelStyles}>
               Producto
             </label>
-            <input
+            {/*<input
               id="producto"
               name="producto"
               type="text"
@@ -179,13 +213,32 @@ const FormularioVenta = () => {
               className={inputStyles}
               value={producto}
               onChange={(e) => setProducto(e.target.value)}
+            /> */}
+            {/* Pruebas */}
+            <input
+              type="search"
+              className={inputStyles}
+              id="producto"
+              name="producto"
+              value={producto}
+              onChange={(e) => {
+                setProducto(e.target.value);
+              }}
+              placeholder="Buscar"
+              list="pruebaLista"
+              onClick={() => console.log(venta.producto)}
             />
+            <datalist id="pruebaLista">
+              {/* <option value=""> --- </option> */}
+              {productos.map((producto) => (
+                <option value={producto.nombreProducto}>
+                  {producto.nombreProducto}
+                </option>
+              ))}
+            </datalist>
+            {/* Pruebas */}
           </div>
-          <button type="button" onClick={handleBuscador} className="">
-            Abrir Buscador
-          </button>
-          <Busqueda />
-          {/* {nombre === "" ? <p> Campo Obligatorio </p> : ""} */}
+
           <div className={divStyles}>
             <label htmlFor="cantidad" className={labelStyles}>
               Cantidad

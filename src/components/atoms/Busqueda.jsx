@@ -10,7 +10,7 @@ function classNames(...classes) {
 }
 
 const Busqueda = () => {
-  const { gastos, ventas, buscador, handleBuscador } =
+  const { gastos, ventas, productos, buscador, handleBuscador } =
     useContext(StaticContext);
 
   const urlActual = location.pathname;
@@ -29,6 +29,13 @@ const Busqueda = () => {
       ? []
       : gastos.filter((gasto) =>
           gasto.nombre.toLowerCase().includes(busqueda.toLowerCase())
+        );
+
+  const productosFiltrados =
+    busqueda === ""
+      ? []
+      : productos.filter((producto) =>
+          producto.nombreProducto.toLowerCase().includes(busqueda.toLowerCase())
         );
 
   return (
@@ -124,7 +131,8 @@ const Busqueda = () => {
                     ))}
                   </Combobox.Options>
                 )
-              : ventasFiltradas.length > 0 && (
+              : urlActual.includes("venta")
+              ? ventasFiltradas.length > 0 && (
                   <Combobox.Options
                     static
                     className="max-h-72 scroll-py-2 overflow-y-auto py-2 text-sm text-gray-800"
@@ -132,7 +140,7 @@ const Busqueda = () => {
                     {ventasFiltradas.map((venta) => (
                       <Combobox.Option
                         key={venta._id}
-                        value={venta}
+                        value={venta.producto}
                         className={({ active }) =>
                           classNames(
                             "cursor-default select-none px-4 py-2",
@@ -144,7 +152,31 @@ const Busqueda = () => {
                       </Combobox.Option>
                     ))}
                   </Combobox.Options>
-                )}
+                )
+              : urlActual.includes("productos")
+              ? productosFiltrados.length > 0 && (
+                  <Combobox.Options
+                    static
+                    className="max-h-72 scroll-py-2 overflow-y-auto py-2 text-sm text-gray-800"
+                  >
+                    {productosFiltrados.map((producto) => (
+                      <Combobox.Option
+                        key={producto._id}
+                        value={producto.nombreProducto}
+                        className={({ active }) =>
+                          classNames(
+                            "cursor-default select-none px-4 py-2",
+                            active && "bg-sky-600 text-white"
+                          )
+                        }
+                      >
+                        {producto.nombreProducto}
+                      </Combobox.Option>
+                    ))}
+                  </Combobox.Options>
+                )
+              : ""}
+            {/* const color = d.y >= 70 ? "green" : (d.y < 50 ? "red" : "yellow"); */}
           </Combobox>
         </Transition.Child>
       </Dialog>

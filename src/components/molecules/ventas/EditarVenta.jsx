@@ -14,9 +14,10 @@ const EditarVenta = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const urlActual = location.pathname;
+
   // Llamado a la base de datos
   useEffect(() => {
-    const obtenerClienteAPI = async () => {
+    const obtenerVentaIndividual = async () => {
       try {
         const url = `${import.meta.env.VITE_API_URL}/ventas/${id}`;
         const respuesta = await fetch(url);
@@ -28,7 +29,7 @@ const EditarVenta = () => {
       }
       // setIsCargando(!isCargando);
     };
-    obtenerClienteAPI();
+    obtenerVentaIndividual();
   }, []);
   return (
     <div data-aos="fade-left">
