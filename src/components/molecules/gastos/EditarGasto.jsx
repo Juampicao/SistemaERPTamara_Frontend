@@ -24,7 +24,7 @@ const EditarGasto = () => {
       } catch (error) {
         console.log(error);
       }
-      // setIsCargando(!isCargando);
+      setIsCargando(!isCargando);
     };
     obtenerClienteAPI();
   }, []);

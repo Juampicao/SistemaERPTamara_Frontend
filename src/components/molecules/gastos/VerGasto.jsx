@@ -10,7 +10,8 @@ import {
 import { BotonPrimario } from "../../atoms/Botones";
 
 const VerGasto = () => {
-  const { gasto, setGasto } = useContext(StaticContext);
+  const { gasto, setGasto, isCargando, setIsCargando } =
+    useContext(StaticContext);
   const { id } = useParams();
   console.log(id);
   const navigate = useNavigate();
@@ -25,7 +26,7 @@ const VerGasto = () => {
       } catch (error) {
         // console.log(error);
       }
-      //   setIsCargando(!isCargando);
+      setIsCargando(!isCargando);
     };
     obtenerClienteAPI();
   }, []);

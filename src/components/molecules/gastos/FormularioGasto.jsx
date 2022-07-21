@@ -18,6 +18,7 @@ import StaticContext from "../../../contexts/StaticProvider";
 import { BotonVer } from "../../atoms/Botones";
 import Error from "../../atoms/Error";
 import { toDay } from "../../../helpers";
+import Spiner from "../../atoms/Spiner";
 
 const FormularioGasto = () => {
   const {
@@ -28,6 +29,8 @@ const FormularioGasto = () => {
     setIsOpenSaveModal,
     isOpenErrorModal,
     setIsOpenErrorModal,
+    isCargando,
+    setIsCargando,
   } = useContext(StaticContext);
 
   const navigate = useNavigate();
@@ -50,12 +53,15 @@ const FormularioGasto = () => {
   const { _id } = gasto;
 
   useEffect(() => {
+    setIsCargando(true);
     if (gasto?._id) {
       setNombre(gasto.nombre);
       setValor(gasto.valor);
       setCategoria(gasto.categoria);
       setFecha(gasto.fecha?.split("T")[0]);
       setNotas(gasto.notas);
+      setIsCargando(false);
+
       return;
     }
     setNombre("");
@@ -63,6 +69,7 @@ const FormularioGasto = () => {
     setCategoria("Gastos");
     setFecha(toDay);
     setNotas("");
+    setIsCargando(false);
   }, [gasto]);
 
   // Prueba con AXIOS
@@ -120,6 +127,7 @@ const FormularioGasto = () => {
 
   return (
     <div>
+      {isCargando ? <Spiner /> : ""}
       <p className="text-lg">
         {gasto._id ? `Editar el gasto: ${gasto.nombre}` : ""}
       </p>

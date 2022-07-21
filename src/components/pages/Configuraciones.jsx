@@ -16,6 +16,7 @@ import "./../atoms/BarraSearch.css";
 
 import UltimoModal from "../atoms/modal/ultimoModal/UltimoModal";
 import StaticContext from "../../contexts/StaticProvider";
+import Spiner from "../atoms/Spiner";
 
 const Configuraciones = () => {
   const { isOpenModal, openModal, closeModal } = useContext(StaticContext);

@@ -1,6 +1,7 @@
 import React from "react";
 import { useEffect, useContext, useState } from "react";
 import StaticContext from "../../../contexts/StaticProvider";
+import Spiner from "../../atoms/Spiner";
 
 import Producto from "./Producto";
 
@@ -14,11 +15,14 @@ const ListadoProductos = () => {
     setScreenSize,
     isOpenErrorModal,
     setIsOpenErrorModal,
+    isCargando,
+    setIsCargando,
   } = useContext(StaticContext);
 
   // Get Base de datos
   useEffect(() => {
     const obtenerClienteAPI = async () => {
+      setIsCargando(true);
       try {
         const url = `${import.meta.env.VITE_API_URL}/productos`;
         const respuesta = await fetch(url);
@@ -29,7 +33,7 @@ const ListadoProductos = () => {
         console.log(error);
         setIsOpenErrorModal(true);
       }
-      // setCargando(!cargando);
+      setIsCargando(false);
     };
     obtenerClienteAPI();
   }, []);
@@ -53,6 +57,8 @@ const ListadoProductos = () => {
 
   return (
     <div>
+      {isCargando ? <Spiner /> : ""}
+
       <div className="overflow-auto rounded-xl  shadow-xl  my-5 text-center ">
         <table className={tableStyles}>
           <thead className=" bg-white border-b-2 border-gray-200">

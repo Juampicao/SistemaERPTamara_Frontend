@@ -6,6 +6,7 @@ import CuadroGastos from "../../atoms/gastos/CuadroGastos";
 import ListadoCaja from "./ListadoCaja";
 
 import IconoInicioCaja from "../../../img/iconCaja.png";
+import Spiner from "../../atoms/Spiner";
 
 const ListadoGastos = () => {
   const {
@@ -18,6 +19,8 @@ const ListadoGastos = () => {
     setTotalValorGastos,
     montoTotalVentasEfectivo,
     inicioCaja,
+    isCargando,
+    setIsCargando,
   } = useContext(StaticContext);
 
   // const diccionarioIConos = {
@@ -37,7 +40,8 @@ const ListadoGastos = () => {
 
   // Get Base de datos
   useEffect(() => {
-    const obtenerClienteAPI = async () => {
+    const obtenerGastos = async () => {
+      setIsCargando(true);
       try {
         const url = `${import.meta.env.VITE_API_URL}/gastos`;
         const respuesta = await fetch(url);
@@ -53,10 +57,10 @@ const ListadoGastos = () => {
         // setMontoTotalGastos(resultado.montoTotalGastos);
         // console.log(montoTotalGastos);
         setGastos(resultado.gastos);
+        setIsCargando(false);
       } catch (error) {
         console.log(error);
       }
-      // setCargando(!cargando);
     };
     setTotalValorGastos(0);
     console.log(montoTotalGastosProveedores + montoTotalGastosComida);
@@ -65,7 +69,7 @@ const ListadoGastos = () => {
       montoTotalGastosProveedores +
       montoTotalGastosVarios;
     console.log(todosLosGastos);
-    obtenerClienteAPI();
+    obtenerGastos();
   }, []);
 
   // Styles
@@ -77,6 +81,7 @@ const ListadoGastos = () => {
 
   return (
     <div>
+      {isCargando ? <Spiner /> : ""}
       <div className="overflow-auto rounded-xl  shadow-xl  my-5 text-center ">
         <table className={tableStyles}>
           <thead className=" bg-white border-b-2 border-gray-200">

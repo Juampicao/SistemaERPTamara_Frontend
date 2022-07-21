@@ -144,7 +144,7 @@ const StaticProvider = ({ children }) => {
         ""
       )}
       {isOpenErrorModal ? <ModalError titleModal="Error" /> : " "}
-      {isCargando ? <Spiner /> : " "}
+      {/* {isCargando ? <Spiner /> : " "} */}
       {children}
     </StaticContext.Provider>
   );
