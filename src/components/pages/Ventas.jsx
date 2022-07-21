@@ -7,6 +7,9 @@ import Header from "../molecules/Header";
 import { BotonNuevaVenta } from "../atoms/Botones";
 import ListadoVentas from "../molecules/ventas/ListadoVentas";
 
+import Busqueda from "../atoms/Busqueda";
+import BarraSearch from "../atoms/BarraSearch";
+
 const Ventas = () => {
   const {
     venta,
@@ -17,6 +20,8 @@ const Ventas = () => {
     isOpenModal,
     openModal,
     closeModal,
+    handleBuscador,
+    buscador,
   } = useContext(StaticContext);
   const navigate = useNavigate();
 
@@ -44,7 +49,15 @@ const Ventas = () => {
   return (
     <div className="fade-left">
       <Header title="Ventas" />
-      <BotonNuevaVenta onClick={() => navigate("/ventas/nuevaventa")} />
+      <div className="flex gap-x-3">
+        <BotonNuevaVenta onClick={() => navigate("/ventas/nuevaventa")} />
+        <BarraSearch
+          onClick={handleBuscador}
+          placeholder="Buscar una venta.."
+        />
+      </div>
+
+      <Busqueda />
       <ListadoVentas />
     </div>
   );

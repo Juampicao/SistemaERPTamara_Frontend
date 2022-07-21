@@ -43,6 +43,13 @@ const StaticProvider = ({ children }) => {
 
   const [montoTotalVentasEfectivo, setMontoTotalVentasEfectivo] = useState();
 
+  const [buscador, setBuscador] = useState(false);
+
+  const handleBuscador = () => {
+    setBuscador(!buscador);
+    console.log("Buscando o Cerrando?");
+  };
+
   // Borrar Gastos
   // const handleDelete = async (id) => {
   //   console.log("Borrando");
@@ -112,6 +119,8 @@ const StaticProvider = ({ children }) => {
         cajaActual,
         montoTotalVentasEfectivo,
         setMontoTotalVentasEfectivo,
+        handleBuscador,
+        buscador,
       }}
     >
       {isOpenDeleteModal ? (

@@ -26,6 +26,7 @@ import {
 import IconoIncioCaja from "../../img/iconCaja.png";
 
 import UltimoModal from "../atoms/modal/ultimoModal/UltimoModal";
+import Busqueda from "../atoms/Busqueda";
 
 const Gastos = () => {
   const {
@@ -44,7 +45,10 @@ const Gastos = () => {
     isOpenModal,
     openModal,
     closeModal,
+    buscador,
+    handleBuscador,
   } = useContext(StaticContext);
+  // handleBuscador();
 
   const [gastosComida, setGastosComida] = useState();
 
@@ -139,8 +143,13 @@ const Gastos = () => {
           onClick={handleReiniciarTotalGastos}
         />
       </div>
+      {/* <button onClick={handleBuscador} className="">
+        Abrir Buscador
+      </button> */}
+      <Busqueda />
       <div className="flex items-center gap-x-3">
-        <BarraSearch />
+        <BarraSearch onClick={handleBuscador} placeholder="Buscar un gasto.." />
+
         <Dropdown onClick1={() => {}} />
       </div>
       <ListadoGastos />

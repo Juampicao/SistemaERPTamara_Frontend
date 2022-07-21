@@ -13,6 +13,7 @@ import { BotonVer } from "../../atoms/Botones";
 import Error from "../../atoms/Error";
 import { aumentar, disminuir, toDay } from "../../../helpers";
 
+import Busqueda from "../../atoms/Busqueda";
 const FormularioVenta = () => {
   const {
     venta,
@@ -21,6 +22,8 @@ const FormularioVenta = () => {
     setIsOpenSaveModal,
     isOpenErrorModal,
     setIsOpenErrorModal,
+    buscador,
+    handleBuscador,
   } = useContext(StaticContext);
 
   const navigate = useNavigate();
@@ -54,7 +57,7 @@ const FormularioVenta = () => {
       setValorTotal(venta.valorTotal);
       setMetodoPago(venta.metodoPago);
       setCategoria(venta.categoria);
-      setFecha(venta.categoria);
+      setFecha(venta.fecha?.split("T")[0]);
       setNotas(venta.notas);
 
       return;
@@ -178,6 +181,10 @@ const FormularioVenta = () => {
               onChange={(e) => setProducto(e.target.value)}
             />
           </div>
+          <button type="button" onClick={handleBuscador} className="">
+            Abrir Buscador
+          </button>
+          <Busqueda />
           {/* {nombre === "" ? <p> Campo Obligatorio </p> : ""} */}
           <div className={divStyles}>
             <label htmlFor="cantidad" className={labelStyles}>

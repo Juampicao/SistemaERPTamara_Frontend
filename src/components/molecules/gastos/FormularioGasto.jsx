@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { Formik, Form, Field } from "formik";
+
 import axios from "axios";
 
 import { BotonPrimario } from "../../atoms/Botones";

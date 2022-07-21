@@ -56,7 +56,39 @@ const Gasto = ({ gasto }) => {
 
   return (
     <>
-      {screenSize < 800 ? (
+      <tr className="hover:bg-gray-300">
+        <td className="p-1">
+          {/* <img
+              // src={diccionarioIConos[gasto.categoria]}
+              alt=""
+              className="h-12 mx-auto"
+            /> */}
+          <p>{gasto.categoria}</p>
+        </td>
+        <td className="capitalize "> {nombre}</td>
+        <td className=""> {FormatearNumero(valor)}</td>
+        {/* <td> {gasto._id ? fecha : fecha.substr(0, 10)}</td> */}
+        <td> {formatearFechaCorta(fecha)}</td>
+
+        <td className=" ">
+          <div className=" ">
+            <BotonVer value="Ver" onClick={() => navigate(`/gastos/${_id}`)} />
+            <BotonEditar
+              value="Editar"
+              onClick={() => navigate(`/gastos/editar/${_id}`)}
+            />
+            <BotonEliminar value="Eliminar" onClick={() => handleDelete(_id)} />
+          </div>
+        </td>
+      </tr>
+    </>
+  );
+};
+
+export default Gasto;
+
+{
+  /* {screenSize < 800 ? (
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 md:hidden my-5">
           <div class="bg-white space-y-3 p-4 rounded-lg shadow">
             <div class="flex items-center space-x-2 text-sm">
@@ -69,17 +101,17 @@ const Gasto = ({ gasto }) => {
                 </a>
               </div>
               <div class="text-gray-500">
-                {/* {gasto._id ? fecha : fecha.substr(0, 10)} */}
+                {gasto._id ? fecha : fecha.substr(0, 10)}
               </div>
               <div>
-                {/* <span class="p-1.5 text-xs font-medium uppercase tracking-wider text-green-800 bg-green-200 rounded-lg bg-opacity-50">
+                <span class="p-1.5 text-xs font-medium uppercase tracking-wider text-green-800 bg-green-200 rounded-lg bg-opacity-50">
                   Delivered
-                </span> */}
-                {/* <img
+                </span>
+                <img
                   // src={diccionarioIConos[gasto.categoria]}
                   alt=""
                   className="h-12 mx-auto"
-                /> */}
+                />
                 <p>{gasto.categoria}</p>
               </div>
             </div>
@@ -89,56 +121,5 @@ const Gasto = ({ gasto }) => {
             </div>
           </div>
         </div>
-      ) : (
-        <tr className="hover:bg-gray-300">
-          <td className="p-1">
-            {/* <img
-              // src={diccionarioIConos[gasto.categoria]}
-              alt=""
-              className="h-12 mx-auto"
-            /> */}
-            <p>{gasto.categoria}</p>
-          </td>
-          <td className="capitalize "> {nombre}</td>
-          <td className=""> {FormatearNumero(valor)}</td>
-          {/* <td> {gasto._id ? fecha : fecha.substr(0, 10)}</td> */}
-          <td> {formatearFechaCorta(fecha)}</td>
-
-          <td className=" ">
-            <div className=" ">
-              <BotonVer
-                value="Ver"
-                onClick={() => navigate(`/gastos/${_id}`)}
-              />
-              <BotonEditar
-                value="Editar"
-                onClick={() => navigate(`/gastos/editar/${_id}`)}
-              />
-              <BotonEliminar
-                value="Eliminar"
-                onClick={() => handleDelete(_id)}
-              />
-            </div>
-          </td>
-        </tr>
-      )}
-
-      {isOpenConfirmModal ? (
-        <MessageModal
-          buttonLabel="Eliminar"
-          buttonLabel2="Cancelar"
-          titleModal="¿Seguro deseas eliminarlo?"
-          onClick={handleDelete(_id)}
-        >
-          <p>Aca pongo lo que quiero?</p>
-        </MessageModal>
-      ) : (
-        ""
-      )}
-
-      {/* {isOpenErrorModal ? <ModalError titleModal="Error" /> : " "} */}
-    </>
-  );
-};
-
-export default Gasto;
+      ) : ( */
+}
