@@ -76,7 +76,7 @@ const Busqueda = () => {
             onChange={
               urlActual.includes("gasto")
                 ? (gasto) => (window.location = `/gastos/${gasto._id}`)
-                : (venta) => (window.location = `/ventas/${venta._id}`)
+                : (venta) => (window.location = `/ventas`)
             }
           >
             <div className="relative">
