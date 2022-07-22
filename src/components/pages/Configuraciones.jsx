@@ -17,6 +17,7 @@ import "./../atoms/BarraSearch.css";
 import UltimoModal from "../atoms/modal/ultimoModal/UltimoModal";
 import StaticContext from "../../contexts/StaticProvider";
 import Spiner from "../atoms/Spiner";
+import FormularioVentaConStock from "../molecules/ventas/FormularioVentaConStock";
 
 const Configuraciones = () => {
   const { isOpenModal, openModal, closeModal } = useContext(StaticContext);
@@ -26,7 +27,7 @@ const Configuraciones = () => {
       <Header title="Configuracion" />
 
       <p>..Pagina en Construccion...</p>
-
+      <FormularioVentaConStock />
       {/* <button onClick={openModal} className="bg-blue-500 p-3 rounded-xl">
         <p>abrir modal</p>
         <UltimoModal isOpen={isOpenModal} closeModal={closeModal}></UltimoModal>

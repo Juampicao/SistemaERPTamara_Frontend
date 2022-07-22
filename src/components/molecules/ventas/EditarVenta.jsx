@@ -35,10 +35,9 @@ const EditarVenta = () => {
     <div data-aos="fade-left">
       <Header
         title={
-          urlActual.includes("nuevaventa") ? "Editar Venta " : "Agregar Venta"
+          urlActual.includes("nuevaventa") ? "Agregar Venta " : "Editar Venta"
         }
       />
-
       <FormularioVenta />
     </div>
   );
