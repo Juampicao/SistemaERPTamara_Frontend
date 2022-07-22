@@ -257,26 +257,28 @@ const FormularioGastoPorProducto = () => {
               Precio Individual
             </label>
             <input
+              disabled="true"
               id="inputValorIndividual"
               name="valor"
               type="number"
               placeholder="$"
-              className={inputStyles}
+              className={`${inputStyles} opacity-60 `}
               value={valorIndividual}
               onChange={(e) => setValorIndividual(e.target.value)}
               // onChange={() => setValorIndividual(value)}
             />
           </div>
           <div className={divStyles}>
-            <label htmlFor="valorTotal" className={labelStyles}>
+            <label htmlFor="valorTotal" className={`${labelStyles}`}>
               Precio Total
             </label>
             <input
+              disabled="true"
               id="valorTotal"
               name="valor"
               type="number"
               placeholder="$"
-              className={inputStyles}
+              className={`${inputStyles} opacity-60 `}
               value={
                 productoAVender._id ? valorIndividual * cantidad : valorTotal
               }

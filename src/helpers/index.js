@@ -90,7 +90,7 @@ var numbers = [4, 2, 5, 1, 7];
 numbers.sort(function (a, b) {
   return a - b;
 });
-console.log(numbers);
+// console.log(numbers);
 // [1, 2, 3, 4, 5]
 
 // Ordenar array con 2 propiedades.
@@ -136,17 +136,17 @@ console.log(numbers);
 
 // forma corta de ordenar
 
-// // Ordenar por VALOR
+// Ordenar por VALOR
 // gastos.sort(function (a, b) {
 //   return a.valor - b.valor;
 // });
 
-// // Ordenar por Nombre
+// Ordenar por Nombre
 // gastos.sort(function (a, b) {
 //   return a.nombre - b.nombre;
 // });
 
-// // Ordenar por Categoria
+// Ordenar por Categoria
 // gastos.sort(function (a, b) {
 //   return a.categoria - b.categoria;
 // });

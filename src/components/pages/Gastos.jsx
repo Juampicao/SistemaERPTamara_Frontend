@@ -92,7 +92,7 @@ const Gastos = () => {
 
   return (
     <div data-aos="fade-left">
-      <Header title="Gastos" />
+      <Header title="Gastoss" />
       <div className="flex flex-wrap gap-x-3 gap-y-3 ">
         {/* <CajaEfectivo
           valorCaja={totalGastos}

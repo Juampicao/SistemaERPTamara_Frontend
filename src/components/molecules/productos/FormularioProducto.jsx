@@ -64,7 +64,7 @@ const FormularioProducto = () => {
     }
     setNombreProducto("");
     setImagen("");
-    setCantidad("");
+    setCantidad(1);
     setPrecio("");
     setCosto("");
     setCategoria("Bebidas");
