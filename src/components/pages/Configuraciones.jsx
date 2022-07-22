@@ -18,6 +18,7 @@ import UltimoModal from "../atoms/modal/ultimoModal/UltimoModal";
 import StaticContext from "../../contexts/StaticProvider";
 import Spiner from "../atoms/Spiner";
 import FormularioVentaConStock from "../molecules/ventas/FormularioVentaConStock";
+import { Tab } from "@headlessui/react";
 
 const Configuraciones = () => {
   const { isOpenModal, openModal, closeModal } = useContext(StaticContext);
@@ -27,7 +28,30 @@ const Configuraciones = () => {
       <Header title="Configuracion" />
 
       <p>Pagina en Construccion...</p>
-      {/* <FormularioVentaConStock /> */}
+      {/* <Tab.Group>
+        <Tab.List>
+          <Tab
+            className={({ selected }) =>
+              selected ? "bg-blue-500 text-white" : "bg-white text-black"
+            }
+          >
+            Tab 1
+          </Tab>
+          <Tab
+            className={({ selected }) =>
+              selected ? "bg-blue-500 text-white" : "bg-white text-black"
+            }
+          >
+            Tab 1
+          </Tab>
+          ...
+        </Tab.List>
+        <Tab.Panels>
+          <Tab.Panel>Content 1</Tab.Panel>
+          <Tab.Panel>Content 2</Tab.Panel>
+          ....
+        </Tab.Panels>
+      </Tab.Group> */}
       {/* <button onClick={openModal} className="bg-blue-500 p-3 rounded-xl">
         <p>abrir modal</p>
         <UltimoModal isOpen={isOpenModal} closeModal={closeModal}></UltimoModal>

@@ -5,7 +5,7 @@ import FormularioGastoPorProducto from "./FormularioGastoPorProducto";
 
 const NuevoGasto = () => {
   return (
-    <div>
+    <div className="fade-left">
       <Header title="Nuevo Gasto" />
       {/* <p className="mt-2">
         Selecciona si el producto a vender es nuevo o existente.

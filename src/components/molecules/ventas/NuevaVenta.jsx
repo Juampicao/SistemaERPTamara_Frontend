@@ -5,7 +5,7 @@ import FormularioVentaConStock from "./FormularioVentaConStock";
 
 const NuevaVenta = () => {
   return (
-    <div>
+    <div className="fade-left">
       <Header title="Nueva Venta" />
 
       <p className="mt-2">

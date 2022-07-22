@@ -15,6 +15,8 @@ export const BotonVer = ({ value, onClick }) => {
   return (
     <>
       <button
+        data-mdb-ripple="true"
+        data-mdb-ripple-color="light"
         type="button"
         value={value}
         onClick={onClick}
@@ -31,6 +33,8 @@ export const BotonEliminar = ({ value, onClick }) => {
   return (
     <>
       <button
+        data-mdb-ripple="true"
+        data-mdb-ripple-color="light"
         type="button"
         value={value}
         onClick={onClick}
@@ -47,6 +51,8 @@ export const BotonEditar = ({ value, onClick }) => {
   return (
     <>
       <button
+        data-mdb-ripple="true"
+        data-mdb-ripple-color="light"
         type="button"
         value={value}
         onClick={onClick}
@@ -79,6 +85,8 @@ export const BotonPrimarioIcono = ({ value, onClick, Color }) => {
   return (
     <>
       <button
+        data-mdb-ripple="true"
+        data-mdb-ripple-color="light"
         className="bg-red-500  active:bg-red-700 hover:bg-red-600 focus:ring-red-900 text-white px-4 flex py-2.5  hover:scale-105 font-medium text-xs leading-tight uppercase  transition duration-200 ease-in-out hover:shadow-lg active:shadow-lg rounded-xl focus:outline-none hover:duration-200  cursor-pointer items-center"
         onClick={onClick}
         type="submit"
@@ -95,6 +103,8 @@ export const BotonNuevaVenta = ({ value, onClick, Color }) => {
   return (
     <>
       <button
+        data-mdb-ripple="true"
+        data-mdb-ripple-color="light"
         className="bg-green-500 hover:bg-green-700 text-white px-4 flex py-2.5  hover:scale-105 font-medium text-xs leading-tight uppercase  transition duration-200 ease-in-out hover:shadow-lg active:shadow-lg rounded-xl focus:outline-none hover:duration-200  cursor-pointer items-center"
         onClick={onClick}
         type="submit"
@@ -111,6 +121,8 @@ export const BotonNuevoProducto = ({ value, onClick, Color }) => {
   return (
     <>
       <button
+        data-mdb-ripple="true"
+        data-mdb-ripple-color="light"
         className="bg-blue-500 hover:bg-blue-700 text-white px-4 flex py-2.5  hover:scale-105 font-medium text-xs leading-tight uppercase  transition duration-200 ease-in-out hover:shadow-lg active:shadow-lg rounded-xl focus:outline-none hover:duration-200  cursor-pointer items-center"
         onClick={onClick}
         type="submit"
