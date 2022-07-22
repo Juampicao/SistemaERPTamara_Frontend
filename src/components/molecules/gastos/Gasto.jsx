@@ -33,6 +33,7 @@ const Gasto = ({ gasto }) => {
   //   Comida: IconoComida,
   // };
 
+  console.log(gasto._id);
   const { _id, nombre, valor, cantidad, fecha, notas } = gasto;
 
   const handleDelete = async (_id) => {
@@ -72,10 +73,15 @@ const Gasto = ({ gasto }) => {
 
         <td className=" ">
           <div className=" ">
-            <BotonVer value="Ver" onClick={() => navigate(`/gastos/${_id}`)} />
+            <BotonVer
+              value="Ver"
+              // onClick={() => navigate(`/gastos/${_id}`)}
+              onClick={() => {}}
+            />
             <BotonEditar
               value="Editar"
-              onClick={() => navigate(`/gastos/editar/${_id}`)}
+              // onClick={() => navigate(`/gastos/editar/${_id}`)
+              onClick={() => {}}
             />
             <BotonEliminar value="Eliminar" onClick={() => handleDelete(_id)} />
           </div>

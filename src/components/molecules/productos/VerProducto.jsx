@@ -48,6 +48,7 @@ const VerProducto = () => {
       <p> Categoria: {categoria} </p>
       {/* <p> Fecha: {gasto.fecha.substr(0, 10)} </p> */}
       <p> Fecha: {formatearFecha(fecha)} </p>
+
       <p> Notas: {notas ? notas : "No hay notas."} </p>
     </div>
   );

@@ -113,6 +113,7 @@ const FormularioVenta = () => {
             valorTotal,
             metodoPago,
             categoria,
+            fecha,
           ].includes("")
         ) {
           console.log("Completa todos los casilleros por favor.");
@@ -218,7 +219,10 @@ const FormularioVenta = () => {
           </div>
           <div className={divStyles}>
             <label htmlFor="valorTotal" className={labelStyles}>
-              Precio Total
+              Precio Total{" "}
+              <span className="text-slate-300 pl-3">
+                {venta._id ? "No Tocar" : ""}{" "}
+              </span>
             </label>
             <input
               id="valorTotal"

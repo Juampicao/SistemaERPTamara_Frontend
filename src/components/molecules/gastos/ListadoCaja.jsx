@@ -49,7 +49,7 @@ const ListadoCaja = () => {
         /> */}
         <CuadroGastos
           img={IconoInicioCaja}
-          title="Total Ventas Efectivo"
+          title="Ventas Efectivo"
           valor={montoTotalVentasEfectivo}
         />
         {/* {screenSize < 1 ? (

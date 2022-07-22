@@ -4,6 +4,7 @@ import iconoVentas from "../../img/iconoVentas.png";
 import iconoBebida from "../../img/iconoBebida.png";
 import iconoConfiguracion from "../../img/iconoConfiguracion.png";
 import IconoCerrarBlanco from "../../img/iconoCerrarBlanco.png";
+import IconoBills from "../../img/iconoBills.png";
 import IconoLogout from "../../img/iconoLogout.png";
 import Imagenpersona from "../../img/newIcons/fotoMujer2.png";
 
@@ -127,6 +128,20 @@ const Layout = () => {
                 <p className={hiddenTitles}>Ventas</p>
               </div>
             </Link>
+            <div className=" ">
+              {/* <Link to="/configuraciones"></Link> */}
+              <Link
+                className={`${
+                  urlActual === "/gastos" ? `${activeStyles}` : `${hover}`
+                } ${notActiveStyles} `}
+                to="/gastos"
+              >
+                <div className="flex items-center space-x-4 text-base xs:text-xl">
+                  <img src={IconoBills} className="h-6 sm:h-8 " alt="" />
+                  <p className={hiddenTitles}>Gastos</p>
+                </div>
+              </Link>
+            </div>
             <Link
               className={`${
                 urlActual === "/configuraciones"
@@ -140,20 +155,7 @@ const Layout = () => {
                 <p className={hiddenTitles}>Configuraciones</p>
               </div>
             </Link>
-            <div className=" ">
-              <Link to="/configuraciones"></Link>
-              <Link
-                className={`${
-                  urlActual === "/gastos" ? `${activeStyles}` : `${hover}`
-                } ${notActiveStyles} `}
-                to="/gastos"
-              >
-                <div className="flex items-center space-x-4 text-base xs:text-xl">
-                  <img src={iconoVentas} className="h-6 sm:h-8 " alt="" />
-                  <p className={hiddenTitles}>Gastos</p>
-                </div>
-              </Link>
-            </div>
+
             <Link to="/">
               <div className="flex items-center rounded-full float-left max-h-20 mt-16 text-white   ">
                 <img

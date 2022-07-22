@@ -7,6 +7,7 @@ import ListadoCaja from "./ListadoCaja";
 
 import IconoInicioCaja from "../../../img/iconCaja.png";
 import Spiner from "../../atoms/Spiner";
+import IconoTooltip from "../../../img/iconoExclamacion2.png";
 
 const ListadoGastos = () => {
   const {
@@ -33,6 +34,8 @@ const ListadoGastos = () => {
   const [montoTotalGastosVarios, setMontoTotalGastosVarios] = useState();
   const [montoTotalGastosProveedores, setMontoTotalGastosProveedores] =
     useState();
+  const [montoTotalGastosInventario, setMontoTotalGastosInventario] =
+    useState();
 
   const [montoTotalGastos, setMontoTotalGastos] = useState();
 
@@ -51,9 +54,13 @@ const ListadoGastos = () => {
         // console.log(resultado.arrayGastosComida);
         // console.log(resultado.arrayGastosVarios);
         // console.log(resultado.arrayGastosProveedor);
+        console.log(resultado.montoTotalGastosInventario);
+
         setMontoTotalGastosComida(resultado.montoTotalGastosComida);
         setMontoTotalGastosVarios(resultado.montoTotalGastosVarios);
         setMontoTotalGastosProveedores(resultado.montoTotalGastosProveedores);
+        setMontoTotalGastosInventario(resultado.montoTotalGastosInventario);
+
         // setMontoTotalGastos(resultado.montoTotalGastos);
         // console.log(montoTotalGastos);
         setGastos(resultado.gastos);
@@ -90,7 +97,16 @@ const ListadoGastos = () => {
               <th className="p-2 ">Nombre</th>
               <th className="p-2">Valor</th>
               <th className="p-2">Fecha</th>
-              <th className="p-2 ">Funciones</th>
+              <th className="p-2 flex justify-center ">
+                <p>Funciones</p>
+                <img
+                  src={IconoTooltip}
+                  alt=""
+                  className="h-5 pt-1 float-left cursor-pointer items-center"
+                  data-bs-toggle="tooltip"
+                  title="Por el momento no se puede editar ni ver el gasto unico. "
+                />
+              </th>
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-200 bg-white">
@@ -117,29 +133,32 @@ const ListadoGastos = () => {
         <div
           className="flex space-x-3 text-center my-2 scroll-x-auto"
           data-bs-toggle="tooltip"
-          title="Caja Actual = Inicio Caja + Venta Efectivo - Gastos Efectivo"
+          title="Caja Actual = Inicio Caja + Ventas Efectivo - Gastos Efectivo"
         >
           <CuadroGastos
             img={IconoInicioCaja}
-            title="Caja Actual"
+            title="Caja"
+            title2="Actual"
             valor={
               inicioCaja +
               montoTotalVentasEfectivo -
               montoTotalGastosVarios -
               montoTotalGastosProveedores -
-              montoTotalGastosComida
+              montoTotalGastosComida -
+              montoTotalGastosInventario
             }
           />
 
           <ListadoCaja />
           <CuadroGastos
             img={IconoInicioCaja}
-            title="Total de Gastos"
+            title="Total Gastos"
             title2=""
             valor={
               montoTotalGastosVarios +
               montoTotalGastosProveedores +
-              montoTotalGastosComida
+              montoTotalGastosComida +
+              montoTotalGastosInventario
             }
           />
         </div>
@@ -155,6 +174,11 @@ const ListadoGastos = () => {
             // img={diccionarioIConos.Proveedor}
             title="Gastos Proveedores"
             valor={montoTotalGastosProveedores}
+          />
+          <CuadroGastos
+            // img={diccionarioIConos.Proveedor}
+            title="Gastos Inventario"
+            valor={montoTotalGastosInventario}
           />
           <CuadroGastos
             // img={diccionarioIConos.Gastos}

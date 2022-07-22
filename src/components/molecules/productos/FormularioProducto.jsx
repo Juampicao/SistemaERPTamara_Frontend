@@ -201,7 +201,7 @@ const FormularioProducto = () => {
                 placeholder="Nombre"
                 className={inputText}
                 name="nombre"
-                value={producto.nombreProducto}
+                value={nombreProducto}
                 onChange={(e) => setNombreProducto(e.target.value)}
               />
             </div>
@@ -218,7 +218,7 @@ const FormularioProducto = () => {
                 className={inputText}
                 type="number"
                 placeholder="1"
-                value={producto.cantidad}
+                value={cantidad}
                 onChange={(e) => setCantidad(Number(e.target.value))}
               />
               {/* <img
@@ -245,7 +245,7 @@ const FormularioProducto = () => {
                 type="text"
                 placeholder="$"
                 className={inputText}
-                value={producto.costo}
+                value={costo}
                 onChange={(e) => setCosto(e.target.value)}
               />
             </div>
@@ -261,7 +261,7 @@ const FormularioProducto = () => {
                 type="text"
                 placeholder="$"
                 className={inputText}
-                value={producto.precio}
+                value={precio}
                 onChange={(e) => setPrecio(e.target.value)}
               />
             </div>
@@ -277,7 +277,7 @@ const FormularioProducto = () => {
                 name=""
                 id=""
                 className="px-2 py-1 "
-                value={producto.categoria}
+                value={categoria}
                 onChange={(e) => setCategoria(e.target.value)}
               >
                 <option value="Bebidas">Bebidas</option>

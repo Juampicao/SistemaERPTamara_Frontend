@@ -67,8 +67,8 @@ const ListadoVentas = () => {
               <th className="p-2 ">Producto</th>
               <th className="p-2 ">Cantidad</th>
 
-              <th className="p-2">Valor Unitario</th>
-              <th className="p-2">Valor Total</th>
+              <th className="p-2">Precio U.</th>
+              <th className="p-2">Precio Total</th>
 
               <th className="p-2">Fecha</th>
               <th className="p-2 ">Funciones</th>

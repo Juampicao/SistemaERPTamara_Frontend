@@ -11,8 +11,7 @@ import {
   BotonBlancoClasicoSinZoom,
   BotonBlancoRedondeado,
 } from "../../../helpers/colores";
-// import * as Yup from "Yup";
-// import Alerta from "../../atoms/Alerta";
+
 import StaticContext from "../../../contexts/StaticProvider";
 
 import { BotonVer } from "../../atoms/Botones";

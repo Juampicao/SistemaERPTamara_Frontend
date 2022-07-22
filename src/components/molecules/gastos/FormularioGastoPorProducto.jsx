@@ -1,50 +1,103 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import StaticContext from "../../../contexts/StaticProvider";
+
 import axios from "axios";
 
 import { BotonPrimario } from "../../atoms/Botones";
 import {
+  BotonAzulClasico,
   BotonAzulRedondeado,
+  BotonBlancoClasico,
+  BotonBlancoClasicoSinZoom,
   BotonBlancoRedondeado,
 } from "../../../helpers/colores";
 
-import StaticContext from "../../../contexts/StaticProvider";
 import { BotonVer } from "../../atoms/Botones";
 import Error from "../../atoms/Error";
-import Busqueda from "../../atoms/Busqueda";
+import { toDay } from "../../../helpers";
+import Spiner from "../../atoms/Spiner";
 
 import IconoTooltip from "../../../img/iconoExclamacion2.png";
-
-const FormularioVentaConStock = () => {
+const FormularioGastoPorProducto = () => {
   const {
-    venta,
-    setVenta,
+    gasto,
+    setGasto,
+    gastos,
+    setGastos,
+    producto,
+    setProducto,
     productos,
     setProductos,
     isOpenSaveModal,
     setIsOpenSaveModal,
     isOpenErrorModal,
     setIsOpenErrorModal,
-    buscador,
-    handleBuscador,
+    isCargando,
+    setIsCargando,
   } = useContext(StaticContext);
 
-  const [producto, setProducto] = useState("");
-  const [cantidad, setCantidad] = useState("");
-  const [valorIndividual, setValorIndividual] = useState("");
-  const [valorTotal, setValorTotal] = useState("");
-  const [metodoPago, setMetodoPago] = useState("");
+  const [nombre, setNombre] = useState("");
+  const [valor, setValor] = useState("");
   const [categoria, setCategoria] = useState("");
   const [fecha, setFecha] = useState("");
   const [notas, setNotas] = useState("");
-  const [error, setError] = useState(false);
+
+  //   const [producto, setProducto] = useState("");
+  const [cantidad, setCantidad] = useState("");
+  const [valorIndividual, setValorIndividual] = useState("");
+  const [valorTotal, setValorTotal] = useState("");
 
   const [productoAVender, setProductoAVender] = useState("");
-  const accionstock = "disminuir"; // disminuir o aumentar. (stock).
+  const accionstock = "aumentar"; // disminuir o aumentar. (stock).
+  const [error, setError] = useState(false);
+
+  const { _id } = gasto;
 
   const navigate = useNavigate();
   const location = useLocation();
   const urlActual = location.pathname;
+
+  // Valores de Inputs
+
+  useEffect(() => {
+    if (productoAVender?._id) {
+      setNombre(productoAVender.nombreProducto);
+      setValorIndividual(productoAVender.precio);
+      setValorTotal(productoAVender.precio * cantidad);
+      setValor(productoAVender.precio * cantidad);
+      setCategoria("Inventario");
+      setNotas(`${cantidad} Unidades.`);
+
+      return;
+    }
+    setProducto("");
+    setCantidad(1);
+    setValorIndividual("");
+    setValorTotal("");
+    setCategoria("");
+    setFecha("");
+    setNotas("");
+  }, [productoAVender, cantidad]);
+
+  // Fin Valores de Inputs
+
+  // Inicio UseEffect para traer Datos.
+  useEffect(() => {
+    const obtenerGastos = async () => {
+      try {
+        const url = `${import.meta.env.VITE_API_URL}/gastos`;
+        const respuesta = await fetch(url);
+        const resultado = await respuesta.json();
+        setGastos(resultado);
+        console.log(gastos.gastos);
+      } catch (error) {
+        console.log(error);
+      }
+      // setIsCargando(!isCargando);
+    };
+    obtenerGastos();
+  }, []);
 
   useEffect(() => {
     const obtenerProducto = async () => {
@@ -62,7 +115,6 @@ const FormularioVentaConStock = () => {
     obtenerProducto();
   }, []);
 
-  // Prueba con AXIOS
   function obtenerProductoAVender(e) {
     console.log(e);
     const inputValorIndividual = document.getElementById(
@@ -86,57 +138,28 @@ const FormularioVentaConStock = () => {
     }
   }
 
-  useEffect(() => {
-    if (productoAVender?._id) {
-      setProducto(productoAVender.nombreProducto);
-      setValorIndividual(productoAVender.precio);
-      setValorTotal(productoAVender.precio * cantidad);
+  // Inicio UseEffect para traer Datos.
 
-      setCategoria(productoAVender.categoria);
-      return;
-    }
-    setProducto("");
-    setCantidad(1);
-    setValorIndividual("");
-    setValorTotal("");
-    setMetodoPago("Efectivo");
-    setCategoria("Bebida");
-    setFecha("");
-    setNotas("");
-  }, [productoAVender, cantidad]);
-
-  // Prueba con AXIOS
+  // Submit
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
       // Validacion del formulario
-      if (
-        [
-          producto,
-          valorIndividual,
-          valorTotal,
-          metodoPago,
-          cantidad,
-          categoria,
-        ].includes("")
-      ) {
+      if ([nombre, valor, categoria, fecha].includes("")) {
         console.log("Completa todos los casilleros por favor.");
         setError(true);
         return;
       }
       const respuesta = await axios.post(
-        `${import.meta.env.VITE_API_URL}/ventas`,
+        `${import.meta.env.VITE_API_URL}/gastos`,
         {
-          producto,
-          cantidad,
-          valorIndividual,
-          valorTotal,
-          metodoPago,
+          nombre,
+          valor,
           categoria,
           fecha,
           notas,
-          productoVendido: productoAVender._id,
+          productoIngresado: productoAVender._id,
         }
       );
       const editarCantidad = await axios.put(
@@ -147,16 +170,15 @@ const FormularioVentaConStock = () => {
         }
       );
       console.log(editarCantidad);
-      navigate("/ventas");
+      navigate("/gastos");
       setIsOpenSaveModal(true);
-      setVenta("");
+      setProducto("");
       setProductoAVender("");
     } catch (error) {
       console.log(error);
       setIsOpenErrorModal(!isOpenErrorModal);
     }
   };
-
   // styles
   const labelStyles = "text-slate-900 font-bold capitalize pl-1 mb-1 ";
   const inputStyles =
@@ -166,38 +188,18 @@ const FormularioVentaConStock = () => {
   return (
     <div>
       <div className="bg-white rounded-lg  max-w-xl mx-auto">
-        <div className="flex pt-5 gap-x-24">
-          <div className="pl-5">
-            <img
-              src={IconoTooltip}
-              alt=""
-              className="pl-5  h-6 float-left cursor-pointer items-center"
-              data-bs-toggle="tooltip"
-              title="Se añadira una venta y se disminuira el stock del producto seleccionado automaticamente."
-            />
-            {/* <svg
-              aria-hidden="true"
-              focusable="false"
-              data-prefix="far"
-              data-icon="check-circle"
-              className="w-7 h-7"
-              role="img"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 512 512"
-            >
-              <path
-                data-bs-toggle="tooltip"
-                title="Se añadira una venta y se disminuira el stock del producto seleccionado automaticamente."
-                fill="currentColor"
-                d="M256 8C119.033 8 8 119.033 8 256s111.033 248 248 248 248-111.033 248-248S392.967 8 256 8zm0 48c110.532 0 200 89.451 200 200 0 110.532-89.451 200-200 200-110.532 0-200-89.451-200-200 0-110.532 89.451-200 200-200m140.204 130.267l-22.536-22.718c-4.667-4.705-12.265-4.736-16.97-.068L215.346 303.697l-59.792-60.277c-4.667-4.705-12.265-4.736-16.97-.069l-22.719 22.536c-4.705 4.667-4.736 12.265-.068 16.971l90.781 91.516c4.667 4.705 12.265 4.736 16.97.068l172.589-171.204c4.704-4.668 4.734-12.266.067-16.971z"
-              ></path>
-            </svg> */}
-          </div>
-          <h1 className=" text-xl uperrcase  float-rigth uppercase">
-            Producto en Stock
+        <div className="flex pt-5 gap-x-10 ">
+          <img
+            src={IconoTooltip}
+            alt=""
+            className="pl-5  h-6 float-left cursor-pointer"
+            data-bs-toggle="tooltip"
+            title="Se añadira un gasto y se aumentara el stock del producto seleccionado."
+          />
+          <h1 className=" text-xl uperrcase font-black float-rigth uppercase">
+            Gasto por Producto en Stock
           </h1>
         </div>
-
         <form action="submit" className="" onSubmit={handleSubmit}>
           <div className={divStyles}>
             {error && <Error mensaje="Completa todos los campos" />}
@@ -234,16 +236,16 @@ const FormularioVentaConStock = () => {
 
           <div className={divStyles}>
             <label htmlFor="cantidad" className={labelStyles}>
-              Cantidad
-              <span className=" capitalize pl-3  text-slate-300 text-sm">
-                Disminuye el stock del inventario automaticamente..
+              Cantidad{" "}
+              <span className=" pl-3 capitalize text-slate-300 text-sm">
+                Aumenta el stock del inventario automaticamente..
               </span>
             </label>
             <input
               id="cantidad"
               name="cantidad"
               type="number"
-              placeholder={venta._id ? venta.cantidad : "Cantidad de unidades"}
+              placeholder="Cantidad de unidades"
               className={inputStyles}
               value={cantidad}
               onChange={(e) => setCantidad(Number(e.target.value))}
@@ -296,24 +298,8 @@ const FormularioVentaConStock = () => {
               value={fecha}
             />
           </div>
+
           <div className={divStyles}>
-            <label htmlFor="metodoPago" className={labelStyles}>
-              Metodo de pago
-            </label>
-            <select
-              as="select"
-              id="metodoPago"
-              name="metodoPago"
-              placeholder=""
-              className={inputStyles}
-              onChange={(e) => setMetodoPago(e.target.value)}
-              value={metodoPago}
-            >
-              <option value="Efectivo"> Efectivo </option>
-              <option value="Tarjeta"> Tarjeta </option>
-            </select>
-          </div>
-          {/* <div className={divStyles}>
             <label htmlFor="categoria" className={labelStyles}>
               Categoria
             </label>
@@ -327,11 +313,9 @@ const FormularioVentaConStock = () => {
               // value={productoAVender._id ? productoAVender.categoria : ""}
               onChange={(e) => setCategoria(e.target.value)}
             >
-              <option value="Bebida"> Bebida </option>
-              <option value="Comida"> Comida </option>
-              <option value="Otros"> Otros </option>
+              <option value="Inventario"> Inventario </option>
             </select>
-          </div> */}
+          </div>
 
           {/* Prueba acordion TextArea */}
           <div class="accordion" id="accordionExample">
@@ -362,7 +346,7 @@ const FormularioVentaConStock = () => {
                     rows=""
                     className="w-full border  h-28 p-2 "
                     placeholder="Escribe alguna nota..."
-                    value={venta.nota}
+                    value={notas}
                     onChange={(e) => setNotas(e.target.value)}
                   ></textarea>
                 </div>
@@ -372,19 +356,19 @@ const FormularioVentaConStock = () => {
           {/* fin prueba acordeon */}
 
           <div className="py-5 flex justify-center space-x-3">
-            {venta._id ? (
+            {producto._id ? (
               <BotonPrimario
                 Color={BotonBlancoRedondeado}
                 value="Ver"
                 type="button"
-                onClick={() => navigate(`/ventas/${_id}`)}
+                onClick={() => navigate(`/productos/${_id}`)}
               />
             ) : (
               ""
             )}
             <BotonPrimario
               Color={BotonAzulRedondeado}
-              value={venta?.producto ? "Editar venta" : "Agregar venta"}
+              value="Agregar Producto y Gasto"
               type="submit"
             />
             <BotonPrimario
@@ -392,7 +376,7 @@ const FormularioVentaConStock = () => {
               value="Volver Atras"
               type="button"
               onClick={() => {
-                navigate("/ventas"), setVenta("");
+                navigate("/gastos"), setVenta("");
               }}
             />
           </div>
@@ -402,4 +386,4 @@ const FormularioVentaConStock = () => {
   );
 };
 
-export default FormularioVentaConStock;
+export default FormularioGastoPorProducto;

@@ -82,13 +82,13 @@ const Gastos = () => {
   };
 
   // SetTotalGastos (suma todos los valor de cada gasto)
-  useEffect(() => {
-    const totalGastado = gastos.reduce(
-      (total, gasto) => gasto.valor + total,
-      0
-    );
-    setTotalGastos(totalGastado);
-  }, [gastos]);
+  // useEffect(() => {
+  //   const totalGastado = gastos.reduce(
+  //     (total, gasto) => gasto.valor + total,
+  //     0
+  //   );
+  //   setTotalGastos(totalGastado);
+  // }, [gastos]);
 
   return (
     <div data-aos="fade-left">
@@ -137,11 +137,11 @@ const Gastos = () => {
         </UltimoModal>
 
         {/* Inicio Caja */}
-        <BotonPrimario
+        {/* <BotonPrimario
           value="Reiniciar Gastos"
           Color={BotonBlancoRedondeado}
           onClick={handleReiniciarTotalGastos}
-        />
+        /> */}
       </div>
       {/* <button onClick={handleBuscador} className="">
         Abrir Buscador
