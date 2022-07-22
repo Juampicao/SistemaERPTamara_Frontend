@@ -205,6 +205,9 @@ const FormularioVenta = () => {
           <div className={divStyles}>
             <label htmlFor="inputValorIndividual" className={labelStyles}>
               Precio Individual
+              <span className="text-slate-300 pl-3">
+                {venta._id ? "No Tocar" : ""}{" "}
+              </span>
             </label>
             <input
               id="inputValorIndividual"

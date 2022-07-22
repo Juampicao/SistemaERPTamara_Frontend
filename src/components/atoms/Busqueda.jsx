@@ -73,9 +73,14 @@ const Busqueda = () => {
           <Combobox
             as="div"
             className="mx-auto max-w-xl transform divide-y divide-gray-100 overflow-hidden rounded-xl bg-white shadow-2xl ring-1 ring-black ring-opacity-5 transition-all"
+            // onChange={
+            //   urlActual.includes("gasto")
+            //     ? (gasto) => (window.location = `/gastos/${gasto._id}`)
+            //     : (venta) => (window.location = `/ventas`)
+            // }
             onChange={
               urlActual.includes("gasto")
-                ? (gasto) => (window.location = `/gastos/${gasto._id}`)
+                ? (gasto) => (window.location = `/gastos`)
                 : (venta) => (window.location = `/ventas`)
             }
           >
@@ -86,28 +91,6 @@ const Busqueda = () => {
                 onChange={(e) => setBusqueda(e.target.value)}
               />
             </div>
-
-            {/* {ventasFiltradas.length > 0 && (
-              <Combobox.Options
-                static
-                className="max-h-72 scroll-py-2 overflow-y-auto py-2 text-sm text-gray-800"
-              >
-                {ventasFiltradas.map((venta) => (
-                  <Combobox.Option
-                    key={venta._id}
-                    value={venta}
-                    className={({ active }) =>
-                      classNames(
-                        "cursor-default select-none px-4 py-2",
-                        active && "bg-sky-600 text-white"
-                      )
-                    }
-                  >
-                    {venta.producto}
-                  </Combobox.Option>
-                ))}
-              </Combobox.Options>
-            )} */}
 
             {urlActual.includes("gasto")
               ? gastosFiltrados.length > 0 && (
