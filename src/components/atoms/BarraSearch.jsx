@@ -6,7 +6,6 @@ import { useEffect } from "react";
 import "./BarraSearch.css";
 
 import getActiveToken from "./../../helpers/getActiveToken.js";
-import autoComplete from "./autoComplete";
 
 const BarraSearch = ({ onClick, placeholder }) => {
   // const data = ["River", "Velez", "Boca"];
