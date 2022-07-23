@@ -28,20 +28,18 @@ const StaticProvider = ({ children }) => {
   const [venta, setVenta] = useState([]);
   const [ventas, setVentas] = useState([]);
 
-  const [totalValorGastos, setTotalValorGastos] = useState(Number());
-
   const [gasto, setGasto] = useState({});
   const [gastos, setGastos] = useState([]);
   const [totalGastos, setTotalGastos] = useState(500);
 
   const [isCargando, setIsCargando] = useState(true);
 
-  const [inicioCaja, setInicioCaja] = useState(Number(""));
-  const [cajaActual, setCajaActual] = useState(Number());
-
   const [isOpenModal, openModal, closeModal] = useModal(false);
 
+  const [inicioCaja, setInicioCaja] = useState(Number(""));
+  const [cajaActual, setCajaActual] = useState(Number());
   const [montoTotalVentasEfectivo, setMontoTotalVentasEfectivo] = useState();
+  const [totalValorGastos, setTotalValorGastos] = useState(Number());
 
   const [buscador, setBuscador] = useState(false);
 

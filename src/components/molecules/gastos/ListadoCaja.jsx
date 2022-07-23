@@ -14,17 +14,15 @@ const ListadoCaja = () => {
     setGasto,
     screenSize,
     setScreenSize,
-    setTotalValorGastos,
     isCargando,
-    setIsCargando,
-    inicioCaja,
-    totalValorGastos,
     setCajaActual,
-    montoTotalVentasEfectivo,
+    setTotalValorGastos,
+    setIsCargando,
     setMontoTotalVentasEfectivo,
+    totalValorGastos,
+    montoTotalVentasEfectivo,
+    inicioCaja,
   } = useContext(StaticContext);
-
-  // const [montoTotalVentasEfectivo, setMontoTotalVentasEfectivo] = useState();
 
   const [arrayVentasEfectivo, setArrayVentasEfectivo] = useState({});
 
@@ -34,9 +32,8 @@ const ListadoCaja = () => {
         const respuesta = await axios.get(
           `${import.meta.env.VITE_API_URL}/ventas`
         );
-        // console.log(respuesta.data.arrayVentasEfectivo);
+
         setArrayVentasEfectivo(respuesta.data.arrayVentasEfectivo);
-        // console.log(respuesta.data.arrayVentasEfectivo);
         setMontoTotalVentasEfectivo(respuesta.data.montoTotalVentasEfectivo);
         console.log(respuesta.data.montoTotalVentasEfectivo);
       } catch (error) {
@@ -71,14 +68,18 @@ const ListadoCaja = () => {
         setMontoTotalGastosVarios(resultado.montoTotalGastosVarios);
         setMontoTotalGastosProveedores(resultado.montoTotalGastosProveedores);
         setMontoTotalGastosInventario(resultado.montoTotalGastosInventario);
-
+        setTotalValorGastos(
+          resultado.montoTotalGastosComida +
+            resultado.montoTotalGastosVarios +
+            resultado.montoTotalGastosProveedores +
+            resultado.montoTotalGastosInventario
+        );
         setGastos(resultado.gastos);
         setIsCargando(false);
       } catch (error) {
         console.log(error);
       }
     };
-    setTotalValorGastos(0);
 
     obtenerGastos();
   }, []);
@@ -111,7 +112,7 @@ const ListadoCaja = () => {
         />
 
         {/* Ventas Efectivo  */}
-        <CuadroGastos
+        {/* <CuadroGastos
           img={IconoInicioCaja}
           title="Total Gastos"
           title2=""
@@ -121,7 +122,8 @@ const ListadoCaja = () => {
             montoTotalGastosComida +
             montoTotalGastosInventario
           }
-        />
+        /> */}
+        <CuadroGastos title="Nuevo Total Gastos" valor={totalValorGastos} />
         <CuadroGastos
           img={IconoInicioCaja}
           title="Ventas Efectivo"
