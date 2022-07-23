@@ -14,6 +14,7 @@ import Error from "../../atoms/Error";
 import Busqueda from "../../atoms/Busqueda";
 
 import IconoTooltip from "../../../img/iconoExclamacion2.png";
+import { FechaHoyArgentina } from "../../../helpers";
 
 const FormularioVentaConStock = () => {
   const {
@@ -93,7 +94,7 @@ const FormularioVentaConStock = () => {
     setValorTotal("");
     setMetodoPago("Efectivo");
     setCategoria("Bebida");
-    setFecha("");
+    setFecha(FechaHoyArgentina);
     setNotas("");
   }, [productoAVender, cantidad]);
 
