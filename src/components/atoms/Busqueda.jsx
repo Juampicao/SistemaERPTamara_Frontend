@@ -9,11 +9,13 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-const Busqueda = () => {
+const Busqueda = ({ urlDestino }) => {
   const { gastos, ventas, productos, buscador, handleBuscador } =
     useContext(StaticContext);
+  const [productoABuscar, setProductoABuscar] = useState();
 
   const urlActual = location.pathname;
+  const navigate = useNavigate();
 
   const [busqueda, setBusqueda] = useState("");
 
@@ -23,7 +25,6 @@ const Busqueda = () => {
       : ventas.filter((venta) =>
           venta.producto.toLowerCase().includes(busqueda.toLowerCase())
         );
-
   const gastosFiltrados =
     busqueda === ""
       ? []
@@ -73,16 +74,16 @@ const Busqueda = () => {
           <Combobox
             as="div"
             className="mx-auto max-w-xl transform divide-y divide-gray-100 overflow-hidden rounded-xl bg-white shadow-2xl ring-1 ring-black ring-opacity-5 transition-all"
-            // onChange={
-            //   urlActual.includes("gasto")
-            //     ? (gasto) => (window.location = `/gastos/${gasto._id}`)
-            //     : (venta) => (window.location = `/ventas`)
-            // }
             onChange={
-              urlActual.includes("gasto")
-                ? (gasto) => (window.location = `/gastos`)
-                : (venta) => (window.location = `/ventas`)
+              urlActual.includes("producto")
+                ? (producto) => {
+                    producto._id
+                      ? (window.location = `/productos/${producto._id}`)
+                      : (window.location = `/productos`);
+                  }
+                : (gasto) => (window.location = `/gastos/`)
             }
+            // onChange={()=> window.location = `/productos/${producto._id}`}
           >
             <div className="relative">
               <Combobox.Input

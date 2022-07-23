@@ -33,7 +33,8 @@ const Gasto = ({ gasto }) => {
   //   Comida: IconoComida,
   // };
 
-  console.log(gasto._id);
+  // console.log(gasto._id);
+  console.log(gastos);
   const { _id, nombre, valor, cantidad, fecha, notas } = gasto;
 
   const handleDelete = async (_id) => {
@@ -68,20 +69,18 @@ const Gasto = ({ gasto }) => {
         </td>
         <td className="capitalize "> {nombre}</td>
         <td className=""> {FormatearNumero(valor)}</td>
-        {/* <td> {gasto._id ? fecha : fecha.substr(0, 10)}</td> */}
-        <td> {formatearFechaCorta(fecha)}</td>
-
+        {fecha ? <td>{fecha.slice(0, 10)}</td> : ""}
         <td className=" ">
           <div className=" ">
             <BotonVer
               value="Ver"
-              // onClick={() => navigate(`/gastos/${_id}`)}
-              onClick={() => {}}
+              onClick={() => navigate(`/gastos/${_id}`)}
+              // onClick={() => {}}
             />
             <BotonEditar
               value="Editar"
-              // onClick={() => navigate(`/gastos/editar/${_id}`)
-              onClick={() => {}}
+              // onClick={() => {}}
+              onClick={() => navigate(`/gastos/editar/${_id}`)}
             />
             <BotonEliminar value="Eliminar" onClick={() => handleDelete(_id)} />
           </div>

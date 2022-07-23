@@ -123,7 +123,7 @@ const CodigoPrueba = () => {
       {/* Contiene includes */}
       <input
         type="text"
-        defaultValue={urlActual.includes("editar") ? { toDay } : ""}
+        defaultValue={urlActual.includes("editar") ? { "10/08/1999" } : ""}
       />
       {/* Prueba Tooltip */}
       <p data-bs-toggle="tooltip" title="Hi! I'm tooltip">

@@ -60,8 +60,9 @@ const Venta = ({ venta }) => {
         <td className="p-3"> {FormatearNumero(valorIndividual)}</td>
         <td className=""> {FormatearNumero(valorTotal)}</td>
 
-        {/* <td> {gasto._id ? fecha : fecha.substr(0, 10)}</td> */}
-        <td> {formatearFechaCorta(fecha)}</td>
+        {/* <td> {formatearFechaCorta(fecha)}</td> */}
+        {fecha ? <td>{fecha.slice(0, 10)}</td> : ""}
+
         <td className=" ">
           <div className=" ">
             <BotonVer value="Ver" onClick={() => navigate(`/ventas/${_id}`)} />

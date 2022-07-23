@@ -10,9 +10,9 @@ const NuevoGasto = () => {
       {/* <p className="mt-2">
         Selecciona si el producto a vender es nuevo o existente.
       </p> */}
-      <div className="flex mt-3">
+      <div className="flex my-1 ">
         <ul
-          class="mx-auto nav nav-pills flex flex-col md:flex-row flex-wrap list-none pl-0 mb-4"
+          class="mx-auto nav nav-pills flex flex-col md:flex-row flex-wrap list-none pl-0"
           id="pills-tab"
           role="tablist"
         >
@@ -41,7 +41,7 @@ const NuevoGasto = () => {
               aria-controls="pills-profile"
               aria-selected="false"
             >
-              Gasto Ingresar Producto
+              Gasto Producto
             </a>
           </li>
         </ul>
@@ -54,6 +54,9 @@ const NuevoGasto = () => {
           role="tabpanel"
           aria-labelledby="pills-profile-tab"
         >
+          <p className="text-center mt-2">
+            Gastos relacionados con productos cargados en el inventario.
+          </p>
           <FormularioGastoPorProducto />
         </div>
         <div
@@ -62,8 +65,9 @@ const NuevoGasto = () => {
           role="tabpanel"
           aria-labelledby="pills-home-tab"
         >
-          <p className="">
-            Llena los siguientes campos para registrar un nuevo gasto.
+          <p className="text-center mt-2">
+            Llena los siguientes campos para registrar un nuevo gasto sin
+            relaciones con productos.
           </p>
           <FormularioGasto />
         </div>

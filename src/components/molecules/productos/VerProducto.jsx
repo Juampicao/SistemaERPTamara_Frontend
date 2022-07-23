@@ -3,11 +3,17 @@ import { useNavigate, useParams } from "react-router-dom";
 import StaticContext from "../../../contexts/StaticProvider";
 
 import { formatearFecha } from "../../../helpers";
+import {
+  BotonAzulRedondeado,
+  BotonBlancoRedondeado,
+} from "../../../helpers/colores";
+import { BotonPrimario } from "../../atoms/Botones";
 
 const VerProducto = () => {
   const { producto, setProducto, isCargando, setIsCargando } =
     useContext(StaticContext);
   const { id } = useParams();
+  const navigate = useNavigate();
 
   const {
     _id,
@@ -50,6 +56,21 @@ const VerProducto = () => {
       <p> Fecha: {formatearFecha(fecha)} </p>
 
       <p> Notas: {notas ? notas : "No hay notas."} </p>
+      <div className="py-5 flex justify-center space-x-3">
+        <BotonPrimario
+          Color={BotonAzulRedondeado}
+          value="Editar Producto"
+          onClick={() => navigate(`/productos/editar/${_id}`)}
+        />
+        <BotonPrimario
+          Color={BotonBlancoRedondeado}
+          value="Volver Atras"
+          type="button"
+          onClick={() => {
+            navigate("/productos"), setGasto("");
+          }}
+        />
+      </div>
     </div>
   );
 };

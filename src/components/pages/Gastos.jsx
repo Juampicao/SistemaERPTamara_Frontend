@@ -92,7 +92,7 @@ const Gastos = () => {
 
   return (
     <div data-aos="fade-left">
-      <Header title="Gastoss" />
+      <Header title="Gastos" />
       <div className="flex flex-wrap gap-x-3 gap-y-3 ">
         {/* <CajaEfectivo
           valorCaja={totalGastos}
@@ -104,11 +104,11 @@ const Gastos = () => {
           title="Total Caja"
           Imagen={Flecha}
         /> */}
-        <CajaEfectivo
+        {/* <CajaEfectivo
           valorCaja={inicioCaja}
           title="Inicio Caja"
           Imagen={IconoIncioCaja}
-        />
+        /> */}
       </div>
       <div className="py-5 flex flex-wrap gap-x-3 gap-y-3">
         {/* Nuevo Gasto */}
@@ -150,7 +150,13 @@ const Gastos = () => {
       <div className="flex items-center gap-x-3">
         <BarraSearch onClick={handleBuscador} placeholder="Buscar un gasto.." />
 
-        <Dropdown onClick1={() => {}} />
+        <Dropdown
+          onClick1={() => {
+            {
+              setIsSorted(!isSorted);
+            }
+          }}
+        />
       </div>
       <ListadoGastos />
     </div>

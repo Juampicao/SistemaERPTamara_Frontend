@@ -59,7 +59,7 @@ const ListadoProductos = () => {
     <div>
       {isCargando ? <Spiner /> : ""}
 
-      <div className="overflow-auto rounded-xl  shadow-xl  my-5 text-center ">
+      <div className="overflow-auto rounded-xl  shadow-xl  my-5 text-center  ">
         <table className={tableStyles}>
           <thead className=" bg-white border-b-2 border-gray-200">
             <tr className="  bg-white">
@@ -79,7 +79,7 @@ const ListadoProductos = () => {
               ))
             ) : (
               <p className="my-5 text-center">
-                No hay ningun gasto para mostrar
+                No hay ningun producto para mostrar
               </p>
             )}
           </tbody>

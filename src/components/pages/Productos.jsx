@@ -9,6 +9,7 @@ import ListadoProductos from "../molecules/productos/ListadoProductos";
 import Busqueda from "../atoms/Busqueda";
 import BarraSearch from "../atoms/BarraSearch";
 
+import Dropdown from "../atoms/Dropdown";
 const Productos = () => {
   const {
     producto,
@@ -41,14 +42,17 @@ const Productos = () => {
   return (
     <div className="fade-left">
       <Header title="Inventario" />
-      <div className="flex gap-x-3">
-        <BotonNuevoProducto
-          onClick={() => navigate("/productos/nuevoproducto")}
-        />
+      <BotonNuevoProducto
+        onClick={() => navigate("/productos/nuevoproducto")}
+      />
+      <div className="flex gap-x-3 items-center my-5">
         <BarraSearch
           onClick={handleBuscador}
           placeholder="Buscar un producto.."
         />
+        {/* <Busqueda urlDestino={`/productos/${producto._id}`} /> */}
+        <Busqueda />
+        <Dropdown />
       </div>
       <ListadoProductos />
     </div>

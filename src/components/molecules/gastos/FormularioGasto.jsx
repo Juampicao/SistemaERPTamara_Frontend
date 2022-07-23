@@ -16,8 +16,8 @@ import StaticContext from "../../../contexts/StaticProvider";
 
 import { BotonVer } from "../../atoms/Botones";
 import Error from "../../atoms/Error";
-import { toDay } from "../../../helpers";
 import Spiner from "../../atoms/Spiner";
+import { FechaHoyArgentina } from "../../../helpers";
 
 const FormularioGasto = () => {
   const {
@@ -66,7 +66,7 @@ const FormularioGasto = () => {
     setNombre("");
     setValor("");
     setCategoria("Gastos");
-    setFecha(toDay);
+    setFecha(FechaHoyArgentina);
     setNotas("");
     setIsCargando(false);
   }, [gasto]);
@@ -166,20 +166,14 @@ const FormularioGasto = () => {
             <label htmlFor="fecha" className={labelStyles}>
               Fecha
             </label>
-            {gasto?._id ? (
-              <p className="text-slate-400 ">
-                {" "}
-                La fecha no aparece pero existe.En "Ver gasto" aparece bien.
-              </p>
-            ) : (
-              ""
-            )}
+
             <input
               id="fecha"
               name="fecha"
               type="date"
               placeholder=""
               className={inputStyles}
+              value={fecha}
               onChange={(e) => setFecha(e.target.value)}
             />
           </div>

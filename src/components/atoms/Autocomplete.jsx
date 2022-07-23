@@ -1,16 +1,16 @@
 import React from "react";
 import { useHits } from "react-instantsearch-hooks";
 
-const Autocomplete = () => {
+const autoComplete = () => {
   const { hits } = useHits();
   return (
-    <div className="autocomplete-panel">
+    <div className="autoComplete-panel">
       {hits.length > 0 && (
-        <ul className="autocomplete-items">
+        <ul className="autoComplete-items">
           {hits.map((hit) => (
             <li key={hit.handle}>
               <button
-                className="autocomplete-item"
+                className="autoComplete-item"
                 onClick={() => handleSelection(hit.handle)}
               >
                 <Item hit={hit} />
@@ -23,7 +23,7 @@ const Autocomplete = () => {
   );
 };
 
-export default Autocomplete;
+export default autoComplete;
 
 function Item({ hit }) {
   return (

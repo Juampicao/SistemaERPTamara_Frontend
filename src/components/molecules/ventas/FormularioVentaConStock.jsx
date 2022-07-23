@@ -65,15 +65,7 @@ const FormularioVentaConStock = () => {
   // Prueba con AXIOS
   function obtenerProductoAVender(e) {
     console.log(e);
-    const inputValorIndividual = document.getElementById(
-      "inputValorIndividual"
-    );
-    console.log(inputValorIndividual.value);
-    if (producto.length < 0) {
-      console.log("esta vacio");
-    } else {
-      console.log("Esta lleno");
-    }
+
     iterarArrayProductos();
     // 1 - Buscar en el array Productos el que tenga nombre igual
     function iterarArrayProductos() {
@@ -166,39 +158,10 @@ const FormularioVentaConStock = () => {
   return (
     <div>
       <div className="bg-white rounded-lg  max-w-xl mx-auto">
-        <div className="flex pt-5 gap-x-24">
-          <div className="pl-5">
-            <img
-              src={IconoTooltip}
-              alt=""
-              className="pl-5  h-6 float-left cursor-pointer items-center"
-              data-bs-toggle="tooltip"
-              title="Se añadira una venta y se disminuira el stock del producto seleccionado automaticamente."
-            />
-            {/* <svg
-              aria-hidden="true"
-              focusable="false"
-              data-prefix="far"
-              data-icon="check-circle"
-              className="w-7 h-7"
-              role="img"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 512 512"
-            >
-              <path
-                data-bs-toggle="tooltip"
-                title="Se añadira una venta y se disminuira el stock del producto seleccionado automaticamente."
-                fill="currentColor"
-                d="M256 8C119.033 8 8 119.033 8 256s111.033 248 248 248 248-111.033 248-248S392.967 8 256 8zm0 48c110.532 0 200 89.451 200 200 0 110.532-89.451 200-200 200-110.532 0-200-89.451-200-200 0-110.532 89.451-200 200-200m140.204 130.267l-22.536-22.718c-4.667-4.705-12.265-4.736-16.97-.068L215.346 303.697l-59.792-60.277c-4.667-4.705-12.265-4.736-16.97-.069l-22.719 22.536c-4.705 4.667-4.736 12.265-.068 16.971l90.781 91.516c4.667 4.705 12.265 4.736 16.97.068l172.589-171.204c4.704-4.668 4.734-12.266.067-16.971z"
-              ></path>
-            </svg> */}
-          </div>
-          <h1 className=" text-xl uperrcase  float-rigth uppercase">
+        <form action="submit" className="mt-5 pt-5" onSubmit={handleSubmit}>
+          <h1 className=" text-xl uppercase text-center font-black">
             Producto en Stock
           </h1>
-        </div>
-
-        <form action="submit" className="" onSubmit={handleSubmit}>
           <div className={divStyles}>
             {error && <Error mensaje="Completa todos los campos" />}
             <label htmlFor="inputProducto" className={labelStyles}>
@@ -218,7 +181,7 @@ const FormularioVentaConStock = () => {
               }}
               placeholder="Selecciona un producto.."
               list="pruebaLista"
-              autocomplete="off"
+              autoComplete="off"
               // onClick={() => console.log(venta.producto)}
             />
             <datalist id="pruebaLista">

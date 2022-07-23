@@ -2,15 +2,16 @@ import React, { useContext, useEffect, useState } from "react";
 import StaticContext from "../../../contexts/StaticProvider";
 import IconoGasto from "../../../img/iconoCosto.png";
 
-const CuadroGastos = ({ title, title2, valor, img }) => {
+const CuadroGastos = ({ title, title2, valor, img, ClassNameDiv }) => {
   // const { gastos, setGastos, gasto, setGasto, totalGastos, setTotalGastos } =
   //   useContext(StaticContext);
 
   const [totalGastosHoy, setTotalGastosHoy] = useState("");
-
+  const CuadroGastosDivStyles =
+    "flex px-4 py-6 align-middle items-center bg-white hover:bg-slate-200 cursor-pointer border rounded-2xl space-y-2  w-[210px] text-start";
   return (
     <>
-      <div className="flex px-4 py-6 align-middle items-center bg-white hover:bg-slate-200 cursor-pointer border rounded-2xl space-y-2  w-[210px] text-start">
+      <div className={`${CuadroGastosDivStyles}`}>
         <div className="">
           <p className=" pl-2 capitalize font-medium text-slate-500 ">
             {title}

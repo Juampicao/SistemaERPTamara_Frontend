@@ -10,7 +10,7 @@ const searchThings = algoliasearch(
   `a4390aa69f26de2fd0c4209ff113a4f9`
 );
 
-const INDEX_NAME = `autocomplete_twitter_accounts`;
+const INDEX_NAME = `autoComplete_twitter_accounts`;
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <InstantSearch searchClient={searchThings} indexName={INDEX_NAME}>

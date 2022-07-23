@@ -50,19 +50,11 @@ const ListadoGastos = () => {
         const respuesta = await fetch(url);
         const resultado = await respuesta.json();
 
-        // console.log(resultado);
-        // console.log(resultado.arrayGastosComida);
-        // console.log(resultado.arrayGastosVarios);
-        // console.log(resultado.arrayGastosProveedor);
-        console.log(resultado.montoTotalGastosInventario);
-
         setMontoTotalGastosComida(resultado.montoTotalGastosComida);
         setMontoTotalGastosVarios(resultado.montoTotalGastosVarios);
         setMontoTotalGastosProveedores(resultado.montoTotalGastosProveedores);
         setMontoTotalGastosInventario(resultado.montoTotalGastosInventario);
 
-        // setMontoTotalGastos(resultado.montoTotalGastos);
-        // console.log(montoTotalGastos);
         setGastos(resultado.gastos);
         setIsCargando(false);
       } catch (error) {
@@ -70,12 +62,7 @@ const ListadoGastos = () => {
       }
     };
     setTotalValorGastos(0);
-    console.log(montoTotalGastosProveedores + montoTotalGastosComida);
-    let todosLosGastos =
-      montoTotalGastosComida +
-      montoTotalGastosProveedores +
-      montoTotalGastosVarios;
-    console.log(todosLosGastos);
+
     obtenerGastos();
   }, []);
 
@@ -93,8 +80,8 @@ const ListadoGastos = () => {
         <table className={tableStyles}>
           <thead className=" bg-white border-b-2 border-gray-200">
             <tr className="  bg-white">
-              <th className="p-2 ">Categoria</th>
-              <th className="p-2 ">Nombre</th>
+              <th className="p-2">Categoria</th>
+              <th className="p-2">Nombre</th>
               <th className="p-2">Valor</th>
               <th className="p-2">Fecha</th>
               <th className="p-2 flex justify-center ">
@@ -148,7 +135,21 @@ const ListadoGastos = () => {
               montoTotalGastosInventario
             }
           />
+          <CuadroGastos
+            img={inicioCaja}
+            title="Inicio"
+            title2="Caja"
+            valor={
+              inicioCaja +
+              montoTotalVentasEfectivo -
+              montoTotalGastosVarios -
+              montoTotalGastosProveedores -
+              montoTotalGastosComida -
+              montoTotalGastosInventario
+            }
+          />
 
+          {/* Ventas Efectivo */}
           <ListadoCaja />
           <CuadroGastos
             img={IconoInicioCaja}

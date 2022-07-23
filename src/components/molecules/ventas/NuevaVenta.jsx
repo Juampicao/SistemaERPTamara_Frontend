@@ -8,12 +8,9 @@ const NuevaVenta = () => {
     <div className="fade-left">
       <Header title="Nueva Venta" />
 
-      <p className="mt-2">
-        Selecciona si el producto a vender es nuevo o existente.
-      </p>
-      <div className="flex mt-3">
+      <div className="flex my-2">
         <ul
-          class="mx-auto nav nav-pills flex flex-col md:flex-row flex-wrap list-none pl-0 mb-4"
+          class="mx-auto nav nav-pills flex flex-col md:flex-row flex-wrap list-none pl-0 "
           id="pills-tab"
           role="tablist"
         >
@@ -55,6 +52,9 @@ const NuevaVenta = () => {
           role="tabpanel"
           aria-labelledby="pills-profile-tab"
         >
+          <p className="mt-2 text-center">
+            Selecciona si el producto a vender es nuevo o existente.
+          </p>
           <FormularioVenta />
         </div>
         <div
@@ -63,6 +63,9 @@ const NuevaVenta = () => {
           role="tabpanel"
           aria-labelledby="pills-home-tab"
         >
+          <p className="mt-2 text-center">
+            Selecciona si el producto a vender es nuevo o existente.
+          </p>
           <FormularioVentaConStock />
         </div>
       </div>

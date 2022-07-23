@@ -1,7 +1,7 @@
 import React from "react";
 import { BotonBlancoRedondeado } from "../../helpers/colores";
 
-const Prueba = ({ link1, link2, link3, onClick1 }) => {
+const Prueba = ({ link1, link2, link3, onClick1, onClick2 }) => {
   // styles
   const optionStyles =
     "dropdown-item text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-gray-700 hover:bg-gray-100";
@@ -45,7 +45,7 @@ const Prueba = ({ link1, link2, link3, onClick1 }) => {
                 </button>
               </li>
               <li>
-                <a className={optionStyles} href="#">
+                <a className={optionStyles} onClick={onClick2}>
                   Ordenar Z-A
                 </a>
               </li>

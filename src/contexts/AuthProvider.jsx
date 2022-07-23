@@ -29,7 +29,6 @@ const AuthProvider = ({ children }) => {
       };
 
       try {
-        console.log("hace algo?");
         const { data } = await axios.get(
           `${import.meta.env.VITE_API_URL}/usuarios/perfil`,
           config

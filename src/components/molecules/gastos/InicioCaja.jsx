@@ -2,7 +2,10 @@ import { useContext, useState } from "react";
 import StaticContext from "../../../contexts/StaticProvider";
 import axios from "axios";
 
-import { BotonAzulClasico } from "../../../helpers/colores";
+import {
+  BotonAzulClasico,
+  BotonAzulRedondeado,
+} from "../../../helpers/colores";
 import { BotonPrimario } from "../../atoms/Botones";
 import { useNavigate, useLocation } from "react-router-dom";
 
@@ -77,7 +80,7 @@ const InicioCaja = () => {
         <div className="flex justify-end mt-2 pt-5 border-t border-gray-200">
           <BotonPrimario
             value="Guardar Caja"
-            Color={BotonAzulClasico}
+            Color={BotonAzulRedondeado}
             onClick={AgregarInicioCaja}
           />
         </div>

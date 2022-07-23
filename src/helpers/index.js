@@ -1,5 +1,19 @@
-export const aumentar = "aumentar";
-export const disminuir = "disminuir";
+let date = new Date();
+export let FechaHoyArgentina = date
+  .toLocaleString("en-US", "America/Argentina/Buenos_Aires")
+  .slice(0, 9);
+console.log(FechaHoyArgentina);
+
+export const FormatearNumero = function (number) {
+  return "$" + number + ",00";
+};
+
+export function formatearFechaCorta(fecha) {
+  // let fechaFormateada = fecha.slice(0, 10);
+  let fechaFormateada = fecha;
+  let fechaFormateadaFinal = fechaFormateada;
+  return fechaFormateadaFinal;
+}
 
 // Generar ID
 export const generarId = () => {
@@ -11,78 +25,25 @@ export const generarId = () => {
 // const toDay
 export const toDay = new Date().toISOString().substring(0, 10);
 console.log(toDay);
-export const formatearFechaCorta = (fecha) => {
-  const fechaNueva = new Date(fecha);
-  const opciones = {
-    year: "numeric",
-    month: "2-digit",
-    day: "2-digit",
-  };
-
-  return fechaNueva.toLocaleDateString("es-ES", opciones);
-};
 
 export const formatearFecha = (fecha) => {
+  // let fechaFormateada = fecha.slice(0, 10);
+  // let fechaFormateada = fecha;
+  // let fechaFormateadaFinal = fechaFormateada;
+
+  // return fechaFormateadaFinal;
+
+  // // ExFormateado
   const fechaNueva = new Date(fecha);
   const opciones = {
     year: "numeric",
-    month: "long",
+    month: "short",
     day: "2-digit",
   };
 
-  return fechaNueva.toLocaleDateString("es-ES", opciones);
+  return fechaNueva.toLocaleTimeString("es-ES", opciones);
+  // return fechaNueva.toISOString("es-ES", opciones);
 };
-
-// Formatear numero a moneda.
-export const FormatearNumero = function (number) {
-  // return "$" + +new Intl.NumberFormat().format(number) + ",00";
-  return "$" + number + ",00";
-};
-// console.log(FormatearNumero(1000));
-
-// export default formatearFecha(DiaActual);
-export let DiaActual = new Date();
-console.log(DiaActual.toLocaleDateString());
-const pruebaDia = DiaActual.toLocaleDateString();
-
-console.log(pruebaDia);
-
-export const formatearFecha2 = (fecha) => {
-  const nuevaFecha = new Date(fecha.split("T")[0].split("-"));
-  const opciones = {
-    weekday: "long",
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  };
-  return nuevaFecha.toLocaleDateString("es-ES", opciones);
-};
-
-console.log(formatearFecha2("10/20/2022"));
-
-// export const formatter = new Intl.NumberFormat("en-US", {
-//   style: "currency",
-//   currency: "USD",
-//   minimumFractionDigits: 0,
-// });
-
-// var value = 10000000;
-
-// console.log(formatter.format(value)); // "$10,000
-
-// export const formatter = (numero) => {
-//   let numero2 = numero;
-//   numero2 = new Intl.NumberFormat("en-US", {
-//     style: "currency",
-//     currency: "USD",
-//     minimumFractionDigits: 0,
-//   });
-//   console.log(numero2);
-//   return numero2;
-// };
-
-// let a = 10;
-// formatter(a);
 
 // Ordenar arrays
 var numbers = [4, 2, 5, 1, 7];

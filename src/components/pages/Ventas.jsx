@@ -9,6 +9,7 @@ import ListadoVentas from "../molecules/ventas/ListadoVentas";
 
 import Busqueda from "../atoms/Busqueda";
 import BarraSearch from "../atoms/BarraSearch";
+import Dropdown from "../atoms/Dropdown";
 
 const Ventas = () => {
   const {
@@ -49,15 +50,17 @@ const Ventas = () => {
   return (
     <div className="fade-left">
       <Header title="Ventas" />
-      <div className="flex gap-x-3">
-        <BotonNuevaVenta onClick={() => navigate("/ventas/nuevaventa")} />
+      <BotonNuevaVenta onClick={() => navigate("/ventas/nuevaventa")} />
+      <div className="flex gap-x-3 items-center my-5">
         <BarraSearch
           onClick={handleBuscador}
           placeholder="Buscar una venta.."
         />
+        <Dropdown />
       </div>
 
-      <Busqueda />
+      <Busqueda urlDestino={`/ventas/${venta._id}`} />
+
       <ListadoVentas />
     </div>
   );

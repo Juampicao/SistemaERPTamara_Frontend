@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Outlet, useNavigate, useParams, useLocation } from "react-router-dom";
 import axios from "axios";
-import { toDay } from "../../../helpers";
 
 import StaticContext from "../../../contexts/StaticProvider";
 
@@ -16,6 +15,7 @@ import { BotonPrimario } from "../../atoms/Botones";
 import { BotonNegroRedondeado } from "../../../helpers/colores";
 
 import Error from "../../atoms/Error";
+import { FechaHoyArgentina } from "../../../helpers";
 
 const FormularioProducto = () => {
   const {
@@ -68,7 +68,7 @@ const FormularioProducto = () => {
     setPrecio("");
     setCosto("");
     setCategoria("Bebidas");
-    setFecha("");
+    setFecha(FechaHoyArgentina);
     setDescripcion("");
   }, [producto]);
 

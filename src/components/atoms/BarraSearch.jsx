@@ -6,7 +6,7 @@ import { useEffect } from "react";
 import "./BarraSearch.css";
 
 import getActiveToken from "./../../helpers/getActiveToken.js";
-import Autocomplete from "./Autocomplete";
+import autoComplete from "./autoComplete";
 
 const BarraSearch = ({ onClick, placeholder }) => {
   // const data = ["River", "Velez", "Boca"];
@@ -63,7 +63,7 @@ export default BarraSearch;
                   // ref={inputRef}
                 />
               </form>
-              {showAutocomplete && <Autocomplete />}
+              {showautoComplete && <autoComplete />}
             </div>
           </div>
 
@@ -129,11 +129,11 @@ export default BarraSearch;
 //   setText(text);
 // };
 
-// const [showAutocomplete, setShowAutocomplete] = useState(false);
+// const [showautoComplete, setShowautoComplete] = useState(false);
 // const inputRef = useRef();
 // const handleInput = () => {
 //   const { value, selectionEnd = 0 } = inputRef.current;
 //   const { word } = getActiveToken(value, selectionEnd);
-//   const shouldOpenAutocomplete = /^@\w{1,15}$/.test(word);
-//   setShowAutocomplete(shouldOpenAutocomplete);
+//   const shouldOpenautoComplete = /^@\w{1,15}$/.test(word);
+//   setShowautoComplete(shouldOpenautoComplete);
 // };

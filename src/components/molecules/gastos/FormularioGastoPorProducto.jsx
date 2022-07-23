@@ -15,10 +15,10 @@ import {
 
 import { BotonVer } from "../../atoms/Botones";
 import Error from "../../atoms/Error";
-import { toDay } from "../../../helpers";
 import Spiner from "../../atoms/Spiner";
 
 import IconoTooltip from "../../../img/iconoExclamacion2.png";
+import { FechaHoyArgentina } from "../../../helpers";
 const FormularioGastoPorProducto = () => {
   const {
     gasto,
@@ -76,7 +76,7 @@ const FormularioGastoPorProducto = () => {
     setValorIndividual("");
     setValorTotal("");
     setCategoria("");
-    setFecha("");
+    setFecha(FechaHoyArgentina);
     setNotas("");
   }, [productoAVender, cantidad]);
 
@@ -117,15 +117,7 @@ const FormularioGastoPorProducto = () => {
 
   function obtenerProductoAVender(e) {
     console.log(e);
-    const inputValorIndividual = document.getElementById(
-      "inputValorIndividual"
-    );
-    console.log(inputValorIndividual.value);
-    if (producto.length < 0) {
-      console.log("esta vacio");
-    } else {
-      console.log("Esta lleno");
-    }
+
     iterarArrayProductos();
     // 1 - Buscar en el array Productos el que tenga nombre igual
     function iterarArrayProductos() {
@@ -188,19 +180,11 @@ const FormularioGastoPorProducto = () => {
   return (
     <div>
       <div className="bg-white rounded-lg  max-w-xl mx-auto">
-        <div className="flex pt-5 gap-x-10 ">
-          <img
-            src={IconoTooltip}
-            alt=""
-            className="pl-5  h-6 float-left cursor-pointer"
-            data-bs-toggle="tooltip"
-            title="Se añadira un gasto y se aumentara el stock del producto seleccionado."
-          />
-          <h1 className=" text-xl uperrcase font-black float-rigth uppercase">
+        {/* <h1 className=" text-xl uperrcase font-black float-rigth uppercase">
             Gasto por Producto en Stock
-          </h1>
-        </div>
-        <form action="submit" className="" onSubmit={handleSubmit}>
+          </h1> */}
+
+        <form action="submit" className="mt-5 py-5" onSubmit={handleSubmit}>
           <div className={divStyles}>
             {error && <Error mensaje="Completa todos los campos" />}
             <label htmlFor="inputProducto" className={labelStyles}>
@@ -220,7 +204,7 @@ const FormularioGastoPorProducto = () => {
               }}
               placeholder="Selecciona un producto.."
               list="pruebaLista"
-              autocomplete="off"
+              autoComplete="off"
               // onClick={() => console.log(venta.producto)}
             />
             <datalist id="pruebaLista">

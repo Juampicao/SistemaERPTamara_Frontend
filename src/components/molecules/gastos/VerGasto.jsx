@@ -36,11 +36,11 @@ const VerGasto = () => {
   return (
     <div>
       <div className="space-y-3">
+        {/* verGasto */}
         <p> El producto es: {gasto.nombre} </p>
         <p> El ID es: {gasto._id} </p>
         <p> Valor: ${gasto.valor} </p>
         <p> Categoria: {gasto.categoria} </p>
-        {/* <p> Fecha: {gasto.fecha.substr(0, 10)} </p> */}
         <p> Fecha: {formatearFecha(gasto.fecha)} </p>
         <p> Notas: {gasto.notas ? gasto.notas : "No hay notas."} </p>
 

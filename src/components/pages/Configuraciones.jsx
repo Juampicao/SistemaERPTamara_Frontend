@@ -18,7 +18,8 @@ import UltimoModal from "../atoms/modal/ultimoModal/UltimoModal";
 import StaticContext from "../../contexts/StaticProvider";
 import Spiner from "../atoms/Spiner";
 import FormularioVentaConStock from "../molecules/ventas/FormularioVentaConStock";
-import { Tab } from "@headlessui/react";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Configuraciones = () => {
   const { isOpenModal, openModal, closeModal } = useContext(StaticContext);
@@ -28,6 +29,7 @@ const Configuraciones = () => {
       <Header title="Configuracion" />
 
       <p>Pagina en Construccion...</p>
+
       {/* <Tab.Group>
         <Tab.List>
           <Tab

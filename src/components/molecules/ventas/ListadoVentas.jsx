@@ -79,7 +79,7 @@ const ListadoVentas = () => {
               ventas.map((venta) => <Venta key={venta._id} venta={venta} />)
             ) : (
               <p className="my-5 text-center">
-                No hay ningun gasto para mostrar
+                No hay ninguna producto para mostrar
               </p>
             )}
           </tbody>

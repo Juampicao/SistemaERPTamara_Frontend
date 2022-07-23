@@ -11,9 +11,8 @@ import { BotonPrimario } from "../../atoms/Botones";
 const VerVenta = () => {
   const { venta, setVenta } = useContext(StaticContext);
   const { id } = useParams();
-  console.log(id);
   const navigate = useNavigate();
-
+  console.log(venta._id);
   const {
     _id,
     producto,
@@ -57,7 +56,7 @@ const VerVenta = () => {
         <div className="py-5 flex justify-center space-x-3">
           <BotonPrimario
             Color={BotonAzulRedondeado}
-            value="Editar Gasto"
+            value="Editar Venta"
             onClick={() => navigate(`/ventas/editar/${_id}`)}
           />
           <BotonPrimario
