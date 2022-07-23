@@ -123,7 +123,8 @@ const ListadoCaja = () => {
             montoTotalGastosInventario
           }
         /> */}
-        <CuadroGastos title="Nuevo Total Gastos" valor={totalValorGastos} />
+        {/* Nuevo total gastos */}
+        <CuadroGastos title="Total Gastos" valor={totalValorGastos} />
         <CuadroGastos
           img={IconoInicioCaja}
           title="Ventas Efectivo"
