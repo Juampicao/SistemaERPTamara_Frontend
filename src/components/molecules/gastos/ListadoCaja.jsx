@@ -8,10 +8,18 @@ import IconoInicioCaja from "../../../img/iconCaja.png";
 
 const ListadoCaja = () => {
   const {
+    gastos,
+    setGastos,
+    gasto,
+    setGasto,
+    screenSize,
+    setScreenSize,
+    setTotalValorGastos,
+    isCargando,
+    setIsCargando,
     inicioCaja,
     totalValorGastos,
     setCajaActual,
-    screenSize,
     montoTotalVentasEfectivo,
     setMontoTotalVentasEfectivo,
   } = useContext(StaticContext);
@@ -39,19 +47,87 @@ const ListadoCaja = () => {
     obtenerVentasEfectivo();
   }, []);
 
+  const [montoTotalGastosComida, setMontoTotalGastosComida] = useState();
+  const [montoTotalGastosVarios, setMontoTotalGastosVarios] = useState();
+  const [montoTotalGastosProveedores, setMontoTotalGastosProveedores] =
+    useState();
+  const [montoTotalGastosInventario, setMontoTotalGastosInventario] =
+    useState();
+
+  const [montoTotalGastos, setMontoTotalGastos] = useState();
+
+  const { _id, nombre, valor, cantidad, fecha } = gasto;
+
+  // Get Base de datos
+  useEffect(() => {
+    const obtenerGastos = async () => {
+      setIsCargando(true);
+      try {
+        const url = `${import.meta.env.VITE_API_URL}/gastos`;
+        const respuesta = await fetch(url);
+        const resultado = await respuesta.json();
+
+        setMontoTotalGastosComida(resultado.montoTotalGastosComida);
+        setMontoTotalGastosVarios(resultado.montoTotalGastosVarios);
+        setMontoTotalGastosProveedores(resultado.montoTotalGastosProveedores);
+        setMontoTotalGastosInventario(resultado.montoTotalGastosInventario);
+
+        setGastos(resultado.gastos);
+        setIsCargando(false);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    setTotalValorGastos(0);
+
+    obtenerGastos();
+  }, []);
+
   return (
     <div>
-      <div className="flex gap-x-3 md:gap-x-10">
-        {/* <CuadroGastos
-          //   img={diccionarioIConos.Comida}
-          title="Caja Actual"
-          valor={inicioCaja + montoTotalVentasEfectivo}
-        /> */}
+      <div
+        className="flex space-x-3 text-center my-2 scroll-x-auto"
+        data-bs-toggle="tooltip"
+        title="Caja Actual = Inicio Caja + Ventas Efectivo - Gastos Efectivo"
+      >
+        <CuadroGastos
+          img={IconoInicioCaja}
+          title="Caja"
+          title2="Actual"
+          valor={
+            inicioCaja +
+            montoTotalVentasEfectivo -
+            montoTotalGastosVarios -
+            montoTotalGastosProveedores -
+            montoTotalGastosComida -
+            montoTotalGastosInventario
+          }
+        />
+        <CuadroGastos
+          img={inicioCaja}
+          title="Inicio"
+          title2="Caja"
+          valor={inicioCaja}
+        />
+
+        {/* Ventas Efectivo  */}
+        <CuadroGastos
+          img={IconoInicioCaja}
+          title="Total Gastos"
+          title2=""
+          valor={
+            montoTotalGastosVarios +
+            montoTotalGastosProveedores +
+            montoTotalGastosComida +
+            montoTotalGastosInventario
+          }
+        />
         <CuadroGastos
           img={IconoInicioCaja}
           title="Ventas Efectivo"
           valor={montoTotalVentasEfectivo}
         />
+
         {/* {screenSize < 1 ? (
           <ListadoGastos cajaActual={inicioCaja + montoTotalVentasEfectivo} />
         ) : (

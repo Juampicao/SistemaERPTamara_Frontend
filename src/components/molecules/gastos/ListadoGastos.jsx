@@ -122,7 +122,7 @@ const ListadoGastos = () => {
           data-bs-toggle="tooltip"
           title="Caja Actual = Inicio Caja + Ventas Efectivo - Gastos Efectivo"
         >
-          <CuadroGastos
+          {/* <CuadroGastos
             img={IconoInicioCaja}
             title="Caja"
             title2="Actual"
@@ -147,11 +147,10 @@ const ListadoGastos = () => {
               montoTotalGastosComida -
               montoTotalGastosInventario
             }
-          />
+          /> */}
 
-          {/* Ventas Efectivo */}
-          <ListadoCaja />
-          <CuadroGastos
+          {/* Ventas Efectivo  */}
+          {/* <CuadroGastos
             img={IconoInicioCaja}
             title="Total Gastos"
             title2=""
@@ -161,7 +160,8 @@ const ListadoGastos = () => {
               montoTotalGastosComida +
               montoTotalGastosInventario
             }
-          />
+          /> */}
+          <ListadoCaja />
         </div>
 
         <h3 className="text-2xl font-bold font-mono uppercase">Gastos Hoy</h3>

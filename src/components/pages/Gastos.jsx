@@ -150,13 +150,7 @@ const Gastos = () => {
       <div className="flex items-center gap-x-3">
         <BarraSearch onClick={handleBuscador} placeholder="Buscar un gasto.." />
 
-        <Dropdown
-          onClick1={() => {
-            {
-              setIsSorted(!isSorted);
-            }
-          }}
-        />
+        <Dropdown onClick1={() => {}} />
       </div>
       <ListadoGastos />
     </div>
