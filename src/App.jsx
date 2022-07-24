@@ -8,7 +8,9 @@ import { useRef } from "react";
 import AuthLayout from "./components/pages/AuthLayout";
 import { StaticProvider } from "./contexts/StaticProvider";
 import RutaProhibida from "./components/pages/RutaProhibida";
+
 import { AuthProvider } from "./contexts/AuthProvider";
+import EstadisticasProvider from "./contexts/EstadisticasProvider";
 
 import Configuraciones from "./components/pages/Configuraciones";
 import Login from "./components/pages/Login";
@@ -39,45 +41,47 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <AuthProvider>
-          <StaticProvider>
-            <Routes>
-              <Route path="/" element={<AuthLayout />}>
-                <Route index element={<Login />} />
-              </Route>
+          <EstadisticasProvider>
+            <StaticProvider>
+              <Routes>
+                <Route path="/" element={<AuthLayout />}>
+                  <Route index element={<Login />} />
+                </Route>
 
-              <Route path="/" element={<Layout />}>
-                <Route path="productos" index element={<Productos />} />
-                <Route
-                  path="productos/nuevoproducto"
-                  element={<NuevoProducto />}
-                />
-                <Route path="productos/:id" element={<VerProducto />} />
-                <Route
-                  path="productos/editar/:id"
-                  element={<EditarProducto />}
-                />
+                <Route path="/" element={<Layout />}>
+                  <Route path="productos" index element={<Productos />} />
+                  <Route
+                    path="productos/nuevoproducto"
+                    element={<NuevoProducto />}
+                  />
+                  <Route path="productos/:id" element={<VerProducto />} />
+                  <Route
+                    path="productos/editar/:id"
+                    element={<EditarProducto />}
+                  />
 
-                <Route path="ventas" element={<Ventas />} />
-                <Route path="ventas/nuevaventa" element={<NuevaVenta />} />
-                <Route path="ventas/:id" element={<VerVenta />} />
-                <Route path="ventas/editar/:id" element={<EditarVenta />} />
+                  <Route path="ventas" element={<Ventas />} />
+                  <Route path="ventas/nuevaventa" element={<NuevaVenta />} />
+                  <Route path="ventas/:id" element={<VerVenta />} />
+                  <Route path="ventas/editar/:id" element={<EditarVenta />} />
 
-                <Route path="gastos" element={<Gastos />} />
-                <Route path="gastos/nuevogasto" element={<NuevoGasto />} />
-                <Route path="gastos/:id" element={<VerGasto />} />
-                <Route path="gastos/editar/:id" element={<EditarGasto />} />
-                <Route
-                  path="configuraciones"
-                  index
-                  element={<Configuraciones />}
-                />
-                <Route path="*" element={<h1> Pagina no encontrada. </h1>} />
-              </Route>
+                  <Route path="gastos" element={<Gastos />} />
+                  <Route path="gastos/nuevogasto" element={<NuevoGasto />} />
+                  <Route path="gastos/:id" element={<VerGasto />} />
+                  <Route path="gastos/editar/:id" element={<EditarGasto />} />
+                  <Route
+                    path="configuraciones"
+                    index
+                    element={<Configuraciones />}
+                  />
+                  <Route path="*" element={<h1> Pagina no encontrada. </h1>} />
+                </Route>
 
-              {/* <Route index element={<Login auth={auth} setAuth={setAuth} />} /> */}
-              <Route path="*" element={<RutaProhibida />} />
-            </Routes>
-          </StaticProvider>
+                {/* <Route index element={<Login auth={auth} setAuth={setAuth} />} /> */}
+                <Route path="*" element={<RutaProhibida />} />
+              </Routes>
+            </StaticProvider>
+          </EstadisticasProvider>
         </AuthProvider>
       </BrowserRouter>
     </div>

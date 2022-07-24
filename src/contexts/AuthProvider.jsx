@@ -6,8 +6,7 @@ import StaticContext from "./StaticProvider";
 const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
-  //   const { isCargando, setIsCargando } = useContext(StaticContext);
-
+  
   const [auth, setAuth] = useState({});
 
   const navigate = useNavigate();

@@ -33,8 +33,6 @@ const Gasto = ({ gasto }) => {
   //   Comida: IconoComida,
   // };
 
-  // console.log(gasto._id);
-  console.log(gastos);
   const { _id, nombre, valor, cantidad, fecha, notas } = gasto;
 
   const handleDelete = async (_id) => {

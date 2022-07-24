@@ -12,7 +12,7 @@ const EditarGasto = () => {
 
   const navigate = useNavigate();
 
-  // // Llamado a la base de datos
+  // Llamado a la base de datos
   useEffect(() => {
     const obtenerClienteAPI = async () => {
       try {

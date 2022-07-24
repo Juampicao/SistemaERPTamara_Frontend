@@ -21,8 +21,12 @@ import FormularioVentaConStock from "../molecules/ventas/FormularioVentaConStock
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
+import useEstadisticas from "../../hooks/useEstadisticas";
+
 const Configuraciones = () => {
   const { isOpenModal, openModal, closeModal } = useContext(StaticContext);
+
+  // const { estadisticas } = useEstadisticas();
 
   return (
     <div data-aos="fade-left">

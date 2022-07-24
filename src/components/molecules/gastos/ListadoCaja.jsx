@@ -26,6 +26,7 @@ const ListadoCaja = () => {
 
   const [arrayVentasEfectivo, setArrayVentasEfectivo] = useState({});
 
+  let prueba; 
   useEffect(() => {
     const obtenerVentasEfectivo = async () => {
       try {
@@ -63,7 +64,8 @@ const ListadoCaja = () => {
         const url = `${import.meta.env.VITE_API_URL}/gastos`;
         const respuesta = await fetch(url);
         const resultado = await respuesta.json();
-
+console.log(resultado.obtenerValoresUnicos.Inventario)
+ prueba = resultado.obtenerValoresUnicos.Inventario
         setMontoTotalGastosComida(resultado.montoTotalGastosComida);
         setMontoTotalGastosVarios(resultado.montoTotalGastosVarios);
         setMontoTotalGastosProveedores(resultado.montoTotalGastosProveedores);
