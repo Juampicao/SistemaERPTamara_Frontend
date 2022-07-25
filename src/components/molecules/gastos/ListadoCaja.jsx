@@ -97,7 +97,7 @@ const ListadoCaja = () => {
         valor={prueba}
       /> */}
       <div
-        className="grid grid-cols-2 gap-x-3 text-center my-2  sm:flex sm:scroll-x-auto"
+        className="justify-between flex flex-wrap gap-y-4 gap-x-5 px-5 my-2  sm:flex sm:scroll-x-auto"
         data-bs-toggle="tooltip"
         title="Caja Actual = Inicio Caja + Ventas Efectivo - Gastos Efectivo"
       >
@@ -134,10 +134,11 @@ const ListadoCaja = () => {
           }
         /> */}
         {/* Nuevo total gastos */}
-        <CuadroGastos title="Total Gastos" valor={totalValorGastos} />
+        <CuadroGastos title="Total"  title2="Gastos" valor={totalValorGastos} />
         <CuadroGastos
           img={IconoInicioCaja}
-          title="Ventas Efectivo"
+          title="Ventas "
+          title2="Efectivo"
           valor={montoTotalVentasEfectivo}
         />
 

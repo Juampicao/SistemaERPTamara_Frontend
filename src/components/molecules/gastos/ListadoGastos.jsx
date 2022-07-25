@@ -73,6 +73,8 @@ const ListadoGastos = () => {
   const tableStylesPhone = "";
   const linea = <div className="h-[2px] w-full mx-auto bg-red-500"> </div>;
 
+  const titlesStlyles = "text-lg xs:text-2xl font-black uppercase my-2";
+  const contenedorDivTitulos = "justify-between flex flex-wrap gap-y-4 gap-x-5 px-5 my-2  sm:flex sm:scroll-x-auto"
   return (
     <div>
       {isCargando ? <Spiner /> : ""}
@@ -110,7 +112,7 @@ const ListadoGastos = () => {
 
       <div>
         <h3
-          className="text-2xl font-bold font-mono uppercase"
+          className={titlesStlyles}
           data-bs-toggle="tooltip"
           title="Caja Actual = Inicio Caja + Venta Efectivo - Gastos Efectivo"
         >
@@ -118,7 +120,7 @@ const ListadoGastos = () => {
         </h3>
 
         <div
-          className="flex space-x-3 text-center my-2 scroll-x-auto"
+          className={"flex space-x-3 text-center my-2 scroll-x-auto"}
           data-bs-toggle="tooltip"
           title="Caja Actual = Inicio Caja + Ventas Efectivo - Gastos Efectivo"
         >
@@ -164,8 +166,8 @@ const ListadoGastos = () => {
           <ListadoCaja />
         </div>
 
-        <h3 className="text-2xl font-bold font-mono uppercase">Gastos Hoy</h3>
-        <div className="grid grid-cols-2 gap-x-3 text-center my-2  sm:flex sm:scroll-x-auto">
+        <h3 className={titlesStlyles}>Gastos Hoy</h3>
+        <div className={contenedorDivTitulos}>
           <CuadroGastos
             // img={diccionarioIConos.Comida}
             title="Gastos Comidas"
@@ -190,12 +192,10 @@ const ListadoGastos = () => {
         </div>
       </div>
       <div>
-        <h3 className="text-2xl font-bold font-mono uppercase">
+        <h3 className={titlesStlyles}>
           Gastos Semana
         </h3>
-
-        {/* <div className="flex space-x-3 text-center my-2 scroll-x-auto"> */}
-        <div className="grid grid-cols-2 gap-x-3 text-center my-2  sm:flex sm:scroll-x-auto">
+        <div className={contenedorDivTitulos}>
           <CuadroGastos
             // img={diccionarioIConos.Comida}
             title="Gastos Comidas"

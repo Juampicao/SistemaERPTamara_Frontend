@@ -67,7 +67,7 @@ const Producto = ({ producto }) => {
       <td> {FormatearNumero(precio)}</td>
       {/* <td> {formatearFechaCorta(fecha)}</td> */}
       <td> {FormatearNumero(cantidad * precio)} </td>
-      <td className="p-3 space-y-3 ">
+      <td className=" ">
         <div className=" ">
           <BotonVer value="Ver" onClick={() => navigate(`/productos/${_id}`)} />
           <BotonEditar
