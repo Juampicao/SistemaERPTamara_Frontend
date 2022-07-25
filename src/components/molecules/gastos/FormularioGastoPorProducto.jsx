@@ -63,9 +63,9 @@ const FormularioGastoPorProducto = () => {
   useEffect(() => {
     if (productoAVender?._id) {
       setNombre(productoAVender.nombreProducto);
-      setValorIndividual(productoAVender.precio);
-      setValorTotal(productoAVender.precio * cantidad);
-      setValor(productoAVender.precio * cantidad);
+      setValorIndividual(productoAVender.costo);
+      setValorTotal(productoAVender.costo * cantidad);
+      setValor(productoAVender.costo * cantidad);
       setCategoria("Inventario");
       setNotas(`${cantidad} Unidades.`);
 
@@ -238,7 +238,7 @@ const FormularioGastoPorProducto = () => {
 
           <div className={divStyles}>
             <label htmlFor="inputValorIndividual" className={labelStyles}>
-              Precio Individual
+              Costo Individual
             </label>
             <input
               disabled="true"
@@ -254,7 +254,7 @@ const FormularioGastoPorProducto = () => {
           </div>
           <div className={divStyles}>
             <label htmlFor="valorTotal" className={`${labelStyles}`}>
-              Precio Total
+              Costo Total
             </label>
             <input
               disabled="true"

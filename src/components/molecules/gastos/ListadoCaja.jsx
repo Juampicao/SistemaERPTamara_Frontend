@@ -26,7 +26,6 @@ const ListadoCaja = () => {
 
   const [arrayVentasEfectivo, setArrayVentasEfectivo] = useState({});
 
-  let prueba; 
   useEffect(() => {
     const obtenerVentasEfectivo = async () => {
       try {
@@ -56,6 +55,8 @@ const ListadoCaja = () => {
 
   const { _id, nombre, valor, cantidad, fecha } = gasto;
 
+  // const [prueba, setPrueba] = useState("");
+  // console.log(prueba);
   // Get Base de datos
   useEffect(() => {
     const obtenerGastos = async () => {
@@ -64,8 +65,9 @@ const ListadoCaja = () => {
         const url = `${import.meta.env.VITE_API_URL}/gastos`;
         const respuesta = await fetch(url);
         const resultado = await respuesta.json();
-console.log(resultado.obtenerValoresUnicos.Inventario)
- prueba = resultado.obtenerValoresUnicos.Inventario
+        // console.log(resultado.obtenerValoresUnicos[2].valor);
+        // setPrueba(resultado.obtenerValoresUnicos.Gastos.valor);
+
         setMontoTotalGastosComida(resultado.montoTotalGastosComida);
         setMontoTotalGastosVarios(resultado.montoTotalGastosVarios);
         setMontoTotalGastosProveedores(resultado.montoTotalGastosProveedores);
@@ -88,8 +90,14 @@ console.log(resultado.obtenerValoresUnicos.Inventario)
 
   return (
     <div>
+      {/* <CuadroGastos
+        // img={inicioCaja}
+        title="Prueba"
+        title2=""
+        valor={prueba}
+      /> */}
       <div
-        className="flex space-x-3 text-center my-2 scroll-x-auto"
+        className="grid grid-cols-2 gap-x-3 text-center my-2  sm:flex sm:scroll-x-auto"
         data-bs-toggle="tooltip"
         title="Caja Actual = Inicio Caja + Ventas Efectivo - Gastos Efectivo"
       >

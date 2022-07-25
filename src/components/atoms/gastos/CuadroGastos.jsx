@@ -7,8 +7,11 @@ const CuadroGastos = ({ title, title2, valor, img, ClassNameDiv }) => {
   //   useContext(StaticContext);
 
   const [totalGastosHoy, setTotalGastosHoy] = useState("");
+  const CuadroGastosDivStylesPhone =
+    "bg-white rounded-xl bg-green-400 py-2 text-white min-w-[150px] ";
+
   const CuadroGastosDivStyles =
-    "flex px-4 py-6 align-middle items-center bg-white hover:bg-slate-200 cursor-pointer border rounded-2xl space-y-2  w-[210px] text-start";
+    "flex p-2 py-3 xs:px-4 xs:py-6 align-middle items-center bg-white hover:bg-slate-200 cursor-pointer border rounded-2xl gap-y-2   xs:w-[210px] text-start";
   return (
     <>
       <div className={`${CuadroGastosDivStyles}`}>

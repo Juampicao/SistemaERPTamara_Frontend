@@ -22,6 +22,7 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 import useEstadisticas from "../../hooks/useEstadisticas";
+import ContenedorLayout from "../molecules/ContenedorLayout";
 
 const Configuraciones = () => {
   const { isOpenModal, openModal, closeModal } = useContext(StaticContext);
@@ -29,12 +30,15 @@ const Configuraciones = () => {
   // const { estadisticas } = useEstadisticas();
 
   return (
-    <div data-aos="fade-left">
+    <div>
       <Header title="Configuracion" />
 
-      <p>Pagina en Construccion...</p>
+      <ContenedorLayout>
+        <div className="py-3">
+          <p>Pagina en Construccion...</p>
+        </div>
 
-      {/* <Tab.Group>
+        {/* <Tab.Group>
         <Tab.List>
           <Tab
             className={({ selected }) =>
@@ -58,7 +62,7 @@ const Configuraciones = () => {
           ....
         </Tab.Panels>
       </Tab.Group> */}
-      {/* <button onClick={openModal} className="bg-blue-500 p-3 rounded-xl">
+        {/* <button onClick={openModal} className="bg-blue-500 p-3 rounded-xl">
         <p>abrir modal</p>
         <UltimoModal isOpen={isOpenModal} closeModal={closeModal}></UltimoModal>
       </button>
@@ -66,18 +70,18 @@ const Configuraciones = () => {
         Color={BotonBlancoClasico}
         onClick={() => openModalCaja()}
       /> */}
-      {/* Prueba Tooltip */}
-      {/* <p data-bs-toggle="tooltip" title="Hi! I'm tooltip">
+        {/* Prueba Tooltip */}
+        {/* <p data-bs-toggle="tooltip" title="Hi! I'm tooltip">
         tooltip?
       </p> */}
-      {/* Prueba Tooltip */}
-      {/* Modal Reutilizable inicio caja funciona bien y es lindo.  */}
-      {/* <BotonPrimario
+        {/* Prueba Tooltip */}
+        {/* Modal Reutilizable inicio caja funciona bien y es lindo.  */}
+        {/* <BotonPrimario
         value="Inicio Caja"
         Color={BotonBlancoRedondeado}
         onClick={() => setModalCaja(!modalCaja)}
       /> */}
-      {/* {modalCaja ? (
+        {/* {modalCaja ? (
         <ModalReutilizable
           title="Caja"
           closeModal={() => setModalCaja(!modalCaja)}
@@ -87,7 +91,8 @@ const Configuraciones = () => {
       ) : (
         ""
       )} */}
-      {/* Modal Reutilizable inicio caja funciona bien y es lindo.  */}
+        {/* Modal Reutilizable inicio caja funciona bien y es lindo.  */}
+      </ContenedorLayout>
     </div>
   );
 };

@@ -74,6 +74,7 @@ function App() {
                     index
                     element={<Configuraciones />}
                   />
+
                   <Route path="*" element={<h1> Pagina no encontrada. </h1>} />
                 </Route>
 

@@ -165,7 +165,7 @@ const ListadoGastos = () => {
         </div>
 
         <h3 className="text-2xl font-bold font-mono uppercase">Gastos Hoy</h3>
-        <div className="flex space-x-3 text-center my-2 scroll-x-auto">
+        <div className="grid grid-cols-2 gap-x-3 text-center my-2  sm:flex sm:scroll-x-auto">
           <CuadroGastos
             // img={diccionarioIConos.Comida}
             title="Gastos Comidas"
@@ -194,7 +194,8 @@ const ListadoGastos = () => {
           Gastos Semana
         </h3>
 
-        <div className="flex space-x-3 text-center my-2 scroll-x-auto">
+        {/* <div className="flex space-x-3 text-center my-2 scroll-x-auto"> */}
+        <div className="grid grid-cols-2 gap-x-3 text-center my-2  sm:flex sm:scroll-x-auto">
           <CuadroGastos
             // img={diccionarioIConos.Comida}
             title="Gastos Comidas"

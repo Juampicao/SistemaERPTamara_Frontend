@@ -12,6 +12,9 @@ import { useContext, useEffect, useState } from "react";
 import StaticContext from "../../contexts/StaticProvider";
 import useAuth from "../../hooks/useAuth";
 import BotonFlotante from "../atoms/BotonFlotante";
+import Header from "../molecules/Header";
+
+import layout from "./layout.css";
 
 const Layout = () => {
   const { isActiveMenu, setActiveMenu, screenSize, setScreenSize } =
@@ -50,7 +53,15 @@ const Layout = () => {
 
   const handleActiveMenu = () => setActiveMenu(!isActiveMenu);
 
-  // const activeStyles = "bg-indigo-700 rounded-lg  text-white  duration-200 p-3";
+  // Phone Styles
+  const navStyles =
+    "xs:hidden bg-gradient-to-t from-gray-700 via-gray-900 to-black  duration-300 rounded-t-2xl  w-full z-50 absolute fixed bottom-0";
+  const ulStyles = "flex  justify-evenly items-center text-white text-sm  ";
+  const liStyles =
+    "block items-center pt-2 hover:cursor-pointer transition duration-200 ease-in-out hover:duration-200  cursor-pointer hover:scale-105 active:scale-105";
+  const imgStyles = "h-8 mx-auto  ";
+
+  // Computer Styles
   const activeStyles = `text-white  duration-200 border-l-4  hover:border-r-lime-50 p-1   ${
     isActiveMenu ? "pl-5" : "pl-3"
   }`;
@@ -72,9 +83,49 @@ const Layout = () => {
 
   return (
     <>
-      {/* <div className="sm:flex  "> */}
-      <div className="flex bor">
-        {/* <div className="sm:w-1/4 min-w-[280px] bg-indigo-900 px-5 py-5 "> */}
+      {/* Inciio Celular Layout */}
+      <section className=" xs:hidden">
+        <nav className={navStyles}>
+          <ul className={ulStyles} id="navbar">
+            <Link to="/ventas">
+              <li className={liStyles}>
+                <img src={iconoVentas} className={imgStyles} alt="" />
+                <p className="">Ventas</p>
+              </li>
+            </Link>
+            <Link to="/gastos">
+              <li className={liStyles}>
+                <img src={iconoVentas} className={imgStyles} alt="" />
+                <p className="">Gastos</p>
+              </li>
+            </Link>
+            <li>
+              <BotonFlotante />
+            </li>
+            <Link to="/productos">
+              <li className={liStyles}>
+                <img src={iconoVentas} className={imgStyles} alt="" />
+                <p className="">Stock</p>
+              </li>
+            </Link>
+            <Link to="/configuraciones">
+              <li className={liStyles}>
+                <img src={iconoConfiguracion} className={imgStyles} alt="" />
+                <p className="">Menu</p>
+              </li>
+            </Link>
+          </ul>
+        </nav>
+
+        <div className="w-full origin-left duration-300 bg-slate-100 h-screen  xs:p-5  overflow-y-scroll ">
+          <Outlet />
+        </div>
+      </section>
+
+      {/* Final Celular Layout */}
+
+      {/* Inicio Computador Layout */}
+      <div className="hidden  xs:flex ">
         <div
           className={`${
             isActiveMenu
@@ -189,11 +240,102 @@ const Layout = () => {
         {/* <div className="w-full origin-left duration-300 bg-slate-100 p-3 xs:p-5  sm:p-10 sm:h-screen overflow-y-scroll"> */}
         <div className="w-full origin-left duration-300 bg-slate-100 h-screen p-5  overflow-y-scroll">
           <BotonFlotante />
+
           <Outlet />
         </div>
+        {/* Fina Computador Layout */}
       </div>
     </>
   );
 };
 
 export default Layout;
+
+// import { Outlet, Link, useLocation } from "react-router-dom";
+
+// import iconoVentas from "../../img/iconoVentas.png";
+// import iconoBebida from "../../img/iconoBebida.png";
+// import iconoConfiguracion from "../../img/iconoConfiguracion.png";
+// import IconoCerrarBlanco from "../../img/iconoCerrarBlanco.png";
+// import IconoBills from "../../img/iconoBills.png";
+// import IconoLogout from "../../img/iconoLogout.png";
+// import Imagenpersona from "../../img/newIcons/fotoMujer2.png";
+
+// import { useContext, useEffect, useState } from "react";
+// import StaticContext from "../../contexts/StaticProvider";
+// import useAuth from "../../hooks/useAuth";
+// import BotonFlotante from "../atoms/BotonFlotante";
+// import Header from "../molecules/Header";
+
+// // import layout from "./layout.css";
+
+// const Layout = () => {
+//   const urlActual = location.pathname;
+
+//   // var prevScrollpos = window.pageYOffset;
+//   // window.onscroll = function () {
+//   //   var currentScrollPos = window.pageYOffset;
+//   //   if (prevScrollpos > currentScrollPos) {
+//   //     document.getElementById("navbar").style.top = "0";
+//   //   } else {
+//   //     document.getElementById("navbar").style.top = "-50px";
+//   //   }
+//   //   prevScrollpos = currentScrollPos;
+//   // };
+
+//   // styles
+//   const navStyles =
+//     "xs:hidden bg-gradient-to-t from-gray-700 via-gray-900 to-black  duration-300 rounded-t-2xl absolute bottom-0 w-full z-50";
+//   const ulStyles = "flex  justify-evenly items-center text-white text-sm  ";
+//   const liStyles =
+//     "block items-center pt-2 hover:cursor-pointer transition duration-200 ease-in-out hover:duration-200  cursor-pointer hover:scale-105 active:scale-105";
+//   const imgStyles = "h-8 mx-auto  ";
+
+//   return (
+//     <div>
+//       {/* <div id="navbar">
+//         <a href="#home">Home</a>
+//         <a href="#news">News</a>
+//         <a href="#contact">Contact</a>
+//       </div> */}
+
+//       <nav className={navStyles}>
+//         <ul className={ulStyles} id="navbar">
+//           <Link to="/ventas">
+//             <li className={liStyles}>
+//               <img src={iconoVentas} className={imgStyles} alt="" />
+//               <p className="">Ventas</p>
+//             </li>
+//           </Link>
+//           <Link to="/gastos">
+//             <li className={liStyles}>
+//               <img src={iconoVentas} className={imgStyles} alt="" />
+//               <p className="">Gastos</p>
+//             </li>
+//           </Link>
+//           <li>
+//             <BotonFlotante />
+//           </li>
+//           <Link to="/productos">
+//             <li className={liStyles}>
+//               <img src={iconoVentas} className={imgStyles} alt="" />
+//               <p className="">Stock</p>
+//             </li>
+//           </Link>
+//           <Link to="/configuraciones">
+//             <li className={liStyles}>
+//               <img src={iconoVentas} className={imgStyles} alt="" />
+//               <p className="">Menu</p>
+//             </li>
+//           </Link>
+//         </ul>
+//       </nav>
+
+//       <div className="w-full origin-left duration-300 bg-slate-100 h-screen  xs:p-5  overflow-y-scroll ">
+//         <Outlet />
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default Layout;

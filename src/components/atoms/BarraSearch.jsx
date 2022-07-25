@@ -16,6 +16,7 @@ const BarraSearch = ({ onClick, placeholder }) => {
         <input
           type="search"
           className="input rounded-2xl p-3 pl-5 pr-10 cursor-pointer"
+          // className="input rounded-2xl p-3 pl-5 pr-10 cursor-pointer"
           placeholder={placeholder}
           // list="pruebaLista"
           onClick={onClick}

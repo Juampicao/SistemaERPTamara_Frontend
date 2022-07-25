@@ -8,6 +8,7 @@ import { BotonEditar, BotonEliminar, BotonVer } from "../../atoms/Botones";
 import MessageModal from "../../atoms/MessageModal";
 import { formatearFechaCorta, FormatearNumero } from "../../../helpers";
 
+
 const Gasto = ({ gasto }) => {
   const {
     gastos,
