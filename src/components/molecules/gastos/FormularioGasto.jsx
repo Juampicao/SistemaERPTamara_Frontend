@@ -18,6 +18,7 @@ import { BotonVer } from "../../atoms/Botones";
 import Error from "../../atoms/Error";
 import Spiner from "../../atoms/Spiner";
 import { FechaHoyArgentina } from "../../../helpers";
+import ContenedorFormularios from "../ContenedorFormularios";
 
 const FormularioGasto = () => {
   const {
@@ -127,6 +128,8 @@ const FormularioGasto = () => {
   return (
     <div>
       {isCargando ? <Spiner /> : ""}
+      <ContenedorFormularios>
+
       <p className="text-lg">
         {gasto._id ? `Editar el gasto: ${gasto.nombre}` : ""}
       </p>
@@ -261,7 +264,8 @@ const FormularioGasto = () => {
             />
           </div>
         </form>
-      </div>
+        </div>
+      </ContenedorFormularios>
     </div>
   );
 };

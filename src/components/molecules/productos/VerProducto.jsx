@@ -10,7 +10,7 @@ import {
 import { BotonPrimario } from "../../atoms/Botones";
 
 const VerProducto = () => {
-  const { producto, setProducto, isCargando, setIsCargando } =
+   const { producto, setProducto, isCargando, setIsCargando } =
     useContext(StaticContext);
   const { id } = useParams();
   const navigate = useNavigate();
@@ -41,6 +41,38 @@ const VerProducto = () => {
     };
     obtenerProductos();
   }, []);
+//   const { producto, setProducto, isCargando, setIsCargando } =
+//     useContext(StaticContext);
+//   const { id } = useParams();
+//   const navigate = useNavigate();
+// console.log(id)
+//   const {
+//     _id,
+//     nombreProducto,
+//     cantidad,
+//     precio,
+//     costo,
+//     categoria,
+//     fecha,
+//     notas,
+//   } = producto;
+
+//   console.log(nombreProducto)
+//   useEffect(() => {
+//     const obtenerProductos = async () => {
+//       try {
+//         const url = `${import.meta.env.VITE_API_URL}/productos/${id}`;
+//         const respuesta = await fetch(url);
+//         const resultado = await respuesta.json();
+//         setProducto(resultado);
+//         console.log(producto);
+//       } catch (error) {
+//         console.log(error);
+//       }
+//       // setIsCargando(!isCargando);
+//     };
+//     obtenerProductos();
+//   }, []);
 
   return (
     <div className="space-y-3 my-10 mx-10">

@@ -86,7 +86,7 @@ const Layout = () => {
     <>
       {/* Inciio Celular Layout */}
       <nav className=" xs:hidden ">
-        <div className="w-full origin-left duration-300 bg-slate-100 h-screen  xs:p-5  overflow-y-scroll ">
+        <div className=" w-full origin-left duration-300 bg-slate-100 h-screen  xs:p-5  overflow-y-scroll ">
           <Outlet />
         </div>
         <ul className={navStyles}>

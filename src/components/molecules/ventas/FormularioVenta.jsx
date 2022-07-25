@@ -13,6 +13,7 @@ import { BotonVer } from "../../atoms/Botones";
 import Error from "../../atoms/Error";
 import Busqueda from "../../atoms/Busqueda";
 import { FechaHoyArgentina } from "../../../helpers";
+import ContenedorFormularios from "../ContenedorFormularios";
 const FormularioVenta = () => {
   const {
     venta,
@@ -156,7 +157,9 @@ const FormularioVenta = () => {
   const divStyles = "px-5 py-3 space-x-1";
 
   return (
-    <div>
+    <div className="">
+      <ContenedorFormularios>
+
       <p className="text-lg ">
         {venta._id ? `Editar la venta: ${venta.producto}` : ""}
       </p>
@@ -352,7 +355,9 @@ const FormularioVenta = () => {
             />
           </div>
         </form>
-      </div>
+        </div>
+      </ContenedorFormularios>
+        
     </div>
   );
 };

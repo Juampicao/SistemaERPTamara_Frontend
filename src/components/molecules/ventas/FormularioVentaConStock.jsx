@@ -16,6 +16,7 @@ import Busqueda from "../../atoms/Busqueda";
 import IconoTooltip from "../../../img/iconoExclamacion2.png";
 import { FechaHoyArgentina } from "../../../helpers";
 
+import ContenedorFormularios from "../ContenedorFormularios"
 const FormularioVentaConStock = () => {
   const {
     venta,
@@ -158,6 +159,9 @@ const FormularioVentaConStock = () => {
 
   return (
     <div>
+      <ContenedorFormularios>
+
+    
       <div className="bg-white rounded-lg  max-w-xl mx-auto">
         <form action="submit" className="mt-5 pt-5" onSubmit={handleSubmit}>
           <h1 className=" text-xl uppercase text-center font-black">
@@ -363,7 +367,9 @@ const FormularioVentaConStock = () => {
             />
           </div>
         </form>
-      </div>
+        </div>
+      </ContenedorFormularios>
+        
     </div>
   );
 };
