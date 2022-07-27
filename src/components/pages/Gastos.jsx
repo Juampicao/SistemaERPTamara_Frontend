@@ -27,6 +27,7 @@ import IconoIncioCaja from "../../img/iconCaja.png";
 
 import UltimoModal from "../atoms/modal/ultimoModal/UltimoModal";
 import Busqueda from "../atoms/Busqueda";
+import ContenedorLayout from "../molecules/ContenedorLayout";
 
 const Gastos = () => {
   const {
@@ -91,68 +92,72 @@ const Gastos = () => {
   // }, [gastos]);
 
   return (
-    <div data-aos="fade-left">
+    <div>
       <Header title="Gastos" />
-      <div className="flex flex-wrap gap-x-3 gap-y-3 ">
-        {/* <CajaEfectivo
+      <ContenedorLayout>
+        <div className="flex flex-wrap gap-x-3 gap-y-3 ">
+          {/* <CajaEfectivo
           valorCaja={totalGastos}
           title="Gastos"
           Imagen={IconoIncioCaja}
         /> */}
-        {/* <CajaEfectivo
+          {/* <CajaEfectivo
           valorCaja={Number(inicioCaja - totalGastos)}
           title="Total Caja"
           Imagen={Flecha}
         /> */}
-        {/* <CajaEfectivo
+          {/* <CajaEfectivo
           valorCaja={inicioCaja}
           title="Inicio Caja"
           Imagen={IconoIncioCaja}
         /> */}
-      </div>
-      <div className="py-5 flex flex-wrap gap-x-3 gap-y-3">
-        {/* Nuevo Gasto */}
-        <BotonPrimarioIcono
-          value="Nuevo Gasto"
-          Color={BotonRojoRedondeado}
-          onClick={() => navigate(`/gastos/nuevogasto`)}
-        />
-        {abrirModal ? (
-          <ModalReutilizable closeModal={cerrar}>
-            <FormularioGasto onClick={() => {}} />
-          </ModalReutilizable>
-        ) : (
-          ""
-        )}
-        {/* Nuevo Gasto */}
+        </div>
+        <div className=" flex flex-wrap gap-x-3 gap-y-3 py-3 xs:py-5">
+          {/* Nuevo Gasto */}
+          <BotonPrimarioIcono
+            value="Nuevo Gasto"
+            Color={BotonRojoRedondeado}
+            onClick={() => navigate(`/gastos/nuevogasto`)}
+          />
+          {abrirModal ? (
+            <ModalReutilizable closeModal={cerrar}>
+              <FormularioGasto onClick={() => {}} />
+            </ModalReutilizable>
+          ) : (
+            ""
+          )}
+          {/* Nuevo Gasto */}
 
-        {/* Abrir Inicio Caja */}
-        <BotonPrimario
-          value="Inicio Caja"
-          Color={BotonBlancoRedondeado}
-          onClick={openModal}
-        />
-        <UltimoModal isOpen={isOpenModal} closeModal={closeModal}>
-          <InicioCaja />
-        </UltimoModal>
+          {/* Abrir Inicio Caja */}
+          <BotonPrimario
+            value="Inicio Caja"
+            Color={BotonBlancoRedondeado}
+            onClick={openModal}
+          />
+          <UltimoModal isOpen={isOpenModal} closeModal={closeModal}>
+            <InicioCaja />
+          </UltimoModal>
 
-        {/* Inicio Caja */}
-        {/* <BotonPrimario
+          {/* Inicio Caja */}
+          {/* <BotonPrimario
           value="Reiniciar Gastos"
           Color={BotonBlancoRedondeado}
           onClick={handleReiniciarTotalGastos}
         /> */}
-      </div>
-      {/* <button onClick={handleBuscador} className="">
+        </div>
+        {/* <button onClick={handleBuscador} className="">
         Abrir Buscador
       </button> */}
-      <Busqueda />
-      <div className="flex items-center gap-x-3">
-        <BarraSearch onClick={handleBuscador} placeholder="Buscar un gasto.." />
-
-        <Dropdown onClick1={() => {}} />
-      </div>
-      <ListadoGastos />
+        <Busqueda urlDestino={`/gastos`} />
+        <div className="flex items-center gap-x-3">
+          <BarraSearch
+            onClick={handleBuscador}
+            placeholder="Buscar un gasto.."
+          />
+          <Dropdown onClick1={() => {}} />
+        </div>
+        <ListadoGastos />
+      </ContenedorLayout>
     </div>
   );
 };

@@ -41,7 +41,7 @@ const VerVenta = () => {
   }, []);
   return (
     <div>
-      <div className="space-y-3">
+      <div className="space-y-5 xs:space-y-3 p-5 xs:p-0">
         <p> El producto es: {producto} </p>
         <p> El ID es: {_id} </p>
         <p> La cantidad vendida: {cantidad} unidades</p>

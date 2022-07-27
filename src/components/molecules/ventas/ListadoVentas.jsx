@@ -60,7 +60,7 @@ const ListadoVentas = () => {
       {isCargando ? <Spiner /> : ""}
 
       {/* hidden md:block */}
-      <div className="overflow-auto rounded-xl  shadow-xl  my-5 text-center ">
+      <div className="overflow-auto rounded-xl  shadow-xl  my-5 text-center max-w-7xl">
         <table className={tableStyles}>
           <thead className=" bg-white border-b-2 border-gray-200">
             <tr className="  bg-white">

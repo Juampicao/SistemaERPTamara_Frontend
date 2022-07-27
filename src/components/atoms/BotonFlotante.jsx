@@ -10,12 +10,13 @@ const BotonFlotante = () => {
   const ButtonStyle =
     "px-3 flex py-2.5  hover:scale-105 font-medium text-xs leading-tight uppercase  transition duration-200 ease-in-out hover:shadow-lg active:shadow-lg  focus:outline-none hover:duration-200  cursor-pointer items-center rounded-full origin-left ";
 
-  const ButtonAdd = "bg-black hover:bg-slate-900 active:bg-slate-800";
+  const ButtonAdd =
+    "bg-gradient-to-t from-gray-900 via-gray-800 to-black  duration-300   sm:bg-black sm:hover:bg-slate-900 sm:active:bg-slate-800 ";
 
   return (
     <div>
       {/* {abrirBoton ? <p> Abierto</p> : <p> Cerrado</p>} */}
-      <div className="flex justify-center absolute z-50 right-0  p-5 md:pr-10 pb-5 bottom-0 ">
+      <div className="flex xs:justify-center relative xs:absolute z-50 xs:right-0  xs:p-5 md:pr-10 pb-8  bottom-0 ">
         <div>
           <div className="dropup relative ">
             <button

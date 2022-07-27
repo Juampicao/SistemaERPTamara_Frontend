@@ -3,7 +3,7 @@ module.exports = {
   content: ["index.html", "./src/**/*.jsx"],
   theme: {
     screens: {
-      xs: "320px",
+      xs: "420px",
       sm: "550px",
       md: "749px",
       lg: "1024px",
@@ -13,6 +13,7 @@ module.exports = {
     extend: {
       backgroundColor: {
         "half-transparent": "rgba(0, 0, 0, 0.5)",
+        "bg-main": "text-slate-300",
       },
     },
   },

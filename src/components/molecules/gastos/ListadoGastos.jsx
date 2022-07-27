@@ -69,14 +69,16 @@ const ListadoGastos = () => {
   // Styles
   const tableStyles =
     // "hidden mt-5 md:block table-auto shadow-lg bg-white w-full text-center border rounded-3xl  ";
-    "w-full ";
+    "w-full";
   const tableStylesPhone = "";
   const linea = <div className="h-[2px] w-full mx-auto bg-red-500"> </div>;
 
+  const titlesStlyles = "text-lg xs:text-2xl font-black uppercase my-2";
+  const contenedorDivTitulos = "justify-between flex flex-wrap gap-y-4 gap-x-5 px-5 my-2  sm:flex sm:scroll-x-auto"
   return (
     <div>
       {isCargando ? <Spiner /> : ""}
-      <div className="overflow-auto rounded-xl  shadow-xl  my-5 text-center ">
+      <div className="overflow-auto rounded-xl  shadow-xl  my-5 text-center max-w-7xl ">
         <table className={tableStyles}>
           <thead className=" bg-white border-b-2 border-gray-200">
             <tr className="  bg-white">
@@ -108,9 +110,9 @@ const ListadoGastos = () => {
         </table>
       </div>
 
-      <div>
+      <div className="max-w-4xl">
         <h3
-          className="text-2xl font-bold font-mono uppercase"
+          className={titlesStlyles}
           data-bs-toggle="tooltip"
           title="Caja Actual = Inicio Caja + Venta Efectivo - Gastos Efectivo"
         >
@@ -118,11 +120,80 @@ const ListadoGastos = () => {
         </h3>
 
         <div
-          className="flex space-x-3 text-center my-2 scroll-x-auto"
+          className={contenedorDivTitulos}
           data-bs-toggle="tooltip"
           title="Caja Actual = Inicio Caja + Ventas Efectivo - Gastos Efectivo"
         >
-          {/* <CuadroGastos
+     
+          <ListadoCaja />
+        </div>
+
+        <h3 className={titlesStlyles}>Gastos Hoy</h3>
+        <div className={contenedorDivTitulos}>
+        <div className={contenedorDivTitulos}>
+          <CuadroGastos
+            // img={diccionarioIConos.Comida}
+            title="Gastos Comidas"
+            valor={montoTotalGastosComida}
+          />{" "}
+          <CuadroGastos
+            // img={diccionarioIConos.Proveedor}
+            title="Gastos Proveedores"
+            valor={montoTotalGastosProveedores}
+          />
+          <CuadroGastos
+            // img={diccionarioIConos.Proveedor}
+            title="Gastos Inventario"
+            valor={montoTotalGastosInventario}
+          />
+          <CuadroGastos
+            // img={diccionarioIConos.Gastos}
+            title="Gastos"
+            title2="Varios"
+            valor={montoTotalGastosVarios}
+          />
+          </div>
+        </div>
+          
+      </div>
+      <div>
+        <h3 className={titlesStlyles}>
+          Gastos Semana
+        </h3>
+        <div className={contenedorDivTitulos}>
+        <div className={contenedorDivTitulos}>
+          <CuadroGastos
+            // img={diccionarioIConos.Comida}
+            title="Gastos Comidas"
+            valor={montoTotalGastosComida}
+          />{" "}
+          <CuadroGastos
+            // img={diccionarioIConos.Proveedor}
+            title="Gastos Proveedores"
+            valor={montoTotalGastosProveedores}
+          />
+          <CuadroGastos
+            // img={diccionarioIConos.Gastos}
+            title="Gastos"
+            title2="Varios"
+            valor={montoTotalGastosVarios}
+            />
+             <CuadroGastos
+            // img={diccionarioIConos.Gastos}
+            title="Gastos"
+            title2="Varios"
+            valor={montoTotalGastosInventario}
+          />
+        </div>
+        </div>
+        </div>
+    </div>
+  );
+};
+
+export default ListadoGastos;
+
+     {/* <CuadroGastos
             img={IconoInicioCaja}
             title="Caja"
             title2="Actual"
@@ -161,95 +232,3 @@ const ListadoGastos = () => {
               montoTotalGastosInventario
             }
           /> */}
-          <ListadoCaja />
-        </div>
-
-        <h3 className="text-2xl font-bold font-mono uppercase">Gastos Hoy</h3>
-        <div className="flex space-x-3 text-center my-2 scroll-x-auto">
-          <CuadroGastos
-            // img={diccionarioIConos.Comida}
-            title="Gastos Comidas"
-            valor={montoTotalGastosComida}
-          />{" "}
-          <CuadroGastos
-            // img={diccionarioIConos.Proveedor}
-            title="Gastos Proveedores"
-            valor={montoTotalGastosProveedores}
-          />
-          <CuadroGastos
-            // img={diccionarioIConos.Proveedor}
-            title="Gastos Inventario"
-            valor={montoTotalGastosInventario}
-          />
-          <CuadroGastos
-            // img={diccionarioIConos.Gastos}
-            title="Gastos"
-            title2="Varios"
-            valor={montoTotalGastosVarios}
-          />
-        </div>
-      </div>
-      <div>
-        <h3 className="text-2xl font-bold font-mono uppercase">
-          Gastos Semana
-        </h3>
-
-        <div className="flex space-x-3 text-center my-2 scroll-x-auto">
-          <CuadroGastos
-            // img={diccionarioIConos.Comida}
-            title="Gastos Comidas"
-            valor={montoTotalGastosComida}
-          />{" "}
-          <CuadroGastos
-            // img={diccionarioIConos.Proveedor}
-            title="Gastos Proveedores"
-            valor={montoTotalGastosProveedores}
-          />
-          <CuadroGastos
-            // img={diccionarioIConos.Gastos}
-            title="Gastos"
-            title2="Varios"
-            valor={montoTotalGastosVarios}
-          />
-        </div>
-      </div>
-    </div>
-  );
-};
-
-export default ListadoGastos;
-
-//  {
-//    screenSize > 800 ? (
-//      <div className="overflow-auto rounded-xl  shadow-xl hidden md:block my-5 text-center ">
-//        <table className={tableStyles}>
-//          <thead className=" bg-white border-b-2 border-gray-200">
-//            <tr className="  bg-white">
-//              <th className="p-2 ">Categoria</th>
-//              <th className="p-2 ">Nombre</th>
-//              <th className="p-2">Valor</th>
-//              <th className="p-2">Fecha</th>
-//              <th className="p-2 ">Funciones</th>
-//            </tr>
-//          </thead>
-//          <tbody className="divide-y divide-gray-200 bg-white">
-//            {gastos.length > 0 ? (
-//              gastos.map((gasto) => <Gasto key={gasto._id} gasto={gasto} />)
-//            ) : (
-//              <p className="my-5 text-center">
-//                No hay ningun gasto para mostrar
-//              </p>
-//            )}
-//          </tbody>
-//        </table>
-//      </div>
-//    ) : (
-//      <>
-//        {gastos.length > 0 ? (
-//          gastos.map((gasto) => <Gasto key={gasto._id} gasto={gasto} />)
-//        ) : (
-//          <p className="my-5 text-center">No hay ningun gasto para mostrar</p>
-//        )}
-//      </>
-//    );
-//  }

@@ -11,11 +11,12 @@ const BarraSearch = ({ onClick, placeholder }) => {
   // const data = ["River", "Velez", "Boca"];
 
   return (
-    <div>
+    <>
       <div className="input-wrapper">
         <input
           type="search"
           className="input rounded-2xl p-3 pl-5 pr-10 cursor-pointer"
+          // className="input rounded-2xl p-3 pl-5 pr-10 cursor-pointer"
           placeholder={placeholder}
           // list="pruebaLista"
           onClick={onClick}
@@ -34,7 +35,7 @@ const BarraSearch = ({ onClick, placeholder }) => {
           />
         </svg>
       </div>
-    </div>
+    </>
     // </div>
   );
 };

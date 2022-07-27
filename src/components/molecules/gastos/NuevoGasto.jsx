@@ -7,9 +7,7 @@ const NuevoGasto = () => {
   return (
     <div className="fade-left">
       <Header title="Nuevo Gasto" />
-      {/* <p className="mt-2">
-        Selecciona si el producto a vender es nuevo o existente.
-      </p> */}
+
       <div className="flex my-1 ">
         <ul
           class="mx-auto nav nav-pills flex flex-col md:flex-row flex-wrap list-none pl-0"

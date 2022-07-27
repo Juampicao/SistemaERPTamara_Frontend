@@ -13,7 +13,6 @@ const VerGasto = () => {
   const { gasto, setGasto, isCargando, setIsCargando } =
     useContext(StaticContext);
   const { id } = useParams();
-  console.log(id);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -35,7 +34,7 @@ const VerGasto = () => {
 
   return (
     <div>
-      <div className="space-y-3">
+      <div className="space-y-3 p-5 xs:p-0">
         {/* verGasto */}
         <p> El producto es: {gasto.nombre} </p>
         <p> El ID es: {gasto._id} </p>

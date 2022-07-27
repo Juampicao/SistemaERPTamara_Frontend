@@ -10,9 +10,12 @@ function classNames(...classes) {
 }
 
 const Busqueda = ({ urlDestino }) => {
-  const { gastos, ventas, productos, buscador, handleBuscador } =
+  const { gastos, ventas, productos, gasto, venta, producto, buscador, handleBuscador } =
     useContext(StaticContext);
   const [productoABuscar, setProductoABuscar] = useState();
+
+
+  
 
   const urlActual = location.pathname;
   const navigate = useNavigate();
@@ -74,16 +77,25 @@ const Busqueda = ({ urlDestino }) => {
           <Combobox
             as="div"
             className="mx-auto max-w-xl transform divide-y divide-gray-100 overflow-hidden rounded-xl bg-white shadow-2xl ring-1 ring-black ring-opacity-5 transition-all"
-            onChange={
-              urlActual.includes("producto")
-                ? (producto) => {
-                    producto._id
-                      ? (window.location = `/productos/${producto._id}`)
-                      : (window.location = `/productos`);
-                  }
-                : (gasto) => (window.location = `/gastos/`)
-            }
+            // onChange={
+            //   urlActual.includes("producto")
+            //     ? (producto) => {
+            //         producto._id
+            //           ? (window.location = `/productos/${producto._id}`)
+            //           : (window.location = `/productos`);
+            //       }
+            //     : (gasto) => (window.location = `/gastos/`)
+            // }
+
+    
+
+            onChange={()=> window.location = urlDestino}
+         
+            // onChange={() => window.location = `/ventas/${venta._id}`}
             // onChange={()=> window.location = `/productos/${producto._id}`}
+            // onChange={()=> window.location = `/gastos/${gasto._id}`}
+            
+
           >
             <div className="relative">
               <Combobox.Input

@@ -55,6 +55,7 @@ const ListadoCaja = () => {
 
   const { _id, nombre, valor, cantidad, fecha } = gasto;
 
+
   // Get Base de datos
   useEffect(() => {
     const obtenerGastos = async () => {
@@ -63,6 +64,7 @@ const ListadoCaja = () => {
         const url = `${import.meta.env.VITE_API_URL}/gastos`;
         const respuesta = await fetch(url);
         const resultado = await respuesta.json();
+    
 
         setMontoTotalGastosComida(resultado.montoTotalGastosComida);
         setMontoTotalGastosVarios(resultado.montoTotalGastosVarios);
@@ -86,8 +88,9 @@ const ListadoCaja = () => {
 
   return (
     <div>
+   
       <div
-        className="flex space-x-3 text-center my-2 scroll-x-auto"
+        className="justify-between flex flex-wrap gap-y-4 gap-x-5 px-5 my-2  sm:flex sm:scroll-x-auto"
         data-bs-toggle="tooltip"
         title="Caja Actual = Inicio Caja + Ventas Efectivo - Gastos Efectivo"
       >
@@ -110,28 +113,24 @@ const ListadoCaja = () => {
           title2="Caja"
           valor={inicioCaja}
         />
-
-        {/* Ventas Efectivo  */}
-        {/* <CuadroGastos
-          img={IconoInicioCaja}
-          title="Total Gastos"
-          title2=""
-          valor={
-            montoTotalGastosVarios +
-            montoTotalGastosProveedores +
-            montoTotalGastosComida +
-            montoTotalGastosInventario
-          }
-        /> */}
         {/* Nuevo total gastos */}
-        <CuadroGastos title="Total Gastos" valor={totalValorGastos} />
+        <CuadroGastos title="Total"  title2="Gastos" valor={totalValorGastos} />
         <CuadroGastos
           img={IconoInicioCaja}
-          title="Ventas Efectivo"
+          title="Ventas "
+          title2="Efectivo"
           valor={montoTotalVentasEfectivo}
         />
 
-        {/* {screenSize < 1 ? (
+
+      </div>
+    </div>
+  );
+};
+
+export default ListadoCaja;
+
+       {/* {screenSize < 1 ? (
           <ListadoGastos cajaActual={inicioCaja + montoTotalVentasEfectivo} />
         ) : (
           ""
@@ -148,9 +147,18 @@ const ListadoCaja = () => {
           title2=""
           valor={totalValorGastos}
         /> */}
-      </div>
-    </div>
-  );
-};
 
-export default ListadoCaja;
+
+        
+        {/* Ventas Efectivo  */}
+        {/* <CuadroGastos
+          img={IconoInicioCaja}
+          title="Total Gastos"
+          title2=""
+          valor={
+            montoTotalGastosVarios +
+            montoTotalGastosProveedores +
+            montoTotalGastosComida +
+            montoTotalGastosInventario
+          }
+        /> */}

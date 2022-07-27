@@ -10,6 +10,7 @@ import ListadoVentas from "../molecules/ventas/ListadoVentas";
 import Busqueda from "../atoms/Busqueda";
 import BarraSearch from "../atoms/BarraSearch";
 import Dropdown from "../atoms/Dropdown";
+import ContenedorLayout from "../molecules/ContenedorLayout";
 
 const Ventas = () => {
   const {
@@ -28,6 +29,7 @@ const Ventas = () => {
 
   const {
     id_,
+    _id,
     producto,
     cantidad,
     valorIndividual,
@@ -48,20 +50,24 @@ const Ventas = () => {
   // }, [gastos]);
 
   return (
-    <div className="fade-left">
+    <div>
       <Header title="Ventas" />
-      <BotonNuevaVenta onClick={() => navigate("/ventas/nuevaventa")} />
-      <div className="flex gap-x-3 items-center my-5">
-        <BarraSearch
-          onClick={handleBuscador}
-          placeholder="Buscar una venta.."
-        />
-        <Dropdown />
-      </div>
+      <ContenedorLayout>
+        <div className="flex flex-wrap gap-x-3 gap-y-3 py-3 xs:py-5">
+          <BotonNuevaVenta onClick={() => navigate("/ventas/nuevaventa")} />
+        </div>
+        <div className="flex gap-x-3 items-center">
+          <BarraSearch
+            onClick={handleBuscador}
+            placeholder="Buscar una venta.."
+          />
+          <Dropdown />
+        </div>
 
-      <Busqueda urlDestino={`/ventas/${venta._id}`} />
-
-      <ListadoVentas />
+        {/* <Busqueda urlDestino={`/ventas/${_id}`} /> */}
+        <Busqueda urlDestino={`/ventas`} />
+        <ListadoVentas />
+      </ContenedorLayout>
     </div>
   );
 };
