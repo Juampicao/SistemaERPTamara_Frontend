@@ -38,10 +38,10 @@ const EstadisticasProvider = ({ children }) => {
   
   
   // Llamar Funciones
-  useEffect(() => {
-    obtenerCaja();
-    obtenerVentas();
-  }, [])
+  // useEffect(() => {
+  //   obtenerCaja();
+  //   obtenerVentas();
+  // }, [])
   
 
   return (
