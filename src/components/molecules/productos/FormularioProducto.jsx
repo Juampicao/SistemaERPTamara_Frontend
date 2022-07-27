@@ -300,7 +300,7 @@ const FormularioProducto = () => {
               ></textarea>
             </div>
           </div>
-          <div className="mt-10  pb-32 xs:pb-0">
+          <div className="mt-10 pb-32 xs:pb-0">
             <BotonPrimario
               onClick={handleSubmit}
               value={
