@@ -30,6 +30,7 @@ const Productos = () => {
 
   const {
     id_,
+    _id,
     nombreProducto,
     cantidad,
     precio,
@@ -40,6 +41,8 @@ const Productos = () => {
     notas,
   } = producto;
 
+
+
   return (
     <div>
       <Header title="Inventario" />
@@ -47,7 +50,7 @@ const Productos = () => {
       <ContenedorLayout>
         <div className="flex flex-wrap gap-x-3 gap-y-3 py-3 xs:py-5">
           <BotonNuevoProducto
-            onClick={() => navigate("/productos/nuevoproducto")}
+            onClick={() => navigate("/productos/nuevoproducto")} 
           />
         </div>
         <div className="flex gap-x-3 items-center">
@@ -57,8 +60,9 @@ const Productos = () => {
               placeholder="Buscar un producto.."
             />
           </div>
-          {/* <Busqueda urlDestino={`/productos/${producto._id}`} /> */}
-          <Busqueda />
+          <Busqueda urlDestino={`/productos/${_id}`} />
+          <Busqueda urlDestino={`/productos`} />
+          
           <Dropdown />
         </div>
         <ListadoProductos />

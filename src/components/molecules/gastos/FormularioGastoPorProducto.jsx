@@ -19,6 +19,7 @@ import Spiner from "../../atoms/Spiner";
 
 import IconoTooltip from "../../../img/iconoExclamacion2.png";
 import { FechaHoyArgentina } from "../../../helpers";
+import ContenedorFormularios from "../ContenedorFormularios";
 const FormularioGastoPorProducto = () => {
   const {
     gasto,
@@ -179,6 +180,8 @@ const FormularioGastoPorProducto = () => {
 
   return (
     <div>
+      <ContenedorFormularios>
+
       <div className="bg-white rounded-lg  max-w-xl mx-auto">
         {/* <h1 className=" text-xl uperrcase font-black float-rigth uppercase">
             Gasto por Producto en Stock
@@ -351,12 +354,14 @@ const FormularioGastoPorProducto = () => {
               />
             ) : (
               ""
-            )}
+              )}
+              <div className="flex-wrap gap-y-3">
+
             <BotonPrimario
               Color={BotonAzulRedondeado}
               value="Agregar Producto y Gasto"
               type="submit"
-            />
+              />
             <BotonPrimario
               Color={BotonBlancoRedondeado}
               value="Volver Atras"
@@ -364,10 +369,13 @@ const FormularioGastoPorProducto = () => {
               onClick={() => {
                 navigate("/gastos"), setVenta("");
               }}
-            />
+              />
+              </div>
           </div>
         </form>
-      </div>
+        </div>
+      </ContenedorFormularios>
+        
     </div>
   );
 };

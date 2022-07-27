@@ -29,6 +29,7 @@ const Ventas = () => {
 
   const {
     id_,
+    _id,
     producto,
     cantidad,
     valorIndividual,
@@ -63,8 +64,8 @@ const Ventas = () => {
           <Dropdown />
         </div>
 
-        <Busqueda urlDestino={`/ventas/${venta._id}`} />
-
+        {/* <Busqueda urlDestino={`/ventas/${_id}`} /> */}
+        <Busqueda urlDestino={`/ventas`} />
         <ListadoVentas />
       </ContenedorLayout>
     </div>

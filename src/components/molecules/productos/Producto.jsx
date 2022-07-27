@@ -61,7 +61,7 @@ const Producto = ({ producto }) => {
       {/* <td className=" p-3">
         <img src={imagen} alt="" className="max-h-16 mx-auto" />
       </td> */}
-      <td> {nombreProducto}</td>
+      <td className="pl-3 xs:pl-0"> {nombreProducto}</td>
       <td> {cantidad}u.</td>
       <td> {FormatearNumero(costo)}</td>
       <td> {FormatearNumero(precio)}</td>

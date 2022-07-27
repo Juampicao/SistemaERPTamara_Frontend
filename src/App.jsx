@@ -30,6 +30,7 @@ import VerVenta from "../src/components/molecules/ventas/VerVenta";
 import Productos from "./components/pages/Productos";
 import NuevoProducto from "./components/molecules/productos/NuevoProducto";
 import EditarProducto from "./components/molecules/productos/EditarProducto";
+import Dashbord from "./components/pages/Dashbord";
 
 function App() {
   useEffect(() => {
@@ -69,6 +70,11 @@ function App() {
                   <Route path="gastos/nuevogasto" element={<NuevoGasto />} />
                   <Route path="gastos/:id" element={<VerGasto />} />
                   <Route path="gastos/editar/:id" element={<EditarGasto />} />
+
+
+                  <Route path="dashboard" element={<Dashbord />} />
+
+
                   <Route
                     path="configuraciones"
                     index

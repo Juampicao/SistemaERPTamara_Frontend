@@ -148,7 +148,7 @@ const Gastos = () => {
         {/* <button onClick={handleBuscador} className="">
         Abrir Buscador
       </button> */}
-        <Busqueda />
+        <Busqueda urlDestino={`/gastos`} />
         <div className="flex items-center gap-x-3">
           <BarraSearch
             onClick={handleBuscador}

@@ -54,7 +54,7 @@ const Venta = ({ venta }) => {
   return (
     <>
       <tr className="hover:bg-gray-300">
-        <td className="capitalize"> {producto}</td>
+        <td className="capitalize pl-3 xs:pl-0"> {producto}</td>
         <td className="capitalize "> {cantidad}</td>
 
         <td className="p-3"> {FormatearNumero(valorIndividual)}</td>

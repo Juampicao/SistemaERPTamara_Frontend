@@ -6,6 +6,8 @@ import iconoConfiguracion from "../../img/iconoConfiguracion.png";
 import IconoCerrarBlanco from "../../img/iconoCerrarBlanco.png";
 import IconoBills from "../../img/iconoBills.png";
 import IconoLogout from "../../img/iconoLogout.png";
+import IconDashboard from "../../img/iconDashboard.png";
+
 import Imagenpersona from "../../img/newIcons/fotoMujer2.png";
 
 import { useContext, useEffect, useState } from "react";
@@ -21,7 +23,6 @@ const Layout = () => {
     useContext(StaticContext);
 
   const { auth, setAuth, cerrarSesionAuth } = useAuth();
-
   const location = useLocation();
   const urlActual = location.pathname;
 
@@ -74,9 +75,9 @@ const Layout = () => {
     isActiveMenu ? "h-16 w-16" : "h-10 w-10"
   }`;
 
-  // // Phone Styles  
+  // // Phone Styles  e
   const navStyles =
-    "absolute inset-x-0 bottom-0 bg-gradient-to-t flex from-gray-700 via-gray-900 to-black  duration-300 rounded-t-2xl absolute bottom-0 w-full z-50 justify-evenly items-center text-white text-xs";
+    "absolute inset-x-0 bottom-0 bg-gradient-to-t flex from-gray-700 via-grey-900 to-black  duration-300 rounded-t-2xl  bottom-0 w-full z-50 justify-evenly items-center text-white text-xs";
   // const ulStyles = "flex    ";
   const liStyles =
     "block items-center pt-2 hover:cursor-pointer transition duration-200 ease-in-out hover:duration-200  cursor-pointer hover:scale-105 active:scale-105";
@@ -157,6 +158,17 @@ const Layout = () => {
           </Link>
 
           <nav className=" mt-5 sm:mt-24">
+             <Link
+              className={`${
+                urlActual === "/dashboard" ? `${activeStyles}` : `${hover}`
+              } ${notActiveStyles} `}
+              to="/dashboard"
+            >
+              <div className="flex items-center space-x-4 text-base xs:text-lg">
+                <img src={IconDashboard} className="h-6 sm:h-8 " alt="" />
+                <p className={hiddenTitles}>Dashboard</p>
+              </div>
+            </Link>
             <Link
               className={`${
                 urlActual === "/productos" ? `${activeStyles}` : `${hover}`
@@ -228,14 +240,16 @@ const Layout = () => {
 
             <div className="float-end bottom-0 fixed mb-10 flex">
               <Link to="/" className="text-white">
-                <p className={hiddenTitles}>
+                <p  className={hiddenTitles}>
                Cerrar Sesion
                 </p>
                 
             </Link>
+            
             </div>
+
             <button
-              onClick={handleClickClose}
+              onClick={cerrarSesionAuth}
               className="hover:scale-105  hover:duration-200 duration-200"
             >
               {/* <img src={IconoLogout} alt="cerrar" className="h-6 sm:h-8  " /> */}
