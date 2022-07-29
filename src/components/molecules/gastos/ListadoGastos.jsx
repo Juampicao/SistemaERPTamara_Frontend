@@ -67,14 +67,13 @@ const ListadoGastos = () => {
   }, []);
 
   // Styles
-  const tableStyles =
-    // "hidden mt-5 md:block table-auto shadow-lg bg-white w-full text-center border rounded-3xl  ";
-    "w-full";
+  const tableStyles = "w-full";
   const tableStylesPhone = "";
   const linea = <div className="h-[2px] w-full mx-auto bg-red-500"> </div>;
 
   const titlesStlyles = "text-lg xs:text-2xl font-black uppercase my-2";
-  const contenedorDivTitulos = "justify-between flex flex-wrap gap-y-4 gap-x-5 px-5 my-2  sm:flex sm:scroll-x-auto"
+  const contenedorDivTitulos =
+    "justify-between flex flex-wrap gap-y-4 gap-x-5 px-5 my-2  sm:flex sm:scroll-x-auto";
   return (
     <div>
       {isCargando ? <Spiner /> : ""}
@@ -124,76 +123,73 @@ const ListadoGastos = () => {
           data-bs-toggle="tooltip"
           title="Caja Actual = Inicio Caja + Ventas Efectivo - Gastos Efectivo"
         >
-     
           <ListadoCaja />
         </div>
 
         <h3 className={titlesStlyles}>Gastos Hoy</h3>
         <div className={contenedorDivTitulos}>
-        <div className={contenedorDivTitulos}>
-          <CuadroGastos
-            // img={diccionarioIConos.Comida}
-            title="Gastos Comidas"
-            valor={montoTotalGastosComida}
-          />{" "}
-          <CuadroGastos
-            // img={diccionarioIConos.Proveedor}
-            title="Gastos Proveedores"
-            valor={montoTotalGastosProveedores}
-          />
-          <CuadroGastos
-            // img={diccionarioIConos.Proveedor}
-            title="Gastos Inventario"
-            valor={montoTotalGastosInventario}
-          />
-          <CuadroGastos
-            // img={diccionarioIConos.Gastos}
-            title="Gastos"
-            title2="Varios"
-            valor={montoTotalGastosVarios}
-          />
+          <div className={contenedorDivTitulos}>
+            <CuadroGastos
+              // img={diccionarioIConos.Comida}
+              title="Gastos Comidas"
+              valor={montoTotalGastosComida}
+            />{" "}
+            <CuadroGastos
+              // img={diccionarioIConos.Proveedor}
+              title="Gastos Proveedores"
+              valor={montoTotalGastosProveedores}
+            />
+            <CuadroGastos
+              // img={diccionarioIConos.Proveedor}
+              title="Gastos Inventario"
+              valor={montoTotalGastosInventario}
+            />
+            <CuadroGastos
+              // img={diccionarioIConos.Gastos}
+              title="Gastos"
+              title2="Varios"
+              valor={montoTotalGastosVarios}
+            />
           </div>
         </div>
-          
       </div>
       <div>
-        <h3 className={titlesStlyles}>
-          Gastos Semana
-        </h3>
+        <h3 className={titlesStlyles}>Gastos Semana</h3>
         <div className={contenedorDivTitulos}>
-        <div className={contenedorDivTitulos}>
-          <CuadroGastos
-            // img={diccionarioIConos.Comida}
-            title="Gastos Comidas"
-            valor={montoTotalGastosComida}
-          />{" "}
-          <CuadroGastos
-            // img={diccionarioIConos.Proveedor}
-            title="Gastos Proveedores"
-            valor={montoTotalGastosProveedores}
-          />
-          <CuadroGastos
-            // img={diccionarioIConos.Gastos}
-            title="Gastos"
-            title2="Varios"
-            valor={montoTotalGastosVarios}
+          <div className={contenedorDivTitulos}>
+            <CuadroGastos
+              // img={diccionarioIConos.Comida}
+              title="Gastos Comidas"
+              valor={montoTotalGastosComida}
+            />{" "}
+            <CuadroGastos
+              // img={diccionarioIConos.Proveedor}
+              title="Gastos Proveedores"
+              valor={montoTotalGastosProveedores}
             />
-             <CuadroGastos
-            // img={diccionarioIConos.Gastos}
-            title="Gastos"
-            title2="Varios"
-            valor={montoTotalGastosInventario}
-          />
+            <CuadroGastos
+              // img={diccionarioIConos.Gastos}
+              title="Gastos"
+              title2="Varios"
+              valor={montoTotalGastosVarios}
+            />
+            <CuadroGastos
+              // img={diccionarioIConos.Gastos}
+              title="Gastos"
+              title2="Varios"
+              valor={montoTotalGastosInventario}
+            />
+          </div>
         </div>
-        </div>
-        </div>
+      </div>
     </div>
   );
 };
 
 export default ListadoGastos;
 
-     {/* <CuadroGastos
+{
+  /* <CuadroGastos
             img={IconoInicioCaja}
             title="Caja"
             title2="Actual"
@@ -218,10 +214,14 @@ export default ListadoGastos;
               montoTotalGastosComida -
               montoTotalGastosInventario
             }
-          /> */}
+          /> */
+}
 
-          {/* Ventas Efectivo  */}
-          {/* <CuadroGastos
+{
+  /* Ventas Efectivo  */
+}
+{
+  /* <CuadroGastos
             img={IconoInicioCaja}
             title="Total Gastos"
             title2=""
@@ -231,4 +231,5 @@ export default ListadoGastos;
               montoTotalGastosComida +
               montoTotalGastosInventario
             }
-          /> */}
+          /> */
+}

@@ -28,7 +28,7 @@ const ListadoProductos = () => {
         const respuesta = await fetch(url);
         const resultado = await respuesta.json();
         setProductos(resultado);
-        console.log(resultado);
+        // console.log(resultado);
       } catch (error) {
         console.log(error);
         setIsOpenErrorModal(true);

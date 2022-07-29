@@ -31,7 +31,7 @@ const BotonFlotante = () => {
             </button>
 
             <ul
-              class=" dropdown-menu min-w-max absolute hidden text-base z-50 float-left py-2 list-none text-left rounded-lg  mt-1  m-0 bg-clip-padding border-none space-y-3 origin-left duration-300
+              className=" dropdown-menu min-w-max absolute hidden text-base z-50 float-left py-2 list-none text-left rounded-lg  mt-1  m-0 bg-clip-padding border-none space-y-3 origin-left duration-300
         "
               aria-labelledby="dropdownMenuButton1u"
             >
