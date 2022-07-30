@@ -25,7 +25,7 @@ const SeleccionadoGeneral = () => {
 
       try {
         const respuesta = await axios.get(
-          `${import.meta.env.VITE_API_URL}/estadisticas`
+          `${import.meta.env.VITE_API_URL}/estadisticas/`
         );
         setInicioCaja(respuesta.data.valorInicialCaja);
         setMontoTotalGastos(respuesta.data.montoTotalGastos);

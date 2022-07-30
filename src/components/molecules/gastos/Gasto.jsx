@@ -8,7 +8,6 @@ import { BotonEditar, BotonEliminar, BotonVer } from "../../atoms/Botones";
 import MessageModal from "../../atoms/MessageModal";
 import { formatearFechaCorta, FormatearNumero } from "../../../helpers";
 
-
 const Gasto = ({ gasto }) => {
   const {
     gastos,
@@ -42,7 +41,7 @@ const Gasto = ({ gasto }) => {
     if (confirmar) {
       try {
         const respuesta = await axios.delete(
-          `${import.meta.env.VITE_API_URL}/gastos//${_id}`
+          `${import.meta.env.VITE_API_URL}/gastos/${_id}`
         );
         console.log(respuesta);
         const arrayGastos = gastos.filter((gasto) => gasto._id !== _id);
