@@ -12,7 +12,6 @@ const VerVenta = () => {
   const { venta, setVenta } = useContext(StaticContext);
   const { id } = useParams();
   const navigate = useNavigate();
-  console.log(venta._id);
   const {
     _id,
     producto,
@@ -24,6 +23,7 @@ const VerVenta = () => {
     fecha,
     notas,
   } = venta;
+  console.log(_id);
 
   useEffect(() => {
     const obtenerClienteAPI = async () => {

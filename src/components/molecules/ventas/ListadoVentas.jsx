@@ -28,7 +28,7 @@ const ListadoVentas = () => {
         const respuesta = await fetch(url);
         const resultado = await respuesta.json();
         setVentas(resultado.arrayTotalVentas);
-        console.log(resultado);
+        // console.log(resultado);
       } catch (error) {
         console.log(error);
         setIsOpenErrorModal(true);

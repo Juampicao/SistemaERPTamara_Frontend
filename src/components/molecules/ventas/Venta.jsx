@@ -20,7 +20,9 @@ const Venta = ({ venta }) => {
     isOpenErrorModal,
     setIsOpenErrorModal,
   } = useContext(StaticContext);
+
   const navigate = useNavigate();
+
   const {
     _id,
     producto,
@@ -31,11 +33,14 @@ const Venta = ({ venta }) => {
     categoria,
     fecha,
     notas,
+    productoVendido,
   } = venta;
 
   const handleDelete = async (_id) => {
-    console.log("Borrando");
-    const confirmar = confirm("Deseas eliminar esta venta?");
+    console.log(producto, cantidad);
+    const confirmar = confirm(
+      `Deseas eliminar la venta: "${producto}" y agregar ${cantidad} unidad al stock general del producto devuelta?`
+    );
     if (confirmar) {
       try {
         const respuesta = await axios.delete(
@@ -68,7 +73,10 @@ const Venta = ({ venta }) => {
             <BotonVer value="Ver" onClick={() => navigate(`/ventas/${_id}`)} />
             <BotonEditar
               value="Editar"
-              onClick={() => navigate(`/ventas/editar/${_id}`)}
+              // onClick={() => navigate(`/ventas/editar/${_id}`)}
+              onClick={() =>
+                alert("Por el momento no se pueden editar las ventas")
+              }
             />
             <BotonEliminar value="Eliminar" onClick={() => handleDelete(_id)} />
           </div>

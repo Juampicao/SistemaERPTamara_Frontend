@@ -16,7 +16,7 @@ import Busqueda from "../../atoms/Busqueda";
 import IconoTooltip from "../../../img/iconoExclamacion2.png";
 import { FechaHoyArgentina } from "../../../helpers";
 
-import ContenedorFormularios from "../ContenedorFormularios"
+import ContenedorFormularios from "../ContenedorFormularios";
 const FormularioVentaConStock = () => {
   const {
     venta,
@@ -42,7 +42,6 @@ const FormularioVentaConStock = () => {
   const [error, setError] = useState(false);
 
   const [productoAVender, setProductoAVender] = useState("");
-  const accionstock = "disminuir"; // disminuir o aumentar. (stock).
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -55,7 +54,7 @@ const FormularioVentaConStock = () => {
         const respuesta = await fetch(url);
         const resultado = await respuesta.json();
         setProductos(resultado);
-        console.log(productos);
+        // console.log(productos);
       } catch (error) {
         console.log(error);
       }
@@ -133,14 +132,7 @@ const FormularioVentaConStock = () => {
           productoVendido: productoAVender._id,
         }
       );
-      const editarCantidad = await axios.put(
-        `${import.meta.env.VITE_API_URL}/productos/${productoAVender._id}`,
-        {
-          cantidad,
-          accionstock,
-        }
-      );
-      console.log(editarCantidad);
+
       navigate("/ventas");
       setIsOpenSaveModal(true);
       setVenta("");
@@ -160,130 +152,126 @@ const FormularioVentaConStock = () => {
   return (
     <div>
       <ContenedorFormularios>
+        <div className="bg-white rounded-lg  max-w-xl mx-auto">
+          <form action="submit" className="mt-5 pt-5" onSubmit={handleSubmit}>
+            <h1 className=" text-xl uppercase text-center font-black">
+              Producto en Stock
+            </h1>
+            <div className={divStyles}>
+              {error && <Error mensaje="Completa todos los campos" />}
+              <label htmlFor="inputProducto" className={labelStyles}>
+                Producto
+              </label>
 
-    
-      <div className="bg-white rounded-lg  max-w-xl mx-auto">
-        <form action="submit" className="mt-5 pt-5" onSubmit={handleSubmit}>
-          <h1 className=" text-xl uppercase text-center font-black">
-            Producto en Stock
-          </h1>
-          <div className={divStyles}>
-            {error && <Error mensaje="Completa todos los campos" />}
-            <label htmlFor="inputProducto" className={labelStyles}>
-              Producto
-            </label>
+              <input
+                type="search"
+                className={inputStyles}
+                id="inputProducto"
+                name="producto"
+                value={producto}
+                onChange={(e) => {
+                  setProducto(e.target.value),
+                    obtenerProductoAVender(e.target.value);
+                }}
+                placeholder="Selecciona un producto.."
+                list="pruebaLista"
+                autoComplete="off"
+              />
+              <datalist id="pruebaLista">
+                {/* <option value=""> --- </option> */}
+                {productos.map((producto) => (
+                  <option id={producto._id} value={producto.nombreProducto}>
+                    {producto.nombreProducto}
+                  </option>
+                ))}
+              </datalist>
+              {/* Pruebas */}
+            </div>
 
-            {/* Pruebas */}
-            <input
-              type="search"
-              className={inputStyles}
-              id="inputProducto"
-              name="producto"
-              value={producto}
-              onChange={(e) => {
-                setProducto(e.target.value),
-                  obtenerProductoAVender(e.target.value);
-              }}
-              placeholder="Selecciona un producto.."
-              list="pruebaLista"
-              autoComplete="off"
-              // onClick={() => console.log(venta.producto)}
-            />
-            <datalist id="pruebaLista">
-              {/* <option value=""> --- </option> */}
-              {productos.map((producto) => (
-                <option value={producto.nombreProducto}>
-                  {producto.nombreProducto}
-                </option>
-              ))}
-            </datalist>
-            {/* Pruebas */}
-          </div>
+            <div className={divStyles}>
+              <label htmlFor="cantidad" className={labelStyles}>
+                Cantidad
+                <span className=" capitalize pl-3  text-slate-300 text-sm">
+                  Disminuye el stock del inventario automaticamente..
+                </span>
+              </label>
+              <input
+                id="cantidad"
+                name="cantidad"
+                type="number"
+                placeholder={
+                  venta._id ? venta.cantidad : "Cantidad de unidades"
+                }
+                className={inputStyles}
+                value={cantidad}
+                onChange={(e) => setCantidad(Number(e.target.value))}
+              />
+            </div>
 
-          <div className={divStyles}>
-            <label htmlFor="cantidad" className={labelStyles}>
-              Cantidad
-              <span className=" capitalize pl-3  text-slate-300 text-sm">
-                Disminuye el stock del inventario automaticamente..
-              </span>
-            </label>
-            <input
-              id="cantidad"
-              name="cantidad"
-              type="number"
-              placeholder={venta._id ? venta.cantidad : "Cantidad de unidades"}
-              className={inputStyles}
-              value={cantidad}
-              onChange={(e) => setCantidad(Number(e.target.value))}
-            />
-          </div>
-
-          <div className={divStyles}>
-            <label htmlFor="inputValorIndividual" className={labelStyles}>
-              Precio Individual
-            </label>
-            <input
-              disabled="true"
-              id="inputValorIndividual"
-              name="valor"
-              type="number"
-              placeholder="$"
-              className={`${inputStyles} opacity-60 `}
-              value={valorIndividual}
-              onChange={(e) => setValorIndividual(e.target.value)}
-              // onChange={() => setValorIndividual(value)}
-            />
-          </div>
-          <div className={divStyles}>
-            <label htmlFor="valorTotal" className={labelStyles}>
-              Precio Total
-            </label>
-            <input
-              disabled="true"
-              id="valorTotal"
-              name="valor"
-              type="number"
-              placeholder="$"
-              className={`${inputStyles} opacity-60 `}
-              value={
-                productoAVender._id ? valorIndividual * cantidad : valorTotal
-              }
-              // value={valorTotal}
-              onChange={(e) => setValorTotal(e.target.value)}
-            />
-          </div>
-          <div className={divStyles}>
-            <label htmlFor="fecha" className={labelStyles}>
-              Fecha
-            </label>
-            <input
-              id="fecha"
-              name="fecha"
-              type="date"
-              placeholder=""
-              className={inputStyles}
-              onChange={(e) => setFecha(e.target.value)}
-              value={fecha}
-            />
-          </div>
-          <div className={divStyles}>
-            <label htmlFor="metodoPago" className={labelStyles}>
-              Metodo de pago
-            </label>
-            <select
-              as="select"
-              id="metodoPago"
-              name="metodoPago"
-              placeholder=""
-              className={inputStyles}
-              onChange={(e) => setMetodoPago(e.target.value)}
-              value={metodoPago}
-            >
-              <option value="Efectivo"> Efectivo </option>
-              <option value="Tarjeta"> Tarjeta </option>
-            </select>
-          </div>
-          {/* <div className={divStyles}>
+            <div className={divStyles}>
+              <label htmlFor="inputValorIndividual" className={labelStyles}>
+                Precio Individual
+              </label>
+              <input
+                disabled="true"
+                id="inputValorIndividual"
+                name="valor"
+                type="number"
+                placeholder="$"
+                className={`${inputStyles} opacity-60 `}
+                value={valorIndividual}
+                onChange={(e) => setValorIndividual(e.target.value)}
+              />
+            </div>
+            <div className={divStyles}>
+              <label htmlFor="valorTotal" className={labelStyles}>
+                Precio Total
+              </label>
+              <input
+                disabled="true"
+                id="valorTotal"
+                name="valor"
+                type="number"
+                placeholder="$"
+                className={`${inputStyles} opacity-60 `}
+                value={
+                  productoAVender._id ? valorIndividual * cantidad : valorTotal
+                }
+                onChange={(e) => setValorTotal(e.target.value)}
+              />
+            </div>
+            <div className={divStyles}>
+              <label htmlFor="fecha" className={labelStyles}>
+                Fecha
+              </label>
+              <input
+                id="fecha"
+                name="fecha"
+                type="date"
+                placeholder=""
+                className={inputStyles}
+                onChange={(e) => setFecha(e.target.value)}
+                value={fecha}
+              />
+            </div>
+            <div className={divStyles}>
+              <label htmlFor="metodoPago" className={labelStyles}>
+                Metodo de pago
+              </label>
+              <select
+                as="select"
+                id="metodoPago"
+                name="metodoPago"
+                placeholder=""
+                className={inputStyles}
+                onChange={(e) => setMetodoPago(e.target.value)}
+                value={metodoPago}
+              >
+                <option value="Efectivo"> Efectivo </option>
+                <option value="Tarjeta"> Tarjeta </option>
+              </select>
+            </div>
+            {/* <div className={divStyles}>
             <label htmlFor="categoria" className={labelStyles}>
               Categoria
             </label>
@@ -303,73 +291,72 @@ const FormularioVentaConStock = () => {
             </select>
           </div> */}
 
-          {/* Prueba acordion TextArea */}
-          <div class="accordion" id="accordionExample">
-            <div class="accordion-item ">
-              <h2 class="accordion-header mb-0" id="headingOne">
-                <button
-                  class=" accordion-button relative flex items-center w-full py-4 px-5 text-base text-black text-left  bg-white rounded-none transition focus:outline-none"
-                  type="button"
-                  data-bs-toggle="collapse"
-                  data-bs-target="#collapseOne"
-                  aria-expanded="false"
-                  aria-controls="collapseOne"
+            {/* Prueba acordion TextArea */}
+            <div class="accordion" id="accordionExample">
+              <div class="accordion-item ">
+                <h2 class="accordion-header mb-0" id="headingOne">
+                  <button
+                    class=" accordion-button relative flex items-center w-full py-4 px-5 text-base text-black text-left  bg-white rounded-none transition focus:outline-none"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#collapseOne"
+                    aria-expanded="false"
+                    aria-controls="collapseOne"
+                  >
+                    Agregar Notas
+                  </button>
+                </h2>
+                <div
+                  id="collapseOne"
+                  class="accordion-collapse collapse"
+                  aria-labelledby="headingOne"
+                  data-bs-parent="#accordionExample"
                 >
-                  Agregar Notas
-                </button>
-              </h2>
-              <div
-                id="collapseOne"
-                class="accordion-collapse collapse"
-                aria-labelledby="headingOne"
-                data-bs-parent="#accordionExample"
-              >
-                <div className={divStyles}>
-                  <textarea
-                    name="notas"
-                    id="notas"
-                    cols=""
-                    rows=""
-                    className="w-full border  h-28 p-2 "
-                    placeholder="Escribe alguna nota..."
-                    value={venta.nota}
-                    onChange={(e) => setNotas(e.target.value)}
-                  ></textarea>
+                  <div className={divStyles}>
+                    <textarea
+                      name="notas"
+                      id="notas"
+                      cols=""
+                      rows=""
+                      className="w-full border  h-28 p-2 "
+                      placeholder="Escribe alguna nota..."
+                      value={venta.nota}
+                      onChange={(e) => setNotas(e.target.value)}
+                    ></textarea>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-          {/* fin prueba acordeon */}
+            {/* fin prueba acordeon */}
 
-          <div className="py-5 flex justify-center space-x-3">
-            {venta._id ? (
+            <div className="py-5 flex justify-center space-x-3">
+              {venta._id ? (
+                <BotonPrimario
+                  Color={BotonBlancoRedondeado}
+                  value="Ver"
+                  type="button"
+                  onClick={() => navigate(`/ventas/${_id}`)}
+                />
+              ) : (
+                ""
+              )}
+              <BotonPrimario
+                Color={BotonAzulRedondeado}
+                value={venta?.producto ? "Editar venta" : "Agregar venta"}
+                type="submit"
+              />
               <BotonPrimario
                 Color={BotonBlancoRedondeado}
-                value="Ver"
+                value="Volver Atras"
                 type="button"
-                onClick={() => navigate(`/ventas/${_id}`)}
+                onClick={() => {
+                  navigate("/ventas"), setVenta("");
+                }}
               />
-            ) : (
-              ""
-            )}
-            <BotonPrimario
-              Color={BotonAzulRedondeado}
-              value={venta?.producto ? "Editar venta" : "Agregar venta"}
-              type="submit"
-            />
-            <BotonPrimario
-              Color={BotonBlancoRedondeado}
-              value="Volver Atras"
-              type="button"
-              onClick={() => {
-                navigate("/ventas"), setVenta("");
-              }}
-            />
-          </div>
-        </form>
+            </div>
+          </form>
         </div>
       </ContenedorFormularios>
-        
     </div>
   );
 };

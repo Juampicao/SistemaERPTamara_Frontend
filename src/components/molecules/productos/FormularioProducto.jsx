@@ -12,7 +12,11 @@ import iconoCantidad from "../../../img/iconoCantidad.png";
 import iconoEtiqueta from "../../../img/iconoEtiqueta.png";
 import iconoExclamacion from "../../../img/iconoExclamacion3.png";
 import { BotonPrimario } from "../../atoms/Botones";
-import { BotonNegroRedondeado } from "../../../helpers/colores";
+import {
+  BotonAzulClasicoSinZoom,
+  BotonBlancoRedondeado,
+  BotonNegroRedondeado,
+} from "../../../helpers/colores";
 
 import Error from "../../atoms/Error";
 import { FechaHoyArgentina } from "../../../helpers";
@@ -92,7 +96,8 @@ const FormularioProducto = () => {
   // Prueba con AXIOS
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    console.log(e);
+    console.log(_id);
     try {
       if (_id) {
         const respuesta = await axios.put(
@@ -295,7 +300,7 @@ const FormularioProducto = () => {
                 className="w-full p-2 h-24 mt-3 border border-slate-300"
                 placeholder="Aca pones una descripcion que te guste
             "
-                value={producto.descripcion}
+                value={descripcion}
                 onChange={(e) => setDescripcion(e.target.value)}
               ></textarea>
             </div>
@@ -308,7 +313,7 @@ const FormularioProducto = () => {
                   ? "Guardar Producto"
                   : "Crear Producto"
               }
-              Color={BotonNegroRedondeado}
+              Color="bg-black text-white focus:bg-slate-400 hover:bg-white active:bg-slate-700 cursor-pointer hover:bg-slate-900  px-6 flex py-2.5  hover:scale-105 font-medium text-xs leading-tight uppercase  transition duration-200 ease-in-out hover:shadow-lg active:shadow-lg rounded-xl focus:outline-none hover:duration-200  cursor-pointer"
             />
           </div>
         </div>

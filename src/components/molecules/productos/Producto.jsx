@@ -34,7 +34,9 @@ const Producto = ({ producto }) => {
 
   const handleDelete = async (id) => {
     // const confirmar = confirm("¿Deseas eliminar este cliente?");
-    const confirmar = confirm("Deseas eliminar este gasto?");
+    const confirmar = confirm(
+      `Deseas eliminar el producto: "${nombreProducto}"?`
+    );
     if (confirmar) {
       try {
         const url = `${import.meta.env.VITE_API_URL}/productos/${id}`;
