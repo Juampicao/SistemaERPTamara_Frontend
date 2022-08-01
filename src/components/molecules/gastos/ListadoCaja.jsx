@@ -55,7 +55,6 @@ const ListadoCaja = () => {
 
   const { _id, nombre, valor, cantidad, fecha } = gasto;
 
-
   // Get Base de datos
   useEffect(() => {
     const obtenerGastos = async () => {
@@ -64,7 +63,6 @@ const ListadoCaja = () => {
         const url = `${import.meta.env.VITE_API_URL}/gastos`;
         const respuesta = await fetch(url);
         const resultado = await respuesta.json();
-    
 
         setMontoTotalGastosComida(resultado.montoTotalGastosComida);
         setMontoTotalGastosVarios(resultado.montoTotalGastosVarios);
@@ -88,7 +86,6 @@ const ListadoCaja = () => {
 
   return (
     <div>
-   
       <div
         className="justify-between flex flex-wrap gap-y-4 gap-x-5 px-5 my-2  sm:flex sm:scroll-x-auto"
         data-bs-toggle="tooltip"
@@ -114,51 +111,16 @@ const ListadoCaja = () => {
           valor={inicioCaja}
         />
         {/* Nuevo total gastos */}
-        <CuadroGastos title="Total"  title2="Gastos" valor={totalValorGastos} />
+        <CuadroGastos title="Total" title2="Gastos" valor={totalValorGastos} />
         <CuadroGastos
           img={IconoInicioCaja}
           title="Ventas "
           title2="Efectivo"
           valor={montoTotalVentasEfectivo}
         />
-
-
       </div>
     </div>
   );
 };
 
 export default ListadoCaja;
-
-       {/* {screenSize < 1 ? (
-          <ListadoGastos cajaActual={inicioCaja + montoTotalVentasEfectivo} />
-        ) : (
-          ""
-        )} */}
-        {/* <CuadroGastos
-          //   img={diccionarioIConos.Comida}
-          title="Inicio Caja"
-          valor={inicioCaja}
-        /> */}
-
-        {/* <CuadroGastos
-          // img={diccionarioIConos.Gastos}
-          title="Total Gastos"
-          title2=""
-          valor={totalValorGastos}
-        /> */}
-
-
-        
-        {/* Ventas Efectivo  */}
-        {/* <CuadroGastos
-          img={IconoInicioCaja}
-          title="Total Gastos"
-          title2=""
-          valor={
-            montoTotalGastosVarios +
-            montoTotalGastosProveedores +
-            montoTotalGastosComida +
-            montoTotalGastosInventario
-          }
-        /> */}

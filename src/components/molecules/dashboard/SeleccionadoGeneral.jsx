@@ -38,6 +38,8 @@ const SeleccionadoGeneral = () => {
     }
   }, []);
 
+  const titlesStlyles = "text-lg xs:text-2xl font-black uppercase my-2";
+
   return (
     <>
       {isCargando ? (

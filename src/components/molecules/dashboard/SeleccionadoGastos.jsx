@@ -16,6 +16,8 @@ const SeleccionadoGastos = () => {
     useState(0);
   const [montoTotalGastosVarios, setMontoTotalGastosVarios] = useState(0);
   const [montoTotalGastosComida, setMontoTotalGastosComida] = useState(0);
+  const [montoTotalGastosInventario, setMontoTotalGastosInventario] =
+    useState(0);
 
   useEffect(() => {
     // LLamar Funciones
@@ -32,6 +34,9 @@ const SeleccionadoGastos = () => {
         );
         setMontoTotalGastosVarios(respuesta.data.montoTotalGastosVarios);
         setMontoTotalGastosComida(respuesta.data.montoTotalGastosComida);
+        setMontoTotalGastosInventario(
+          respuesta.data.montoTotalGastosInventario
+        );
         // console.log(respuesta.data);
       } catch (error) {
         console.log(error);
@@ -52,7 +57,10 @@ const SeleccionadoGastos = () => {
           />
           <CuadroEstadisticas tittle="Comida" value={montoTotalGastosComida} />
           <CuadroEstadisticas tittle="Varios" value={montoTotalGastosVarios} />
-          <CuadroEstadisticas tittle="Inventario" value="0" />
+          <CuadroEstadisticas
+            tittle="Inventario"
+            value={montoTotalGastosInventario}
+          />
         </ContenedorSeleccionados>
       )}
     </div>

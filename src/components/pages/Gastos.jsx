@@ -95,23 +95,6 @@ const Gastos = () => {
     <div>
       <Header title="Gastos" />
       <ContenedorLayout>
-        <div className="flex flex-wrap gap-x-3 gap-y-3 ">
-          {/* <CajaEfectivo
-          valorCaja={totalGastos}
-          title="Gastos"
-          Imagen={IconoIncioCaja}
-        /> */}
-          {/* <CajaEfectivo
-          valorCaja={Number(inicioCaja - totalGastos)}
-          title="Total Caja"
-          Imagen={Flecha}
-        /> */}
-          {/* <CajaEfectivo
-          valorCaja={inicioCaja}
-          title="Inicio Caja"
-          Imagen={IconoIncioCaja}
-        /> */}
-        </div>
         <div className=" flex flex-wrap gap-x-3 gap-y-3 py-3 xs:py-5">
           {/* Nuevo Gasto */}
           <BotonPrimarioIcono
@@ -137,17 +120,7 @@ const Gastos = () => {
           <UltimoModal isOpen={isOpenModal} closeModal={closeModal}>
             <InicioCaja />
           </UltimoModal>
-
-          {/* Inicio Caja */}
-          {/* <BotonPrimario
-          value="Reiniciar Gastos"
-          Color={BotonBlancoRedondeado}
-          onClick={handleReiniciarTotalGastos}
-        /> */}
         </div>
-        {/* <button onClick={handleBuscador} className="">
-        Abrir Buscador
-      </button> */}
         <Busqueda urlDestino={`/gastos`} />
         <div className="flex items-center gap-x-3">
           <BarraSearch
