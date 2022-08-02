@@ -7,6 +7,8 @@ import IconoCerrarBlanco from "../../img/iconoCerrarBlanco.png";
 import IconoBills from "../../img/iconoBills.png";
 import IconoLogout from "../../img/iconoLogout.png";
 import IconDashboard from "../../img/iconDashboard.png";
+import iconWoman from "../../img/iconWoman.png";
+import iconMan from "../../img/manIcon.png";
 
 import Imagenpersona from "../../img/newIcons/fotoMujer2.png";
 
@@ -15,8 +17,6 @@ import StaticContext from "../../contexts/StaticProvider";
 import useAuth from "../../hooks/useAuth";
 import BotonFlotante from "../atoms/BotonFlotante";
 import Header from "../molecules/Header";
-
-import layout from "./layout.css";
 
 const Layout = () => {
   const { isActiveMenu, setActiveMenu, screenSize, setScreenSize } =
@@ -217,17 +217,27 @@ const Layout = () => {
             <div className="float-end bottom-0 mb-20 fixed ">
               <Link to="/">
                 <div className="flex items-center rounded-full float-left max-h-20  text-white   ">
-                  <img
-                    src="https://mdbcdn.b-cdn.net/img/new/avatars/5.webp"
-                    className={`origin-left duration-300 rounded-xl ${
-                      !isActiveMenu ? "h-10" : "h-12"
-                    }`}
-                    alt="Avatar"
-                  />
-
+                  {auth.nombre === "tamara" ? (
+                    <img
+                      src={iconWoman}
+                      className={`origin-left duration-300 rounded-xl ${
+                        !isActiveMenu ? "h-10" : "h-12"
+                      }`}
+                      alt="Avatar"
+                    />
+                  ) : (
+                    <img
+                      src={iconMan}
+                      className={`origin-left duration-300 rounded-xl ${
+                        !isActiveMenu ? "h-10" : "h-12"
+                      }`}
+                      alt="Avatar"
+                    />
+                  )}
                   <p className={hiddenTitles}>
-                    <span className="text-white pl-2"> Tamara </span>
-                    <span className="text-slate-400 "> Owner </span>
+                    <span className="text-white pl-2 capitalize">
+                      {auth.nombre}
+                    </span>
                   </p>
                 </div>
               </Link>
@@ -242,9 +252,7 @@ const Layout = () => {
             <button
               onClick={cerrarSesionAuth}
               className="hover:scale-105  hover:duration-200 duration-200"
-            >
-              {/* <img src={IconoLogout} alt="cerrar" className="h-6 sm:h-8  " /> */}
-            </button>
+            ></button>
           </nav>
         </div>
 

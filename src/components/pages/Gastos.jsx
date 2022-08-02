@@ -76,20 +76,11 @@ const Gastos = () => {
   // const [modalCaja, setModalCaja] = useState(false);
   const [abrirModal, setAbrirModal] = useState(false);
 
-  const { id, nombre, valor, cantidad } = gasto;
+  // const { id, nombre, valor, cantidad } = gasto;
 
   const handleReiniciarTotalGastos = () => {
     setTotalGastos(0);
   };
-
-  // SetTotalGastos (suma todos los valor de cada gasto)
-  // useEffect(() => {
-  //   const totalGastado = gastos.reduce(
-  //     (total, gasto) => gasto.valor + total,
-  //     0
-  //   );
-  //   setTotalGastos(totalGastado);
-  // }, [gastos]);
 
   return (
     <div>

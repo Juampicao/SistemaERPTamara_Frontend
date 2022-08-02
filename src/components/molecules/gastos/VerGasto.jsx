@@ -9,40 +9,53 @@ import {
 } from "../../../helpers/colores";
 import { BotonPrimario } from "../../atoms/Botones";
 
+import axios from "axios";
+
 const VerGasto = () => {
   const { gasto, setGasto, isCargando, setIsCargando } =
     useContext(StaticContext);
   const { id } = useParams();
   const navigate = useNavigate();
 
+  const { _id } = gasto;
+
   useEffect(() => {
-    const obtenerClienteAPI = async () => {
+    const obtenerGasto = async () => {
       try {
-        const url = `${import.meta.env.VITE_API_URL}/gastos/${id}`;
-        const respuesta = await fetch(url);
-        const resultado = await respuesta.json();
-        setGasto(resultado);
+        const token = localStorage.getItem("token");
+        if (!token) return;
+
+        const config = {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        };
+        const { data } = await axios.get(
+          `${import.meta.env.VITE_API_URL}/gastos/${id}`,
+          config
+        );
+        console.log(data);
+        setGasto(data);
       } catch (error) {
-        // console.log(error);
+        console.log(error);
       }
       setIsCargando(!isCargando);
     };
-    obtenerClienteAPI();
+    obtenerGasto();
   }, []);
-
-  const { _id } = gasto;
 
   return (
     <div>
       <div className="space-y-3 p-5 xs:p-0">
-        {/* verGasto */}
-        <p> El producto es: {gasto.nombre} </p>
+        Prueba
+        <p> El Gasto es: {gasto.nombre} </p>
+        {/* <p> El producto relacionado es: {gasto.productoIngresado}</p> */}
         <p> El ID es: {gasto._id} </p>
         <p> Valor: ${gasto.valor} </p>
         <p> Categoria: {gasto.categoria} </p>
         <p> Fecha: {formatearFecha(gasto.fecha)} </p>
         <p> Notas: {gasto.notas ? gasto.notas : "No hay notas."} </p>
-
         <div className="py-5 flex justify-center space-x-3">
           <BotonPrimario
             Color={BotonAzulRedondeado}

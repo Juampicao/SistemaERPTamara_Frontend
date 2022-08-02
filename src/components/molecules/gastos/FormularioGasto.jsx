@@ -75,7 +75,13 @@ const FormularioGasto = () => {
   // Prueba con AXIOS
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    const tokenActual = localStorage.getItem("token");
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${tokenActual}`,
+      },
+    };
     try {
       if (_id) {
         const respuesta = await axios.put(
@@ -106,7 +112,8 @@ const FormularioGasto = () => {
             categoria,
             fecha,
             notas,
-          }
+          },
+          config
         );
         console.log(respuesta);
         navigate("/gastos");
@@ -129,141 +136,140 @@ const FormularioGasto = () => {
     <div>
       {isCargando ? <Spiner /> : ""}
       <ContenedorFormularios>
+        <p className="text-lg">
+          {gasto._id ? `Editar el gasto: ${gasto.nombre}` : ""}
+        </p>
+        <div className="bg-white rounded-lg  max-w-xl mx-auto">
+          <form action="submit" className="mt-5 py-5" onSubmit={handleSubmit}>
+            <div className={divStyles}>
+              {error && <Error mensaje="Completa todos los campos" />}
+              <label htmlFor="nombre" className={labelStyles}>
+                Nombre
+              </label>
+              <input
+                id="nombre"
+                name="nombre"
+                type="text"
+                placeholder="Nombre del gasto"
+                className={inputStyles}
+                value={nombre}
+                onChange={(e) => setNombre(e.target.value)}
+              />
+            </div>
 
-      <p className="text-lg">
-        {gasto._id ? `Editar el gasto: ${gasto.nombre}` : ""}
-      </p>
-      <div className="bg-white rounded-lg  max-w-xl mx-auto">
-        <form action="submit" className="mt-5 py-5" onSubmit={handleSubmit}>
-          <div className={divStyles}>
-            {error && <Error mensaje="Completa todos los campos" />}
-            <label htmlFor="nombre" className={labelStyles}>
-              Nombre
-            </label>
-            <input
-              id="nombre"
-              name="nombre"
-              type="text"
-              placeholder="Nombre del gasto"
-              className={inputStyles}
-              value={nombre}
-              onChange={(e) => setNombre(e.target.value)}
-            />
-          </div>
+            <div className={divStyles}>
+              <label htmlFor="valor" className={labelStyles}>
+                Monto
+              </label>
+              <input
+                id="valor"
+                name="valor"
+                type="number"
+                placeholder={gasto._id ? gasto.valor : "Valor del gasto"}
+                className={inputStyles}
+                value={valor}
+                onChange={(e) => setValor(e.target.value)}
+              />
+            </div>
+            <div className={divStyles}>
+              <label htmlFor="fecha" className={labelStyles}>
+                Fecha
+              </label>
 
-          <div className={divStyles}>
-            <label htmlFor="valor" className={labelStyles}>
-              Monto
-            </label>
-            <input
-              id="valor"
-              name="valor"
-              type="number"
-              placeholder={gasto._id ? gasto.valor : "Valor del gasto"}
-              className={inputStyles}
-              value={valor}
-              onChange={(e) => setValor(e.target.value)}
-            />
-          </div>
-          <div className={divStyles}>
-            <label htmlFor="fecha" className={labelStyles}>
-              Fecha
-            </label>
-
-            <input
-              id="fecha"
-              name="fecha"
-              type="date"
-              placeholder=""
-              className={inputStyles}
-              value={fecha}
-              onChange={(e) => setFecha(e.target.value)}
-            />
-          </div>
-          <div className={divStyles}>
-            <label htmlFor="categoria" className={labelStyles}>
-              Categoria
-            </label>
-            <select
-              as="select"
-              id="categoria"
-              name="categoria"
-              placeholder=""
-              className={inputStyles}
-              value={categoria}
-              onChange={(e) => setCategoria(e.target.value)}
-            >
-              <option value=""> -- Select -- </option>
-              <option value="Gastos"> Gastos Varios </option>
-              <option value="Comida"> Comida </option>
-              <option value="Proveedor"> Proveedores </option>
-            </select>
-          </div>
-
-          {/* Prueba acordion TextArea */}
-          <div class="accordion" id="accordionExample">
-            <div class="accordion-item ">
-              <h2 class="accordion-header mb-0" id="headingOne">
-                <button
-                  class=" accordion-button relative flex items-center w-full py-4 px-5 text-base text-black text-left  bg-white rounded-none transition focus:outline-none"
-                  type="button"
-                  data-bs-toggle="collapse"
-                  data-bs-target="#collapseOne"
-                  aria-expanded="false"
-                  aria-controls="collapseOne"
-                >
-                  Agregar Notas
-                </button>
-              </h2>
-              <div
-                id="collapseOne"
-                class="accordion-collapse collapse"
-                aria-labelledby="headingOne"
-                data-bs-parent="#accordionExample"
+              <input
+                id="fecha"
+                name="fecha"
+                type="date"
+                placeholder=""
+                className={inputStyles}
+                value={fecha}
+                onChange={(e) => setFecha(e.target.value)}
+              />
+            </div>
+            <div className={divStyles}>
+              <label htmlFor="categoria" className={labelStyles}>
+                Categoria
+              </label>
+              <select
+                as="select"
+                id="categoria"
+                name="categoria"
+                placeholder=""
+                className={inputStyles}
+                value={categoria}
+                onChange={(e) => setCategoria(e.target.value)}
               >
-                <div className={divStyles}>
-                  <textarea
-                    name="notas"
-                    id="notas"
-                    cols=""
-                    rows=""
-                    className="w-full border  h-28 p-2 "
-                    placeholder="Escribe alguna nota..."
-                    value={gasto.notas}
-                    onChange={(e) => setNotas(e.target.value)}
-                  ></textarea>
+                <option value=""> -- Select -- </option>
+                <option value="Gastos"> Gastos Varios </option>
+                <option value="Comida"> Comida </option>
+                <option value="Proveedor"> Proveedores </option>
+              </select>
+            </div>
+
+            {/* Prueba acordion TextArea */}
+            <div class="accordion" id="accordionExample">
+              <div class="accordion-item ">
+                <h2 class="accordion-header mb-0" id="headingOne">
+                  <button
+                    class=" accordion-button relative flex items-center w-full py-4 px-5 text-base text-black text-left  bg-white rounded-none transition focus:outline-none"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#collapseOne"
+                    aria-expanded="false"
+                    aria-controls="collapseOne"
+                  >
+                    Agregar Notas
+                  </button>
+                </h2>
+                <div
+                  id="collapseOne"
+                  class="accordion-collapse collapse"
+                  aria-labelledby="headingOne"
+                  data-bs-parent="#accordionExample"
+                >
+                  <div className={divStyles}>
+                    <textarea
+                      name="notas"
+                      id="notas"
+                      cols=""
+                      rows=""
+                      className="w-full border  h-28 p-2 "
+                      placeholder="Escribe alguna nota..."
+                      value={gasto.notas}
+                      onChange={(e) => setNotas(e.target.value)}
+                    ></textarea>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-          {/* fin prueba acordeon */}
+            {/* fin prueba acordeon */}
 
-          <div className="py-5 flex justify-center space-x-3">
-            {gasto._id ? (
+            <div className="py-5 flex justify-center space-x-3">
+              {gasto._id ? (
+                <BotonPrimario
+                  Color={BotonBlancoRedondeado}
+                  value="Ver"
+                  type="button"
+                  onClick={() => navigate(`/gastos/${_id}`)}
+                />
+              ) : (
+                ""
+              )}
+              <BotonPrimario
+                Color={BotonAzulRedondeado}
+                value={gasto?.nombre ? "Editar Gasto" : "Agregar Gasto"}
+                type="submit"
+              />
               <BotonPrimario
                 Color={BotonBlancoRedondeado}
-                value="Ver"
+                value="Volver Atras"
                 type="button"
-                onClick={() => navigate(`/gastos/${_id}`)}
+                onClick={() => {
+                  navigate("/gastos"), setGasto("");
+                }}
               />
-            ) : (
-              ""
-            )}
-            <BotonPrimario
-              Color={BotonAzulRedondeado}
-              value={gasto?.nombre ? "Editar Gasto" : "Agregar Gasto"}
-              type="submit"
-            />
-            <BotonPrimario
-              Color={BotonBlancoRedondeado}
-              value="Volver Atras"
-              type="button"
-              onClick={() => {
-                navigate("/gastos"), setGasto("");
-              }}
-            />
-          </div>
-        </form>
+            </div>
+          </form>
         </div>
       </ContenedorFormularios>
     </div>

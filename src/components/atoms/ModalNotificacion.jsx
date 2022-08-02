@@ -49,7 +49,7 @@ export const ModalGuardado = ({
             >
               <path
                 strokeLinecap="round"
-                stroke-linejoin="round"
+                strokeLinejoin="round"
                 stroke-width="2"
                 d="M5 13l4 4L19 7"
               ></path>

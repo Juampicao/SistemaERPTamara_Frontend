@@ -7,7 +7,7 @@ import "aos/dist/aos.css";
 import { useRef } from "react";
 import AuthLayout from "./components/pages/AuthLayout";
 import { StaticProvider } from "./contexts/StaticProvider";
-import RutaProhibida from "./components/pages/RutaProhibida";
+import RutaProtegida from "./components/pages/RutaProtegida";
 
 import { AuthProvider } from "./contexts/AuthProvider";
 import EstadisticasProvider from "./contexts/EstadisticasProvider";
@@ -31,6 +31,7 @@ import Productos from "./components/pages/Productos";
 import NuevoProducto from "./components/molecules/productos/NuevoProducto";
 import EditarProducto from "./components/molecules/productos/EditarProducto";
 import Dashbord from "./components/pages/Dashbord";
+import RutaProhibida from "./components/pages/RutaProhibida";
 
 function App() {
   useEffect(() => {
@@ -71,9 +72,7 @@ function App() {
                   <Route path="gastos/:id" element={<VerGasto />} />
                   <Route path="gastos/editar/:id" element={<EditarGasto />} />
 
-
                   <Route path="dashboard" element={<Dashbord />} />
-
 
                   <Route
                     path="configuraciones"
@@ -84,8 +83,15 @@ function App() {
                   <Route path="*" element={<h1> Pagina no encontrada. </h1>} />
                 </Route>
 
-                {/* <Route index element={<Login auth={auth} setAuth={setAuth} />} /> */}
-                <Route path="*" element={<RutaProhibida />} />
+                {/* Inicio Ruta Protegida */}
+                {/* <Route path="/dashboard" element={<RutaProtegida />}>
+                  <Route index element={<Dashbord />} />
+                </Route> */}
+                {/* Fin Ruta Protegida */}
+
+                {/* Inicio Ruta Prohibida */}
+                <Route path="*" element={<RutaProhibida />}></Route>
+                {/* Fin Ruta Prohibida */}
               </Routes>
             </StaticProvider>
           </EstadisticasProvider>
@@ -96,55 +102,3 @@ function App() {
 }
 
 export default App;
-
-// function App() {
-//   useEffect(() => {
-//     AOS.init();
-//     AOS.refresh();
-//   }, []);
-
-//   const [auth, setAuth] = useState(false);
-//   console.log(auth);
-//   return (
-//     <div className="App">
-//       <BrowserRouter>
-//         <AuthProvider>
-//           <StaticProvider>
-//             <Routes>
-//               <Route path="/" element={<AuthLayout />}>
-//                 <Route
-//                   index
-//                   element={<Login auth={auth} setAuth={setAuth} />}
-//                 />
-//               </Route>
-//               {auth ? (
-//               <Route path="/" element={<Layout />}>
-//                 <Route path="productos" index element={<Inicio />} />
-//                 <Route path="productos/editar/:id" element={<Editar />} />
-//                 <Route path="productos/:id" element={<VerProducto />} />
-//                 <Route path="ventas" element={<Ventas />} />
-//                 <Route path="ventas/:id" element={<VerVenta />} />
-//                 <Route path="gastos" element={<Gastos />} />
-//                 <Route path="gastos/nuevogasto" element={<NuevoGasto />} />
-//                 <Route path="gastos/:id" element={<VerGasto />} />
-//                 <Route path="gastos/editar/:id" element={<EditarGasto />} />
-//                 <Route
-//                   path="configuraciones"
-//                   index
-//                   element={<Configuraciones />}
-//                 />
-//                 <Route path="*" element={<h1> Pagina no encontrada. </h1>} />
-//               </Route>
-//                )
-//               : (
-//               <Route index element={<Login auth={auth} setAuth={setAuth} />} />
-//               <Route path="*" element={<RutaProhibida />} />
-//                 )}
-
-//             </Routes>
-//           </StaticProvider>
-//         </AuthProvider>
-//       </BrowserRouter>
-//     </div>
-//   );
-// }

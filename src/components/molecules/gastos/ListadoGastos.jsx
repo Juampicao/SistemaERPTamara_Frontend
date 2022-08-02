@@ -8,6 +8,7 @@ import ListadoCaja from "./ListadoCaja";
 import IconoInicioCaja from "../../../img/iconCaja.png";
 import Spiner from "../../atoms/Spiner";
 import IconoTooltip from "../../../img/iconoExclamacion2.png";
+import axios from "axios";
 
 const ListadoGastos = () => {
   const {
@@ -24,7 +25,7 @@ const ListadoGastos = () => {
     setIsCargando,
   } = useContext(StaticContext);
 
-  const { _id, nombre, valor, cantidad, fecha } = gasto;
+  // const { _id, nombre, valor, cantidad, fecha } = gasto;
 
   // const diccionarioIConos = {
   //   Gastos: IconoGastosVarios,
@@ -37,12 +38,28 @@ const ListadoGastos = () => {
     const obtenerGastos = async () => {
       setIsCargando(true);
       try {
-        const url = `${import.meta.env.VITE_API_URL}/gastos`;
-        const respuesta = await fetch(url);
-        const resultado = await respuesta.json();
+        const token = localStorage.getItem("token");
+        if (!token) return;
 
-        setGastos(resultado.gastos);
+        const config = {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        };
+        const { data } = await axios.get(
+          `${import.meta.env.VITE_API_URL}/gastos`,
+          config
+        );
+        console.log(data);
         setIsCargando(false);
+        setGastos(data.gastos);
+        // const url = `${import.meta.env.VITE_API_URL}/gastos`;
+        // const respuesta = await fetch(url);
+        // const resultado = await respuesta.json();
+
+        // setGastos(resultado.gastos);
+        // setIsCargando(false);
       } catch (error) {
         console.log(error);
       }

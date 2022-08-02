@@ -21,7 +21,6 @@ const Gasto = ({ gasto }) => {
     setIsOpenSaveModal,
     setIsOpenConfirmModal,
     isOpenConfirmModal,
-    // handleModalClick,
     screenSize,
     setScreenSize,
   } = useContext(StaticContext);
@@ -40,8 +39,18 @@ const Gasto = ({ gasto }) => {
     const confirmar = confirm("Deseas eliminar este gasto?");
     if (confirmar) {
       try {
+        const token = localStorage.getItem("token");
+        if (!token) return;
+
+        const config = {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        };
         const respuesta = await axios.delete(
-          `${import.meta.env.VITE_API_URL}/gastos/${_id}`
+          `${import.meta.env.VITE_API_URL}/gastos/${_id}`,
+          config
         );
         console.log(respuesta);
         const arrayGastos = gastos.filter((gasto) => gasto._id !== _id);
@@ -89,40 +98,3 @@ const Gasto = ({ gasto }) => {
 };
 
 export default Gasto;
-
-{
-  /* {screenSize < 800 ? (
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 md:hidden my-5">
-          <div class="bg-white space-y-3 p-4 rounded-lg shadow">
-            <div class="flex items-center space-x-2 text-sm">
-              <div>
-                <a
-                  href="#"
-                  class="text-blue-500 font-bold hover:underline capitalize"
-                >
-                  {nombre}
-                </a>
-              </div>
-              <div class="text-gray-500">
-                {gasto._id ? fecha : fecha.substr(0, 10)}
-              </div>
-              <div>
-                <span class="p-1.5 text-xs font-medium uppercase tracking-wider text-green-800 bg-green-200 rounded-lg bg-opacity-50">
-                  Delivered
-                </span>
-                <img
-                  // src={diccionarioIConos[gasto.categoria]}
-                  alt=""
-                  className="h-12 mx-auto"
-                />
-                <p>{gasto.categoria}</p>
-              </div>
-            </div>
-            <div class="text-sm text-gray-700">{notas ? notas : ""}</div>
-            <div class="text-sm font-medium text-black">
-              {FormatearNumero(valor)}
-            </div>
-          </div>
-        </div>
-      ) : ( */
-}

@@ -4,7 +4,6 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Error from "../atoms/Error";
 import Alerta from "../atoms/Alerta";
-import { stringify } from "postcss";
 import useAuth from "../../hooks/useAuth";
 
 const Login = () => {
@@ -12,7 +11,10 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [alerta, setAlerta] = useState({});
 
-  const { setAuth } = useAuth();
+  const { auth, setAuth, cargando } = useAuth();
+  console.log(auth);
+  console.log(cargando);
+  // window.localStorage.clear();
 
   const navigate = useNavigate();
 
@@ -26,7 +28,6 @@ const Login = () => {
       });
       return;
     }
-    // navigate("/gastos");
     try {
       const { data } = await axios.post(
         `${import.meta.env.VITE_API_URL}/usuarios/login`,
@@ -35,10 +36,9 @@ const Login = () => {
           password,
         }
       );
-      window.localStorage.setItem(`token`, JSON.stringify(data.token));
-
-      setAuth(true);
       setAlerta({});
+      setAuth(data);
+      localStorage.setItem(`token`, data.token);
       navigate("/gastos");
     } catch (error) {
       setAlerta({

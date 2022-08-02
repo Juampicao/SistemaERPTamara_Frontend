@@ -20,6 +20,9 @@ import Spiner from "../../atoms/Spiner";
 import IconoTooltip from "../../../img/iconoExclamacion2.png";
 import { FechaHoyArgentina } from "../../../helpers";
 import ContenedorFormularios from "../ContenedorFormularios";
+
+import useAuth from "../../../hooks/useAuth";
+
 const FormularioGastoPorProducto = () => {
   const {
     gasto,
@@ -88,7 +91,6 @@ const FormularioGastoPorProducto = () => {
         const respuesta = await fetch(url);
         const resultado = await respuesta.json();
         setGastos(resultado);
-        console.log(gastos.gastos);
       } catch (error) {
         console.log(error);
       }
@@ -127,7 +129,6 @@ const FormularioGastoPorProducto = () => {
   }
 
   // Inicio UseEffect para traer Datos.
-
   // Submit
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -139,7 +140,15 @@ const FormularioGastoPorProducto = () => {
         setError(true);
         return;
       }
-      const respuesta = await axios.post(
+
+      const tokenActual = localStorage.getItem("token");
+      const config = {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${tokenActual}`,
+        },
+      };
+      const { data } = await axios.post(
         `${import.meta.env.VITE_API_URL}/gastos`,
         {
           nombre,
@@ -149,8 +158,10 @@ const FormularioGastoPorProducto = () => {
           notas,
           productoIngresado: productoAVender._id,
           cantidadProductoIngresado: cantidad,
-        }
+        },
+        config
       );
+      console.log(data);
       navigate("/gastos");
       setIsOpenSaveModal(true);
       setProducto("");
@@ -160,6 +171,7 @@ const FormularioGastoPorProducto = () => {
       setIsOpenErrorModal(!isOpenErrorModal);
     }
   };
+
   // styles
   const labelStyles = "text-slate-900 font-bold capitalize pl-1 mb-1 ";
   const inputStyles =
