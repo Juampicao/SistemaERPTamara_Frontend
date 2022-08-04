@@ -34,12 +34,22 @@ const InicioCaja = () => {
     let respuesta;
     setIsCargando(true);
     try {
+      const token = localStorage.getItem("token");
+      if (!token) return;
+
+      const config = {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      };
       respuesta = await axios.put(
         `${import.meta.env.VITE_API_URL}/caja/62cf04d320fdec269473e073`,
+        // `${import.meta.env.VITE_API_URL}/caja/editarcaja`,
         {
-          // primerValorCaja,
           inicioCaja,
-        }
+        },
+        config
       );
       console.log(respuesta);
       setIsCargando(false);

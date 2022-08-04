@@ -26,8 +26,18 @@ const SeleccionadoGastos = () => {
       setIsCargando(true);
 
       try {
+        const token = localStorage.getItem("token");
+        if (!token) return;
+
+        const config = {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        };
         const respuesta = await axios.get(
-          `${import.meta.env.VITE_API_URL}/estadisticas/gastos`
+          `${import.meta.env.VITE_API_URL}/estadisticas/gastos`,
+          config
         );
         setMontoTotalGastosProveedores(
           respuesta.data.montoTotalGastosProveedores

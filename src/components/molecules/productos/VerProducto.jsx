@@ -9,10 +9,14 @@ import {
 } from "../../../helpers/colores";
 import { BotonPrimario } from "../../atoms/Botones";
 
+import axios from "axios";
+
 const VerProducto = () => {
-   const { producto, setProducto, isCargando, setIsCargando } =
+  const { producto, setProducto, isCargando, setIsCargando } =
     useContext(StaticContext);
   const { id } = useParams();
+  const params = useParams();
+
   const navigate = useNavigate();
 
   const {
@@ -29,11 +33,21 @@ const VerProducto = () => {
   useEffect(() => {
     const obtenerProductos = async () => {
       try {
-        const url = `${import.meta.env.VITE_API_URL}/productos/${id}`;
-        const respuesta = await fetch(url);
-        const resultado = await respuesta.json();
-        setProducto(resultado);
-        console.log(producto);
+        const token = localStorage.getItem("token");
+        if (!token) return;
+
+        const config = {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        };
+        const { data } = await axios.get(
+          `${import.meta.env.VITE_API_URL}/productos/${id}`,
+          config
+        );
+        console.log(data);
+        setProducto(data);
       } catch (error) {
         console.log(error);
       }
@@ -41,47 +55,15 @@ const VerProducto = () => {
     };
     obtenerProductos();
   }, []);
-//   const { producto, setProducto, isCargando, setIsCargando } =
-//     useContext(StaticContext);
-//   const { id } = useParams();
-//   const navigate = useNavigate();
-// console.log(id)
-//   const {
-//     _id,
-//     nombreProducto,
-//     cantidad,
-//     precio,
-//     costo,
-//     categoria,
-//     fecha,
-//     notas,
-//   } = producto;
-
-//   console.log(nombreProducto)
-//   useEffect(() => {
-//     const obtenerProductos = async () => {
-//       try {
-//         const url = `${import.meta.env.VITE_API_URL}/productos/${id}`;
-//         const respuesta = await fetch(url);
-//         const resultado = await respuesta.json();
-//         setProducto(resultado);
-//         console.log(producto);
-//       } catch (error) {
-//         console.log(error);
-//       }
-//       // setIsCargando(!isCargando);
-//     };
-//     obtenerProductos();
-//   }, []);
 
   return (
     <div className="space-y-3 my-10 mx-10">
       <p> El producto es: {nombreProducto} </p>
       <p> El ID es: {_id} </p>
-      <p> La cantidad vendida: {cantidad} unidades</p>
+      <p> Stock: {cantidad} unidades</p>
 
-      <p> El precio: ${precio} </p>
       <p> El costo: ${costo} </p>
+      <p> El precio: ${precio} </p>
 
       <p> Categoria: {categoria} </p>
       {/* <p> Fecha: {gasto.fecha.substr(0, 10)} </p> */}
@@ -108,15 +90,3 @@ const VerProducto = () => {
 };
 
 export default VerProducto;
-
-//  return isCargando ? (
-//    <Spiner />
-//  ) : Object.keys(producto).length === 0 ? (
-//    <p> No hay resultados para mostrar</p>
-//  ) : (
-//    <div>
-//      <div> El producto es: {producto.nombre} </div>
-//      <div> Costo: {producto.costo} </div>
-//      <div> Cantidad: {producto.cantidad} </div>
-//    </div>
-//  );

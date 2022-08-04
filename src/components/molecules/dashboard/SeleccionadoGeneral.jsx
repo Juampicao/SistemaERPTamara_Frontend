@@ -24,13 +24,28 @@ const SeleccionadoGeneral = () => {
       setIsCargando(true);
 
       try {
+        const token = localStorage.getItem("token");
+        if (!token) return;
+
+        const config = {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        };
         const respuesta = await axios.get(
-          `${import.meta.env.VITE_API_URL}/estadisticas/`
+          `${import.meta.env.VITE_API_URL}/estadisticas/`,
+          config
+        );
+        const respuesta2 = await axios.get(
+          `${import.meta.env.VITE_API_URL}/estadisticas/hoy`,
+          config
         );
         setInicioCaja(respuesta.data.valorInicialCaja);
         setMontoTotalGastos(respuesta.data.montoTotalGastos);
         setMontoTotalVentas(respuesta.data.montoTotalVentas);
         setMontoCajaActual(respuesta.data.montoCajaActual);
+        console.log(respuesta2.data);
       } catch (error) {
         console.log(error);
       }
@@ -61,6 +76,13 @@ const SeleccionadoGeneral = () => {
             tittle2="Totales"
             value={montoTotalVentas}
           />
+          <CuadroEstadisticas
+            tittle="Gastos"
+            tittle2="Totales"
+            value={montoTotalGastos}
+          />
+          <h1 className="font-bold capitalize text-xl my-2">Dia de Hoy</h1>
+
           <CuadroEstadisticas
             tittle="Gastos"
             tittle2="Totales"

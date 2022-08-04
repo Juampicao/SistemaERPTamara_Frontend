@@ -5,6 +5,8 @@ import Spiner from "../../atoms/Spiner";
 
 import Venta from "../ventas/Venta";
 
+import axios from "axios";
+
 const ListadoVentas = () => {
   const {
     ventas,
@@ -21,21 +23,31 @@ const ListadoVentas = () => {
 
   // Get Base de datos
   useEffect(() => {
-    const obtenerClienteAPI = async () => {
+    const obtenerVentas = async () => {
       setIsCargando(true);
       try {
-        const url = `${import.meta.env.VITE_API_URL}/ventas`;
-        const respuesta = await fetch(url);
-        const resultado = await respuesta.json();
-        setVentas(resultado.arrayTotalVentas);
-        // console.log(resultado);
+        const token = localStorage.getItem("token");
+        if (!token) return;
+
+        const config = {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        };
+        const { data } = await axios.get(
+          `${import.meta.env.VITE_API_URL}/ventas`,
+          config
+        );
+        setVentas(data.arrayTotalVentas);
+        console.log(data);
       } catch (error) {
         console.log(error);
         setIsOpenErrorModal(true);
       }
       setIsCargando(false);
     };
-    obtenerClienteAPI();
+    obtenerVentas();
   }, []);
 
   const {
@@ -78,21 +90,11 @@ const ListadoVentas = () => {
             {ventas.length > 0 ? (
               ventas.map((venta) => <Venta key={venta._id} venta={venta} />)
             ) : (
-              <p className="my-5 text-center">
-                No hay ninguna producto para mostrar
-              </p>
+              <p className="my-5 text-center">No ventas para mostrar.</p>
             )}
           </tbody>
         </table>
       </div>
-      {/*      
-           <>
-             {ventas.length > 0 ? (
-               ventas.map((venta) => <Venta key={venta._id} venta={venta} />)
-             ) : (
-               <p className="my-5 text-center">No hay ningun gasto para mostrar</p>
-             )}
-           </> */}
     </div>
   );
 };

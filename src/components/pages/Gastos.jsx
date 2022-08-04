@@ -55,23 +55,22 @@ const Gastos = () => {
 
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const obtenerCaja = async () => {
-      try {
-        const respuesta = await axios.get(
-          `${import.meta.env.VITE_API_URL}/caja/62cf04d320fdec269473e073`,
-          {
-            inicioCaja,
-          }
-        );
-        // console.log(respuesta.data.inicioCaja);
-        setInicioCaja(respuesta.data.inicioCaja);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    obtenerCaja();
-  }, []);
+  // useEffect(() => {
+  //   const obtenerCaja = async () => {
+  //     try {
+  //       const respuesta = await axios.get(
+  //         `${import.meta.env.VITE_API_URL}/caja/62cf04d320fdec269473e073`,
+  //         {
+  //           inicioCaja,
+  //         }
+  //       );
+  //       setInicioCaja(respuesta.data.inicioCaja);
+  //     } catch (error) {
+  //       console.log(error);
+  //     }
+  //   };
+  //   obtenerCaja();
+  // }, []);
 
   // const [modalCaja, setModalCaja] = useState(false);
   const [abrirModal, setAbrirModal] = useState(false);

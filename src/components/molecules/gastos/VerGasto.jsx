@@ -14,10 +14,12 @@ import axios from "axios";
 const VerGasto = () => {
   const { gasto, setGasto, isCargando, setIsCargando } =
     useContext(StaticContext);
-  const { id } = useParams();
   const navigate = useNavigate();
 
-  const { _id } = gasto;
+  const { id } = useParams();
+  const params = useParams();
+  // const { _id } = gasto;
+  console.log(params.id);
 
   useEffect(() => {
     const obtenerGasto = async () => {
@@ -32,13 +34,14 @@ const VerGasto = () => {
           },
         };
         const { data } = await axios.get(
-          `${import.meta.env.VITE_API_URL}/gastos/${id}`,
+          `${import.meta.env.VITE_API_URL}/gastos/${params.id}`,
           config
         );
         console.log(data);
         setGasto(data);
       } catch (error) {
         console.log(error);
+        console.log(error.response.data.msg);
       }
       setIsCargando(!isCargando);
     };
@@ -48,7 +51,6 @@ const VerGasto = () => {
   return (
     <div>
       <div className="space-y-3 p-5 xs:p-0">
-        Prueba
         <p> El Gasto es: {gasto.nombre} </p>
         {/* <p> El producto relacionado es: {gasto.productoIngresado}</p> */}
         <p> El ID es: {gasto._id} </p>

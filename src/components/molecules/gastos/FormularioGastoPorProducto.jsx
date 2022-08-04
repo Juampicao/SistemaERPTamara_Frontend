@@ -87,10 +87,18 @@ const FormularioGastoPorProducto = () => {
   useEffect(() => {
     const obtenerGastos = async () => {
       try {
-        const url = `${import.meta.env.VITE_API_URL}/gastos`;
-        const respuesta = await fetch(url);
-        const resultado = await respuesta.json();
-        setGastos(resultado);
+        const tokenActual = localStorage.getItem("token");
+        const config = {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${tokenActual}`,
+          },
+        };
+        const { data } = await axios.get(
+          `${import.meta.env.VITE_API_URL}/gastos`,
+          config
+        );
+        setGastos(data);
       } catch (error) {
         console.log(error);
       }
@@ -102,11 +110,19 @@ const FormularioGastoPorProducto = () => {
   useEffect(() => {
     const obtenerProducto = async () => {
       try {
-        const url = `${import.meta.env.VITE_API_URL}/productos`;
-        const respuesta = await fetch(url);
-        const resultado = await respuesta.json();
-        setProductos(resultado);
-        console.log(productos);
+        const tokenActual = localStorage.getItem("token");
+        const config = {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${tokenActual}`,
+          },
+        };
+        const { data } = await axios.get(
+          `${import.meta.env.VITE_API_URL}/productos`,
+          config
+        );
+        setProductos(data);
+        console.log(data);
       } catch (error) {
         console.log(error);
       }

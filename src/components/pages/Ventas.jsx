@@ -40,15 +40,6 @@ const Ventas = () => {
     notas,
   } = venta;
 
-  // SetTotalGastos (suma todos los valor de cada gasto)
-  // useEffect(() => {
-  //   const totalGastado = gastos.reduce(
-  //     (total, gasto) => gasto.valor + total,
-  //     0
-  //   );
-  //   setTotalGastos(totalGastado);
-  // }, [gastos]);
-
   return (
     <div>
       <Header title="Ventas" />

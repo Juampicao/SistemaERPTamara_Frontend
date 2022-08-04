@@ -96,11 +96,17 @@ const FormularioProducto = () => {
   // Prueba con AXIOS
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(e);
-    console.log(_id);
+
     try {
       if (_id) {
-        const respuesta = await axios.put(
+        const tokenActual = localStorage.getItem("token");
+        const config = {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${tokenActual}`,
+          },
+        };
+        const { data } = await axios.put(
           `${import.meta.env.VITE_API_URL}/productos/${_id}`,
           {
             nombreProducto,
@@ -110,9 +116,10 @@ const FormularioProducto = () => {
             categoria,
             fecha,
             descripcion,
-          }
+          },
+          config
         );
-        console.log(respuesta);
+        console.log(data);
         setProducto("");
         navigate("/productos");
         setIsOpenSaveModal(true);
@@ -126,7 +133,14 @@ const FormularioProducto = () => {
           console.log("Completa todos los casilleros por favor.");
           setError(true);
         }
-        const respuesta = await axios.post(
+        const tokenActual = localStorage.getItem("token");
+        const config = {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${tokenActual}`,
+          },
+        };
+        const { data } = await axios.post(
           `${import.meta.env.VITE_API_URL}/productos`,
           {
             nombreProducto,
@@ -136,9 +150,10 @@ const FormularioProducto = () => {
             categoria,
             fecha,
             descripcion,
-          }
+          },
+          config
         );
-        console.log(respuesta);
+        console.log(data);
         navigate("/productos");
         setIsOpenSaveModal(true);
         setProducto("");
@@ -247,7 +262,7 @@ const FormularioProducto = () => {
                 <p className={titulos}>Costo</p>
               </div>
               <input
-                type="text"
+                type="number"
                 placeholder="$"
                 className={inputText}
                 value={costo}
@@ -263,7 +278,7 @@ const FormularioProducto = () => {
                 <p className={titulos}>Precio</p>
               </div>
               <input
-                type="text"
+                type="number"
                 placeholder="$"
                 className={inputText}
                 value={precio}

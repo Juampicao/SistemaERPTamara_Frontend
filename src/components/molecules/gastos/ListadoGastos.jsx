@@ -51,15 +51,9 @@ const ListadoGastos = () => {
           `${import.meta.env.VITE_API_URL}/gastos`,
           config
         );
-        console.log(data);
+        // console.log(data);
         setIsCargando(false);
         setGastos(data.gastos);
-        // const url = `${import.meta.env.VITE_API_URL}/gastos`;
-        // const respuesta = await fetch(url);
-        // const resultado = await respuesta.json();
-
-        // setGastos(resultado.gastos);
-        // setIsCargando(false);
       } catch (error) {
         console.log(error);
       }

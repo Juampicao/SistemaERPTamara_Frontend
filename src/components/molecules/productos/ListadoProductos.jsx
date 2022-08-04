@@ -5,6 +5,8 @@ import Spiner from "../../atoms/Spiner";
 
 import Producto from "./Producto";
 
+import axios from "axios";
+
 const ListadoProductos = () => {
   const {
     producto,
@@ -23,12 +25,22 @@ const ListadoProductos = () => {
   useEffect(() => {
     const obtenerClienteAPI = async () => {
       setIsCargando(true);
+
       try {
-        const url = `${import.meta.env.VITE_API_URL}/productos`;
-        const respuesta = await fetch(url);
-        const resultado = await respuesta.json();
-        setProductos(resultado);
-        // console.log(resultado);
+        const token = localStorage.getItem("token");
+        if (!token) return;
+
+        const config = {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        };
+        const { data } = await axios.get(
+          `${import.meta.env.VITE_API_URL}/productos`,
+          config
+        );
+        setProductos(data);
       } catch (error) {
         console.log(error);
         setIsOpenErrorModal(true);

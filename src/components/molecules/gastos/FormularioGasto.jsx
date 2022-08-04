@@ -75,15 +75,16 @@ const FormularioGasto = () => {
   // Prueba con AXIOS
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const tokenActual = localStorage.getItem("token");
-    const config = {
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${tokenActual}`,
-      },
-    };
+
     try {
       if (_id) {
+        const tokenActual = localStorage.getItem("token");
+        const config = {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${tokenActual}`,
+          },
+        };
         const respuesta = await axios.put(
           `${import.meta.env.VITE_API_URL}/gastos/${_id}`,
           {
@@ -92,7 +93,8 @@ const FormularioGasto = () => {
             categoria,
             fecha,
             notas,
-          }
+          },
+          config
         );
         console.log(respuesta);
         setGasto("");
@@ -104,6 +106,13 @@ const FormularioGasto = () => {
           console.log("Completa todos los casilleros por favor.");
           setError(true);
         }
+        const tokenActual = localStorage.getItem("token");
+        const config = {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${tokenActual}`,
+          },
+        };
         const respuesta = await axios.post(
           `${import.meta.env.VITE_API_URL}/gastos`,
           {

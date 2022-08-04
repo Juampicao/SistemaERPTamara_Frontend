@@ -33,6 +33,8 @@ import EditarProducto from "./components/molecules/productos/EditarProducto";
 import Dashbord from "./components/pages/Dashbord";
 import RutaProhibida from "./components/pages/RutaProhibida";
 
+import iconMoney from "../src/img/iconMoney.png";
+
 function App() {
   useEffect(() => {
     AOS.init();

@@ -7,6 +7,8 @@ import { BotonEliminar, BotonEditar, BotonVer } from "../../atoms/Botones";
 import StaticContext from "../../../contexts/StaticProvider";
 import { formatearFechaCorta, FormatearNumero } from "../../../helpers";
 
+import axios from "axios";
+
 const Producto = ({ producto }) => {
   const {
     productos,
@@ -39,12 +41,25 @@ const Producto = ({ producto }) => {
     );
     if (confirmar) {
       try {
-        const url = `${import.meta.env.VITE_API_URL}/productos/${id}`;
+        const token = localStorage.getItem("token");
+        if (!token) return;
 
-        const respuesta = await fetch(url, {
-          method: "DELETE",
-        });
-        await respuesta.json();
+        const config = {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        };
+        const { data } = await axios.delete(
+          `${import.meta.env.VITE_API_URL}/productos/${id}`,
+          config
+        );
+        // const url = `${import.meta.env.VITE_API_URL}/productos/${id}`;
+
+        // const respuesta = await fetch(url, {
+        //   method: "DELETE",
+        // });
+        // await respuesta.json();
         console.log("Eliminando");
         const arrayProductos = productos.filter(
           (producto) => producto._id !== _id

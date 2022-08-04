@@ -43,10 +43,21 @@ const Venta = ({ venta }) => {
     );
     if (confirmar) {
       try {
-        const respuesta = await axios.delete(
-          `${import.meta.env.VITE_API_URL}/ventas/${_id}`
+        const token = localStorage.getItem("token");
+        if (!token) return;
+
+        const config = {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        };
+        const { data } = await axios.delete(
+          `${import.meta.env.VITE_API_URL}/ventas/${_id}`,
+          config
         );
-        console.log(respuesta);
+        console.log(data);
+
         const arrayventas = ventas.filter((venta) => venta._id !== _id);
         setVentas(arrayventas);
         setIsOpenDeleteModal(!isOpenDeleteModal);

@@ -23,8 +23,18 @@ const SeleccionadoVentas = () => {
       setIsCargando(true);
 
       try {
+        const token = localStorage.getItem("token");
+        if (!token) return;
+
+        const config = {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        };
         const respuesta = await axios.get(
-          `${import.meta.env.VITE_API_URL}/estadisticas/ventas`
+          `${import.meta.env.VITE_API_URL}/estadisticas/ventas`,
+          config
         );
         console.log(respuesta);
         setMontoTotalVentas(respuesta.data.montoTotalVentas);

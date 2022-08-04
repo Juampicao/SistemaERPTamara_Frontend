@@ -91,7 +91,14 @@ const FormularioVenta = () => {
 
     try {
       if (_id) {
-        const respuesta = await axios.put(
+        const tokenActual = localStorage.getItem("token");
+        const config = {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${tokenActual}`,
+          },
+        };
+        const { data } = await axios.put(
           `${import.meta.env.VITE_API_URL}/ventas/${_id}`,
           {
             producto,
@@ -102,9 +109,10 @@ const FormularioVenta = () => {
             categoria,
             fecha,
             notas,
-          }
+          },
+          config
         );
-        console.log(respuesta);
+        console.log(data);
         setVenta("");
         navigate("/ventas");
         setIsOpenSaveModal(true);
@@ -123,6 +131,13 @@ const FormularioVenta = () => {
           console.log("Completa todos los casilleros por favor.");
           setError(true);
         }
+        const tokenActual = localStorage.getItem("token");
+        const config = {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${tokenActual}`,
+          },
+        };
         const respuesta = await axios.post(
           `${import.meta.env.VITE_API_URL}/ventas`,
           {
@@ -134,11 +149,13 @@ const FormularioVenta = () => {
             categoria,
             fecha,
             notas,
-          }
+          },
+          config
         );
         navigate("/ventas");
         setIsOpenSaveModal(true);
         setVenta("");
+        console.log(respuesta);
       }
     } catch (error) {
       console.log(error);

@@ -36,7 +36,9 @@ const Gasto = ({ gasto }) => {
 
   const handleDelete = async (_id) => {
     console.log("Borrando");
-    const confirmar = confirm("Deseas eliminar este gasto?");
+    const confirmar = confirm(
+      `Desea eliminar el gasto "${gasto.nombre}" y quitar ${gasto.notas} del stock principal?`
+    );
     if (confirmar) {
       try {
         const token = localStorage.getItem("token");
@@ -79,14 +81,9 @@ const Gasto = ({ gasto }) => {
         {fecha ? <td>{fecha.slice(0, 10)}</td> : ""}
         <td className=" ">
           <div className=" ">
-            <BotonVer
-              value="Ver"
-              onClick={() => navigate(`/gastos/${_id}`)}
-              // onClick={() => {}}
-            />
+            <BotonVer value="Ver" onClick={() => navigate(`/gastos/${_id}`)} />
             <BotonEditar
               value="Editar"
-              // onClick={() => {}}
               onClick={() => navigate(`/gastos/editar/${_id}`)}
             />
             <BotonEliminar value="Eliminar" onClick={() => handleDelete(_id)} />

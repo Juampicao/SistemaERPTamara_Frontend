@@ -50,11 +50,18 @@ const FormularioVentaConStock = () => {
   useEffect(() => {
     const obtenerProducto = async () => {
       try {
-        const url = `${import.meta.env.VITE_API_URL}/productos`;
-        const respuesta = await fetch(url);
-        const resultado = await respuesta.json();
-        setProductos(resultado);
-        // console.log(productos);
+        const tokenActual = localStorage.getItem("token");
+        const config = {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${tokenActual}`,
+          },
+        };
+        const { data } = await axios.get(
+          `${import.meta.env.VITE_API_URL}/productos`,
+          config
+        );
+        setProductos(data);
       } catch (error) {
         console.log(error);
       }
@@ -118,7 +125,14 @@ const FormularioVentaConStock = () => {
         setError(true);
         return;
       }
-      const respuesta = await axios.post(
+      const tokenActual = localStorage.getItem("token");
+      const config = {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${tokenActual}`,
+        },
+      };
+      const { data } = await axios.post(
         `${import.meta.env.VITE_API_URL}/ventas`,
         {
           producto,
@@ -130,10 +144,12 @@ const FormularioVentaConStock = () => {
           fecha,
           notas,
           productoVendido: productoAVender._id,
-        }
+        },
+        config
       );
 
       navigate("/ventas");
+      console.log(data);
       setIsOpenSaveModal(true);
       setVenta("");
       setProductoAVender("");
