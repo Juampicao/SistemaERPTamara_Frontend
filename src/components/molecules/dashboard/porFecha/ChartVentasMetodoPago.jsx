@@ -12,11 +12,24 @@ import {
 } from "chart.js";
 
 import { Bar, Pie } from "react-chartjs-2";
-import { useState } from "react";
-import { useEffect } from "react";
-const PruebaPie = () => {
-  const [chartData, setChartData] = useState({ datasets: [] });
+import { useState, useEffect } from "react";
 
+import useEstadisticas from "../../../../hooks/useEstadisticas";
+
+const PruebaPie = () => {
+  const {
+    montoTotalVentas,
+    montoTotalVentasEfectivo,
+    montoTotalVentasTarjeta,
+    getEstadisticasVentas,
+  } = useEstadisticas();
+
+  // Llamado Funciones
+  useEffect(() => {
+    getEstadisticasVentas();
+  }, []);
+
+  const [chartData, setChartData] = useState({ datasets: [] });
   const [chartOptions, setChartsOptions] = useState({});
 
   useEffect(() => {
@@ -33,7 +46,7 @@ const PruebaPie = () => {
           ],
           //   borderColor: "rgb(99, 55, 0)",
           //   data: [5, 20, 15, 30, 50, 20, 35],
-          data: [80, 20],
+          data: [montoTotalVentasTarjeta, montoTotalVentasEfectivo],
         },
       ],
     });

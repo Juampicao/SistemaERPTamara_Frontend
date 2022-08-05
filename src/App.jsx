@@ -10,7 +10,7 @@ import { StaticProvider } from "./contexts/StaticProvider";
 import RutaProtegida from "./components/pages/RutaProtegida";
 
 import { AuthProvider } from "./contexts/AuthProvider";
-import EstadisticasProvider from "./contexts/EstadisticasProvider";
+import { EstadisticasProvider } from "./contexts/EstadisticasProvider";
 
 import Configuraciones from "./components/pages/Configuraciones";
 import Login from "./components/pages/Login";

@@ -32,7 +32,6 @@ import ChartGastosCategorias from "../molecules/dashboard/porFecha/ChartGastosCa
 const Configuraciones = () => {
   const { isOpenModal, openModal, closeModal } = useContext(StaticContext);
 
-  console.log("hola");
   return (
     <div>
       <Header title="Configuracion" />

@@ -12,11 +12,31 @@ import {
 } from "chart.js";
 
 import { Bar, Pie } from "react-chartjs-2";
-import { useState } from "react";
-import { useEffect } from "react";
-const ChartGastosCategorias = () => {
-  const [chartData, setChartData] = useState({ datasets: [] });
+import { useState, useEffect, useContext } from "react";
+import StaticContext from "../../../../contexts/StaticProvider";
+import Spiner from "../../../atoms/Spiner";
 
+import useEstadisticas from "../../../../hooks/useEstadisticas";
+
+import axios from "axios";
+const ChartGastosCategorias = () => {
+  const { isOpenErrorModal, setIsOpenErrorModal, isCargando, setIsCargando } =
+    useContext(StaticContext);
+
+  const {
+    getEstadisticasGastos,
+    montoTotalGastosProveedores,
+    montoTotalGastosVarios,
+    montoTotalGastosComida,
+    montoTotalGastosInventario,
+  } = useEstadisticas();
+
+  // Llamado Funciones
+  useEffect(() => {
+    getEstadisticasGastos();
+  }, []);
+
+  const [chartData, setChartData] = useState({ datasets: [] });
   const [chartOptions, setChartsOptions] = useState({});
 
   useEffect(() => {
@@ -33,7 +53,12 @@ const ChartGastosCategorias = () => {
           ],
           //   borderColor: "rgb(99, 55, 0)",
           //   data: [5, 20, 15, 30, 50, 20, 35],
-          data: [25, 25, 35, 15],
+          data: [
+            montoTotalGastosVarios,
+            montoTotalGastosProveedores,
+            montoTotalGastosComida,
+            montoTotalGastosInventario,
+          ],
         },
       ],
     });

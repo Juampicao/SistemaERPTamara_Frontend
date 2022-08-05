@@ -8,6 +8,8 @@ import CuadroEstadisticas from "./CuadroEstadisticas";
 import Spiner from "../../atoms/Spiner";
 import ContenedorSeleccionados from "./ContenedorSeleccionados";
 
+import ChartVentasMetodoPago from "../dashboard/porFecha/ChartVentasMetodoPago";
+
 const SeleccionadoVentas = () => {
   const { isOpenErrorModal, setIsOpenErrorModal, isCargando, setIsCargando } =
     useContext(StaticContext);
@@ -55,6 +57,7 @@ const SeleccionadoVentas = () => {
         <Spiner />
       ) : (
         <ContenedorSeleccionados>
+          <ChartVentasMetodoPago />
           <CuadroEstadisticas
             tittle="Ventas"
             tittle2="Totales"
