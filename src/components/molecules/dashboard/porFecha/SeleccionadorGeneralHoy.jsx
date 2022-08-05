@@ -8,6 +8,8 @@ import CuadroEstadisticas from "./../CuadroEstadisticas";
 import Spiner from "../../../atoms/Spiner";
 import ContenedorSeleccionados from "./../ContenedorSeleccionados";
 
+import ChartMensualVentas from "../../dashboard/porFecha/ChartMensualVentas";
+
 const SeleccionadorGeneralHoy = () => {
   const { setIsOpenErrorModal, isCargando, setIsCargando } =
     useContext(StaticContext);
@@ -53,6 +55,7 @@ const SeleccionadorGeneralHoy = () => {
         <Spiner />
       ) : (
         <ContenedorSeleccionados>
+          <ChartMensualVentas />
           <CuadroEstadisticas
             tittle="Caja"
             tittle2="Actual"
