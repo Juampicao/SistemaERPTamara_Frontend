@@ -25,6 +25,10 @@ import useEstadisticas from "../../hooks/useEstadisticas";
 import ContenedorLayout from "../molecules/ContenedorLayout";
 
 import axios from "axios";
+import ChartMensualVentas from "../molecules/dashboard/porFecha/ChartMensualVentas";
+import ChartVentasMetodoPago from "../molecules/dashboard/porFecha/ChartVentasMetodoPago";
+import ChartGastosCategorias from "../molecules/dashboard/porFecha/ChartGastosCategorias";
+
 const Configuraciones = () => {
   const { isOpenModal, openModal, closeModal } = useContext(StaticContext);
 
@@ -37,7 +41,11 @@ const Configuraciones = () => {
         <div className="py-3">
           <p>Pagina en Construccion...</p>
         </div>
-
+        <div className="space-y-10">
+          <ChartMensualVentas />
+          <ChartVentasMetodoPago />
+          <ChartGastosCategorias />
+        </div>
         {/* <Tab.Group>
         <Tab.List>
           <Tab
