@@ -1,6 +1,7 @@
 import React from "react";
 import SeleccionadoGastos from "./SeleccionadoGastos";
 import SeleccionadoGeneral from "./SeleccionadoGeneral";
+import SeleccionadorInventario from "./SeleccionadorInventario";
 import SeleccionadoVentas from "./SeleccionadoVentas";
 
 const SelectorEstadisticas = () => {
@@ -88,7 +89,10 @@ const SelectorEstadisticas = () => {
           role="tabpanel"
           aria-labelledby="pills-inventario-tab"
         >
-          <p className="text-center mt-2">Inventario..</p>
+          <p className="text-center mt-2">
+            {" "}
+            <SeleccionadorInventario />
+          </p>
         </div>
         <div
           class="tab-pane fade show active"
