@@ -40,7 +40,7 @@ const ListadoVentas = () => {
           config
         );
         setVentas(data.arrayTotalVentas);
-        console.log(data);
+        // console.log(data);
       } catch (error) {
         console.log(error);
         setIsOpenErrorModal(true);

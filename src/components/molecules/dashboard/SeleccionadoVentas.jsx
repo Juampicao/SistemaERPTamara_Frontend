@@ -36,7 +36,7 @@ const SeleccionadoVentas = () => {
           `${import.meta.env.VITE_API_URL}/estadisticas/ventas`,
           config
         );
-        console.log(respuesta);
+        // console.log(respuesta);
         setMontoTotalVentas(respuesta.data.montoTotalVentas);
         setMontoTotalVentasEfectivo(respuesta.data.montoTotalVentasEfectivo);
         setMontoTotalVentasTarjeta(respuesta.data.montoTotalVentasTarjeta);
@@ -49,6 +49,8 @@ const SeleccionadoVentas = () => {
 
   return (
     <>
+      <h1 className="font-bold capitalize text-xl my-2">General</h1>
+
       {isCargando ? (
         <Spiner />
       ) : (

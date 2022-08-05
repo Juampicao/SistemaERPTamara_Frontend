@@ -2,15 +2,14 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useContext } from "react";
 
-import StaticContext from "../../../contexts/StaticProvider";
+import StaticContext from "../../../../contexts/StaticProvider";
 
-import CuadroEstadisticas from "./CuadroEstadisticas";
-import Spiner from "../../atoms/Spiner";
-import ContenedorSeleccionados from "./ContenedorSeleccionados";
-import SeleccionadorGeneralHoy from "./porFecha/SeleccionadorGeneralHoy";
+import CuadroEstadisticas from "./../CuadroEstadisticas";
+import Spiner from "../../../atoms/Spiner";
+import ContenedorSeleccionados from "./../ContenedorSeleccionados";
 
-const SeleccionadoGeneral = () => {
-  const { isOpenErrorModal, setIsOpenErrorModal, isCargando, setIsCargando } =
+const SeleccionadorGeneralHoy = () => {
+  const { setIsOpenErrorModal, isCargando, setIsCargando } =
     useContext(StaticContext);
 
   const [montoTotalVentas, setMontoTotalVentas] = useState(0);
@@ -19,10 +18,8 @@ const SeleccionadoGeneral = () => {
   const [montoCajaActual, setMontoCajaActual] = useState(0);
 
   useEffect(() => {
-    // LLamar Funciones
-    llamarATodasLasFunciones();
-    async function llamarATodasLasFunciones() {
-      setIsCargando(true);
+    getDatosHoy();
+    async function getDatosHoy() {
       try {
         const token = localStorage.getItem("token");
         if (!token) return;
@@ -34,35 +31,29 @@ const SeleccionadoGeneral = () => {
           },
         };
         const respuesta = await axios.get(
-          `${import.meta.env.VITE_API_URL}/estadisticas`,
+          `${import.meta.env.VITE_API_URL}/estadisticas/hoy`,
           config
         );
-
-        setInicioCaja(respuesta.data.valorInicialCaja);
-        setMontoTotalGastos(respuesta.data.montoTotalGastos);
-        setMontoTotalVentas(respuesta.data.montoTotalVentas);
-        setMontoCajaActual(respuesta.data.montoCajaActual);
-        // console.log(respuesta);
+        setMontoTotalGastos(respuesta.data.montoTotalGastosHoy);
+        setMontoTotalVentas(respuesta.data.montoTotalVentasHoy);
+        setInicioCaja(respuesta.data.montoInicioCajasHoy);
+        setMontoCajaActual(respuesta.data.montoCajaActualHoy);
+        console.log(respuesta.data.montoInicioCajasHoy);
       } catch (error) {
         console.log(error);
+        setIsOpenErrorModal(true);
       }
       setIsCargando(false);
     }
   }, []);
 
-  const titlesStlyles = "text-lg xs:text-2xl font-black uppercase my-2";
-
   return (
-    <>
-      <h1 className="font-bold capitalize text-xl my-2">Hoy</h1>
-      <SeleccionadorGeneralHoy />
-      <h1 className="font-bold capitalize text-xl my-2">General</h1>
-
+    <div>
       {isCargando ? (
         <Spiner />
       ) : (
         <ContenedorSeleccionados>
-          {/* <CuadroEstadisticas
+          <CuadroEstadisticas
             tittle="Caja"
             tittle2="Actual"
             value={montoCajaActual}
@@ -71,7 +62,7 @@ const SeleccionadoGeneral = () => {
             tittle="Inicio"
             tittle2="Caja"
             value={inicioCaja}
-          /> */}
+          />
           <CuadroEstadisticas
             tittle="Ventas"
             tittle2="Totales"
@@ -84,8 +75,8 @@ const SeleccionadoGeneral = () => {
           />
         </ContenedorSeleccionados>
       )}
-    </>
+    </div>
   );
 };
 
-export default SeleccionadoGeneral;
+export default SeleccionadorGeneralHoy;

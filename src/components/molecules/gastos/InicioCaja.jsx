@@ -9,6 +9,8 @@ import {
 import { BotonPrimario } from "../../atoms/Botones";
 import { useNavigate, useLocation } from "react-router-dom";
 
+import useAuth from "../../../hooks/useAuth";
+
 const InicioCaja = () => {
   const {
     setIsCargando,
@@ -18,6 +20,8 @@ const InicioCaja = () => {
     modalCaja,
     setModalCaja,
   } = useContext(StaticContext);
+
+  const { auth } = useAuth();
 
   const location = useLocation();
   const navigate = useNavigate();
@@ -43,14 +47,16 @@ const InicioCaja = () => {
           Authorization: `Bearer ${token}`,
         },
       };
+
       respuesta = await axios.put(
-        `${import.meta.env.VITE_API_URL}/caja/62cf04d320fdec269473e073`,
-        // `${import.meta.env.VITE_API_URL}/caja/editarcaja`,
+        // `${import.meta.env.VITE_API_URL}/caja/62cf04d320fdec269473e073`,
+        `${import.meta.env.VITE_API_URL}/caja/editarcaja`,
         {
           inicioCaja,
         },
         config
       );
+
       console.log(respuesta);
       setIsCargando(false);
       setModalCaja(false);

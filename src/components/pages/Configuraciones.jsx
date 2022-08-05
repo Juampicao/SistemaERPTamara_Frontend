@@ -24,11 +24,11 @@ import { useNavigate } from "react-router-dom";
 import useEstadisticas from "../../hooks/useEstadisticas";
 import ContenedorLayout from "../molecules/ContenedorLayout";
 
+import axios from "axios";
 const Configuraciones = () => {
   const { isOpenModal, openModal, closeModal } = useContext(StaticContext);
 
-  // const { estadisticas } = useEstadisticas();
-
+  console.log("hola");
   return (
     <div>
       <Header title="Configuracion" />

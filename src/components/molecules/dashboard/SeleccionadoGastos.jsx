@@ -57,6 +57,8 @@ const SeleccionadoGastos = () => {
 
   return (
     <div>
+      <h1 className="font-bold capitalize text-xl my-2">General</h1>
+
       {isCargando ? (
         <Spiner />
       ) : (
