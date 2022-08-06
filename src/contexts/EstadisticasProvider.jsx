@@ -14,6 +14,7 @@ const EstadisticasProvider = ({ children }) => {
   const [montoTotalGastos, setMontoTotalGastos] = useState(0);
   const [inicioCaja, setInicioCaja] = useState(0);
   const [montoCajaActual, setMontoCajaActual] = useState(0);
+  const [utilidadVenta, setUtilidadVenta] = useState(0);
 
   // Estadisticas Ventas
   const [montoTotalVentasEfectivo, setMontoTotalVentasEfectivo] = useState(0);
@@ -28,7 +29,12 @@ const EstadisticasProvider = ({ children }) => {
 
   // Estadisticas Inventario
 
-  // Estadisticas por Fecha
+  // Estadisticas por Hoy
+  const [montoTotalVentasHoy, setMontoTotalVentasHoy] = useState(0);
+  const [montoTotalGastosHoy, setMontoTotalGastosHoy] = useState(0);
+  const [inicioCajaHoy, setInicioCajaHoy] = useState(0);
+  const [montoCajaActualHoy, setMontoCajaActualHoy] = useState(0);
+  const [utilidadVentasHoy, setUtilidadVentasHoy] = useState(0);
 
   // Datos configuracion & Autenticacion
   const token = localStorage.getItem("token");
@@ -54,6 +60,7 @@ const EstadisticasProvider = ({ children }) => {
       setMontoTotalGastos(respuesta.data.montoTotalGastos);
       setMontoTotalVentas(respuesta.data.montoTotalVentas);
       setMontoCajaActual(respuesta.data.montoCajaActual);
+      setUtilidadVenta(respuesta.data.UtilidadVenta);
       // console.log(respuesta);
     } catch (error) {
       console.log(error);
@@ -97,6 +104,27 @@ const EstadisticasProvider = ({ children }) => {
     // setIsCargando(false);
   }
 
+  // Estadisticas Hoy
+  async function getEstadisticasGeneralesHoy() {
+    try {
+      const respuesta = await axios.get(
+        `${import.meta.env.VITE_API_URL}/estadisticas/hoy`,
+        config
+      );
+      setMontoTotalGastosHoy(respuesta.data.montoTotalGastosHoy);
+      setMontoTotalVentasHoy(respuesta.data.montoTotalVentasHoy);
+      setInicioCajaHoy(respuesta.data.montoInicioCajasHoy);
+      setMontoCajaActualHoy(respuesta.data.montoCajaActualHoy);
+      setUtilidadVentasHoy(respuesta.data.UtilidadVentasHoy);
+      console.log(utilidadVentasHoy);
+      // console.log(respuesta.data.montoInicioCajasHoy);
+    } catch (error) {
+      console.log(error);
+      // setIsOpenErrorModal(true);
+    }
+    // setIsCargando(false);
+  }
+
   return (
     <EstadisticasContext.Provider
       value={{
@@ -104,6 +132,7 @@ const EstadisticasProvider = ({ children }) => {
         montoTotalGastos,
         inicioCaja,
         montoCajaActual,
+        utilidadVenta,
         getEstadisticasGenerales,
         montoTotalGastosProveedores,
         montoTotalGastosVarios,
@@ -113,6 +142,12 @@ const EstadisticasProvider = ({ children }) => {
         montoTotalVentasEfectivo,
         montoTotalVentasTarjeta,
         getEstadisticasVentas,
+        montoCajaActualHoy,
+        inicioCajaHoy,
+        montoTotalGastosHoy,
+        montoTotalVentasHoy,
+        utilidadVentasHoy,
+        getEstadisticasGeneralesHoy,
       }}
     >
       {children}
@@ -121,5 +156,4 @@ const EstadisticasProvider = ({ children }) => {
 };
 
 export { EstadisticasProvider };
-// export default EstadisticasContext;
 export default EstadisticasContext;

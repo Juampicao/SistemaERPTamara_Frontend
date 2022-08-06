@@ -9,44 +9,23 @@ import Spiner from "../../atoms/Spiner";
 import ContenedorSeleccionados from "./ContenedorSeleccionados";
 
 import ChartVentasMetodoPago from "../dashboard/porFecha/ChartVentasMetodoPago";
+import useEstadisticas from "../../../hooks/useEstadisticas";
 
 const SeleccionadoVentas = () => {
   const { isOpenErrorModal, setIsOpenErrorModal, isCargando, setIsCargando } =
     useContext(StaticContext);
 
-  const [montoTotalVentas, setMontoTotalVentas] = useState(0);
-  const [montoTotalVentasEfectivo, setMontoTotalVentasEfectivo] = useState(0);
-  const [montoTotalVentasTarjeta, setMontoTotalVentasTarjeta] = useState(0);
+  const {
+    montoTotalVentas,
+    montoTotalVentasEfectivo,
+    montoTotalVentasTarjeta,
+    getEstadisticasGenerales,
+    getEstadisticasVentas,
+  } = useEstadisticas();
 
   useEffect(() => {
-    // LLamar Funciones
-    llamarATodasLasFunciones();
-    async function llamarATodasLasFunciones() {
-      setIsCargando(true);
-
-      try {
-        const token = localStorage.getItem("token");
-        if (!token) return;
-
-        const config = {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-        };
-        const respuesta = await axios.get(
-          `${import.meta.env.VITE_API_URL}/estadisticas/ventas`,
-          config
-        );
-        // console.log(respuesta);
-        setMontoTotalVentas(respuesta.data.montoTotalVentas);
-        setMontoTotalVentasEfectivo(respuesta.data.montoTotalVentasEfectivo);
-        setMontoTotalVentasTarjeta(respuesta.data.montoTotalVentasTarjeta);
-      } catch (error) {
-        console.log(error);
-      }
-      setIsCargando(false);
-    }
+    getEstadisticasGenerales();
+    getEstadisticasVentas();
   }, []);
 
   return (

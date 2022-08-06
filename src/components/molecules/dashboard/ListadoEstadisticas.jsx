@@ -16,7 +16,6 @@ const ListadoEstadisticas = () => {
         {/* <span className="text-slate-400 text-base"> Proximamente.. </span> */}
       </h1>
       <SelectorEstadisticas />
-      <h1 className="font-bold capitalize text-xl my-2">Buscar por fecha</h1>
     </div>
   );
 };

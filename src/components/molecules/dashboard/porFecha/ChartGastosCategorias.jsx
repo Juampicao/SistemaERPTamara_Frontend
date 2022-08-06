@@ -71,7 +71,7 @@ const ChartGastosCategorias = () => {
         },
         title: {
           display: true,
-          text: "Gastos por Categoria",
+          text: "Gastos por Categoria General",
         },
       },
     });

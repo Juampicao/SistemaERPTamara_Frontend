@@ -48,6 +48,12 @@ const PruebaChart = () => {
     setChartsOptions({
       responsive: true,
       plugins: {
+        datalabels: {
+          formatter: function (value, context) {
+            console.log(context.chart.data);
+            return context.chart.data.labels[context.dataIndex];
+          },
+        },
         legend: {
           position: "top",
         },

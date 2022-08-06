@@ -9,44 +9,24 @@ import Spiner from "../../../atoms/Spiner";
 import ContenedorSeleccionados from "./../ContenedorSeleccionados";
 
 import ChartMensualVentas from "../../dashboard/porFecha/ChartMensualVentas";
+import useEstadisticas from "../../../../hooks/useEstadisticas";
 
 const SeleccionadorGeneralHoy = () => {
   const { setIsOpenErrorModal, isCargando, setIsCargando } =
     useContext(StaticContext);
 
-  const [montoTotalVentas, setMontoTotalVentas] = useState(0);
-  const [montoTotalGastos, setMontoTotalGastos] = useState(0);
-  const [inicioCaja, setInicioCaja] = useState(0);
-  const [montoCajaActual, setMontoCajaActual] = useState(0);
+  const {
+    montoCajaActualHoy,
+    inicioCajaHoy,
+    montoTotalGastosHoy,
+    montoTotalVentasHoy,
+    utilidadVentasHoy,
+    getEstadisticasGeneralesHoy,
+  } = useEstadisticas();
 
+  console.log(utilidadVentasHoy);
   useEffect(() => {
-    getDatosHoy();
-    async function getDatosHoy() {
-      try {
-        const token = localStorage.getItem("token");
-        if (!token) return;
-
-        const config = {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-        };
-        const respuesta = await axios.get(
-          `${import.meta.env.VITE_API_URL}/estadisticas/hoy`,
-          config
-        );
-        setMontoTotalGastos(respuesta.data.montoTotalGastosHoy);
-        setMontoTotalVentas(respuesta.data.montoTotalVentasHoy);
-        setInicioCaja(respuesta.data.montoInicioCajasHoy);
-        setMontoCajaActual(respuesta.data.montoCajaActualHoy);
-        console.log(respuesta.data.montoInicioCajasHoy);
-      } catch (error) {
-        console.log(error);
-        setIsOpenErrorModal(true);
-      }
-      setIsCargando(false);
-    }
+    getEstadisticasGeneralesHoy();
   }, []);
 
   return (
@@ -59,22 +39,27 @@ const SeleccionadorGeneralHoy = () => {
           <CuadroEstadisticas
             tittle="Caja"
             tittle2="Actual"
-            value={montoCajaActual}
+            value={montoCajaActualHoy}
           />
           <CuadroEstadisticas
             tittle="Inicio"
             tittle2="Caja"
-            value={inicioCaja}
+            value={inicioCajaHoy}
           />
           <CuadroEstadisticas
             tittle="Ventas"
             tittle2="Totales"
-            value={montoTotalVentas}
+            value={montoTotalVentasHoy}
+          />
+          <CuadroEstadisticas
+            tittle="Utilidad"
+            tittle2="Ventas"
+            value={utilidadVentasHoy}
           />
           <CuadroEstadisticas
             tittle="Gastos"
             tittle2="Totales"
-            value={montoTotalGastos}
+            value={montoTotalGastosHoy}
           />
         </ContenedorSeleccionados>
       )}
