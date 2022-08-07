@@ -9,6 +9,8 @@ const EstadisticasProvider = ({ children }) => {
   // const { isOpenErrorModal, setIsOpenErrorModal, isCargando, setIsCargando } =
   //   useContext(StaticContext);
 
+  let fechaActual = new Date();
+
   // Estadisticas Generales
   const [montoTotalVentas, setMontoTotalVentas] = useState(0);
   const [montoTotalGastos, setMontoTotalGastos] = useState(0);
@@ -35,6 +37,47 @@ const EstadisticasProvider = ({ children }) => {
   const [inicioCajaHoy, setInicioCajaHoy] = useState(0);
   const [montoCajaActualHoy, setMontoCajaActualHoy] = useState(0);
   const [utilidadVentasHoy, setUtilidadVentasHoy] = useState(0);
+
+  // Estadisticas Personalizadas
+  const [isCargandoFecha, setIsCargandoFecha] = useState(false);
+  const [seleccionarFechaABuscar, setSeleccionarFechaABuscar] =
+    useState(fechaActual);
+  const [montoTotalVentasPersonalizada, setMontoTotalVentasPersonalizada] =
+    useState(0);
+  const [
+    montoTotalVentasEfectivoPersonalizada,
+    setMontoTotalVentasEfectivoPersonalizada,
+  ] = useState(0);
+  const [
+    montoTotalVentasTarjetaPersonalizada,
+    setMontoTotalVentasarjetaPersonalizada,
+  ] = useState(0);
+  const [montoTotalGastosPersonalizada, setMontoTotalGastosPersonalizada] =
+    useState(0);
+  const [inicioCajaPersonalizada, setInicioCajaPersonalizada] = useState(0);
+  const [montoCajaActualPersonalizada, setMontoCajaActualPersonalizada] =
+    useState(0);
+  const [utilidadVentaPersonalizada, setUtilidadVentaPersonalizada] =
+    useState(0);
+
+  // Estadisticas Gastos Personalizados
+  const [
+    montoTotalGastosProveedoresPersonalizada,
+    setMontoTotalGastosProveedoresPersonalizada,
+  ] = useState(0);
+  const [
+    montoTotalGastosVariosPersonalizada,
+    setMontoTotalGastosVariosPersonalizada,
+  ] = useState(0);
+  const [
+    montoTotalGastosComidaPersonalizada,
+    setMontoTotalGastosComidaPersonalizada,
+  ] = useState(0);
+  const [
+    montoTotalGastosInventarioPersonalizada,
+    setMontoTotalGastosInventarioPersonalizada,
+  ] = useState(0);
+  const [dataPersonalizado, setDataPersonalizado] = useState();
 
   // Datos configuracion & Autenticacion
   const token = localStorage.getItem("token");
@@ -116,13 +159,78 @@ const EstadisticasProvider = ({ children }) => {
       setInicioCajaHoy(respuesta.data.montoInicioCajasHoy);
       setMontoCajaActualHoy(respuesta.data.montoCajaActualHoy);
       setUtilidadVentasHoy(respuesta.data.UtilidadVentasHoy);
-      console.log(utilidadVentasHoy);
       // console.log(respuesta.data.montoInicioCajasHoy);
     } catch (error) {
       console.log(error);
       // setIsOpenErrorModal(true);
     }
     // setIsCargando(false);
+  }
+
+  async function getEstadisticasGeneralesPersonalizada() {
+    setIsCargandoFecha(true);
+    try {
+      const respuesta = await axios.post(
+        `${import.meta.env.VITE_API_URL}/estadisticas/fechapersonalizada`,
+        {
+          seleccionarFechaABuscar,
+        },
+        config
+      );
+      setMontoTotalVentasPersonalizada(
+        respuesta.data.montoTotalVentasPersonalizado
+      );
+      setUtilidadVentaPersonalizada(respuesta.data.UtilidadVentasPersonalizado);
+      setMontoTotalVentasarjetaPersonalizada(
+        respuesta.data.montoTotalVentasTarjetaPersonalizado
+      );
+      setMontoTotalVentasEfectivoPersonalizada(
+        respuesta.data.montoTotalVentasEfectivoPersonalizado
+      );
+      setMontoTotalGastosPersonalizada(
+        respuesta.data.montoTotalGastosPersonalizado
+      );
+      // console.log(respuesta.data);
+    } catch (error) {
+      console.log(error);
+      //  setIsOpenErrorModal(true);
+    }
+    setIsCargandoFecha(false);
+  }
+
+  // Gastos Personalizado
+  async function getEstadisticasGastosPersonalizada() {
+    setIsCargandoFecha(true);
+    try {
+      const respuesta = await axios.post(
+        `${
+          import.meta.env.VITE_API_URL
+        }/estadisticas/fechapersonalizada/gastos`,
+        {
+          seleccionarFechaABuscar,
+        },
+        config
+      );
+      // setMontoTotalGastosProveedoresPersonalizada(
+      //   respuesta.data.montoTotalGastosProveedores
+      // );
+      // setMontoTotalGastosVariosPersonalizada(
+      //   respuesta.data.montoTotalGastosVarios
+      // );
+      // setMontoTotalGastosComidaPersonalizada(
+      //   respuesta.data.montoTotalGastosComida
+      // );
+      // setMontoTotalGastosInventarioPersonalizada(
+      //   respuesta.data.montoTotalGastosInventario
+      // );
+
+      console.log(respuesta.data.obtenerGastosPersonalizado);
+      setDataPersonalizado(respuesta.data.obtenerGastosPersonalizado);
+    } catch (error) {
+      console.log(error);
+      //  setIsOpenErrorModal(true);
+    }
+    setIsCargandoFecha(false);
   }
 
   return (
@@ -148,6 +256,22 @@ const EstadisticasProvider = ({ children }) => {
         montoTotalVentasHoy,
         utilidadVentasHoy,
         getEstadisticasGeneralesHoy,
+        montoTotalVentasPersonalizada,
+        montoTotalVentasEfectivoPersonalizada,
+        montoTotalVentasTarjetaPersonalizada,
+        montoTotalGastosPersonalizada,
+        utilidadVentaPersonalizada,
+        seleccionarFechaABuscar,
+        setIsCargandoFecha,
+        isCargandoFecha,
+        setSeleccionarFechaABuscar,
+        getEstadisticasGeneralesPersonalizada,
+        montoTotalGastosProveedoresPersonalizada,
+        montoTotalGastosVariosPersonalizada,
+        montoTotalGastosComidaPersonalizada,
+        montoTotalGastosInventarioPersonalizada,
+        dataPersonalizado,
+        getEstadisticasGastosPersonalizada,
       }}
     >
       {children}

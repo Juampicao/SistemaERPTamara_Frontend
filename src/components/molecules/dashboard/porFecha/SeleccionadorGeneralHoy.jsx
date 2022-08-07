@@ -24,7 +24,6 @@ const SeleccionadorGeneralHoy = () => {
     getEstadisticasGeneralesHoy,
   } = useEstadisticas();
 
-  console.log(utilidadVentasHoy);
   useEffect(() => {
     getEstadisticasGeneralesHoy();
   }, []);
