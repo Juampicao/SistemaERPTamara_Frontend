@@ -33,8 +33,8 @@ const SeleccionadorGeneralHoy = () => {
       {isCargando ? (
         <Spiner />
       ) : (
-        <ContenedorSeleccionados>
-          <ChartMensualVentas />
+        // <ContenedorSeleccionados>
+        <div className="grid grid-cols-2 lg:grid-cols-5 gap-x-5 gap-y-3">
           <CuadroEstadisticas
             tittle="Caja"
             tittle2="Actual"
@@ -60,7 +60,8 @@ const SeleccionadorGeneralHoy = () => {
             tittle2="Totales"
             value={montoTotalGastosHoy}
           />
-        </ContenedorSeleccionados>
+        </div>
+        // </ContenedorSeleccionados>
       )}
     </div>
   );

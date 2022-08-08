@@ -21,12 +21,16 @@ const SeleccionadoGeneral = () => {
     montoTotalGastos,
     utilidadVenta,
     getEstadisticasGenerales,
+    getEstadisticasGastosPersonalizada,
+    getEstadisticasGeneralesPersonalizada,
   } = useEstadisticas();
 
   const [seleccionarFechaABuscar, setSeleccionarFechaABuscar] = useState();
 
   useEffect(() => {
     getEstadisticasGenerales();
+    getEstadisticasGastosPersonalizada();
+    getEstadisticasGeneralesPersonalizada();
   }, []);
 
   const titlesStlyles = "text-lg xs:text-2xl font-black uppercase my-2";
@@ -35,12 +39,13 @@ const SeleccionadoGeneral = () => {
     <>
       <h1 className="font-bold capitalize text-xl my-2">Hoy</h1>
       <SeleccionadorGeneralHoy />
-      <h1 className="font-bold capitalize text-xl my-2">General</h1>
+      <SeleccionadorGeneraFechaPersonalizada />
 
       {isCargando ? (
         <Spiner />
       ) : (
         <ContenedorSeleccionados>
+          <h1 className="font-bold capitalize text-xl my-2">General</h1>
           <CuadroEstadisticas
             tittle="Ventas"
             tittle2="Totales"
@@ -58,7 +63,6 @@ const SeleccionadoGeneral = () => {
           />
         </ContenedorSeleccionados>
       )}
-      <SeleccionadorGeneraFechaPersonalizada />
     </>
   );
 };

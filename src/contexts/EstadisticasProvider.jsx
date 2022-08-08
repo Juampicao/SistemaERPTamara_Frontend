@@ -77,7 +77,9 @@ const EstadisticasProvider = ({ children }) => {
     montoTotalGastosInventarioPersonalizada,
     setMontoTotalGastosInventarioPersonalizada,
   ] = useState(0);
-  const [dataPersonalizado, setDataPersonalizado] = useState();
+
+  // Ventas por mes
+  const [ventasPorMes, setVentasPorMes] = useState();
 
   // Datos configuracion & Autenticacion
   const token = localStorage.getItem("token");
@@ -200,7 +202,7 @@ const EstadisticasProvider = ({ children }) => {
 
   // Gastos Personalizado
   async function getEstadisticasGastosPersonalizada() {
-    setIsCargandoFecha(true);
+    // setIsCargandoFecha(true);
     try {
       const respuesta = await axios.post(
         `${
@@ -211,26 +213,43 @@ const EstadisticasProvider = ({ children }) => {
         },
         config
       );
-      // setMontoTotalGastosProveedoresPersonalizada(
-      //   respuesta.data.montoTotalGastosProveedores
-      // );
-      // setMontoTotalGastosVariosPersonalizada(
-      //   respuesta.data.montoTotalGastosVarios
-      // );
-      // setMontoTotalGastosComidaPersonalizada(
-      //   respuesta.data.montoTotalGastosComida
-      // );
-      // setMontoTotalGastosInventarioPersonalizada(
-      //   respuesta.data.montoTotalGastosInventario
-      // );
-
-      console.log(respuesta.data.obtenerGastosPersonalizado);
-      setDataPersonalizado(respuesta.data.obtenerGastosPersonalizado);
+      setMontoTotalGastosProveedoresPersonalizada(
+        respuesta.data.montoTotalGastosProveedoresPersonalizado
+      );
+      setMontoTotalGastosVariosPersonalizada(
+        respuesta.data.montoTotalGastosVariosPersonalizado
+      );
+      setMontoTotalGastosComidaPersonalizada(
+        respuesta.data.montoTotalGastosComidaPersonalizado
+      );
+      setMontoTotalGastosInventarioPersonalizada(
+        respuesta.data.montoTotalGastosInventarioPersonalizado
+      );
+      // console.log(respuesta.data);
     } catch (error) {
       console.log(error);
       //  setIsOpenErrorModal(true);
     }
-    setIsCargandoFecha(false);
+    // setIsCargandoFecha(false);
+  }
+
+  async function getEstadisticasVentasMensual() {
+    // setIsCargandoFecha(true);
+    try {
+      const respuesta = await axios.post(
+        `${import.meta.env.VITE_API_URL}/estadisticas/ventasmensual`,
+        {
+          seleccionarFechaABuscar,
+        },
+        config
+      );
+      setVentasPorMes(respuesta.data);
+      console.log(respuesta.data);
+    } catch (error) {
+      console.log(error);
+      //  setIsOpenErrorModal(true);
+    }
+    // setIsCargandoFecha(false);
   }
 
   return (
@@ -270,8 +289,9 @@ const EstadisticasProvider = ({ children }) => {
         montoTotalGastosVariosPersonalizada,
         montoTotalGastosComidaPersonalizada,
         montoTotalGastosInventarioPersonalizada,
-        dataPersonalizado,
         getEstadisticasGastosPersonalizada,
+        ventasPorMes,
+        getEstadisticasVentasMensual,
       }}
     >
       {children}

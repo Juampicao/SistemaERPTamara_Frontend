@@ -10,26 +10,17 @@ import Spiner from "../../../atoms/Spiner";
 const ChartGastosCategoriasPersonalizado = () => {
   const {
     getEstadisticasGastosPersonalizada,
+    montoTotalGastosPersonalizada,
     montoTotalGastosProveedoresPersonalizada,
     montoTotalGastosVariosPersonalizada,
     montoTotalGastosComidaPersonalizada,
     montoTotalGastosInventarioPersonalizada,
     seleccionarFechaABuscar,
-    dataPersonalizado,
     isCargandoFecha,
   } = useEstadisticas();
 
-  useEffect(() => {
-    getEstadisticasGastosPersonalizada();
-  }, []);
-
   const [chartData, setChartData] = useState({ datasets: [] });
   const [chartOptions, setChartsOptions] = useState({});
-
-  // console.log(
-  //   `desde chart..${seleccionarFechaABuscar}`,
-  //   chartData.datasets.data
-  // );
 
   useEffect(() => {
     setChartData({
@@ -44,8 +35,8 @@ const ChartGastosCategoriasPersonalizado = () => {
             "rgb(00, 00, 00)",
           ],
           data: [
-            montoTotalGastosProveedoresPersonalizada,
             montoTotalGastosVariosPersonalizada,
+            montoTotalGastosProveedoresPersonalizada,
             montoTotalGastosComidaPersonalizada,
             montoTotalGastosInventarioPersonalizada,
             // 10, 20, 30, 60,
@@ -72,6 +63,11 @@ const ChartGastosCategoriasPersonalizado = () => {
 
   return (
     <div>
+      {montoTotalGastosPersonalizada ? (
+        ""
+      ) : (
+        <h2 className="text-center">No hay Gastos en esta fecha.</h2>
+      )}
       {isCargandoFecha ? (
         <Spiner />
       ) : (

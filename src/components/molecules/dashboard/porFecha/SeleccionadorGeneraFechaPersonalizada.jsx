@@ -14,13 +14,16 @@ import { formatearFecha } from "../../../../helpers";
 
 import ChartVentasMetodoPagoPersonalizado from "../personalizado/ChartVentasMetodoPagoPersonalizado";
 import ChartGastosCategoriasPersonalizado from "../personalizado/ChartGastosCategoriasPersonalizado";
+import ChartMensualVentasPersonalizado from "../personalizado/ChartMensualVentasPersonalizado";
 
 const SeleccionadorGeneraFechaPersonalizada = () => {
   const { isOpenErrorModal, setIsOpenErrorModal, isCargando, setIsCargando } =
     useContext(StaticContext);
 
   const {
+    getEstadisticasGastosPersonalizada,
     getEstadisticasGeneralesPersonalizada,
+    getEstadisticasVentasMensual,
     seleccionarFechaABuscar,
     setSeleccionarFechaABuscar,
     montoTotalVentasPersonalizada,
@@ -32,21 +35,20 @@ const SeleccionadorGeneraFechaPersonalizada = () => {
     isCargandoFecha,
   } = useEstadisticas();
 
-  useEffect(() => {
-    getEstadisticasGeneralesPersonalizada();
-  }, []);
-
+  // Llamar funciones getEstadisticas Cuando cambia la fecha.
   const handleVerEstadisticasPorFecha = (e) => {
     e.preventDefault();
     console.log(seleccionarFechaABuscar);
     getEstadisticasGeneralesPersonalizada();
+    getEstadisticasGastosPersonalizada();
+    getEstadisticasVentasMensual();
   };
 
   return (
     <div className="space-y-5 ">
       <h1 className="font-bold capitalize text-xl my-2">Buscar por fecha</h1>
       <div className="flex items-center space-x-3">
-        <form action="submit" onChange={handleVerEstadisticasPorFecha}>
+        <form action="submit" onSubmit={handleVerEstadisticasPorFecha}>
           <input
             type="date"
             value={seleccionarFechaABuscar}
@@ -55,6 +57,13 @@ const SeleccionadorGeneraFechaPersonalizada = () => {
             id=""
             className="p-2 rounded-xl"
           />
+          <button
+            type="submit"
+            className="bg-black rounded-xl text-white px-3 py-1"
+          >
+            {" "}
+            Actualizar
+          </button>
         </form>
 
         <div className="text-center font-bold text-md">
@@ -65,10 +74,7 @@ const SeleccionadorGeneraFechaPersonalizada = () => {
       {isCargandoFecha ? (
         <Spiner />
       ) : (
-        <div className="flex">
-          {/* <div className="text-center font-bold text-lg">
-            {formatearFecha(seleccionarFechaABuscar)}
-          </div> */}
+        <div className="grid grid-cols-2 lg:grid-cols-5 gap-x-5 gap-y-3">
           <CuadroEstadisticas
             tittle="Ventas"
             tittle2="Totales"
@@ -96,9 +102,16 @@ const SeleccionadorGeneraFechaPersonalizada = () => {
           />
         </div>
       )}
-      <div className="max-w-xs">
-        <ChartVentasMetodoPagoPersonalizado />
-        <ChartGastosCategoriasPersonalizado />
+      <div className="grid grid-cols-2 lg:grid-cols-3 items-center">
+        <div className="max-w-xs">
+          <ChartVentasMetodoPagoPersonalizado />
+        </div>
+        <div className="max-w-xs">
+          <ChartGastosCategoriasPersonalizado />
+        </div>
+        <div className="max-w-lg">
+          <ChartMensualVentasPersonalizado />
+        </div>
       </div>
     </div>
   );
