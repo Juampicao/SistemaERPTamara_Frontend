@@ -45,7 +45,7 @@ const SeleccionadorGeneralHoy = () => {
             tittle2="Caja"
             value={inicioCajaHoy}
           />
-          <CuadroEstadisticas
+          {/* <CuadroEstadisticas
             tittle="Ventas"
             tittle2="Totales"
             value={montoTotalVentasHoy}
@@ -59,7 +59,7 @@ const SeleccionadorGeneralHoy = () => {
             tittle="Gastos"
             tittle2="Totales"
             value={montoTotalGastosHoy}
-          />
+          /> */}
         </div>
         // </ContenedorSeleccionados>
       )}
